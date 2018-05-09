@@ -7,9 +7,12 @@ public function __construct() {
 }
 
 public function index(){
-    $this->load->view("login.php");
+    $this->load->view("partneri.php");
 }
 
+public function login(){
+    $this->load->view("login.php");
+}
 
 
 }

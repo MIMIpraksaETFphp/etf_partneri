@@ -1,0 +1,5 @@
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('0', ' cekanje');
+INSERT INTO `etf_partneri`.`status_korisnika` (`opis`) VALUES ('clan');
+INSERT INTO `etf_partneri`.`status_korisnika` (`opis`) VALUES ('IT menadzer');
+INSERT INTO `etf_partneri`.`status_korisnika` (`opis`) VALUES ('admin');
+INSERT INTO `etf_partneri`.`status_korisnika` (`opis`) VALUES ('banovan');

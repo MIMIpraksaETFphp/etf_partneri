@@ -15,4 +15,8 @@ public function login(){
     $this->load->view("login.php");
 }
 
+public function registracija(){
+    $this->load->view("registracija.php");
+}
+
 }

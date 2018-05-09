@@ -23,7 +23,7 @@
             <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Register</a>
+                <a class="nav-link" href="<?php echo site_url("Gost/registracija");?>">Register</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url("Gost/login");?>">Login</a>

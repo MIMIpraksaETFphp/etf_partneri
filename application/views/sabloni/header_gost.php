@@ -10,9 +10,9 @@
 
   <body>
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-        <div class="container">
-        <a class="navbar-brand" href="<?php echo site_url("Gost/index");?>">ETF Partneri</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="#">ETF Partneri</a>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -28,11 +28,10 @@
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url("Gost/login");?>">Login</a>
           </li>
-          
+
         </ul>
        
       </div>
-        </div>
+
     </nav>
-      
-      <div class="container">
+     <div class="container body">

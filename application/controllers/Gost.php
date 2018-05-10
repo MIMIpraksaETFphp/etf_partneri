@@ -10,9 +10,9 @@ public function __construct() {
         redirect ("Korisnik");
 }
 
-public function loadView($page){
+public function loadView($page, $data=[]){
     $this->load->view("sabloni/header_gost.php");
-    $this->load->view($page);    
+    $this->load->view($page,$data);    
     $this->load->view("sabloni/footer.php");
 }
 
@@ -25,7 +25,7 @@ public function login($poruka=NULL){
     $podaci=array();
     if($poruka)
         $podaci['poruka']=$poruka;
-    $this->loadView("login.php");
+    $this->loadView("login.php",$podaci);
 }
 
 public function ulogujse(){

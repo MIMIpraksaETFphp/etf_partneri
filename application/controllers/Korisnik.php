@@ -11,6 +11,12 @@ public function __construct() {
 }
 
 public function index() {
-    echo "radi";
+    $this->load->view("partneriClanovi.php");
+}
+
+public function logout() {
+    $this->session->unset_userdata('korisnik');
+    $this->session->sess_destroy();
+    redirect("Gost");
 }
 }

@@ -11,8 +11,11 @@ public function index(){
     
 }
 
-public function login(){
-    $this->load->view("login.php");
+public function login($porika=NULL){
+    $podaci=array();
+    if($poruka)
+        $podaci['poruka']=$poruka;
+    $this->load->view($podaci, "login.php");
 }
 
 public function registracija(){

@@ -28,8 +28,8 @@ class ModelKorisnik extends CI_Model {
         }
     }
     
-    public function proveraPassword($password) {
-        $this->db->where('username', $username);
+    public function proveraPassword($username,$password) {  //ovde je neka greska
+        $this->db->where('username', $username);    //ili ovde
         $this->db->where('password', $password);
         $result= $this->db->get('korisnik');
         $korisnik=$result->row_array();

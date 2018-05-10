@@ -13,17 +13,23 @@ class ModelKorisnik extends CI_Model {
         $this->load->database();
     }
     
-    public function proveraUsername() {
-        $this->db->where('username', $this->username);
-        $result= $this->db->get('korisnik');
-        if($result->result())
+       
+    
+    
+    
+    public function proveraUsername($username) {
+        $result=$this->db->where('username', $username)->get('korisnik');
+        $korisnik=$result->row();
+         if ($korisnik!=NULL) {
+            $this->korisnik=$korisnik;
             return TRUE;
-        else
+        } else {
             return FALSE;
+        }
     }
     
     public function proveraPassword($password) {
-        $this->db->where('username', $this->username);
+        $this->db->where('username', $username);
         $this->db->where('password', $password);
         $result= $this->db->get('korisnik');
         $korisnik=$result->row_array();

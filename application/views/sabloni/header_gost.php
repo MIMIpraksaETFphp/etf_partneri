@@ -11,7 +11,6 @@
   </head>
 
   <body>
-
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
       <a class="navbar-brand" href="#">ETF Partneri</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,3 +33,4 @@
        
       </div>
     </nav>
+     <div class="container body">

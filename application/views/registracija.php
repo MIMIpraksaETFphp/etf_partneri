@@ -1,2 +1,21 @@
 <?php
-echo "registracija";
+echo form_open("Gost/registracija", "method=post");
+echo "Korisnicko ime";
+echo form_input("username", set_value('username'));
+echo "<br/>Lozinka";
+echo form_password("password", set_value('password'));
+echo "<br/>Ponovi lozinku";
+echo form_password("password", set_value('password'));
+echo "<br/>Ime";
+echo form_input("ime", set_value('ime'));
+echo "<br/>Prezime";
+echo form_input("prezime", set_value('prezime'));
+//echo "<br/>Datum rodjenja";
+//echo form_date();
+echo "<br/>Telefon";
+echo form_input("telefon", set_value('telefon'));
+echo "<br/>e-mail";
+echo form_input("mail", set_value('mail'));
+echo "<br/>";
+echo form_submit("registracija", "Registruj se");
+echo form_close();

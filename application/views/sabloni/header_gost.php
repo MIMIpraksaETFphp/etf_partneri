@@ -29,7 +29,7 @@
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url("Gost/login");?>">Login</a>
           </li>
-          
+
         </ul>
        
       </div>

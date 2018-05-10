@@ -25,7 +25,7 @@ public function login($poruka=NULL){
     $podaci=array();
     if($poruka)
         $podaci['poruka']=$poruka;
-    $this->load->view("login.php");
+    $this->loadView("login.php");
 }
 
 public function ulogujse(){

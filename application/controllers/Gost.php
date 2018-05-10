@@ -6,8 +6,14 @@ public function __construct() {
     parent::__construct();
 }
 
+public function loadView($page){
+    $this->load->view("sabloni/header_gost.php");
+    $this->load->view($page);    
+    $this->load->view("sabloni/footer.php");
+}
+
 public function index(){
-    $this->load->view("partneri.php");
+    $this->loadView("partneri.php");
     
 }
 
@@ -19,7 +25,8 @@ public function login($porika=NULL){
 }
 
 public function registracija(){
-    $this->load->view("registracija.php");
+    $this->loadView("registracija.php");
+    /*TO DO*/
 }
 
 }

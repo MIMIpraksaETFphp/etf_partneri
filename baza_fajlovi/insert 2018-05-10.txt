@@ -1,6 +1,3 @@
-ALTER TABLE `etf_partneri`.`partner` 
-CHANGE COLUMN `PIB` `PIB` VARCHAR(45) NOT NULL ;
-
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('183953928', 'ComeTrade', 'Nusiceva 12', 'Beograd', '11000', 'Srbija', '250-029939-029438', 'DIN', 'Jovana ', 'Jovic', '060888', 'jovana.jovic@gmail.com');
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('283494832', 'EPS', 'Beogradska 8', 'Beograd', '11000', 'Srbija', '310-390483-190', 'DIN', 'Mirko', 'Mirkovic', '0607854', 'mirko.mirkovic@gmail.com');
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('2A34B43C', 'Facebook', 'Lower Manhatan 43', 'New York', '3700', 'USA', 'IBAN347 DF3349808', 'USD', 'John', 'Malkovic', '+53 23231', 'john.Malkovic@face.com');

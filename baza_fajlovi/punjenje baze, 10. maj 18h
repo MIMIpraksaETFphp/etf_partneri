@@ -1,0 +1,49 @@
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('1', 'na cekanju');
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('2', 'clan tima');
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('3', 'it menadzer');
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('4', 'admin');
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('5', 'banovan');
+
+INSERT INTO `etf_partneri`.`korisnik` (`idKorisnik`, `username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('1', 'milan', 'sifra123', 'Milan', 'Ajtic', '1990-08-24', '0601', 'ma@test.com', '3');
+INSERT INTO `etf_partneri`.`korisnik` (`idKorisnik`, `username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('2', 'ivanm', 'sifra123', 'Ivan', 'Markovic', '1989-02-14', '0602', 'im@test.com', '2');
+INSERT INTO `etf_partneri`.`korisnik` (`idKorisnik`, `username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('3', 'marko', 'sifra123', 'Marko', 'Markovic', '1987-03-14', '0603', 'mm@test.com', '1');
+INSERT INTO `etf_partneri`.`korisnik` (`idKorisnik`, `username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('4', 'ivani', 'sifra123', 'Ivan', 'Ivanovic', '1980-05-10', '0604', 'ii@test.com', '1');
+
+INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('183953928', 'ComTrade', 'Nusiceva 12', 'Beograd', '11000', 'Srbija', '250-029939-029438', 'DIN', 'Jovana ', 'Jovic', '060888', 'jovana.jovic@test.com');
+INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('283494832', 'EPS', 'Beogradska 8', 'Beograd', '11000', 'Srbija', '310-390483-190', 'DIN', 'Mirko', 'Mirkovic', '0607854', 'mirko.mirkovic@test.com');
+INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('2A34B43C', 'Facebook', 'Lower Manhatan 43', 'New York', '3700', 'USA', 'IBAN347 DF3349808', 'USD', 'John', 'Malkovic', '+53 23231', 'john.Malkovic@test.com');
+INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('83799837', 'Benestra', 'Einsteins 3', 'Bratislava', '5900', 'Slovacka', 'IBAN233 1233S23', 'EUR', 'Jan', 'Jankulovsky', '+322 2434', 'jan.jankulovsky@test.com');
+INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`) VALUES ('93453299', 'ABBA', 'Dunavski kej bb', 'Beograd', '11000', 'Srbija', '250-23323-12', 'DIN', 'Nikola', 'Nenadovic', '0608383', 'nikola.nenadovic@test.com');
+
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('info@comtrade.com', '7');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('eps.info@eps.srbija.org', '8');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('facebook@gmail.com', '9');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('info@benestra.com', '10');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('central@abba.rs', '11');
+
+INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('2', '7');
+INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('2', '7');
+INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('2', '8');
+INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('3', '9');
+INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('3', '10');
+INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('4', '10');
+INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('4', '11');
+
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 33 832', '7');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 3445', '7');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 5488', '7');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+32 5585', '8');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+32 485', '8');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+55 8545', '9');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+55 255', '9');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 548', '10');
+INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('063 2525', '11');
+
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('poslovni@comtrade.com', '7');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('marketing@comtrade.com', '7');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('eps.finansije@eps.srbija.org', '8');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('marketing@benestra.com', '8');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('director@benestra.com', '8');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('fin.director@benestra.com', '9');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('contact@benestra.com', '10');
+INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('marketing@abba.rs', '11');

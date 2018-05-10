@@ -8,9 +8,11 @@ echo form_input("kompanija", set_value("kompanija"));
 echo form_submit("pronadji", "Pronadji");
 echo form_close();
 ?>
-<table>
-    <tr>
-        <th></th>
-    </tr>
-</table>
+<?php if(isset($naziv)) { 
+    foreach($naziv as $partner){
+        foreach ($partner as $value)
+            echo $value."<br />";
+    }
+    ?>
 
+<?php } ?>

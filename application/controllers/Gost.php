@@ -4,6 +4,7 @@ class Gost extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->model("ModelGost");
         $this->load->model("ModelKorisnik");
         $this->load->library('session');
         if (($this->session->userdata('korisnik')) != NULL)
@@ -69,7 +70,9 @@ class Gost extends CI_Controller {
 
 public function prikaziPartnere(){
    $kompanija=$this->input->post("kompanija");
-   $niz= $this->modelGost->pretraga($kompanija);
+   $rezultat=$this->ModelGost->pretraga($kompanija);
+   $data['naziv']=$rezultat;
+   $this->loadView("partneri.php", $data);
 }
 
 }

@@ -7,19 +7,6 @@ class Gost extends CI_Controller {
         $this->load->model("ModelGost");
         $this->load->model("ModelKorisnik");
         $this->load->library('session');
-<<<<<<< HEAD
-        if (($this->session->userdata('korisnik')) != NULL)
-            if ($korisnik->status_korisnika_idtable1 == 2)
-                redirect("Korisnik/index");
-            elseif ($korisnik->status_korisnika_idtable1 == 3)
-                redirect("ITmenadzer/index");
-            elseif ($korisnik->status_korisnika_idtable1 == 4)
-                redirect("Admin");
-            else
-                redirect("Gost");
-=======
-        
->>>>>>> ce2d3e5bc32d6a6d0c0dd8ee487906faa3f81e56
     }
 
     public function loadView($page, $data = []) {
@@ -29,31 +16,21 @@ class Gost extends CI_Controller {
     }
 
     public function index() {
-<<<<<<< HEAD
-        $kompanija = $this->input->post("kompanija");
-        $rezultat = $this->ModelGost->pretraga($kompanija);
-        $data['naziv'] = $rezultat;
-        $this->loadView("partneri.php", $data);
-=======
-       // $this->loadView("partneri.php");
-        if (($this->session->userdata('korisnik')) != NULL){
-             if ($korisnik->status_korisnika_idtable1 == 2)
-                    redirect("Korisnik/index");
-                elseif ($korisnik->status_korisnika_idtable1== 3)
-                    redirect("ITmenadzer/index");
-                elseif ($korisnik->status_korisnika_idtable1== 4)
-                    redirect("Admin");
-                //else
-                    //$this->loadView("partneri.php");  
-        }else{
-            $this->loadView("partneri.php");
-        }    
->>>>>>> ce2d3e5bc32d6a6d0c0dd8ee487906faa3f81e56
+        if (($this->session->userdata('korisnik')) != NULL) {
+            if ($korisnik->status_korisnika_idtable1 == 2)
+                redirect("Korisnik/index");
+            elseif ($korisnik->status_korisnika_idtable1 == 3)
+                redirect("ITmenadzer/index");
+            elseif ($korisnik->status_korisnika_idtable1 == 4)
+                redirect("Admin");
+        }else {
+            $kompanija = $this->input->post("kompanija");
+            $rezultat = $this->ModelGost->pretraga($kompanija);
+            $data['naziv'] = $rezultat;
+            $this->loadView("partneri.php", $data);
+        }
     }
-                    
-                    
-                    
-                    
+
     public function login($poruka = NULL) {
         $podaci = array();
         if ($poruka)
@@ -77,15 +54,9 @@ class Gost extends CI_Controller {
                 $this->session->set_userdata('korisnik', $korisnik);
                 if ($korisnik->status_korisnika_idtable1 == 2)
                     redirect("Korisnik/index");
-<<<<<<< HEAD
                 elseif ($korisnik->status_korisnika_idtable1 == 3)
-                    redirect("ITmenadzer");
-                elseif ($korisnik->status_korisnika_idtable1 == 4)
-=======
-                elseif ($korisnik->status_korisnika_idtable1== 3)
                     redirect("ITmenadzer/index");
-                elseif ($korisnik->status_korisnika_idtable1== 4)
->>>>>>> ce2d3e5bc32d6a6d0c0dd8ee487906faa3f81e56
+                elseif ($korisnik->status_korisnika_idtable1 == 4)
                     redirect("Admin");
                 else
                     redirect("Gost");

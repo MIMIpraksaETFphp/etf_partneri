@@ -83,9 +83,11 @@ class Gost extends CI_Controller {
     }
 
     public function paketi() {
-        $this->loadView("paketi.php");
+        $paketiIspis= $this->ModelGost->ispisPaketa();
+        $data['paketiIspis']=$paketiIspis;
+        $this->loadView("paketi.php",$data);
     }
-
+    
     public function oglasi() {
         $this->loadView("oglasi.php");
     }

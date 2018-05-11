@@ -42,8 +42,6 @@
  */
 ?>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" media="screen" title="no title">
-
 <span style="background-color:red;">
     <div class="container"><!-- container class is used to centered  the body of the browser with some decent width-->
         <div class="row"><!-- row class is used for grid system in Bootstrap-->

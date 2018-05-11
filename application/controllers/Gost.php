@@ -1,5 +1,5 @@
 <?php
-
+// Korisnik je clan 
 class Gost extends CI_Controller {
 
     public function __construct() {
@@ -18,6 +18,7 @@ class Gost extends CI_Controller {
 
     public function index() {
        // $this->loadView("partneri.php");
+
         if (($this->session->userdata('korisnik')) != NULL){
              if ($korisnik->status_korisnika_idtable1 == 2)
                     redirect("Korisnik/index");
@@ -31,24 +32,18 @@ class Gost extends CI_Controller {
             $kompanija = $this->input->post("kompanija");
         $rezultat = $this->ModelGost->pretraga($kompanija);
         $data['naziv'] = $rezultat;
-        
-        
-        
         $this->loadView("partneri.php", $data);
         }    
     }
-                    
-                    
-                    
-                    
+                   
     public function login($poruka = NULL) {
         $podaci = array();
         if ($poruka)
             $podaci['poruka'] = $poruka;
         $this->loadView("login.php", $podaci);
     }
-
-    public function ulogujse() {
+        
+     public function ulogujse() {
         $this->form_validation->set_rules("username", "Username", "required");
         $this->form_validation->set_rules("password", "Password", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
@@ -78,10 +73,45 @@ class Gost extends CI_Controller {
     }
 
     public function registracija() {
-        $this->loadView("registracija.php");
-        /* TO DO */
+        $this->loadView("registracija.php");     
     }
+    
+    
+    public function registruj_se() {
+        
+        $this->form_validation->set_rules("username", "username", "required");
+        $this->form_validation->set_rules("password", "password", "required");
+      //  $this->form_validation->set_rules("password", "password", "required");     //ponovljeni pass...
+        $this->form_validation->set_rules("ime", "ime", "required");
+        $this->form_validation->set_rules("prezime", "prezime", "required");
+        $this->form_validation->set_rules("datum_rodjenja", "datum_rodjenja", "required");
+        $this->form_validation->set_rules("telefon", "telefon", "required");
+        $this->form_validation->set_rules("email", "email", "required");
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run()==FALSE){
+            $this->registracija();
+        } else {          
+        $korisnik = array(
+            'username' => $this->input->post('username', 'field is NOT NULL'),
+            'password' => md5($this->input->post('password')),
+            'ime' => $this->input->post('ime'),
+            'prezime' => $this->input->post('prezime'),
+            'datum_rodjenja' => $this->input->post('datum_rodjenja'),
+            'telefon' => $this->input->post('telefon'),
+            'email' => $this->input->post('email'),
+//            'status_korisnika_idtable1'=>1
+        );
+        $this->ModelKorisnik->registrovanKorisnik($korisnik);
+        redirect("Korisnik/index");
+        }
+    }   
 
+    public function prikaziPartnere(){
+   $kompanija=$this->input->post("kompanija");
+   $rezultat=$this->ModelGost->pretraga($kompanija);
+   $data['naziv']=$rezultat;
+   $this->loadView("partneri.php", $data);
+}
     public function paketi() {
         $paketiIspis= $this->ModelGost->ispisPaketa();
         $data['paketiIspis']=$paketiIspis;

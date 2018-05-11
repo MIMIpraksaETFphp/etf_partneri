@@ -14,10 +14,6 @@ class ModelKorisnik extends CI_Model {
         //$this->korisnik=NULL;
     }
     
-       
-    
-    
-    
     public function proveraUsername($username) {
         $result=$this->db->where('username', $username)->get('korisnik');
         $korisnik=$result->row();
@@ -37,6 +33,19 @@ class ModelKorisnik extends CI_Model {
             return FALSE;
         }
     }
+    
+    public function registrovanKorisnik($korisnik) {
+        $this->db->set("username", $korisnik['username']);
+        $this->db->set("password", $korisnik['password']);
+        $this->db->set("ime", $korisnik['ime']);
+        $this->db->set("prezime", $korisnik['prezime']);
+        $this->db->set("datum_rodjenja", $korisnik['datum_rodjenja']);
+        $this->db->set("telefon", $korisnik['telefon']);
+        $this->db->set("email", $korisnik['email']);
+        $this->db->set("status_korisnika_idtable1", 1);
+        $this->db->insert('korisnik');
+    }
+    
     
     
 }

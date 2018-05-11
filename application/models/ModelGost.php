@@ -27,9 +27,9 @@ class ModelGost extends CI_Model {
         return $result;
     }
     public function ispisPaketa(){
-        $this->db->select('naziv_paketa, vrednost_paketa, valuta');
-        $this->db->from('paketi');
-        //$this->db->where ('idPaketi=paketi_idPaketi and idstavke=stavke_idstavke');
+        $this->db->select('naziv_paketa, vrednost_paketa, valuta, opis');
+        $this->db->from('paketi, paket_ima_stavke, stavke');
+        $this->db->where ('idPaketi=paketi_idPaketi and idstavke=stavke_idstavke');
         $query= $this->db->get();
         $result=$query->result_array();
         return $result;

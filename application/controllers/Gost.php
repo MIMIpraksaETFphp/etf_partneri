@@ -118,7 +118,7 @@ class Gost extends CI_Controller {
 }
     public function paketi() {
         $paketiIspis= $this->ModelGost->ispisPaketa();
-        $zlatni = array_filter($paketiIspis, function($s){
+        $ds = array_filter($paketiIspis, function($s){
             return $s['naziv_paketa'] == 'zlatni';
         });
         var_dump($ds);

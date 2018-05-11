@@ -17,9 +17,6 @@ class Gost extends CI_Controller {
     }
 
     public function index() {
-
-        
-
        // $this->loadView("partneri.php");
         if (($this->session->userdata('korisnik')) != NULL){
              if ($korisnik->status_korisnika_idtable1 == 2)
@@ -34,9 +31,11 @@ class Gost extends CI_Controller {
             $kompanija = $this->input->post("kompanija");
         $rezultat = $this->ModelGost->pretraga($kompanija);
         $data['naziv'] = $rezultat;
+        
+        
+        
         $this->loadView("partneri.php", $data);
         }    
-
     }
                     
                     

@@ -47,3 +47,4 @@ INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUE
 INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('fin.director@benestra.com', '3');
 INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('contact@benestra.com', '4');
 INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('marketing@abba.rs', '5');
+

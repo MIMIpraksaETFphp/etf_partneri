@@ -23,6 +23,15 @@
             <a class="nav-link" href="<?php echo site_url("Gost/index");?>">Partneri<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("Gost/paketi"); ?>">Paketi</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("Gost/oglasi"); ?>">Oglasi</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("Gost/predavanja"); ?>">Predavanja</a>
+          </li>
+          <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("Gost/registracija"); ?>">Registracija</a>
           </li>
           <li class="nav-item">

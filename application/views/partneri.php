@@ -1,6 +1,6 @@
 
 <?php
-echo form_open("Gost/prikaziPartnere", "method=post");
+echo form_open("Gost/index", "method=post");
 echo "Pretraga kompanije po nazivu";
 echo "<br />";
 echo form_input("kompanija", set_value("kompanija")); 

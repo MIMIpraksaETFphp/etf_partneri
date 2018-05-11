@@ -8,14 +8,14 @@ class Gost extends CI_Controller {
         $this->load->model("ModelKorisnik");
         $this->load->library('session');
         if (($this->session->userdata('korisnik')) != NULL)
-             if ($korisnik->status_korisnika_idtable1 == 2)
-                    redirect("Korisnik/index");
-                elseif ($korisnik->status_korisnika_idtable1== 3)
-                    redirect("ITmenadzer/index");
-                elseif ($korisnik->status_korisnika_idtable1== 4)
-                    redirect("Admin");
-                else
-                    redirect("Gost");
+            if ($korisnik->status_korisnika_idtable1 == 2)
+                redirect("Korisnik/index");
+            elseif ($korisnik->status_korisnika_idtable1 == 3)
+                redirect("ITmenadzer/index");
+            elseif ($korisnik->status_korisnika_idtable1 == 4)
+                redirect("Admin");
+            else
+                redirect("Gost");
     }
 
     public function loadView($page, $data = []) {
@@ -25,7 +25,10 @@ class Gost extends CI_Controller {
     }
 
     public function index() {
-        $this->loadView("partneri.php");
+        $kompanija = $this->input->post("kompanija");
+        $rezultat = $this->ModelGost->pretraga($kompanija);
+        $data['naziv'] = $rezultat;
+        $this->loadView("partneri.php", $data);
     }
 
     public function login($poruka = NULL) {
@@ -49,11 +52,11 @@ class Gost extends CI_Controller {
                 $korisnik = $this->ModelKorisnik->korisnik;
                 $this->load->library('session');
                 $this->session->set_userdata('korisnik', $korisnik);
-                if ($korisnik->status_korisnika_idtable1== 2)
+                if ($korisnik->status_korisnika_idtable1 == 2)
                     redirect("Korisnik/index");
-                elseif ($korisnik->status_korisnika_idtable1== 3)
+                elseif ($korisnik->status_korisnika_idtable1 == 3)
                     redirect("ITmenadzer");
-                elseif ($korisnik->status_korisnika_idtable1== 4)
+                elseif ($korisnik->status_korisnika_idtable1 == 4)
                     redirect("Admin");
                 else
                     redirect("Gost");
@@ -67,17 +70,8 @@ class Gost extends CI_Controller {
         /* TO DO */
     }
 
-
-public function prikaziPartnere(){
-   $kompanija=$this->input->post("kompanija");
-   $rezultat=$this->ModelGost->pretraga($kompanija);
-   $data['naziv']=$rezultat;
-   $this->loadView("partneri.php", $data);
-}
-
-public function paketi(){
-    $this->loadView("paketi.php");
-}
+    public function paketi() {
+        $this->loadView("paketi.php");
+    }
 
 }
-

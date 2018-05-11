@@ -8,7 +8,7 @@ class ModelGost extends CI_Model {
     }
 
     public function pretraga($kompanija) {
-        $this->db->select('naziv', 'opis');
+        $this->db->select('naziv, opis');
         $this->db->from('partner');
         if ($kompanija != NULL) {
             $this->db->like('naziv', $kompanija);

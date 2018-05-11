@@ -1,5 +1,4 @@
 
-<?php echo "partneri";?>
 <?php
 echo form_open("Gost/prikaziPartnere", "method=post");
 echo "Pretraga kompanije po nazivu";
@@ -8,6 +7,7 @@ echo form_input("kompanija", set_value("kompanija"));
 echo form_submit("pronadji", "Pronadji");
 echo form_close();
 ?>
+<br />
 <?php if(isset($naziv)) { 
     foreach($naziv as $partner){
         foreach ($partner as $value)

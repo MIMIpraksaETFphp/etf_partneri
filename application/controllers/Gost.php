@@ -82,5 +82,9 @@ public function prikaziPartnere(){
    $this->loadView("partneri.php", $data);
 }
 
+public function paketi(){
+    $this->loadView("paketi.php");
+}
+
 }
 

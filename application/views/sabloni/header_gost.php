@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
  
-    <title>Starter Template for Bootstrap</title>
+    <title>ETF Partneri</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
   </head>
@@ -21,6 +21,15 @@
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="<?php echo site_url("Gost/index");?>">Partneri<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("Gost/paketi"); ?>">Paketi</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("Gost/oglasi"); ?>">Oglasi</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("Gost/predavanja"); ?>">Predavanja</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("Gost/registracija"); ?>">Registracija</a>

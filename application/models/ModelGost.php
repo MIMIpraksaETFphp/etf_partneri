@@ -8,13 +8,14 @@ class ModelGost extends CI_Model {
     }
 
     public function pretraga($kompanija) {
+        $this->db->select('naziv, opis');
+        $this->db->from('partner');
         if ($kompanija != NULL) {
-            $query = $this->db->query("select naziv from partner where naziv='$kompanija'");
-        } else {
-            $query = $this->db->query("select naziv from partner");
+            $this->db->like('naziv', $kompanija);
         }
-            $result = $query->result_array(); //vraca niz 
-            return $result;
-        }
+        $query = $this->db->get();
+        $result = $query->result_array(); 
+        return $result;
     }
-    
+
+}

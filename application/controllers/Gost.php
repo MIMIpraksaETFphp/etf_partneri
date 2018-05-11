@@ -18,22 +18,24 @@ class Gost extends CI_Controller {
 
     public function index() {
        // $this->loadView("partneri.php");
-        
-        if (($this->session->userdata('korisnik')) != NULL) {
-            if ($korisnik->status_korisnika_idtable1 == 2)
-                redirect("Korisnik/index");
-            elseif ($korisnik->status_korisnika_idtable1 == 3)
-                redirect("ITmenadzer");
-            elseif ($korisnik->status_korisnika_idtable1 == 4)
-                redirect("Admin");
-        } else {
-            $kompanija = $this->input->post("kompanija");
-            $rezultat = $this->ModelGost->pretraga($kompanija);
-            $data['naziv'] = $rezultat;
-            $this->loadView("partneri.php", $data);
-        }
-    }
 
+        if (($this->session->userdata('korisnik')) != NULL){
+             if ($korisnik->status_korisnika_idtable1 == 2)
+                    redirect("Korisnik/index");
+                elseif ($korisnik->status_korisnika_idtable1== 3)
+                    redirect("ITmenadzer/index");
+                elseif ($korisnik->status_korisnika_idtable1== 4)
+                    redirect("Admin");
+                //else
+                    //$this->loadView("partneri.php");  
+        }else{
+            $kompanija = $this->input->post("kompanija");
+        $rezultat = $this->ModelGost->pretraga($kompanija);
+        $data['naziv'] = $rezultat;
+        $this->loadView("partneri.php", $data);
+        }    
+    }
+                   
     public function login($poruka = NULL) {
         $podaci = array();
         if ($poruka)
@@ -110,6 +112,16 @@ class Gost extends CI_Controller {
    $data['naziv']=$rezultat;
    $this->loadView("partneri.php", $data);
 }
+    public function paketi() {
+        $this->loadView("paketi.php");
+    }
+
+    public function oglasi() {
+        $this->loadView("oglasi.php");
+    }
+
+    public function predavanja() {
+        $this->loadView("predavanja.php");
+    }
 
 }
-

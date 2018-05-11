@@ -1,0 +1,82 @@
+alter table paketi auto_increment=0;
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('zlatni', '5000', '24', '5', 'EUR');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('srebrni', '3000', '24', '10', 'EUR');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('veliki', '1000', '12', '10', 'EUR');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('partneri', '500', '12', '20', 'EUR');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('partneri katedre', '200', '6', '20', 'EUR');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('ostali', '100', '3', '30', 'EUR');
+
+alter table stavke auto_increment=0;
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('baner kompanije na zvaničnom sajtu fakulteta, na naslovnoj strani');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('baner kompanije na zvaničnom sajtu fakulteta, na strani partneri');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('kratak opis kompanije na zvaničnom sajtu fakulteta, na strani partneri');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('baner kompanije na zvaničnom sajtu katedre');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('logo kompanije na reklamnom panou partnera fakulteta');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('logo kompanije na brošuri dana fakulteta');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('logo kompanije na zvaničnoj godišnjoj prezentaciji ETF-a');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('saradnja u oblasti definisanja i izrade tema projektnih, diplomskih i master radova');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('mogućnost saradnje na osavremenjivanju i unapređenju nastavnih planova i programa');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('pomoć pri izboru kandidata za stručnu praksu i posao');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('mogućnost oglašavanja ponuda za izradu projektnih radova, stručnih praksi i zaposlenja na reklamnom panou partnera fakulteta, internet stranici fakulteta, listama elektronske pošte i društvenim mrežama');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('mogućnost oglašavanja događaja, takmičenja i skupova kompanije na reklamnom panou parntera fakulteta, internet stranici fakulteta, listama elektronske pošte i društvenim mrežama');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('mogućnost organizacije stručnih predavanja za predstavnike kompanija');
+INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('mogućnost predstavljanja i prezentacije kompanije studentima fakulteta najviše jednom u godini');
+
+alter table paket_ima_stavke auto_increment=0;
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('1', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('2', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('3', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('4', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('6', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('7', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('8', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('11', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('12', '1');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('1', '2');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('2', '2');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('3', '2');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('5', '2');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('6', '2');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('11', '2');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('13', '2');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('2', '3');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('4', '3');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('5', '3');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('6', '3');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('9', '3');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('11', '3');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('2', '4');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('5', '4');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('6', '4');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('8', '4');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('9', '4');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('13', '4');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('3', '5');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('8', '5');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('12', '5');
+INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('14', '6');
+
+alter table ugovor auto_increment=0;
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`) VALUES ('2018-03-01', '2020-03-01', '1', '1');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`) VALUES ('2018-05-01', '2020-05-01', '2', '2');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`) VALUES ('2018-04-01', '2019-04-01', '3', '3');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`) VALUES ('2017-12-01', '2018-06-01', '4', '5');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`) VALUES ('2018-06-01', '2018-09-01', '5', '6');
+
+alter table status_ugovora auto_increment=0;
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('pripremljen');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('poslat kompanija');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane Fakulteta');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane kompanije');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan sa obe strane');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('predat arhivi Fakulteta');
+
+alter table novcani_ugovori auto_increment=0;
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `status_ugovora_idstatus_ugovora`, `ugovor_idugovor`) VALUES ('5000', '1', '1', '2018-03-01', 'EUR', '5', '1');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `status_ugovora_idstatus_ugovora`, `ugovor_idugovor`) VALUES ('3000', '1', '1', '2018-05-01', 'EUR', '5', '2');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `status_ugovora_idstatus_ugovora`, `ugovor_idugovor`) VALUES ('1000', '1', '1', '2018-04-01', 'EUR', '5', '3');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `status_ugovora_idstatus_ugovora`, `ugovor_idugovor`) VALUES ('200', '1', '1', '2017-12-01', 'EUR', '5', '4');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `status_ugovora_idstatus_ugovora`, `ugovor_idugovor`) VALUES ('100', '1', '1', '2018-06-01', 'EUR', '5', '5');
+
+
+

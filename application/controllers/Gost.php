@@ -7,15 +7,7 @@ class Gost extends CI_Controller {
         $this->load->model("ModelGost");
         $this->load->model("ModelKorisnik");
         $this->load->library('session');
-        if (($this->session->userdata('korisnik')) != NULL)
-             if ($korisnik->status_korisnika_idtable1 == 2)
-                    redirect("Korisnik/index");
-                elseif ($korisnik->status_korisnika_idtable1== 3)
-                    redirect("ITmenadzer/index");
-                elseif ($korisnik->status_korisnika_idtable1== 4)
-                    redirect("Admin");
-                else
-                    redirect("Gost");
+        
     }
 
     public function loadView($page, $data = []) {
@@ -25,9 +17,24 @@ class Gost extends CI_Controller {
     }
 
     public function index() {
-        $this->loadView("partneri.php");
+       // $this->loadView("partneri.php");
+        if (($this->session->userdata('korisnik')) != NULL){
+             if ($korisnik->status_korisnika_idtable1 == 2)
+                    redirect("Korisnik/index");
+                elseif ($korisnik->status_korisnika_idtable1== 3)
+                    redirect("ITmenadzer/index");
+                elseif ($korisnik->status_korisnika_idtable1== 4)
+                    redirect("Admin");
+                //else
+                    //$this->loadView("partneri.php");  
+        }else{
+            $this->loadView("partneri.php");
+        }    
     }
-
+                    
+                    
+                    
+                    
     public function login($poruka = NULL) {
         $podaci = array();
         if ($poruka)
@@ -52,7 +59,7 @@ class Gost extends CI_Controller {
                 if ($korisnik->status_korisnika_idtable1== 2)
                     redirect("Korisnik/index");
                 elseif ($korisnik->status_korisnika_idtable1== 3)
-                    redirect("ITmenadzer");
+                    redirect("ITmenadzer/index");
                 elseif ($korisnik->status_korisnika_idtable1== 4)
                     redirect("Admin");
                 else

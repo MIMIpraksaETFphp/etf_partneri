@@ -32,7 +32,8 @@ class Gost extends CI_Controller {
         $rezultat = $this->ModelGost->pretraga($kompanija);
         $data['naziv'] = $rezultat;
         
-        
+        $paketi= $this->ModelGost->pretragaPaketa();
+        $data['paketi']=$paketi;
         
         $this->loadView("partneri.php", $data);
         }    

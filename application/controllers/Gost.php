@@ -8,11 +8,11 @@ class Gost extends CI_Controller {
         $this->load->model("ModelKorisnik");
         $this->load->library('session');
         if (($this->session->userdata('korisnik')) != NULL)
-             if ($korisnik->status_korisnika_idtable1 == 1)
+             if ($korisnik->status_korisnika_idtable1 == 2)
                     redirect("Korisnik/index");
-                elseif ($korisnik->status_korisnika_idtable1== 2)
-                    redirect("ITmenadzer");
                 elseif ($korisnik->status_korisnika_idtable1== 3)
+                    redirect("ITmenadzer/index");
+                elseif ($korisnik->status_korisnika_idtable1== 4)
                     redirect("Admin");
                 else
                     redirect("Gost");
@@ -49,11 +49,11 @@ class Gost extends CI_Controller {
                 $korisnik = $this->ModelKorisnik->korisnik;
                 $this->load->library('session');
                 $this->session->set_userdata('korisnik', $korisnik);
-                if ($korisnik->status_korisnika_idtable1== 1)
+                if ($korisnik->status_korisnika_idtable1== 2)
                     redirect("Korisnik/index");
-                elseif ($korisnik->status_korisnika_idtable1== 2)
-                    redirect("ITmenadzer");
                 elseif ($korisnik->status_korisnika_idtable1== 3)
+                    redirect("ITmenadzer");
+                elseif ($korisnik->status_korisnika_idtable1== 4)
                     redirect("Admin");
                 else
                     redirect("Gost");

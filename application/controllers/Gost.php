@@ -74,4 +74,12 @@ class Gost extends CI_Controller {
         $this->loadView("paketi.php");
     }
 
+    public function oglasi() {
+        $this->loadView("oglasi.php");
+    }
+
+    public function predavanja() {
+        $this->loadView("predavanja.php");
+    }
+
 }

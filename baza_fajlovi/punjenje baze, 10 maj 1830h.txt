@@ -1,3 +1,4 @@
+
 INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('1', 'na cekanju');
 INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('2', 'clan tima');
 INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('3', 'it menadzer');
@@ -26,7 +27,7 @@ INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partn
 INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('4', '4');
 INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('4', '5');
 
-
+alter table telefon_partnera auto_increment=0;
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 33 832', '1');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 3445', '1');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 5488', '2');
@@ -37,7 +38,7 @@ INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) V
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 548', '4');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('063 2525', '5');
 
-
+alter table email_partnera auto_increment=0;
 INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('poslovni@comtrade.com', '1');
 INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('marketing@comtrade.com', '1');
 INSERT INTO `etf_partneri`.`email_partnera` (`email`, `partner_idPartner`) VALUES ('eps.finansije@eps.srbija.org', '2');

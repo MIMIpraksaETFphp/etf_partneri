@@ -3,7 +3,7 @@
 echo form_open("Gost/index", "method=post");
 echo "Pretraga kompanije po nazivu";
 echo "<br />";
-echo form_input("kompanija");
+echo form_input("kompanija", set_value("kompanija"));
 echo form_submit("pronadji", "Pronadji");
 echo form_close();
 ?>
@@ -52,12 +52,12 @@ foreach ($paketi as $paket) {
     $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
         return in_array($s['naziv_paketa'], $filter);
     });
-    //        var_dump($filtriraniPartneri);
-    foreach ($filtriraniPartneri as $filtriraniPartner) {
-
-        echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
+//        var_dump($filtriraniPartneri);
+    if(!empty($filtriraniPartneri)){
+        foreach ($filtriraniPartneri as $filtriraniPartner) {
+            echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
+        }
+        echo "<br/><br/>";
     }
-    echo "<br/><br/>";
 }
-
 ?>

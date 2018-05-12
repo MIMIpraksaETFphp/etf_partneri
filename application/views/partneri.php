@@ -53,15 +53,17 @@ foreach ($paketi as $paket) {
     $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
         return in_array($s['naziv_paketa'], $filter);
     });
-    //        var_dump($filtriraniPartneri);
-    foreach ($filtriraniPartneri as $filtriraniPartner) {
-        if(isset($filtriraniPartner['naziv'])){
-            ?>
+//        var_dump($filtriraniPartneri);
+        if(!empty($filtriraniPartneri)){
+    ?>
     <a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'];?><a/><br/>
     <?php
+        foreach ($filtriraniPartneri as $filtriraniPartner) {
+        if(isset($filtriraniPartner['naziv'])){
         echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
         }
     }
     echo "<br/><br/>";
-    }
+}
+}
 ?>

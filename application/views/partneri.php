@@ -47,14 +47,20 @@ echo form_close();
 
 foreach ($paketi as $paket) {
 ?>
-<a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . "<a/><br/>";
+
+    <?php
     $filter = array($paket['naziv_paketa']);
     $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
         return in_array($s['naziv_paketa'], $filter);
     });
     //        var_dump($filtriraniPartneri);
     foreach ($filtriraniPartneri as $filtriraniPartner) {
+        if(isset($filtriraniPartner['naziv'])){
+            ?>
+    <a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'];?><a/><br/>
+    <?php
         echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
+        }
     }
     echo "<br/><br/>";
     }

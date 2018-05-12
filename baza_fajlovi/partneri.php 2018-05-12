@@ -1,0 +1,46 @@
+PARTNERI.PHP
+<<<<<<< HEAD
+            ?>
+            <li>
+                <a href="#<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . "<br />"; ?></a>
+            </li>
+            <?php
+=======
+<<<<<<< HEAD
+<?php if(isset($rezultatKompanija)){                         // ako je trazena odredjena kompanija, ovde ispisuje samo tu kompaniju
+     foreach ($rezultatKompanija as $value){
+         echo $value['naziv_paketa']."<br />";
+         echo $value['naziv']."<br />";
+         echo $value['opis']."<br />";
+     }
+} else {                                                     // ako nije nista trazeno - tj. default ispisuje sve kompanije prema array_filter()
+foreach ($paketi as $paket) {
+    ?>
+<a name="<?php echo $paket['naziv_paketa']; ?>"><span style="font-size: large; font-weight: bold;">
+    <?php echo $paket['naziv_paketa']; ?></span><a/><br/>
+        <?php 
+    $filter = array($paket['naziv_paketa']);
+        $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
+            return in_array($s['naziv_paketa'], $filter); });
+        if (!empty($filtriraniPartneri)) {
+            foreach ($filtriraniPartneri as $filtriraniPartner) {
+                if (isset($filtriraniPartner['naziv'])) {
+                    echo $filtriraniPartner['naziv'] . "<br/>" . $filtriraniPartner['opis'] . "<br/>";
+                }
+                echo "<br/><br/>";
+            }
+        }
+    }
+}
+    ?>
+=======
+
+GOST
+<<<<<<< HEAD
+            if (!empty($kompanija)) {		        // ako je submitovan naziv kompanije - trazi novu funkciju u modelu i dobija podatke samo te kompanije
+                $rezultatKompanija = $this->ModelGost->pretragPoKompaniji($kompanija);
+                $data['rezultatKompanija'] = $rezultatKompanija;
+            }
+            $rezultat = $this->ModelGost->pretraga();
+            $data['partneri'] = $rezultat;
+=======

@@ -1,0 +1,4 @@
+INSERT INTO `etf_partneri`.`partner` (`idPartner`, `PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`) VALUES ('6', '23234453', 'Nordeus', 'Bulevar Mihajla Pupina 1656v', 'Beograd', '11000', 'Srbija', '189-456254-129', 'DIN', 'Tamara', 'Markovic', '06123545', 'tamara@test.com', 'We’re a mobile gaming company with big ambitions and a fiercely independent mindset. Fueled by our dream to create competitive games, we now enable millions of people around the globe to be champions. Proud of where we’re from, we’re putting Belgrade on the gaming map.');
+
+INSERT INTO `etf_partneri`.`ugovor` (`idugovor`, `datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`) VALUES ('6', '2018-06-01 00:00:00', '2018-09-01 00:00:00', '6', '2');
+

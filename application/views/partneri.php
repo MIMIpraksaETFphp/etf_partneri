@@ -22,25 +22,40 @@ echo form_close();
     ?>
 </ul>
 <?php
-foreach ($partneri as $partner) {
-?>
-<span style="font-size: large; font-weight: bold;"> <a name="<?php echo $partner['naziv_paketa'];?>"><?php echo $partner['naziv_paketa'] . "<br />"; ?></a></span>
-
-
-    <table>
-        <tr>
-            <th>
-                <?php echo $partner['naziv'] . "<br />"; ?>
-            </th>
-        </tr>
-        <tr><td>1</td></tr>
-<tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr>
-        <tr>
-            <td>
-                <?php echo $partner['opis'] . "<br />"; ?>
-            </td>
-        </tr>
-    </table>
+//foreach ($partneri as $partner) {
+//?>
+<!--<span style="font-size: large; font-weight: bold;"> <a name="--><?php //echo $partner['naziv_paketa'];?><!--">--><?php //echo $partner['naziv_paketa'] . "<br />"; ?><!--</a></span>-->
+<!---->
+<!---->
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th>-->
+<!--                --><?php //echo $partner['naziv'] . "<br />"; ?>
+<!--            </th>-->
+<!--        </tr>-->
+<!--        <tr><td>1</td></tr>-->
+<!--<tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr>-->
+<!--        <tr>-->
+<!--            <td>-->
+<!--                --><?php //echo $partner['opis'] . "<br />"; ?>
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
     <?php
-}
+//}
+
+
+foreach ($paketi as $paket) {
+?>
+<a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . "<a/><br/>";
+    $filter = array($paket['naziv_paketa']);
+    $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
+        return in_array($s['naziv_paketa'], $filter);
+    });
+    //        var_dump($filtriraniPartneri);
+    foreach ($filtriraniPartneri as $filtriraniPartner) {
+        echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
+    }
+    echo "<br/><br/>";
+    }
 ?>

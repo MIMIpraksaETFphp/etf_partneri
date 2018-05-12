@@ -30,12 +30,16 @@ class Gost extends CI_Controller {
                     //$this->loadView("partneri.php");  
         } else{
             $kompanija = $this->input->post("kompanija");
-            $rezultat = $this->ModelGost->pretraga($kompanija);
-            $data['partneri'] = $rezultat;
+            $partneri = $this->ModelGost->pretraga($kompanija);
+//            $data['partneri'] = $partneri;
 
             $paketi= $this->ModelGost->spisakPaketa();
             $data['paketi']=$paketi;
 
+            foreach ($paketi as $paket){
+                $naziv_paketa=$paket['naziv_paketa'];
+                $data['partneri'][$naziv_paketa]=$this->filtrirajPartnere($paket,$partneri);
+            }
             $this->loadView("partneri.php", $data);
         }    
     }
@@ -79,7 +83,14 @@ class Gost extends CI_Controller {
     public function registracija() {
         $this->loadView("registracija.php");     
     }
-    
+
+    private function filtrirajPartnere($paket,$partneri){
+        $filter = array($paket['naziv_paketa']);
+        $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
+            return in_array($s['naziv_paketa'], $filter);
+        });
+        return $filtriraniPartneri;
+    }
     
     public function registruj_se() {
         

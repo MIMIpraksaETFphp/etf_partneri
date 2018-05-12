@@ -12,12 +12,22 @@ echo form_close();
     <ul>
         <?php
         foreach ($paketi as $paket) {
+            $naziv_paketa=$paket['naziv_paketa'];
+            if(!empty($partneri[$naziv_paketa])) {
                 ?>
                 <li>
-                    <a href="#<?php echo $paket['naziv_paketa'];?>"><?php echo $paket['naziv_paketa']. "<br />";?></a>
+                    <a href="#<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . "<br />"; ?></a>
                 </li>
                 <?php
             }
+            else {
+                ?>
+                <li>
+                    <span href="#<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . " - nema partnera<br />"; ?></span>
+                </li>
+                <?php
+            }
+        }
     }
     ?>
 </ul>
@@ -41,19 +51,18 @@ echo form_close();
 <!--            </td>-->
 <!--        </tr>-->
 <!--    </table>-->
-    <?php
+<?php
 //}
 
 
 foreach ($paketi as $paket) {
-?>
-<a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . "<a/><br/>";
-    $filter = array($paket['naziv_paketa']);
-    $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
-        return in_array($s['naziv_paketa'], $filter);
-    });
-//        var_dump($filtriraniPartneri);
+//    var_dump($filtriraniPartneri);
+    $naziv_paketa=$paket['naziv_paketa'];
+    $filtriraniPartneri=$partneri[$naziv_paketa];
     if(!empty($filtriraniPartneri)){
+?>
+        <h3><a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'];?></a></h3>
+<?php
         foreach ($filtriraniPartneri as $filtriraniPartner) {
             echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
         }

@@ -1,4 +1,5 @@
 <?php
+
 // Korisnik je clan 
 class Gost extends CI_Controller {
 
@@ -7,7 +8,6 @@ class Gost extends CI_Controller {
         $this->load->model("ModelGost");
         $this->load->model("ModelKorisnik");
         $this->load->library('session');
-
     }
 
     public function loadView($page, $data = []) {
@@ -17,37 +17,41 @@ class Gost extends CI_Controller {
     }
 
     public function index() {
-       // $this->loadView("partneri.php");
+        // $this->loadView("partneri.php");
 
-        if (($this->session->userdata('korisnik')) != NULL){
-             if ($korisnik->status_korisnika_idtable1 == 2)
-                    redirect("Korisnik/index");
-                elseif ($korisnik->status_korisnika_idtable1== 3)
-                    redirect("ITmenadzer/index");
-                elseif ($korisnik->status_korisnika_idtable1== 4)
-                    redirect("Admin");
-                //else
-                    //$this->loadView("partneri.php");  
-        } else{
+        if (($this->session->userdata('korisnik')) != NULL) {
+            if ($korisnik->status_korisnika_idtable1 == 2)
+                redirect("Korisnik/index");
+            elseif ($korisnik->status_korisnika_idtable1 == 3)
+                redirect("ITmenadzer/index");
+            elseif ($korisnik->status_korisnika_idtable1 == 4)
+                redirect("Admin");
+            //else
+            //$this->loadView("partneri.php");  
+        } else {
             $kompanija = $this->input->post("kompanija");
-            $rezultat = $this->ModelGost->pretraga($kompanija);
+            if (!empty($kompanija)) {
+                $rezultatKompanija = $this->ModelGost->pretragPoKompaniji($kompanija);
+                $data['rezultatKompanija'] = $rezultatKompanija;
+            }
+            $rezultat = $this->ModelGost->pretraga();
             $data['partneri'] = $rezultat;
 
-            $paketi= $this->ModelGost->spisakPaketa();
-            $data['paketi']=$paketi;
+            $paketi = $this->ModelGost->spisakPaketa();
+            $data['paketi'] = $paketi;
 
             $this->loadView("partneri.php", $data);
-        }    
+        }
     }
-                   
+
     public function login($poruka = NULL) {
         $podaci = array();
         if ($poruka)
             $podaci['poruka'] = $poruka;
         $this->loadView("login.php", $podaci);
     }
-        
-     public function ulogujse() {
+
+    public function ulogujse() {
         $this->form_validation->set_rules("username", "Username", "required");
         $this->form_validation->set_rules("password", "Password", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
@@ -64,10 +68,9 @@ class Gost extends CI_Controller {
                 if ($korisnik->status_korisnika_idtable1 == 2)
                     redirect("Korisnik/index");
 
-                elseif ($korisnik->status_korisnika_idtable1== 3)
+                elseif ($korisnik->status_korisnika_idtable1 == 3)
                     redirect("ITmenadzer/index");
-                elseif ($korisnik->status_korisnika_idtable1== 4)
-
+                elseif ($korisnik->status_korisnika_idtable1 == 4)
                     redirect("Admin");
                 else
                     redirect("Gost");
@@ -77,38 +80,37 @@ class Gost extends CI_Controller {
     }
 
     public function registracija() {
-        $this->loadView("registracija.php");     
+        $this->loadView("registracija.php");
     }
-    
-    
+
     public function registruj_se() {
-        
+
         $this->form_validation->set_rules("username", "username", "required");
         $this->form_validation->set_rules("password", "password", "required");
-      //  $this->form_validation->set_rules("password", "password", "required");     //ponovljeni pass...
+        //  $this->form_validation->set_rules("password", "password", "required");     //ponovljeni pass...
         $this->form_validation->set_rules("ime", "ime", "required");
         $this->form_validation->set_rules("prezime", "prezime", "required");
         $this->form_validation->set_rules("datum_rodjenja", "datum_rodjenja", "required");
         $this->form_validation->set_rules("telefon", "telefon", "required");
         $this->form_validation->set_rules("email", "email", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
-        if ($this->form_validation->run()==FALSE){
+        if ($this->form_validation->run() == FALSE) {
             $this->registracija();
-        } else {          
-        $korisnik = array(
-            'username' => $this->input->post('username', 'field is NOT NULL'),
-            'password' => md5($this->input->post('password')),
-            'ime' => $this->input->post('ime'),
-            'prezime' => $this->input->post('prezime'),
-            'datum_rodjenja' => $this->input->post('datum_rodjenja'),
-            'telefon' => $this->input->post('telefon'),
-            'email' => $this->input->post('email'),
+        } else {
+            $korisnik = array(
+                'username' => $this->input->post('username', 'field is NOT NULL'),
+                'password' => md5($this->input->post('password')),
+                'ime' => $this->input->post('ime'),
+                'prezime' => $this->input->post('prezime'),
+                'datum_rodjenja' => $this->input->post('datum_rodjenja'),
+                'telefon' => $this->input->post('telefon'),
+                'email' => $this->input->post('email'),
 //            'status_korisnika_idtable1'=>1
-        );
-        $this->ModelKorisnik->registrovanKorisnik($korisnik);
-        redirect("Korisnik/index");
+            );
+            $this->ModelKorisnik->registrovanKorisnik($korisnik);
+            redirect("Korisnik/index");
         }
-    }   
+    }
 
 //    public function prikaziPartnere(){
 //   $kompanija=$this->input->post("kompanija");
@@ -117,13 +119,13 @@ class Gost extends CI_Controller {
 //   $this->loadView("partneri.php", $data);
 //}
     public function paketi() {
-        $paketi= $this->ModelGost->spisakPaketa();
-        $paketiStavke= $this->ModelGost->ispisPaketa();
-        $data['paketi']=$paketi;
-        $data['paketiStavke']=$paketiStavke;
-        $this->loadView("paketi.php",$data);
+        $paketi = $this->ModelGost->spisakPaketa();
+        $paketiStavke = $this->ModelGost->ispisPaketa();
+        $data['paketi'] = $paketi;
+        $data['paketiStavke'] = $paketiStavke;
+        $this->loadView("paketi.php", $data);
     }
-    
+
     public function oglasi() {
         $this->loadView("oglasi.php");
     }

@@ -11,36 +11,36 @@ echo form_close();
 <?php if (isset($paketi)) { ?>
     <ul>
         <?php
-        foreach ($paketi as $value) {
-            foreach ($value as $nazivPaketa) {
+        foreach ($paketi as $paket) {
                 ?>
                 <li>
-                    <a href="#<?php echo $nazivPaketa;?>"><?php echo $nazivPaketa . "<br />"; ?></a>
+                    <a href="#<?php echo $paket['naziv_paketa'];?>"><?php echo $paket['naziv_paketa']. "<br />";?></a>
                 </li>
                 <?php
             }
-        }
     }
     ?>
 </ul>
 <?php
-foreach ($naziv as $partner) {
-        ?>
+foreach ($partneri as $partner) {
+?>
 <span style="font-size: large; font-weight: bold;"> <a name="<?php echo $partner['naziv_paketa'];?>"><?php echo $partner['naziv_paketa'] . "<br />"; ?></a></span>
-        <table>
-            <tr>
-                <th>
-                    <?php echo $partner['naziv'] . "<br />"; ?>
-                </th>
-            </tr>
-            <tr><td>1</td></tr>
+
+
+    <table>
+        <tr>
+            <th>
+                <?php echo $partner['naziv'] . "<br />"; ?>
+            </th>
+        </tr>
+        <tr><td>1</td></tr>
 <tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr>
-            <tr>
-                <td>
-                    <?php echo $partner['opis'] . "<br />"; ?>
-                </td>
-            </tr>
-        </table>
-        <?php
+        <tr>
+            <td>
+                <?php echo $partner['opis'] . "<br />"; ?>
+            </td>
+        </tr>
+    </table>
+    <?php
 }
 ?>

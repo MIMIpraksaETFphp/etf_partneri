@@ -19,8 +19,8 @@ class ModelGost extends CI_Model {
         return $result;
     }
 
-    public function pretragaPaketa(){
-        $this->db->select('naziv_paketa');
+    public function spisakPaketa(){
+        $this->db->select('naziv_paketa, vrednost_paketa, valuta');
         $this->db->from('paketi');
         $query=$this->db->get();
         $result= $query->result_array();
@@ -34,13 +34,4 @@ class ModelGost extends CI_Model {
         $result=$query->result_array();
         return $result;
     }
-    
-    /*public function opisPaketa(){
-        $this->db->select('opis');
-        $this->db->from('stavke');
-        $query= $this->db->get();
-        $result=$query->result_array();
-        return $result;
-    }*/
-    
 }

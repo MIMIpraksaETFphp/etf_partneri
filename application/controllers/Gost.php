@@ -28,15 +28,15 @@ class Gost extends CI_Controller {
                     redirect("Admin");
                 //else
                     //$this->loadView("partneri.php");  
-        }else{
+        } else{
             $kompanija = $this->input->post("kompanija");
-        $rezultat = $this->ModelGost->pretraga($kompanija);
-        $data['naziv'] = $rezultat;
-        
-        $paketi= $this->ModelGost->pretragaPaketa();
-        $data['paketi']=$paketi;
-        
-        $this->loadView("partneri.php", $data);
+            $rezultat = $this->ModelGost->pretraga($kompanija);
+            $data['partneri'] = $rezultat;
+
+            $paketi= $this->ModelGost->spisakPaketa();
+            $data['paketi']=$paketi;
+
+            $this->loadView("partneri.php", $data);
         }    
     }
                    
@@ -110,19 +110,17 @@ class Gost extends CI_Controller {
         }
     }   
 
-    public function prikaziPartnere(){
-   $kompanija=$this->input->post("kompanija");
-   $rezultat=$this->ModelGost->pretraga($kompanija);
-   $data['naziv']=$rezultat;
-   $this->loadView("partneri.php", $data);
-}
+//    public function prikaziPartnere(){
+//   $kompanija=$this->input->post("kompanija");
+//   $rezultat=$this->ModelGost->pretraga($kompanija);
+//   $data['naziv']=$rezultat;
+//   $this->loadView("partneri.php", $data);
+//}
     public function paketi() {
-        $paketiIspis= $this->ModelGost->ispisPaketa();
-        $ds = array_filter($paketiIspis, function($s){
-            return $s['naziv_paketa'] == 'zlatni';
-        });
-        var_dump($ds);
-        $data['paketiIspis']=$paketiIspis;
+        $paketi= $this->ModelGost->spisakPaketa();
+        $paketiStavke= $this->ModelGost->ispisPaketa();
+        $data['paketi']=$paketi;
+        $data['paketiStavke']=$paketiStavke;
         $this->loadView("paketi.php",$data);
     }
     

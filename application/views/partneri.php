@@ -57,5 +57,6 @@ foreach ($paketi as $paket) {
         echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
     }
     echo "<br/><br/>";
-    }
+}
+
 ?>

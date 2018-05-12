@@ -7,20 +7,20 @@ class ModelGost extends CI_Model {
         $this->load->database();
     }
 
-    public function pretraga() {
+   /* public function pretraga() {
         $this->db->select('naziv, opis, naziv_paketa');
         $this->db->from('partner, ugovor, paketi');
         $this->db->where('partner_idPartner=idPartner and paketi_idPaketi=idPaketi');
         $query = $this->db->get();
         $result = $query->result_array(); 
         return $result;
-    }
+    }*/
     
- public function pretragPoKompaniji($kompanija) {
+ public function pretraga($kompanija) {
         $this->db->select('naziv, opis, naziv_paketa');
         $this->db->from('partner, ugovor, paketi');
-        $this->db->where("partner_idPartner=idPartner and paketi_idPaketi=idPaketi and naziv='$kompanija'");
-       // $this->db->like('naziv', $kompanija);
+        $this->db->where("partner_idPartner=idPartner and paketi_idPaketi=idPaketi");
+       $this->db->like('naziv', $kompanija);
         $query = $this->db->get();
         $result = $query->result_array(); 
         return $result;

@@ -1,7 +1,0 @@
-alter table logo auto_increment=0;
-INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('EPS_baner.png', 'assets/logo/EPS_baner.png', '2');
-INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('comtrade_logo.png', 'assets/logo/comtrade_logo.png', '1');
-INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('ABB_logo.png', 'assets/logo/ABB_logo.png', '5');
-INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('nordeus-primary-logo-2-rgb.png', 'assets/logo/nordeus-primary-logo-2-rgb.png', '6');
-INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('facebook.png', 'assets/logo/facebook.png', '3');
-INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('benestar.png', 'assets/logo/benestar.png', '4');

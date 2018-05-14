@@ -60,9 +60,10 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`partner` (
   `telefon_kontakt_osobe` VARCHAR(45) NOT NULL,
   `email_kontakt_osobe` VARCHAR(45) NOT NULL,
   `opis` VARCHAR(1000) NOT NULL,
+  `veb_adresa` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPartner`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -89,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`ugovor` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -136,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`email_partnera` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = latin1;
 
 

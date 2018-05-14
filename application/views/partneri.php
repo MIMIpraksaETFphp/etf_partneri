@@ -58,10 +58,11 @@ echo form_close();
 
 
 foreach ($paketi as $paket) {
+
+
     $naziv_paketa=$paket['naziv_paketa'];
     $filtriraniPartneri=$partneri[$naziv_paketa];
     //    var_dump($filtriraniPartneri);
-
     if(!empty($filtriraniPartneri)){
 ?>
         <h3><a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'];?></a></h3>

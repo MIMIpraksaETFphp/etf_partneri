@@ -1,6 +1,6 @@
 <?php
 //echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
-echo "Spisak predavanja na Elektrotehnickom fakultetu u Beogradu:<br/><br/><br/>";
+echo "<br/><br/>Spisak predavanja na Elektrotehnickom fakultetu u Beogradu:<br/><br/><br/>";
 
 foreach ($predavanja as $predavanje) {
     $datum=mdate('%Y-%m-%d %H:%i:%s', now());
@@ -13,7 +13,5 @@ foreach ($predavanja as $predavanje) {
     echo "Prezime predavaca:" . $predavanje['prezime_predavaca'] . "<br/>";
     echo "Biografija predavaca:<br/>" . $predavanje['cv_srpski'] . "<br/>";
     echo "<br/><br/><br/>";
-    }else{
-        echo "Arhiva";
     }
 }

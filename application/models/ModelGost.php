@@ -67,7 +67,7 @@ class ModelGost extends CI_Model {
        // $this->db->from('predavanje, partner');
         $this->db->where('partner_idPartner=idPartner');
         $this->db->order_by('vreme_predavanja', 'desc');
-        $query = $this->db->get('predavanje, partner');
+        $query = $this->db->get('predavanje, partner', 20, 0);
         $result = $query->result_array();
         return $result;
     }

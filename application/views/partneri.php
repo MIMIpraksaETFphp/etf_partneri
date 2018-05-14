@@ -20,8 +20,7 @@ echo form_close();
                     <a href="#<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . "<br />"; ?></a>
                 </li>
                 <?php
-            }
-            else {
+            } else {
                 ?>
                 <li>
                     <span href="#<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'] . " - nema partnera<br />"; ?></span>
@@ -67,7 +66,7 @@ foreach ($paketi as $paket) {
         <h3><a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa'];?></a></h3>
 <?php
         foreach ($filtriraniPartneri as $filtriraniPartner) {
-            echo $filtriraniPartner['naziv']."<br/>".$filtriraniPartner['opis']."<br/>";
+            echo "<span style='color: blue;'>".$filtriraniPartner['naziv']."</span><br/>".$filtriraniPartner['opis']."<br/>";
         }
         echo "<br/><br/>";
     }

@@ -1,10 +1,9 @@
 <?php
-//echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
-echo "<br/><br/>Spisak predavanja na Elektrotehnickom fakultetu u Beogradu:<br/><br/><br/>";
+echo "<br/><br/>Arhiva predavanja na Elektrotehnickom fakultetu u Beogradu:<br/><br/><br/>";
 
 foreach ($predavanja as $predavanje) {
     $datum=mdate('%Y-%m-%d %H:%i:%s', now());
-    if($datum<$predavanje['vreme_predavanja']){
+    if($datum>$predavanje['vreme_predavanja']){
     echo "<h3><br/>" . $predavanje['naslov_srpski'] . "</h3><br/>";
     echo "Opis predavanja:<br/>" . $predavanje['opis_srpski'] . "<br/>";
     echo "Sala:" . $predavanje['sala'] . "<br/>";
@@ -15,9 +14,3 @@ foreach ($predavanja as $predavanje) {
     echo "<br/><br/><br/>";
     }
 }
-?>
-<html>
-    <head>
-    </head>
-    <body>
-        <a href="<?php echo site_url("Gost/arhiva"); ?>">Arhiva</a>

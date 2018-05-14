@@ -61,4 +61,14 @@ class ModelGost extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+    
+    public function ispisPredavanjaArhiva(){
+        $this->db->select('naslov_srpski, opis_srpski, cv_srpski, sala, vreme_predavanja, ime_predavaca, prezime_predavaca');
+       // $this->db->from('predavanje, partner');
+        $this->db->where('partner_idPartner=idPartner');
+        $this->db->order_by('vreme_predavanja', 'desc');
+        $query = $this->db->get('predavanje, partner');
+        $result = $query->result_array();
+        return $result;
+    }
 }

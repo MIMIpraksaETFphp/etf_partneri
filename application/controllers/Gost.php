@@ -145,5 +145,11 @@ class Gost extends CI_Controller {
         $data['predavanja']=$predavanja;
         $this->loadView("predavanja.php", $data);
     }
-
+    
+    public function arhiva() {
+        $predavanja = $this->ModelGost->ispisPredavanjaArhiva();
+        $data['predavanja']=$predavanja;
+        $this->loadView("arhivaPredavanja.php", $data);
+    }
+    
 }

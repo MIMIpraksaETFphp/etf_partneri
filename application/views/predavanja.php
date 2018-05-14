@@ -16,8 +16,7 @@ foreach ($predavanja as $predavanje) {
     }
 }
 ?>
-<html>
-    <head>
-    </head>
-    <body>
-        <a href="<?php echo site_url("Gost/arhiva"); ?>">Arhiva</a>
+        <a href="<?php echo site_url($kontroler.'/arhiva/');?>">Arhiva</a>
+        <?php
+//        echo "<a href=\"".site_url("$kontroler/arhiva")."\">arhiva</a>";
+            ?>

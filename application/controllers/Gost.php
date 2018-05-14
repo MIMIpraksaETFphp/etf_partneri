@@ -41,6 +41,8 @@ class Gost extends CI_Controller {
                 $naziv_paketa=$paket['naziv_paketa'];
                 $data['partneri'][$naziv_paketa]=$this->filtrirajPartnere($paket,$partneri);
             }
+            $data['kontroler']='gost';
+            $data['metoda']='index';
             $this->loadView("partneri.php", $data);
         }
     }
@@ -141,6 +143,7 @@ class Gost extends CI_Controller {
     }
 
     public function predavanja() {
+        $data['kontroler']='gost';
         $predavanja = $this->ModelGost->ispisPredavanja();
         $data['predavanja']=$predavanja;
         $this->loadView("predavanja.php", $data);

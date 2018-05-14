@@ -1,0 +1,9 @@
+ALTER TABLE `etf_partneri`.`partner` 
+ADD COLUMN `veb_adresa` VARCHAR(45) NOT NULL AFTER `opis`;
+
+UPDATE `etf_partneri`.`partner` SET `veb_adresa`='https://www.comtrade.com/' WHERE `idPartner`='1';
+UPDATE `etf_partneri`.`partner` SET `veb_adresa`='https://nordeus.com/' WHERE `idPartner`='6';
+UPDATE `etf_partneri`.`partner` SET `veb_adresa`='http://new.abb.com/rs' WHERE `idPartner`='5';
+UPDATE `etf_partneri`.`partner` SET `veb_adresa`='http://eps.rs/' WHERE `idPartner`='2';
+UPDATE `etf_partneri`.`partner` SET `veb_adresa`='https://sr-rs.facebook.com/' WHERE `idPartner`='3';
+UPDATE `etf_partneri`.`partner` SET `veb_adresa`='https://www.benestra.sk/' WHERE `idPartner`='4';

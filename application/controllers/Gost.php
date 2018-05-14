@@ -136,7 +136,8 @@ class Gost extends CI_Controller {
     }
 
     public function oglasi() {
-        $this->loadView("oglasi.php");
+        $data['oglasi']= $this->ModelGost->pretragaOglasa();
+        $this->loadView("oglasi.php", $data);
     }
 
     public function predavanja() {

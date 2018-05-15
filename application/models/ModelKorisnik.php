@@ -46,6 +46,15 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('korisnik');
     }
     
-    
+    public function dodatOglas($oglas) {
+        $this->db->set("naziv", $oglas['oglasnaslov']);
+        $this->db->set("opis", $oglas['oglastext']);
+        $this->db->set("praksa", $oglas['praksa']);
+        $this->db->set("zaposlenje", $oglas['zaposlenje']);
+        $this->db->set("datum_unosenja", $oglas['datum_unosenja']);
+        $this->db->set("partner_idPartner", 1);
+        
+        $this->db->insert('oglas');
+    }
     
 }

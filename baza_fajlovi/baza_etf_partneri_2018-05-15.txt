@@ -15,18 +15,6 @@ CREATE SCHEMA IF NOT EXISTS `etf_partneri` DEFAULT CHARACTER SET latin1 ;
 USE `etf_partneri` ;
 
 -- -----------------------------------------------------
--- Table `etf_partneri`.`status_ugovora`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `etf_partneri`.`status_ugovora` (
-  `opis` VARCHAR(100) NOT NULL,
-  `idstatus_ugovora` INT(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`idstatus_ugovora`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
 -- Table `etf_partneri`.`paketi`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `etf_partneri`.`paketi` (
@@ -68,6 +56,18 @@ DEFAULT CHARACTER SET = latin1;
 
 
 -- -----------------------------------------------------
+-- Table `etf_partneri`.`status_ugovora`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `etf_partneri`.`status_ugovora` (
+  `opis` VARCHAR(100) NOT NULL,
+  `idstatus_ugovora` INT(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`idstatus_ugovora`))
+ENGINE = InnoDB
+AUTO_INCREMENT = 7
+DEFAULT CHARACTER SET = latin1;
+
+
+-- -----------------------------------------------------
 -- Table `etf_partneri`.`ugovor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `etf_partneri`.`ugovor` (
@@ -76,9 +76,11 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`ugovor` (
   `datum_isticanja` DATETIME NOT NULL,
   `partner_idPartner` INT(11) NOT NULL,
   `paketi_idPaketi` INT(11) NOT NULL,
+  `status_ugovora_idstatus_ugovora` INT(11) NOT NULL,
   PRIMARY KEY (`idugovor`),
   INDEX `fk_ugovor_partner1_idx` (`partner_idPartner` ASC),
   INDEX `fk_ugovor_paketi1_idx` (`paketi_idPaketi` ASC),
+  INDEX `fk_ugovor_status_ugovora1_idx` (`status_ugovora_idstatus_ugovora` ASC),
   CONSTRAINT `fk_ugovor_paketi1`
     FOREIGN KEY (`paketi_idPaketi`)
     REFERENCES `etf_partneri`.`paketi` (`idPaketi`)
@@ -88,7 +90,12 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`ugovor` (
     FOREIGN KEY (`partner_idPartner`)
     REFERENCES `etf_partneri`.`partner` (`idPartner`)
     ON DELETE NO ACTION
-    ON UPDATE CASCADE)
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_ugovor_status_ugovora1`
+    FOREIGN KEY (`status_ugovora_idstatus_ugovora`)
+    REFERENCES `etf_partneri`.`status_ugovora` (`idstatus_ugovora`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
@@ -103,16 +110,9 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`donatorski_ugovori` (
   `valuta` VARCHAR(10) NOT NULL,
   `datum_isporuke` DATETIME NOT NULL,
   `komentar` VARCHAR(1000) NULL DEFAULT NULL,
-  `status_ugovora_idstatus_ugovora` INT(11) NOT NULL,
   `ugovor_idugovor` INT(11) NOT NULL,
   PRIMARY KEY (`ugovor_idugovor`),
-  INDEX `fk_donatorski_ugovori_status_ugovora1_idx` (`status_ugovora_idstatus_ugovora` ASC),
   INDEX `fk_donatorski_ugovori_ugovor1_idx` (`ugovor_idugovor` ASC),
-  CONSTRAINT `fk_donatorski_ugovori_status_ugovora1`
-    FOREIGN KEY (`status_ugovora_idstatus_ugovora`)
-    REFERENCES `etf_partneri`.`status_ugovora` (`idstatus_ugovora`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE,
   CONSTRAINT `fk_donatorski_ugovori_ugovor1`
     FOREIGN KEY (`ugovor_idugovor`)
     REFERENCES `etf_partneri`.`ugovor` (`idugovor`)
@@ -160,6 +160,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`oglas` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 6
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -259,6 +260,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`logo` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -290,16 +292,9 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`novcani_ugovori` (
   `uplata` TINYINT(4) NOT NULL,
   `datum_uplate` VARCHAR(45) NULL DEFAULT NULL,
   `valuta` VARCHAR(10) NOT NULL,
-  `status_ugovora_idstatus_ugovora` INT(11) NOT NULL,
   `ugovor_idugovor` INT(11) NOT NULL,
   PRIMARY KEY (`ugovor_idugovor`),
-  INDEX `fk_novcani_ugovori_status_ugovora1_idx` (`status_ugovora_idstatus_ugovora` ASC),
   INDEX `fk_novcani_ugovori_ugovor1_idx` (`ugovor_idugovor` ASC),
-  CONSTRAINT `fk_novcani_ugovori_status_ugovora1`
-    FOREIGN KEY (`status_ugovora_idstatus_ugovora`)
-    REFERENCES `etf_partneri`.`status_ugovora` (`idstatus_ugovora`)
-    ON DELETE NO ACTION
-    ON UPDATE CASCADE,
   CONSTRAINT `fk_novcani_ugovori_ugovor1`
     FOREIGN KEY (`ugovor_idugovor`)
     REFERENCES `etf_partneri`.`ugovor` (`idugovor`)
@@ -368,6 +363,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`predavanje` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
+AUTO_INCREMENT = 27
 DEFAULT CHARACTER SET = latin1;
 
 

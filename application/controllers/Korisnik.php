@@ -23,10 +23,7 @@ class Korisnik extends CI_Controller {
         $this->loadView("dodajKompaniju.php");
     }
 
-    public function dodajOglas() {
-        $this->loadView("dodajOglas.php");
-    }
-
+   
     public function dodavanjeOglasa() {
         $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");
         $this->form_validation->set_rules("oglastext", "oglastext", "required");

@@ -18,9 +18,6 @@ class Korisnik extends CI_Controller {
         $this->load->view("sabloni/footer.php");
     }
 
-    public function index() {
-        $this->loadView("partneriClanovi.php");
-    }
 
     public function dodajKompaniju() {
         $this->loadView("dodajKompaniju.php");
@@ -54,6 +51,41 @@ class Korisnik extends CI_Controller {
             $this->ModelKorisnik->dodatOglas($oglas);
             redirect("Korisnik/index");
         }
+    }
+    
+    public function index($pocetni_index = 0) {
+        $data['kontroler'] = 'Korisnik';
+        $data['metoda'] = 'index';
+
+        $kompanija = $this->input->post("kompanija");
+        $paket = $this->input->post("paket");
+        $vazeciUgovor = $this->input->post("vazeciUgovor");
+        $limit = 2;
+        $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index);
+        $data['rezultat'] = $rezultat;
+
+        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
+        
+        $this->config->load('bootstrap_pagination');
+        $config_pagination=$this->config->item('pagination');
+        $config_pagination['base_url']= site_url("Korisnik/index");
+        $config_pagination['total_rows']=$ukupanBrPartnera;
+        $config_pagination['per_page']= $limit;
+        $config_pagination['next_link'] = 'Next';
+        $config_pagination['prev_link'] = 'Prev';
+        
+        
+        $this->pagination->initialize($config_pagination);
+        $data['links']=$this->pagination->create_links();
+
+        $this->loadView("partneriClanovi.php", $data);
+    }
+
+
+    public function dodajOglas() {
+        $this->loadView("dodajOglas.php");
+
     }
 
     public function dodajPredavanje() {

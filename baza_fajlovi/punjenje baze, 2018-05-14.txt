@@ -159,10 +159,10 @@ INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('predat arhivi Faku
 
 alter table ugovor auto_increment=0;
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-03-01', '2020-03-01', '1', '1', '5');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-05-01', '2020-05-01', '2', '2', '5');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-04-01', '2019-04-01', '3', '3', '5');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2017-12-01', '2018-06-01', '4', '5', '5');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-06-01', '2018-09-01', '5', '6', '5');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-05-01', '2020-05-01', '2', '2', '2');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-04-01', '2019-04-01', '3', '3', '3');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2017-12-01', '2018-06-01', '4', '5', '1');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-06-01', '2018-09-01', '5', '6', '4');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`) VALUES ('2018-06-01', '2018-09-01', '6', '2', '5');
 
 alter table novcani_ugovori auto_increment=0;

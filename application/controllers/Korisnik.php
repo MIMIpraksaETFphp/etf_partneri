@@ -18,12 +18,10 @@ class Korisnik extends CI_Controller {
         $this->load->view("sabloni/footer.php");
     }
 
-
     public function dodajKompaniju() {
         $this->loadView("dodajKompaniju.php");
     }
 
-   
     public function dodavanjeOglasa() {
         $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");
         $this->form_validation->set_rules("oglastext", "oglastext", "required");
@@ -44,45 +42,67 @@ class Korisnik extends CI_Controller {
                 'zaposlenje' => $b,
                 'datum_unosenja' => $this->input->post('datum_unosenja')
             );
-            
+
             $this->ModelKorisnik->dodatOglas($oglas);
             redirect("Korisnik/index");
         }
     }
     
-    public function index($pocetni_index = 0) {
+    private function paginacija($limit){
+        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
+
+        $this->config->load('bootstrap_pagination');
+        $config_pagination = $this->config->item('pagination');
+        $config_pagination['base_url'] = site_url("Korisnik/index");
+        $config_pagination['total_rows'] = $ukupanBrPartnera;
+        $config_pagination['per_page'] = $limit;
+        $config_pagination['next_link'] = 'Next';
+        $config_pagination['prev_link'] = 'Prev';
+
+        $this->pagination->initialize($config_pagination);
+        //$data['links'] = 
+        return $this->pagination->create_links();
+    }
+
+    public function index() {
         $data['kontroler'] = 'Korisnik';
         $data['metoda'] = 'index';
-
+        $limit = 2;
+        $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         $kompanija = $this->input->post("kompanija");
         $paket = $this->input->post("paket");
         $vazeciUgovor = $this->input->post("vazeciUgovor");
-        $limit = 2;
-        $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index);
-        $data['rezultat'] = $rezultat;
-
-        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
-        
-        $this->config->load('bootstrap_pagination');
-        $config_pagination=$this->config->item('pagination');
-        $config_pagination['base_url']= site_url("Korisnik/index");
-        $config_pagination['total_rows']=$ukupanBrPartnera;
-        $config_pagination['per_page']= $limit;
-        $config_pagination['next_link'] = 'Next';
-        $config_pagination['prev_link'] = 'Prev';
-        
-        
-        $this->pagination->initialize($config_pagination);
-        $data['links']=$this->pagination->create_links();
+        if (!empty($kompanija)) {
+            $trazenaKompanija = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
+            $data['rezultat'] = $trazenaKompanija;
+            $data['links']=$this->paginacija($limit);
+        } elseif (!empty($paket)) {
+            $trazenaKompanija = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
+            $data['rezultat'] = $trazenaKompanija;
+        } else {
+            $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor);
+            $data['rezultat'] = $rezultat;
+            $data['links']=$this->paginacija($limit);
+        }
+//        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
+//
+//        $this->config->load('bootstrap_pagination');
+//        $config_pagination = $this->config->item('pagination');
+//        $config_pagination['base_url'] = site_url("Korisnik/index");
+//        $config_pagination['total_rows'] = $ukupanBrPartnera;
+//        $config_pagination['per_page'] = $limit;
+//        $config_pagination['next_link'] = 'Next';
+//        $config_pagination['prev_link'] = 'Prev';
+//
+//
+//        $this->pagination->initialize($config_pagination);
+//        $data['links'] = $this->pagination->create_links();
 
         $this->loadView("partneriClanovi.php", $data);
     }
 
-
     public function dodajOglas() {
         $this->loadView("dodajOglas.php");
-
     }
 
     public function dodajPredavanje() {

@@ -32,33 +32,7 @@ echo form_close();
     ?>
 </ul>
 <?php
-//foreach ($partneri as $partner) {
-//
-?>
-<!--<span style="font-size: large; font-weight: bold;"> <a name="--><?php //echo $partner['naziv_paketa'];  ?><!--">--><?php //echo $partner['naziv_paketa'] . "<br />";   ?><!--</a></span>-->
-<!---->
-<!---->
-<!--    <table>-->
-<!--        <tr>-->
-<!--            <th>-->
-<!--                --><?php //echo $partner['naziv'] . "<br />";   ?>
-<!--            </th>-->
-<!--        </tr>-->
-<!--        <tr><td>1</td></tr>-->
-<!--<tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr><tr><td>1</td></tr>-->
-<!--        <tr>-->
-<!--            <td>-->
-<!--                --><?php //echo $partner['opis'] . "<br />";   ?>
-<!--            </td>-->
-<!--        </tr>-->
-<!--    </table>-->
-
-<?php
-//}
-
 foreach ($paketi as $paket) {
-
-
     $naziv_paketa = $paket['naziv_paketa'];
     $filtriraniPartneri = $partneri[$naziv_paketa];
     //    var_dump($filtriraniPartneri);
@@ -67,11 +41,13 @@ foreach ($paketi as $paket) {
         <h1><a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa']; ?></a></h1>
         <?php
         foreach ($filtriraniPartneri as $filtriraniPartner) {
-            $putanja = $filtriraniPartner['putanja'];
             ?>
-        <a href="<?php echo $filtriraniPartner['veb_adresa'];?>"><img src="<?php echo base_url($putanja); ?>"></a><br />
+        <a href="<?php echo $filtriraniPartner['veb_adresa'];?>" target="_blank">
+            <img src="<?php echo base_url($filtriraniPartner['putanja']);?>" style="vertical-align: middle; border-style: none; 
+                 width: 350px; height: 95px; margin-left: 350px;">
+        </a><br />
             <?php
-            echo /*"<span style='color: blue;'>" . $filtriraniPartner['paket_naziv'] . "</span><br/>" .*/ $filtriraniPartner['opis'] . "<br/><br />";
+            echo "<p>".$filtriraniPartner['opis'] . "</p><br />";
         }
         echo "<br/><br/>";
     }

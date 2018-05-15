@@ -17,29 +17,30 @@ echo form_input(array(
   'placeholder' => 'Naziv kompanije',
 ));
 echo "<br /><br />";
-echo form_checkbox(array(
+echo form_label( form_checkbox( array(
     'name'        => 'vazeciUgovor',
-    'value'       => 'accept',
-));
-echo "Vazeci ugovori";
+    'value'       => '1',
+) ) . ' Vazeci ugovori' );
 echo "<br /><br />";
 echo form_submit("pronadji", "Pronadji");
 echo "<br /><br />";
 echo form_close();
 
-//var_dump($rezultat);
 
-?>
+if(isset($kompanija)){
+var_dump($kompanija);
 
-    <?php foreach ($rezultat as $kompanija){ ?>
+} else {
+    
+foreach ($rezultat as $kompanija){ ?>
 <table class="table">
     <tr>
-        <th scope="col"><a href="#"><?php echo $kompanija['naziv']; ?></a></th>
+        <th><a href="#"><?php echo $kompanija['naziv']; ?></a></th>
     </tr>
     <tr>
-        <td scope="row">PIB</td>
-        <td scope="row">Adresa</td>
-        <td scope="row">Grad</td>
+        <td>PIB</td>
+        <td>Adresa</td>
+        <td>Grad</td>
         <td>Postanski broj</td>
         <td>Drzava</td>
         <td>Ziro racun</td>
@@ -61,16 +62,18 @@ echo form_close();
         <td><?php echo $kompanija['ime_kontakt_osobe']." ". $kompanija['prezime_kontakt_osobe']; ?></td>
         <td><?php echo $kompanija['telefon_kontakt_osobe']; ?></td>
         <td><?php echo $kompanija['email_kontakt_osobe']; ?></td>
-        <!--<td><?php echo $kompanija['opis']; ?></td>-->
+        <!--<td><?php // echo $kompanija['opis']; ?></td>-->
         <td><?php echo $kompanija['veb_adresa']; ?></td>
     </tr>
-    <tr>
+<!--    <tr>
         <td colspan="11"><?php echo $kompanija['opis']; ?></td>
-    </tr>
+    </tr>-->
     </table>
     <br />
     <?php } ?>
 <div class="pagination">
-<?php echo $links; ?>
+<?php if(isset($links)) echo $links; 
+
+}?>
 </div>
 <br /><br />

@@ -46,6 +46,15 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('korisnik');
     }
     
-    
+    public function pretragaPartnera($limit=1000, $pocetak=0){
+        $query=$this->db->get('partner', $limit, $pocetak);
+        $result = $query->result_array();
+        return $result;
+    }
+      
+    public function brojPartnera(){
+        $this->db->from("partner");
+        return $this->db->count_all_results();
+    }
     
 }

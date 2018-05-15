@@ -1,9 +1,13 @@
-
+<br />
 <?php
 echo form_open("$kontroler/$metoda/", "method=post");
-echo "Pretraga kompanije po nazivu";
+echo "Pretraga partnera po nazivu<br />";
 echo "<br />";
-echo form_input("kompanija");
+echo form_input(array(
+  'name' => 'kompanija',
+  'value' => '',
+  'placeholder' => 'Naziv kompanije',
+));
 echo form_submit("pronadji", "Pronadji");
 echo form_close();
 ?>

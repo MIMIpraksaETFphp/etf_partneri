@@ -89,4 +89,72 @@ public function paketi() {
         });
         return $filtriraniPartneri;
     }
+    
+    
+    public function dodajPartnera() {
+        $this->form_validation->set_rules("naziv", "naziv", "required");
+        $this->form_validation->set_rules("adresa", "adresa", "required");
+        $this->form_validation->set_rules("postanski_broj", "postanski_broj", "required");
+        $this->form_validation->set_rules("grad", "grad", "required");
+        $this->form_validation->set_rules("drzava", "drzava", "required");
+        $this->form_validation->set_rules("ziro_racun", "ziro_racun", "required");
+//      $this->form_validation->set_rules("valuta_racuna", "valuta_racuna", "required");
+        $this->form_validation->set_rules("PIB", "PIB", "required");
+        $this->form_validation->set_rules("telefon1", "telefon1", "required");
+        $this->form_validation->set_rules("email1", "email1", "required");
+        $this->form_validation->set_rules("opis", "opis", "required");
+        $this->form_validation->set_rules("veb_adresa", "veb_adresa", "required");
+        $this->form_validation->set_rules("ime_kontakt_osobe", "ime_kontakt_osobe", "required");
+        $this->form_validation->set_rules("prezime_kontakt_osobe", "prezime_kontakt_osobe", "required");
+        $this->form_validation->set_rules("telefon_kontakt_osobe", "telefon_kontakt_osobe", "required");
+        $this->form_validation->set_rules("email_kontakt_osobe", "email_kontakt_osobe", "required");
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
+            $this->dodajKompaniju();
+        } else {         
+            $partner = array(
+                'naziv' => $this->input->post('naziv'),
+                'adresa' => $this->input->post('adresa'),
+                'postanski_broj' => $this->input->post('postanski_broj'),
+                'grad' => $this->input->post('grad'),
+                'drzava' => $this->input->post('drzava'),
+                'ziro_racun' => $this->input->post('ziro_racun'),
+                'valuta_racuna' => $this->input->post('valuta_racuna'),
+                'PIB' => $this->input->post('PIB'),
+                'telefon1' => $this->input->post('telefon1'),
+                'telefon2' => $this->input->post('telefon2'),
+                'email1' => $this->input->post('email1'),
+                'email2' => $this->input->post('email2'),
+                'email3' => $this->input->post('email3'),
+                'email4' => $this->input->post('email4'),
+                'email5' => $this->input->post('email5'),
+                'opis' => $this->input->post('opis'),
+                'veb_adresa' => $this->input->post('veb_adresa'),
+                'ime_kontakt_osobe' => $this->input->post('ime_kontakt_osobe'),
+                'prezime_kontakt_osobe' => $this->input->post('prezime_kontakt_osobe'),
+                'telefon_kontakt_osobe' => $this->input->post('telefon_kontakt_osobe'),
+                'email_kontakt_osobe' => $this->input->post('email_kontakt_osobe'),
+
+            );
+
+            $insertovanidPartnera=$this->ModelKorisnik->dodatPartner($partner);
+            for($i=1;$i<=5;$i++) {
+                if(!empty($partner['email'.$i])) {
+                    $email=$partner['email'.$i];
+                    $this->ModelKorisnik->dodatEmailPartnera($email, $insertovanidPartnera);
+                }
+            }
+            for($i=1;$i<=2;$i++) {
+                if(!empty($partner['telefon'.$i])) {
+                    $telefon=$partner['telefon'.$i];
+                    $this->ModelKorisnik->dodatTelefonPartnera($telefon, $insertovanidPartnera);
+                }
+            }
+            redirect("Korisnik/dodajKompaniju");
+    }
+}
+
+
+
+
 }

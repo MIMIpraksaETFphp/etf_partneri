@@ -97,7 +97,7 @@ class Gost extends CI_Controller {
     public function registruj_se() {
 
         $this->form_validation->set_rules("username", "username", "required");
-        $this->form_validation->set_rules("password", "password", "required");
+        $this->form_validation->set_rules("password", "password", "required");    //ovde se unosi pass match itd
         //  $this->form_validation->set_rules("password", "password", "required");     //ponovljeni pass...
         $this->form_validation->set_rules("ime", "ime", "required");
         $this->form_validation->set_rules("prezime", "prezime", "required");

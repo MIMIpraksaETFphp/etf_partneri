@@ -66,22 +66,8 @@ class Korisnik extends CI_Controller {
         $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';
         $config_pagination['prev_link'] = 'Prev';
-       }
-
-    public function index($pocetni_index = 0) {
-        $data['kontroler'] = 'Korisnik';
-        $data['metoda'] = 'index';
-
-        $kompanija = $this->input->post("kompanija");
-        $paket = $this->input->post("paket");
-        $vazeciUgovor = $this->input->post("vazeciUgovor");
-        $limit = 2;
-        $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index);
-        $data['rezultat'] = $rezultat;
-
         $this->pagination->initialize($config_pagination);
-        $data['links'] = $this->pagination->create_links();
+       // $data['links'] = $this->pagination->create_links();
         $this->pagination->initialize($config_pagination);
         //$data['links'] = 
         return $this->pagination->create_links();

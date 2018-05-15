@@ -53,7 +53,7 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("praksa", $oglas['praksa']);
         $this->db->set("zaposlenje", $oglas['zaposlenje']);
         $this->db->set("datum_unosenja", $oglas['datum_unosenja']);
-        $this->db->set("partner_idPartner", 1);
+        $this->db->set("partner_idPartner", $oglas['naziv_partnera']);
         
         $this->db->insert('oglas');
     }
@@ -67,6 +67,14 @@ class ModelKorisnik extends CI_Model {
         $this->db->from("partner");
         return $this->db->count_all_results();
 
+    }
+    
+    public function partnerIdNaziv(){
+        $this->db->select('idPartner,naziv');
+        $this->db->from('partner');
+        $query=$this->db->get();
+        $result= $query->result_array();
+        return $result;
     }
     
 }

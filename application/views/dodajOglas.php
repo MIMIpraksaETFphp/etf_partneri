@@ -7,8 +7,8 @@
                         <h3 class="panel-title">Dodaj Oglas</h3>
                     </div>
                     <div class="panel-body">
-
-                        <form role="form" method="post" action="<?php echo site_url('Korisnik/dodavanjeOglasa'); ?>">
+                        <?php echo form_open_multipart("Korisnik/dodavanjeOglasa","method=post");?>
+                        <!--<form role="form" method="post" action="<?php //echo site_url('Korisnik/dodavanjeOglasa'); ?>">-->
                             <fieldset>
 
                                 <div class="form-group">
@@ -31,18 +31,24 @@
                                 </div>
                                 <?php //echo form_error(''); ?>
                                 <input type="hidden" name="datum_unosenja" value="<?php echo mdate('%Y-%m-%d %H:%i:%s', now()); ?>"/>
-                                <!--<div>
-                                    <select>
-
+                                
+                                <div class="form-control">
+                                    <label>Naziv Partnera</label>
+                                    <select name="naziv_partnera" class="form-control">
+                                        <?php foreach ($partneriOglasi as $partneriOglas){ ?>
+                                            <option value="<?php echo $partneriOglas['idPartner']; ?>"><?php echo $partneriOglas['naziv'];  ?></option>
+                                        <?php } ?>
                                     </select>
-                                </div>-->
+                                </div>
+                                
                                 <div class="form-group">
-                                    Logo: <input type="file" name="slika" size="20" /><br>
+                                    Logo: <input type="file" name="fajl" /><br>
                                 </div>
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Oglas" name="dodavanjeOglasa" >
 
                             </fieldset>
-                        </form>
+                        <!--</form>-->
+                        <?php echo form_close(); ?>
                     </div>
                 </div>
             </div>

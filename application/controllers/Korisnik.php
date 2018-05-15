@@ -18,12 +18,10 @@ class Korisnik extends CI_Controller {
         $this->load->view("sabloni/footer.php");
     }
 
-
     public function dodajKompaniju() {
         $this->loadView("dodajKompaniju.php");
     }
 
-   
     public function dodavanjeOglasa() {
         $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");
         $this->form_validation->set_rules("oglastext", "oglastext", "required");
@@ -42,14 +40,22 @@ class Korisnik extends CI_Controller {
                 'oglastext' => $this->input->post('oglastext'),
                 'praksa' => $a,
                 'zaposlenje' => $b,
-                'datum_unosenja' => $this->input->post('datum_unosenja')
+                'datum_unosenja' => $this->input->post('datum_unosenja'),
+                'naziv_partnera' => $this->input->post('naziv_partnera') 
             );
+  
+            $config['upload_path']          = './assets/fajlovi/';
+            $config['allowed_types']        = 'pdf';
+            $config['file_name']            = "pdf_".$oglas['oglasnaslov'];
+                       
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('fajl');
             
             $this->ModelKorisnik->dodatOglas($oglas);
             redirect("Korisnik/index");
         }
     }
-    
+
     public function index($pocetni_index = 0) {
         $data['kontroler'] = 'Korisnik';
         $data['metoda'] = 'index';
@@ -63,26 +69,26 @@ class Korisnik extends CI_Controller {
         $data['rezultat'] = $rezultat;
 
         $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
-        
+
         $this->config->load('bootstrap_pagination');
-        $config_pagination=$this->config->item('pagination');
-        $config_pagination['base_url']= site_url("Korisnik/index");
-        $config_pagination['total_rows']=$ukupanBrPartnera;
-        $config_pagination['per_page']= $limit;
+        $config_pagination = $this->config->item('pagination');
+        $config_pagination['base_url'] = site_url("Korisnik/index");
+        $config_pagination['total_rows'] = $ukupanBrPartnera;
+        $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';
         $config_pagination['prev_link'] = 'Prev';
-        
-        
+
+
         $this->pagination->initialize($config_pagination);
-        $data['links']=$this->pagination->create_links();
+        $data['links'] = $this->pagination->create_links();
 
         $this->loadView("partneriClanovi.php", $data);
     }
 
-
     public function dodajOglas() {
-        $this->loadView("dodajOglas.php");
-
+        $partneriOglasi = $this->ModelKorisnik->partnerIdNaziv();
+        $data['partneriOglasi'] = $partneriOglasi;
+        $this->loadView("dodajOglas.php", $data);
     }
 
     public function dodajPredavanje() {

@@ -234,11 +234,13 @@ class Korisnik extends CI_Controller {
             }
              
             $config['upload_path'] = './assets/logo/';
-            $config['allowed_types'] = 'png|jpg|jpeg|gif';
-            $config['max_size']=2000;
+
+            $config['allowed_types'] = 'png|jpg|jpeg|gif|tiff';
+            $config['max_size']=1000;
             $config['max_width']=1524;
             $config['max_height']=1068;
-            $config['file_name'] = "png".$partner['naziv'];
+            $config['file_name'] = $partner['naziv'];
+
             
             $this->load->library('upload');
             $this->upload->initialize($config);

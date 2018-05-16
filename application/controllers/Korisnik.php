@@ -51,9 +51,38 @@ class Korisnik extends CI_Controller {
         }
     }
 
-    private function paginacija($limit) {
-        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
+//    private function paginacija($limit) {
+//        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera(); // ovaj broj ne valja
+//
+//        $this->config->load('bootstrap_pagination');
+//        $config_pagination = $this->config->item('pagination');
+//        $config_pagination['base_url'] = site_url("Korisnik/index");    //?paket='nesto'&vazeciUgovor=
+//        $config_pagination['total_rows'] = $ukupanBrPartnera;
+//        $config_pagination['per_page'] = $limit;
+//        $config_pagination['next_link'] = 'Next';
+//        $config_pagination['prev_link'] = 'Prev';
+//        $this->pagination->initialize($config_pagination);
+//        // $data['links'] = $this->pagination->create_links();
+//        $this->pagination->initialize($config_pagination);
+//        //$data['links'] = 
+//        return $this->pagination->create_links();
+//    }
 
+    public function index() {
+        $data['kontroler'] = 'Korisnik';
+        $data['metoda'] = 'index';
+        $limit = 2;
+        $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $kompanija = $this->input->get("kompanija");
+        $paket = $this->input->get("paket");
+        $vazeciUgovor = $this->input->get("vazeciUgovor");
+        
+        $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
+        $data['rezultat'] = $rezultat;
+        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera($kompanija, $paket, $vazeciUgovor);
+        
+        $data['ukupanBroj'] = $ukupanBrPartnera;
+        
         $this->config->load('bootstrap_pagination');
         $config_pagination = $this->config->item('pagination');
         $config_pagination['base_url'] = site_url("Korisnik/index");
@@ -61,46 +90,9 @@ class Korisnik extends CI_Controller {
         $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';
         $config_pagination['prev_link'] = 'Prev';
-        $this->pagination->initialize($config_pagination);
-        // $data['links'] = $this->pagination->create_links();
-        $this->pagination->initialize($config_pagination);
-        //$data['links'] = 
-        return $this->pagination->create_links();
-    }
 
-    public function index() {
-        $data['kontroler'] = 'Korisnik';
-        $data['metoda'] = 'index';
-        $limit = 2;
-        $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $kompanija = $this->input->post("kompanija");
-        $paket = $this->input->post("paket");
-        $vazeciUgovor = $this->input->post("vazeciUgovor");
-        if (!empty($kompanija)) {
-            $trazenaKompanija = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
-            $data['rezultat'] = $trazenaKompanija;
-            $data['links'] = $this->paginacija($limit);
-        } elseif (!empty($paket)) {
-            $trazenaKompanija = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
-            $data['rezultat'] = $trazenaKompanija;
-        } else {
-            $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor);
-            $data['rezultat'] = $rezultat;
-            $data['links'] = $this->paginacija($limit);
-        }
-//        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
-//
-//        $this->config->load('bootstrap_pagination');
-//        $config_pagination = $this->config->item('pagination');
-//        $config_pagination['base_url'] = site_url("Korisnik/index");
-//        $config_pagination['total_rows'] = $ukupanBrPartnera;
-//        $config_pagination['per_page'] = $limit;
-//        $config_pagination['next_link'] = 'Next';
-//        $config_pagination['prev_link'] = 'Prev';
-//
-//
-//        $this->pagination->initialize($config_pagination);
-//        $data['links'] = $this->pagination->create_links();
+        $this->pagination->initialize($config_pagination);
+        $data['links'] = $this->pagination->create_links();
 
         $this->loadView("partneriClanovi.php", $data);
     }
@@ -252,5 +244,12 @@ class Korisnik extends CI_Controller {
             redirect("Korisnik/dodajKompaniju");
         }
     }
+    
+    public function dosije($kompanija){
+        $rezultat = $this->ModelKorisnik->dosijePartner($kompanija);
+        $data['partner']=$rezultat;
+        $this->loadView("dosije.php", $data);
+    }
+ 
 
 }

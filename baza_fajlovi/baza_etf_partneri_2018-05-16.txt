@@ -77,6 +77,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`ugovor` (
   `partner_idPartner` INT(11) NOT NULL,
   `paketi_idPaketi` INT(11) NOT NULL,
   `status_ugovora_idstatus_ugovora` INT(11) NOT NULL,
+  `tip` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idugovor`),
   INDEX `fk_ugovor_partner1_idx` (`partner_idPartner` ASC),
   INDEX `fk_ugovor_paketi1_idx` (`paketi_idPaketi` ASC),

@@ -1,6 +1,6 @@
 <?php 
 echo "<br />";
-echo form_open("$kontroler/$metoda/", "method=post");
+echo form_open("$kontroler/$metoda/", "method=get");
 echo "Pretraga po nazivu paketa";
 echo "<br />";
 echo form_input(array(
@@ -26,54 +26,15 @@ echo form_submit("pronadji", "Pronadji");
 echo "<br /><br />";
 echo form_close();
 
-
-if(isset($kompanija)){
-var_dump($kompanija);
-
-} else {
+var_dump($ukupanBroj);
+echo "<br />";
     
 foreach ($rezultat as $kompanija){ ?>
-<table class="table">
-    <tr>
-        <th><a href="#"><?php echo $kompanija['naziv']; ?></a></th>
-    </tr>
-    <tr>
-        <td>PIB</td>
-        <td>Adresa</td>
-        <td>Grad</td>
-        <td>Postanski broj</td>
-        <td>Drzava</td>
-        <td>Ziro racun</td>
-        <td>Valuta racuna</td>
-        <td>Kontakt osoba</td>
-        <td>Telefon kontakt osobe</td>
-        <td>Email kontakt osobe</td>
-        <!--<td>Opis</td>-->
-        <td>Web adresa</td>
-    </tr>
-    <tr>
-        <td><?php echo $kompanija['PIB']; ?></td>
-        <td><?php echo $kompanija['adresa']; ?></td>
-        <td><?php echo $kompanija['grad']; ?></td>
-        <td><?php echo $kompanija['postanski_broj']; ?></td>
-        <td><?php echo $kompanija['drzava']; ?></td>
-        <td><?php echo $kompanija['ziro_racun']; ?></td>
-        <td><?php echo $kompanija['valuta_racuna']; ?></td>
-        <td><?php echo $kompanija['ime_kontakt_osobe']." ". $kompanija['prezime_kontakt_osobe']; ?></td>
-        <td><?php echo $kompanija['telefon_kontakt_osobe']; ?></td>
-        <td><?php echo $kompanija['email_kontakt_osobe']; ?></td>
-        <!--<td><?php // echo $kompanija['opis']; ?></td>-->
-        <td><?php echo $kompanija['veb_adresa']; ?></td>
-    </tr>
-<!--    <tr>
-        <td colspan="11"><?php echo $kompanija['opis']; ?></td>
-    </tr>-->
-    </table>
+<a href="<?php echo site_url("Korisnik/dosije/".$kompanija['naziv']);?>"><?php echo $kompanija['naziv']; ?></a>
+
     <br />
     <?php } ?>
 <div class="pagination">
-<?php if(isset($links)) echo $links; 
-
-}?>
+<?php if(isset($links)) echo $links; ?>
 </div>
 <br /><br />

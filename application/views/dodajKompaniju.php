@@ -9,8 +9,8 @@
                     </div>
                     <div class="panel-body">
 
-
-                        <form role="form" method="post" action="<?php echo site_url('Korisnik/dodajPartnera'); ?>">
+                        <?php echo form_open_multipart('Korisnik/dodajPartnera',"method=post"); ?>
+<!--                        <form role="form" method="post" action="<?php //echo site_url('Korisnik/dodajPartnera'); ?>">-->
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Naziv" name="naziv" type="text" value="">
@@ -102,10 +102,14 @@
                                     <input class="form-control" placeholder="Email kontakt osobe" name="email_kontakt_osobe" type="text" value="">
                                 </div>
                                 <?php echo form_error('email_kontakt_osobe'); ?>
+                                <div class="form-group">
+                                    Logo: <input type="file" name="logo" /><br>
+                                </div>
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj partnera" name="dodajPartnera" >
-
+                                <br/><br/>
                             </fieldset>
-                        </form>
+                        <!--</form>-->
+                        <?php echo form_close(); ?>
                     </div>
                 </div>
             </div>

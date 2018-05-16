@@ -2,7 +2,6 @@
 require_once APPPATH . 'controllers\Korisnik.php';
 
 class Admin extends Korisnik{
-    public $i;
     public function __construct() {
         parent::__construct();
        

@@ -39,7 +39,7 @@ class Korisnik extends CI_Controller {
                 'praksa' => $praksa,
                 'zaposlenje' => $zaposlenje,
                 'datum_unosenja' => $this->input->post('datum_unosenja'),
-                'naziv_partnera' => $this->input->post('naziv_partnera')
+                'id_partnera' => $this->input->post('id_partnera')
             );
 
             $config['upload_path']          = './assets/fajlovi/';

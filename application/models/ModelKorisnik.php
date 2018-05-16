@@ -52,7 +52,7 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("praksa", $oglas['praksa']);
         $this->db->set("zaposlenje", $oglas['zaposlenje']);
         $this->db->set("datum_unosenja", $oglas['datum_unosenja']);
-        $this->db->set("partner_idPartner", $oglas['naziv_partnera']);
+        $this->db->set("partner_idPartner", $oglas['id_partnera']);
         $this->db->insert('oglas');
         $insertovanidOglas=$this->db->insert_id();
         return $insertovanidOglas;

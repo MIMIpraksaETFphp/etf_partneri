@@ -17,7 +17,10 @@ class Korisnik extends CI_Controller {
         $this->load->view($page, $data);
         $this->load->view("sabloni/footer.php");
     }
-
+    
+    public function dodajKompaniju(){
+        $this->loadView("dodajKompaniju.php");
+    }
 
     public function dodavanjeOglasa() {
         $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");

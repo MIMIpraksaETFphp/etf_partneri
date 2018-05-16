@@ -18,4 +18,11 @@ class ITmenadzer extends Korisnik{
     public function korisnici() {
         $this->loadView("partneriClanovi.php");
     }
+    
+    public function predavanja() {
+        $predavanja = $this->ModelGost->ispisPredavanja();
+        $data['kontroler'] = 'ITmenadzer';
+        $data['predavanja'] = $predavanja;
+        $this->loadView("predavanja.php", $data);
+    }
 }

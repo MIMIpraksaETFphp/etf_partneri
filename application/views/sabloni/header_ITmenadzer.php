@@ -35,7 +35,7 @@
               <a class="nav-link" href="<?php echo site_url("ITmenadzer/predavanja"); ?>">Predavanja</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url("ITmenadzer/ddodajPartnera"); ?>">Dodaj Kompanije</a>
+              <a class="nav-link" href="<?php echo site_url("ITmenadzer/dodajPartnera"); ?>">Dodaj Kompanije</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("ITmenadzer/dodajOglas"); ?>">Dodaj Oglasa</a>

@@ -17,10 +17,11 @@ class ModelGost extends CI_Model {
     }*/
     
  public function pretraga($kompanija) {
-        $this->db->select('p.naziv as paket_naziv, opis, naziv_paketa, putanja, veb_adresa');
+        $this->db->select('p.naziv, opis, naziv_paketa, putanja, veb_adresa');
         $this->db->from('partner p, ugovor u, paketi, logo l');
         $this->db->where("u.partner_idPartner=idPartner and paketi_idPaketi=idPaketi and l.partner_idPartner=idPartner");
-              $this->db->like('p.naziv', $kompanija);
+        $this->db->like('p.naziv', $kompanija);
+        $this->db->group_by('p.naziv, opis, naziv_paketa, putanja, veb_adresa'); //pitati tamaru ili prof
         $query = $this->db->get();
         $result = $query->result_array(); 
         return $result;

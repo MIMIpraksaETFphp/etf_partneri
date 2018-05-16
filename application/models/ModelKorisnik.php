@@ -57,10 +57,10 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function pretragaPartnera($limit = 1000, $pocetak = 0, $vazeciUgovor, $kompanija = NULL, $paket = NULL) {
-//        if ($vazeciUgovor == 1) {
-//            $this->db->where('status_ugovora_idstatus_ugovora=5');
-//            $this->db->from('ugovor');
-//        }
+        if ($vazeciUgovor == 1 and $kompanija == NULL and $paket == NULL) {
+            $this->db->where('status_ugovora_idstatus_ugovora=5');
+            $this->db->from('ugovor');
+        }
         if (!empty($kompanija)) {
             $this->db->from('ugovor');
             $this->db->like('naziv', $kompanija);

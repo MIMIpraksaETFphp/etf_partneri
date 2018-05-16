@@ -28,35 +28,30 @@ class Korisnik extends CI_Controller {
         if ($this->form_validation->run() == FALSE) {
             $this->dodajOglas();
         } else {
-            $a = $this->input->post('praksa');
-            $b = $this->input->post('zaposlenje');
-            if ($a == NULL)
-                $a = 0;
-
-            if ($b == NULL)
-                $b = 0;
-            $oglas = array(
-                'oglasnaslov' => $this->input->post('oglasnaslov'),
+            $praksa = $this->input->post('praksa');
+            $zaposlenje = $this->input->post('zaposlenje');
+            if ($praksa == NULL)
+                $praksa = 0;
+            if ($zaposlenje == NULL)
+                $zaposlenje = 0;
+            $oglas = array('oglasnaslov' => $this->input->post('oglasnaslov'),
                 'oglastext' => $this->input->post('oglastext'),
-                'praksa' => $a,
-                'zaposlenje' => $b,
+                'praksa' => $praksa,
+                'zaposlenje' => $zaposlenje,
                 'datum_unosenja' => $this->input->post('datum_unosenja'),
-                'naziv_partnera' => $this->input->post('naziv_partnera') 
+                'naziv_partnera' => $this->input->post('naziv_partnera')
             );
-
-  
-            $config['upload_path']          = './assets/fajlovi/';
-            $config['allowed_types']        = 'pdf';
-            $config['file_name']            = "pdf_".$oglas['oglasnaslov'];
-                       
+            $config['upload_path'] = './assets/fajlovi/';
+            $config['allowed_types'] = 'pdf';
+            $config['file_name'] = "pdf_" . $oglas['oglasnaslov'];
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
-            
             $this->ModelKorisnik->dodatOglas($oglas);
             redirect("Korisnik/index");
         }
     }
-       private function paginacija($limit){
+
+    private function paginacija($limit) {
         $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
 
         $this->config->load('bootstrap_pagination');
@@ -67,7 +62,7 @@ class Korisnik extends CI_Controller {
         $config_pagination['next_link'] = 'Next';
         $config_pagination['prev_link'] = 'Prev';
         $this->pagination->initialize($config_pagination);
-       // $data['links'] = $this->pagination->create_links();
+        // $data['links'] = $this->pagination->create_links();
         $this->pagination->initialize($config_pagination);
         //$data['links'] = 
         return $this->pagination->create_links();
@@ -84,14 +79,14 @@ class Korisnik extends CI_Controller {
         if (!empty($kompanija)) {
             $trazenaKompanija = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
             $data['rezultat'] = $trazenaKompanija;
-            $data['links']=$this->paginacija($limit);
+            $data['links'] = $this->paginacija($limit);
         } elseif (!empty($paket)) {
             $trazenaKompanija = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
             $data['rezultat'] = $trazenaKompanija;
         } else {
             $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor);
             $data['rezultat'] = $rezultat;
-            $data['links']=$this->paginacija($limit);
+            $data['links'] = $this->paginacija($limit);
         }
 //        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera();
 //
@@ -177,7 +172,7 @@ class Korisnik extends CI_Controller {
         });
         return $filtriraniPartneri;
     }
-    
+
     public function dodajPartnera() {
         $this->form_validation->set_rules("naziv", "naziv", "required");
         $this->form_validation->set_rules("adresa", "adresa", "required");
@@ -198,7 +193,7 @@ class Korisnik extends CI_Controller {
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajKompaniju();
-        } else {         
+        } else {
             $partner = array(
                 'naziv' => $this->input->post('naziv'),
                 'adresa' => $this->input->post('adresa'),
@@ -221,26 +216,23 @@ class Korisnik extends CI_Controller {
                 'prezime_kontakt_osobe' => $this->input->post('prezime_kontakt_osobe'),
                 'telefon_kontakt_osobe' => $this->input->post('telefon_kontakt_osobe'),
                 'email_kontakt_osobe' => $this->input->post('email_kontakt_osobe'),
-
             );
 
-            $insertovanidPartnera=$this->ModelKorisnik->dodatPartner($partner);
-            for($i=1;$i<=5;$i++) {
-                if(!empty($partner['email'.$i])) {
-                    $email=$partner['email'.$i];
+            $insertovanidPartnera = $this->ModelKorisnik->dodatPartner($partner);
+            for ($i = 1; $i <= 5; $i++) {
+                if (!empty($partner['email' . $i])) {
+                    $email = $partner['email' . $i];
                     $this->ModelKorisnik->dodatEmailPartnera($email, $insertovanidPartnera);
                 }
             }
-            for($i=1;$i<=2;$i++) {
-                if(!empty($partner['telefon'.$i])) {
-                    $telefon=$partner['telefon'.$i];
+            for ($i = 1; $i <= 2; $i++) {
+                if (!empty($partner['telefon' . $i])) {
+                    $telefon = $partner['telefon' . $i];
                     $this->ModelKorisnik->dodatTelefonPartnera($telefon, $insertovanidPartnera);
                 }
             }
             redirect("Korisnik/dodajKompaniju");
+        }
     }
-}
-
-
 
 }

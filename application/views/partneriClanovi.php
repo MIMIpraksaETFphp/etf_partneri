@@ -25,8 +25,9 @@ echo "<br /><br />";
 echo form_submit("pronadji", "Pronadji");
 echo "<br /><br />";
 echo form_close();
-
 var_dump($ukupanBroj);
+echo "<br />";
+print_r($this->session->all_userdata());
 echo "<br />";
     
 foreach ($rezultat as $kompanija){ ?>

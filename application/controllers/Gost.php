@@ -7,7 +7,6 @@ class Gost extends CI_Controller {
         parent::__construct();
         $this->load->model("ModelGost");
         $this->load->model("ModelKorisnik");
-        $this->load->library('session');
     }
 
     public function loadView($page, $data = []) {

@@ -6,10 +6,6 @@ class Korisnik extends CI_Controller {
         parent::__construct();
         $this->load->model("ModelKorisnik");
         $this->load->model("ModelGost");
-
-        $this->load->library('session');
-        // if(($this->session->userdata('korisnik'))==NULL)
-        //redirect ("Gost");
     }
 
     public function loadView($page, $data = []) {
@@ -42,16 +38,16 @@ class Korisnik extends CI_Controller {
                 'naziv_partnera' => $this->input->post('naziv_partnera')
             );
 
-            $config['upload_path']          = './assets/fajlovi/';
-            $config['allowed_types']        = 'pdf|jpg|jpeg|png|tiff';
-            $config['file_name']            = "IDpartnera_".$oglas['naziv_partnera']."_NaslovOglasa_".$oglas['oglasnaslov'];
-                       
+            $config['upload_path'] = './assets/fajlovi/';
+            $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
+            $config['file_name'] = "IDpartnera_" . $oglas['naziv_partnera'] . "_NaslovOglasa_" . $oglas['oglasnaslov'];
+
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
-            
-            $insertovanidOglasa=$this->ModelKorisnik->dodatOglas($oglas);
-            $oglasnaslov=$oglas['oglasnaslov'];
-            $oglasPutanja='/assets/fajlovi/'.$oglasnaslov;
+
+            $insertovanidOglasa = $this->ModelKorisnik->dodatOglas($oglas);
+            $oglasnaslov = $oglas['oglasnaslov'];
+            $oglasPutanja = '/assets/fajlovi/' . $oglasnaslov;
             $this->ModelKorisnik->dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
             $this->ModelKorisnik->dodatOglas($oglas);
@@ -80,18 +76,50 @@ class Korisnik extends CI_Controller {
     public function index() {
         $data['kontroler'] = 'Korisnik';
         $data['metoda'] = 'index';
-        $limit = 2;
+        $limit = 1;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        $kompanija = $this->input->get("kompanija");
-        $paket = $this->input->get("paket");
-        $vazeciUgovor = $this->input->get("vazeciUgovor");
+        //$kompanija = $this->input->get("kompanija");
+        //$paket = $this->input->get("paket");
+        //$vazeciUgovor = $this->input->get("vazeciUgovor");
+
+        $kompanija = '';
+        if ($this->input->get('kompanija')) {
+            $this->session->unset_userdata('paket');
+            $kompanija = $this->input->get('kompanija');
+            $this->session->set_userdata('kompanija', $kompanija);
+        } elseif ($this->session->userdata('kompanija')) {
+            $kompanija = $this->session->userdata('kompanija');
+        }
+        $paket = ''; 
+        if ($this->input->get('paket')) {
+            $this->session->unset_userdata('kompanija');
+            $paket = $this->input->get('paket');
+            $this->session->set_userdata('paket', $paket);
+        } elseif ($this->session->userdata('paket')) {
+            $paket = $this->session->userdata('paket');
+        }
+        $vazeciUgovor = '';
+        if ($this->input->get('vazeciUgovor')) {
+            $this->session->unset_userdata('kompanija');
+            $this->session->unset_userdata('paket');
+            $vazeciUgovor = $this->input->get('vazeciUgovor');
+            $this->session->set_userdata('vazeciUgovor', $vazeciUgovor);
+        } elseif ($this->session->userdata('vazeciUgovor')) {
+            $vazeciUgovor = $this->session->userdata('paket');
+        }
         
+//        if($this->input->get('pronadji')=='Pronadji'){
+//            $this->session->unset_userdata('kompanija');
+//            $this->session->unset_userdata('paket');
+//            $this->session->unset_userdata('vazeciUgovor');
+//        }
+
         $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
         $data['rezultat'] = $rezultat;
         $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera($kompanija, $paket, $vazeciUgovor);
-        
+
         $data['ukupanBroj'] = $ukupanBrPartnera;
-        
+
         $this->config->load('bootstrap_pagination');
         $config_pagination = $this->config->item('pagination');
         $config_pagination['base_url'] = site_url("Korisnik/index");
@@ -218,7 +246,7 @@ class Korisnik extends CI_Controller {
                 'telefon_kontakt_osobe' => $this->input->post('telefon_kontakt_osobe'),
                 'email_kontakt_osobe' => $this->input->post('email_kontakt_osobe'),
             );
-            
+
             $insertovanidPartnera = $this->ModelKorisnik->dodatPartner($partner);
             for ($i = 1; $i <= 5; $i++) {
                 if (!empty($partner['email' . $i])) {
@@ -232,38 +260,37 @@ class Korisnik extends CI_Controller {
                     $this->ModelKorisnik->dodatTelefonPartnera($telefon, $insertovanidPartnera);
                 }
             }
-             
+
             $config['upload_path'] = './assets/logo/';
 
             $config['allowed_types'] = 'png|jpg|jpeg|gif|tiff';
-            $config['max_size']=1000;
-            $config['max_width']=1524;
-            $config['max_height']=1068;
+            $config['max_size'] = 1000;
+            $config['max_width'] = 1524;
+            $config['max_height'] = 1068;
             $config['file_name'] = $partner['naziv'];
 
-            
+
             $this->load->library('upload');
             $this->upload->initialize($config);
-            
+
             $this->load->library('upload', $config);
             $this->upload->do_upload('logo');
-            
-            $logo=$partner['naziv'];
-            $putanja='assets/logo/'.$logo;
+
+            $logo = $partner['naziv'];
+            $putanja = 'assets/logo/' . $logo;
             $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
-            
+
             redirect("Korisnik/dodajKompaniju");
         }
     }
-    
-    public function dosije($kompanija){
+
+    public function dosije($kompanija) {
         $rezultat = $this->ModelKorisnik->dosijePartner($kompanija);
         $ugovori = $this->ModelKorisnik->pretragaUgovora($kompanija);
         //$telefoni = $this->db->pretragaTelefoni($kompanija);
-        $data['partner']=$rezultat;
-        $data['ugovori']=$ugovori;
+        $data['partner'] = $rezultat;
+        $data['ugovori'] = $ugovori;
         $this->loadView("dosije.php", $data);
     }
- 
 
 }

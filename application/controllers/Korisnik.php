@@ -257,7 +257,10 @@ class Korisnik extends CI_Controller {
     
     public function dosije($kompanija){
         $rezultat = $this->ModelKorisnik->dosijePartner($kompanija);
+        $ugovori = $this->ModelKorisnik->pretragaUgovora($kompanija);
+        //$telefoni = $this->db->pretragaTelefoni($kompanija);
         $data['partner']=$rezultat;
+        $data['ugovori']=$ugovori;
         $this->loadView("dosije.php", $data);
     }
  

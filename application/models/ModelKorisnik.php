@@ -171,7 +171,20 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('logo');
     }
 
-
+    public function dodatoPredavanje($predavanje) {
+        $this->db->set("naslov_srpski", $predavanje['naslov_srpski']);
+        $this->db->set("naslov_engleski", $predavanje['naslov_engleski']);
+        $this->db->set("opis_srpski", $predavanje['opis_srpski']);
+        $this->db->set("opis_engleski", $predavanje['opis_engleski']);
+        $this->db->set("vreme_predavanja", $predavanje['vreme_predavanja']);
+        $this->db->set("sala", $predavanje['sala']);
+        $this->db->set("ime_predavaca", $predavanje['ime_predavaca']); 
+        $this->db->set("prezime_predavaca", $predavanje['prezime_predavaca']);
+        $this->db->set("cv_srpski", $predavanje['cv_srpski']);
+        $this->db->set("cv_engleski", $predavanje['cv_engleski']);
+        $this->db->set("partner_idPartner", $predavanje['partner_idPartner']);
+        $this->db->insert('predavanje');
+    }
 
 }
 

@@ -31,7 +31,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Drzava" name="drzava" type="text" value="">
                                 </div>
-                                <?php echo form_error('zemlja'); ?>
+                                <?php echo form_error('drzava'); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Ziro racun" name="ziro_racun" type="text" value="">
                                 </div>
@@ -49,7 +49,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="PIB" name="PIB" type="number" value="">
                                 </div>
-                                <?php echo form_error('pib'); ?>
+                                <?php echo form_error('PIB'); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Telefon1" name="telefon1" type="text" value="">
                                 </div>

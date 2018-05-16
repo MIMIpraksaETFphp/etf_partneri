@@ -41,12 +41,30 @@ class Korisnik extends CI_Controller {
                 'datum_unosenja' => $this->input->post('datum_unosenja'),
                 'naziv_partnera' => $this->input->post('naziv_partnera')
             );
+
+            
+            
+  
+            $config['upload_path']          = './assets/fajlovi/';
+            $config['allowed_types']        = 'pdf';
+            $config['file_name']            = "IDpartnera_".$oglas['naziv_partnera']."_NaslovOglasa_".$oglas['oglasnaslov'];
+                       
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('fajl');
+            
+            $insertovanidOglasa=$this->ModelKorisnik->dodatOglas($oglas);
+            $oglasnaslov=$oglas['oglasnaslov'];
+            $oglasPutanja='/assets/fajlovi/'.$oglasnaslov;
+            $this->ModelKorisnik->dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
+            //$this->ModelKorisnik->dodatOglas($oglas);
+
             $config['upload_path'] = './assets/fajlovi/';
             $config['allowed_types'] = 'pdf';
             $config['file_name'] = "pdf_" . $oglas['oglasnaslov'];
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
             $this->ModelKorisnik->dodatOglas($oglas);
+
             redirect("Korisnik/index");
         }
     }

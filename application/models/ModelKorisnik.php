@@ -54,6 +54,8 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("datum_unosenja", $oglas['datum_unosenja']);
         $this->db->set("partner_idPartner", $oglas['naziv_partnera']);
         $this->db->insert('oglas');
+        $insertovanidOglas=$this->db->insert_id();
+        return $insertovanidOglas;
     }
 
     public function pretragaPartnera($limit = 1000, $pocetak = 0, $vazeciUgovor, $kompanija = NULL, $paket = NULL) {
@@ -125,7 +127,15 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("partner_idPartner", $insertovanidPartnera);
         $this->db->insert('email_partnera');
     }
-}
+    
+    public function dodatIdFajla($oglasnaslov, $oglasPutanja,$insertovanidOglasa) {
+        $this->db->set("naziv", $oglasnaslov);
+        $this->db->set("putanja",$oglasPutanja);
+        $this->db->set("oglas_idoglas", $insertovanidOglasa);
+        
+        $this->db->insert('fajl');
+    }
+ }
 //}
 
 //    function pretragaPoNazivu($kompanija, $vazeciUgovor) {

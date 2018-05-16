@@ -42,11 +42,8 @@ class Korisnik extends CI_Controller {
                 'naziv_partnera' => $this->input->post('naziv_partnera')
             );
 
-            
-            
-  
             $config['upload_path']          = './assets/fajlovi/';
-            $config['allowed_types']        = 'pdf';
+            $config['allowed_types']        = 'pdf|jpg|jpeg|png|tiff';
             $config['file_name']            = "IDpartnera_".$oglas['naziv_partnera']."_NaslovOglasa_".$oglas['oglasnaslov'];
                        
             $this->load->library('upload', $config);
@@ -56,13 +53,7 @@ class Korisnik extends CI_Controller {
             $oglasnaslov=$oglas['oglasnaslov'];
             $oglasPutanja='/assets/fajlovi/'.$oglasnaslov;
             $this->ModelKorisnik->dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
-            //$this->ModelKorisnik->dodatOglas($oglas);
 
-            $config['upload_path'] = './assets/fajlovi/';
-            $config['allowed_types'] = 'pdf';
-            $config['file_name'] = "pdf_" . $oglas['oglasnaslov'];
-            $this->load->library('upload', $config);
-            $this->upload->do_upload('fajl');
             $this->ModelKorisnik->dodatOglas($oglas);
 
             redirect("Korisnik/index");
@@ -244,9 +235,9 @@ class Korisnik extends CI_Controller {
              
             $config['upload_path'] = './assets/logo/';
             $config['allowed_types'] = 'png|jpg|jpeg|gif';
-            $config['max_size']=1000;
-            $config['max_width']=1024;
-            $config['max_height']=768;
+            $config['max_size']=2000;
+            $config['max_width']=1524;
+            $config['max_height']=1068;
             $config['file_name'] = "png".$partner['naziv'];
             
             $this->load->library('upload');

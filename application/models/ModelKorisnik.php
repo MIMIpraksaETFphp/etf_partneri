@@ -125,6 +125,13 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("partner_idPartner", $insertovanidPartnera);
         $this->db->insert('email_partnera');
     }
+    
+    public function dodatLogo($logo, $putanja, $insertovanidPartnera) {
+        $this->db->set("naziv", $logo);
+        $this->db->set("putanja", $putanja);
+        $this->db->set("partner_idPartner", $insertovanidPartnera);
+        $this->db->insert('logo');
+    }
 }
 //}
 

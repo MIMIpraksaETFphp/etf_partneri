@@ -180,7 +180,7 @@ class Korisnik extends CI_Controller {
         $this->form_validation->set_rules("grad", "grad", "required");
         $this->form_validation->set_rules("drzava", "drzava", "required");
         $this->form_validation->set_rules("ziro_racun", "ziro_racun", "required");
-//      $this->form_validation->set_rules("valuta_racuna", "valuta_racuna", "required");
+        $this->form_validation->set_rules("valuta_racuna", "valuta_racuna", "required");
         $this->form_validation->set_rules("PIB", "PIB", "required");
         $this->form_validation->set_rules("telefon1", "telefon1", "required");
         $this->form_validation->set_rules("email1", "email1", "required");
@@ -217,7 +217,7 @@ class Korisnik extends CI_Controller {
                 'telefon_kontakt_osobe' => $this->input->post('telefon_kontakt_osobe'),
                 'email_kontakt_osobe' => $this->input->post('email_kontakt_osobe'),
             );
-
+            
             $insertovanidPartnera = $this->ModelKorisnik->dodatPartner($partner);
             for ($i = 1; $i <= 5; $i++) {
                 if (!empty($partner['email' . $i])) {
@@ -231,6 +231,24 @@ class Korisnik extends CI_Controller {
                     $this->ModelKorisnik->dodatTelefonPartnera($telefon, $insertovanidPartnera);
                 }
             }
+             
+            $config['upload_path'] = './assets/logo/';
+            $config['allowed_types'] = 'png|jpg|jpeg|gif';
+            $config['max_size']=1000;
+            $config['max_width']=1024;
+            $config['max_height']=768;
+            $config['file_name'] = "png".$partner['naziv'];
+            
+            $this->load->library('upload');
+            $this->upload->initialize($config);
+            
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('logo');
+            
+            $logo=$partner['naziv'];
+            $putanja='assets/logo/'.$logo;
+            $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
+            
             redirect("Korisnik/dodajKompaniju");
         }
     }

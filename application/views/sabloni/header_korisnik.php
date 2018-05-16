@@ -35,7 +35,7 @@
               <a class="nav-link" href="<?php echo site_url("Korisnik/predavanja"); ?>">Predavanja</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url("Korisnik/dodajKompaniju"); ?>">Dodaj Kompanije</a>
+              <a class="nav-link" href="<?php echo site_url("Korisnik/dodajPartnera"); ?>">Dodaj Kompaniju</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("Korisnik/dodajOglas"); ?>">Dodaj Oglasa</a>

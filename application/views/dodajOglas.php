@@ -34,7 +34,7 @@
                                 
                                 <div class="form-control">
                                     <label>Naziv Partnera</label>
-                                    <select name="naziv_partnera" class="form-control">
+                                    <select name="id_partnera" class="form-control">
                                         <?php foreach ($partneriOglasi as $partneriOglas){ ?>
                                             <option value="<?php echo $partneriOglas['idPartner']; ?>"><?php echo $partneriOglas['naziv'];  ?></option>
                                         <?php } ?>

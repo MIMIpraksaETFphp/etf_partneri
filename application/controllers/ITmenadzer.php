@@ -1,28 +1,21 @@
 <?php
 
-class ITmenadzer extends CI_Controller {
+require_once APPPATH . 'controllers\Korisnik.php';
 
+class ITmenadzer extends Korisnik{
     public function __construct() {
         parent::__construct();
-        $this->load->model("ModelKorisnik");
-
-        $this->load->library('session');
-        if (($this->session->userdata('korisnik')) == NULL)
-            redirect("Gost");
+       
     }
-
-    /* public function dashboard() {
-      echo "Dashboard";
-      } */
-
-    public function index() {
-        $this->load->view("ITmenadzer.php");
+    
+    public function loadView($page, $data = []) {
+        $this->load->view("sabloni/header_ITmenadzer.php");
+        $this->load->view($page, $data);
+        $this->load->view("sabloni/footer.php");
+        
     }
-
-    public function logout() {
-        $this->session->unset_userdata('korisnik');
-        $this->session->sess_destroy();
-        redirect("Gost");
+    
+    public function korisnici() {
+        $this->loadView("partneriClanovi.php");
     }
-
 }

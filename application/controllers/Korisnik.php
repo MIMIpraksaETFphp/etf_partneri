@@ -13,8 +13,8 @@ class Korisnik extends CI_Controller {
         $this->load->view($page, $data);
         $this->load->view("sabloni/footer.php");
     }
-
-    public function dodajKompaniju() {
+    
+    public function dodajKompaniju(){
         $this->loadView("dodajKompaniju.php");
     }
 
@@ -35,7 +35,7 @@ class Korisnik extends CI_Controller {
                 'praksa' => $praksa,
                 'zaposlenje' => $zaposlenje,
                 'datum_unosenja' => $this->input->post('datum_unosenja'),
-                'naziv_partnera' => $this->input->post('naziv_partnera')
+                'id_partnera' => $this->input->post('id_partnera')
             );
 
             $config['upload_path'] = './assets/fajlovi/';
@@ -141,7 +141,9 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodajPredavanje() {
-        $this->loadView("dodajPredavanje.php");
+        $partneriPredavanja = $this->ModelKorisnik->partnerIdNaziv();
+        $data['partneriPredavanja'] = $partneriPredavanja;
+        $this->loadView("dodajPredavanje.php", $data);
     }
 
     public function logout() {
@@ -292,5 +294,42 @@ class Korisnik extends CI_Controller {
         $data['ugovori'] = $ugovori;
         $this->loadView("dosije.php", $data);
     }
-
+ 
+    public function dodavanjePredavanja() {
+        $this->form_validation->set_rules("naslov_srpski", "naslov_srpski", "required");
+        $this->form_validation->set_rules("opis_srpski", "opis_srpski", "required");
+        $this->form_validation->set_rules("vreme_predavanja", "vreme_predavanja", "required"); 
+        $this->form_validation->set_rules("sala", "sala", "required"); 
+        $this->form_validation->set_rules("ime_predavaca", "ime_predavaca", "required"); 
+        $this->form_validation->set_rules("prezime_predavaca", "prezime_predavaca", "required"); 
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
+            $this->dodajPredavanje();
+        } else {
+            $predavanje = array(
+                'naslov_srpski' => $this->input->post('naslov_srpski'),
+                'naslov_engleski' => $this->input->post('naslov_engleski'),
+                'opis_srpski' => $this->input->post('opis_srpski'),
+                'opis_engleski' => $this->input->post('opis_engleski'),
+                'vreme_predavanja' => $this->input->post('vreme_predavanja'),
+                'sala' => $this->input->post('sala'),
+                'ime_predavaca' => $this->input->post('ime_predavaca'),
+                'prezime_predavaca' => $this->input->post('prezime_predavaca'),
+                'cv_srpski' => $this->input->post('cv_srpski'),
+                'cv_engleski' => $this->input->post('cv_engleski'),
+                'partner_idPartner'=> $this->input->post('id_partnera')
+              );
+               
+                $config['upload_path']          = './assets/fajlovi/';
+                $config['allowed_types']        = 'pdf|jpg|jpeg|png|tiff';
+                $config['file_name']            = $predavanje['naslov_srpski']."_".$predavanje['ime_predavaca'].$predavanje['prezime_predavaca'];
+                       
+                $this->load->library('upload', $config);
+                $this->upload->do_upload('fajl');
+            
+                $this->ModelKorisnik->dodatoPredavanje($predavanje);
+                redirect("Korisnik/index");
+        }
+    }
+    
 }

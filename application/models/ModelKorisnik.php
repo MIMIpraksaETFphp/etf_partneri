@@ -52,7 +52,7 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("praksa", $oglas['praksa']);
         $this->db->set("zaposlenje", $oglas['zaposlenje']);
         $this->db->set("datum_unosenja", $oglas['datum_unosenja']);
-        $this->db->set("partner_idPartner", $oglas['naziv_partnera']);
+        $this->db->set("partner_idPartner", $oglas['id_partnera']);
         $this->db->insert('oglas');
         $insertovanidOglas = $this->db->insert_id();
         return $insertovanidOglas;
@@ -175,6 +175,23 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('logo');
     }
 
+
+    public function dodatoPredavanje($predavanje) {
+        $this->db->set("naslov_srpski", $predavanje['naslov_srpski']);
+        $this->db->set("naslov_engleski", $predavanje['naslov_engleski']);
+        $this->db->set("opis_srpski", $predavanje['opis_srpski']);
+        $this->db->set("opis_engleski", $predavanje['opis_engleski']);
+        $this->db->set("vreme_predavanja", $predavanje['vreme_predavanja']);
+        $this->db->set("sala", $predavanje['sala']);
+        $this->db->set("ime_predavaca", $predavanje['ime_predavaca']); 
+        $this->db->set("prezime_predavaca", $predavanje['prezime_predavaca']);
+        $this->db->set("cv_srpski", $predavanje['cv_srpski']);
+        $this->db->set("cv_engleski", $predavanje['cv_engleski']);
+        $this->db->set("partner_idPartner", $predavanje['partner_idPartner']);
+        $this->db->insert('predavanje');
+    }
+
+
     public function pretragaUgovora($kompanija) {
         $this->db->select('datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa');
         $this->db->from('ugovor, partner, paketi');
@@ -188,4 +205,5 @@ class ModelKorisnik extends CI_Model {
 //public function pretragaTelefoni($kompanija){
 //    $this->db->
 //}
+
 }

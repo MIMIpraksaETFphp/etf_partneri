@@ -24,7 +24,7 @@ class Gost extends CI_Controller {
             elseif ($korisnik->status_korisnika_idtable1 == 3)
                 redirect("ITmenadzer/index");
             elseif ($korisnik->status_korisnika_idtable1 == 4)
-                redirect("Admin");
+                redirect("Admin/index");
             //else
             //$this->loadView("partneri.php");  
         } else {

@@ -76,12 +76,14 @@ class Korisnik extends CI_Controller {
     public function index() {
         $data['kontroler'] = 'Korisnik';
         $data['metoda'] = 'index';
-        $limit = 1;
+        $limit = 2;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        //$kompanija = $this->input->get("kompanija");
-        //$paket = $this->input->get("paket");
-        //$vazeciUgovor = $this->input->get("vazeciUgovor");
-
+        
+        if($this->input->get('pronadji')=='Pronadji'){
+            $this->session->unset_userdata('kompanija');
+            $this->session->unset_userdata('paket');
+            $this->session->unset_userdata('vazeciUgovor');
+        }
         $kompanija = '';
         if ($this->input->get('kompanija')) {
             $this->session->unset_userdata('paket');
@@ -100,20 +102,14 @@ class Korisnik extends CI_Controller {
         }
         $vazeciUgovor = '';
         if ($this->input->get('vazeciUgovor')) {
-            $this->session->unset_userdata('kompanija');
-            $this->session->unset_userdata('paket');
+//            $this->session->unset_userdata('kompanija');
+//            $this->session->unset_userdata('paket');
             $vazeciUgovor = $this->input->get('vazeciUgovor');
             $this->session->set_userdata('vazeciUgovor', $vazeciUgovor);
         } elseif ($this->session->userdata('vazeciUgovor')) {
             $vazeciUgovor = $this->session->userdata('paket');
         }
         
-//        if($this->input->get('pronadji')=='Pronadji'){
-//            $this->session->unset_userdata('kompanija');
-//            $this->session->unset_userdata('paket');
-//            $this->session->unset_userdata('vazeciUgovor');
-//        }
-
         $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
         $data['rezultat'] = $rezultat;
         $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera($kompanija, $paket, $vazeciUgovor);
@@ -289,7 +285,12 @@ class Korisnik extends CI_Controller {
     public function dosije($kompanija) {
         $rezultat = $this->ModelKorisnik->dosijePartner($kompanija);
         $ugovori = $this->ModelKorisnik->pretragaUgovora($kompanija);
-        //$telefoni = $this->db->pretragaTelefoni($kompanija);
+        $telefoni = $this->ModelKorisnik->pretragaTelefoni($kompanija);
+        $mejlovi = $this->ModelKorisnik->pretragaMejlovi($kompanija);
+        $logoi = $this->ModelKorisnik->pretragaLogo($kompanija);
+        $data['logoi']=$logoi;
+        $data['telefoni'] = $telefoni;
+        $data['mejlovi'] = $mejlovi;
         $data['partner'] = $rezultat;
         $data['ugovori'] = $ugovori;
         $this->loadView("dosije.php", $data);
@@ -330,6 +331,10 @@ class Korisnik extends CI_Controller {
                 $this->ModelKorisnik->dodatoPredavanje($predavanje);
                 redirect("Korisnik/index");
         }
+    }
+    
+    public function izmeniPodatke(){
+        $this->loadView("izmenaPartnera.php");
     }
     
 }

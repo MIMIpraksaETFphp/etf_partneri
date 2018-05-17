@@ -27,7 +27,7 @@ echo "<br /><br />";
 echo form_close();
 var_dump($ukupanBroj);
 echo "<br />";
-print_r($this->session->all_userdata());
+//print_r($this->session->all_userdata());
 echo "<br />";
     
 foreach ($rezultat as $kompanija){ ?>
@@ -36,6 +36,7 @@ foreach ($rezultat as $kompanija){ ?>
     <br />
     <?php } ?>
 <div class="pagination">
-<?php if(isset($links)) echo $links; ?>
+<?php if(isset($links)) 
+    { echo $links; }?>
 </div>
 <br /><br />

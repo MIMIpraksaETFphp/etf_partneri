@@ -1,7 +1,7 @@
-
+<?php //var_dump($partner);?>
 <table class="table">
     <?php foreach ($partner as $kompanija) { ?>
-        <tr><th style="color: blue;"><h1><?php echo $kompanija['naziv']; ?></h1></th></tr>
+        <tr><th style="color: blue;"><h1><?php echo $nazivKompanije=$kompanija['naziv']; ?></h1></th></tr>
         <?php
         if (isset($logoi)) {
             for ($i = 0; $i < count($logoi); $i++) {
@@ -54,7 +54,9 @@
     <tr><th>Opis</th></tr>
     <tr><td><?php echo $kompanija['opis']; ?></td></tr>
 </table>
-<input type="button" class="btn btn-info" value="Izmeni podatke" onclick="location.href = '<?php echo site_url("Korisnik/izmeniPodatke");?>';"><br />
+<?php $value=1;?>
+<input type="button" class="btn btn-default" value="Izmeni podatke" onclick="location.href = '<?php echo site_url("Korisnik/dosije/$nazivKompanije/$value");?>';">
+<br />
 <br />
 <table class="table">
     <tr colspan="4" style="text-align: center;"><th>Ugovori</th></tr>

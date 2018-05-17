@@ -60,26 +60,26 @@ class ITmenadzer extends Korisnik{
 //        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
 //        if ($this->form_validation->run() == FALSE) {
 //            $this->dodajNovcaniUgovor();
-//        } else {
+    //    } else {
             $novcaniUgovor = array(
-                'naziv' => $this->input->post('naziv'),
-                'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
-                'datum_isticanja' => $this->input->post('datum_isticanja'),
-                'id_paketa' => $this->input->post('id_paketa'),
-                'id_partnera' => $this->input->post('id_partnera'),
-                'vrednost' => $this->input->post('vrednost'),
-                'valuta' => $this->input->post('valuta'),
-                'faktura' => $this->input->post('faktura'),
-                'uplata' => $this->input->post('uplata'),
-                'datum_uplate' => $this->input->post('datum_uplate'),
-                'opis' => '1'
+                    'naziv' => $this->input->post('naziv'),
+                    'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
+                    'datum_isticanja' => $this->input->post('datum_isticanja'),
+                    'id_paketa' => $this->input->post('id_paketa'),
+                    'id_partnera' => $this->input->post('id_partnera'),
+                    'vrednost' => $this->input->post('vrednost'),
+                    'valuta' => $this->input->post('valuta'),
+                    'faktura' => $this->input->post('faktura'),
+                    'uplata' => $this->input->post('uplata'),
+                    'datum_uplate' => $this->input->post('datum_uplate'),
+                    'opis' => '1',
+                    'tip' => 'novcani'
             );
 
             $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
-
-                    $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
+            $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
          //   }
-//            redirect("ITmenadzer/dodajNovcaniUgovor");        
+        redirect("ITmenadzer/novcaniUgovori");        
     
         
     }
@@ -88,7 +88,7 @@ class ITmenadzer extends Korisnik{
         $partneriUgovori = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriUgovori'] = $partneriUgovori;
         $paketiUgovori = $this->ModelKorisnik->paketIdNaziv();
-        $data['paketiUgovoroi'] = $partneriUgovori;
+        $data['paketiUgovori'] = $paketiUgovori;
         $this->loadView("dodajNovcaniUgovor.php", $data);
     }
 

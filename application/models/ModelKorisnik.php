@@ -121,7 +121,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function partnerIdNaziv() {
-        $this->db->select('idPartner,naziv');
+        $this->db->select('idPartner, naziv');
         $this->db->from('partner');
         $query = $this->db->get();
         $result = $query->result_array();
@@ -216,6 +216,9 @@ class ModelKorisnik extends CI_Model {
         $this->db->from('novcani_ugovori, ugovor, status_ugovora, paketi, partner');
         $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
         $this->db->order_by('datum_isticanja', 'asc');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
      }
      
     public function pretragaMejlovi($kompanija) {
@@ -231,7 +234,7 @@ class ModelKorisnik extends CI_Model {
     public function dodatUgovor($novcaniUgovor) {
         $this->db->set("datum_potpisivanja", $novcaniUgovor['datum_potpisivanja']);
         $this->db->set("datum_isticanja", $novcaniUgovor['datum_isticanja']);
-        $this->db->set("tip", 'novcani');
+        $this->db->set("tip", $novcaniUgovor['tip']);
         $this->db->set("status_ugovora_idstatus_ugovora",  $novcaniUgovor['opis']);
         $this->db->set("paketi_idPaketi", $novcaniUgovor['id_paketa']);
         $this->db->set("partner_idPartner", $novcaniUgovor['id_partnera']);
@@ -253,6 +256,9 @@ class ModelKorisnik extends CI_Model {
     public function paketIdNaziv() {
         $this->db->select('idPaketi, naziv_paketa');
         $this->db->from('paketi');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
     }
     
      public function pretragaLogo($kompanija) {

@@ -5,7 +5,7 @@
  
     <title>ETF Partneri</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+<!--    <link href="../../assets/css/timeline2.css" rel="stylesheet">-->
   </head>
 
   <body>
@@ -20,7 +20,10 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav">
             <li class="nav-item active">
-            <a class="nav-link" href="<?php echo site_url("ITmenadzer/index");?>">Partneri clanovi<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="<?php echo site_url("ITmenadzer/index");?>">IT menadzer<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo site_url("ITmenadzer/part");?>">Partneri clanovi</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url("ITmenadzer/partneri");?>">Partneri</a>

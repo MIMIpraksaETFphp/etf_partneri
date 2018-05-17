@@ -175,7 +175,6 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('logo');
     }
 
-
     public function dodatoPredavanje($predavanje) {
         $this->db->set("naslov_srpski", $predavanje['naslov_srpski']);
         $this->db->set("naslov_engleski", $predavanje['naslov_engleski']);
@@ -183,14 +182,13 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("opis_engleski", $predavanje['opis_engleski']);
         $this->db->set("vreme_predavanja", $predavanje['vreme_predavanja']);
         $this->db->set("sala", $predavanje['sala']);
-        $this->db->set("ime_predavaca", $predavanje['ime_predavaca']); 
+        $this->db->set("ime_predavaca", $predavanje['ime_predavaca']);
         $this->db->set("prezime_predavaca", $predavanje['prezime_predavaca']);
         $this->db->set("cv_srpski", $predavanje['cv_srpski']);
         $this->db->set("cv_engleski", $predavanje['cv_engleski']);
         $this->db->set("partner_idPartner", $predavanje['partner_idPartner']);
         $this->db->insert('predavanje');
     }
-
 
     public function pretragaUgovora($kompanija) {
         $this->db->select('datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa');
@@ -202,15 +200,29 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-//public function pretragaTelefoni($kompanija){
-//    $this->db->
-//}
+    public function pretragaTelefoni($kompanija) {
+        $this->db->select('telefon');
+        $this->db->from('telefon_partnera, partner');
+        $this->db->where('partner_idPartner=idPartner');
+        $this->db->where('naziv', $kompanija);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
 
      public function ispisNovcanihUgovora(){
         $this->db->select('faktura, uplata, vrednost, datum_uplate, datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa, novcani_ugovori.valuta, status_ugovora.opis');
         $this->db->from('novcani_ugovori, ugovor, status_ugovora, paketi, partner');
         $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
         $this->db->order_by('datum_isticanja', 'asc');
+     }
+     
+    public function pretragaMejlovi($kompanija) {
+        $this->db->select('email');
+        $this->db->from('email_partnera, partner');
+        $this->db->where('partner_idPartner=idPartner');
+        $this->db->where('naziv', $kompanija);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
@@ -241,9 +253,24 @@ class ModelKorisnik extends CI_Model {
     public function paketIdNaziv() {
         $this->db->select('idPaketi, naziv_paketa');
         $this->db->from('paketi');
+    }
+    
+     public function pretragaLogo($kompanija) {
+        $this->db->select('putanja');
+        $this->db->from('logo, partner p');
+        $this->db->where('partner_idPartner=idPartner');
+        $this->db->where('p.naziv', $kompanija);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
     }
-    
+
+    public function iscitajPartnera(){
+        $this->db->select('datum_isticanja, partner_idPartner, naziv, idPartner');
+        $this->db->from('ugovor, partner');
+        $this->db->where('idPartner=partner_idPartner');
+        $query= $this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
 }

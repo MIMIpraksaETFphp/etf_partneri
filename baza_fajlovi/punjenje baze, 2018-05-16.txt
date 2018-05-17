@@ -31,7 +31,6 @@ alter table telefon_partnera auto_increment=0;
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 33 832', '1');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 3445', '1');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('011 5488', '2');
-INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+32 5585', '2');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+32 485', '2');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+55 8545', '3');
 INSERT INTO `etf_partneri`.`telefon_partnera` (`telefon`, `partner_idPartner`) VALUES ('+55 255', '4');

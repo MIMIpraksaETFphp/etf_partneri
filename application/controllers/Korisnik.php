@@ -13,9 +13,10 @@ class Korisnik extends CI_Controller {
         $this->load->view($page, $data);
         $this->load->view("sabloni/footer.php");
     }
-    
-    public function dodajKompaniju(){
-        $this->loadView("dodajKompaniju.php");
+
+    public function dodajKompaniju($data = []) {
+        $data['tip']='dodaj';
+        $this->loadView("dodajKompaniju.php", $data);
     }
 
     public function dodavanjeOglasa() {
@@ -76,12 +77,14 @@ class Korisnik extends CI_Controller {
     public function index() {
         $data['kontroler'] = 'Korisnik';
         $data['metoda'] = 'index';
-        $limit = 1;
+        $limit = 2;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-        //$kompanija = $this->input->get("kompanija");
-        //$paket = $this->input->get("paket");
-        //$vazeciUgovor = $this->input->get("vazeciUgovor");
 
+        if ($this->input->get('pronadji') == 'Pronadji') {
+            $this->session->unset_userdata('kompanija');
+            $this->session->unset_userdata('paket');
+            $this->session->unset_userdata('vazeciUgovor');
+        }
         $kompanija = '';
         if ($this->input->get('kompanija')) {
             $this->session->unset_userdata('paket');
@@ -90,7 +93,7 @@ class Korisnik extends CI_Controller {
         } elseif ($this->session->userdata('kompanija')) {
             $kompanija = $this->session->userdata('kompanija');
         }
-        $paket = ''; 
+        $paket = '';
         if ($this->input->get('paket')) {
             $this->session->unset_userdata('kompanija');
             $paket = $this->input->get('paket');
@@ -100,19 +103,13 @@ class Korisnik extends CI_Controller {
         }
         $vazeciUgovor = '';
         if ($this->input->get('vazeciUgovor')) {
-            $this->session->unset_userdata('kompanija');
-            $this->session->unset_userdata('paket');
+//            $this->session->unset_userdata('kompanija');
+//            $this->session->unset_userdata('paket');
             $vazeciUgovor = $this->input->get('vazeciUgovor');
             $this->session->set_userdata('vazeciUgovor', $vazeciUgovor);
         } elseif ($this->session->userdata('vazeciUgovor')) {
             $vazeciUgovor = $this->session->userdata('paket');
         }
-        
-//        if($this->input->get('pronadji')=='Pronadji'){
-//            $this->session->unset_userdata('kompanija');
-//            $this->session->unset_userdata('paket');
-//            $this->session->unset_userdata('vazeciUgovor');
-//        }
 
         $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
         $data['rezultat'] = $rezultat;
@@ -286,22 +283,13 @@ class Korisnik extends CI_Controller {
         }
     }
 
-    public function dosije($kompanija) {
-        $rezultat = $this->ModelKorisnik->dosijePartner($kompanija);
-        $ugovori = $this->ModelKorisnik->pretragaUgovora($kompanija);
-        //$telefoni = $this->db->pretragaTelefoni($kompanija);
-        $data['partner'] = $rezultat;
-        $data['ugovori'] = $ugovori;
-        $this->loadView("dosije.php", $data);
-    }
- 
     public function dodavanjePredavanja() {
         $this->form_validation->set_rules("naslov_srpski", "naslov_srpski", "required");
         $this->form_validation->set_rules("opis_srpski", "opis_srpski", "required");
-        $this->form_validation->set_rules("vreme_predavanja", "vreme_predavanja", "required"); 
-        $this->form_validation->set_rules("sala", "sala", "required"); 
-        $this->form_validation->set_rules("ime_predavaca", "ime_predavaca", "required"); 
-        $this->form_validation->set_rules("prezime_predavaca", "prezime_predavaca", "required"); 
+        $this->form_validation->set_rules("vreme_predavanja", "vreme_predavanja", "required");
+        $this->form_validation->set_rules("sala", "sala", "required");
+        $this->form_validation->set_rules("ime_predavaca", "ime_predavaca", "required");
+        $this->form_validation->set_rules("prezime_predavaca", "prezime_predavaca", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajPredavanje();
@@ -317,19 +305,37 @@ class Korisnik extends CI_Controller {
                 'prezime_predavaca' => $this->input->post('prezime_predavaca'),
                 'cv_srpski' => $this->input->post('cv_srpski'),
                 'cv_engleski' => $this->input->post('cv_engleski'),
-                'partner_idPartner'=> $this->input->post('id_partnera')
-              );
-               
-                $config['upload_path']          = './assets/fajlovi/';
-                $config['allowed_types']        = 'pdf|jpg|jpeg|png|tiff';
-                $config['file_name']            = $predavanje['naslov_srpski']."_".$predavanje['ime_predavaca'].$predavanje['prezime_predavaca'];
-                       
-                $this->load->library('upload', $config);
-                $this->upload->do_upload('fajl');
-            
-                $this->ModelKorisnik->dodatoPredavanje($predavanje);
-                redirect("Korisnik/index");
+                'partner_idPartner' => $this->input->post('id_partnera')
+            );
+
+            $config['upload_path'] = './assets/fajlovi/';
+            $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
+            $config['file_name'] = $predavanje['naslov_srpski'] . "_" . $predavanje['ime_predavaca'] . $predavanje['prezime_predavaca'];
+
+            $this->load->library('upload', $config);
+            $this->upload->do_upload('fajl');
+
+            $this->ModelKorisnik->dodatoPredavanje($predavanje);
+            redirect("Korisnik/index");
         }
     }
-    
+
+    public function dosije($kompanija, $value = NULL) {
+        $partner = $this->ModelKorisnik->dosijePartner($kompanija);
+        $ugovori = $this->ModelKorisnik->pretragaUgovora($kompanija);
+        $telefoni = $this->ModelKorisnik->pretragaTelefoni($kompanija);
+        $mejlovi = $this->ModelKorisnik->pretragaMejlovi($kompanija);
+        $logoi = $this->ModelKorisnik->pretragaLogo($kompanija);
+        $data['logoi'] = $logoi;
+        $data['telefoni'] = $telefoni;
+        $data['mejlovi'] = $mejlovi;
+        $data['partner'] = $partner;
+        $data['ugovori'] = $ugovori;
+        if ($value == NULL) {
+            $this->loadView("dosije.php", $data);
+        } else {
+            $data['tip'] = 'promeni';
+            $this->loadView("dodajKompaniju.php", $data);
+        }
+    }
 }

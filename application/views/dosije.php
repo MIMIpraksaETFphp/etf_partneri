@@ -1,91 +1,65 @@
-
+<?php //var_dump($partner);?>
 <table class="table">
-    <?php
-    foreach ($partner as $kompanija) {
-        ?>
-        <tr>
-            <th style="color: blue;"><?php echo $kompanija['naziv']; ?></th>
-        </tr>
-        <tr>
-            <th>PIB</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['PIB']; ?></td>
-        </tr>
-        <tr>
-            <th>Adresa</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['adresa']; ?></td>
-        </tr>
-        <tr>
-            <th>Grad</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['grad']; ?></td>
-        </tr>
-        <tr>
-            <th>Postanski broj</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['postanski_broj']; ?></td>
-        </tr>
-        <tr>
-            <th>Drzava</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['drzava']; ?></td>
-        </tr>
-        <tr>
-            <th>Ziro racun</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['ziro_racun']; ?></td>
-        </tr>
-        <tr>
-            <th>Valuta racuna</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['valuta_racuna']; ?></td>
-        </tr>
-        <tr>
-            <th>Kontakt osoba</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['ime_kontakt_osobe'] . " " . $kompanija['prezime_kontakt_osobe']; ?></td>
-        </tr>
-        <tr>
-            <th>Telefon kontakt osobe</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['telefon_kontakt_osobe']; ?></td>
-        </tr>
-        <tr>
-            <th>Email kontakt osobe</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['email_kontakt_osobe']; ?></td>
-        </tr>
-        <tr>
-            <th>Web adresa</th>
-        </tr>
-        <tr>
-            <td><a href="<?php echo $kompanija['veb_adresa']; ?>" target="_blanck"><?php echo $kompanija['veb_adresa']; ?></a></td>
-        </tr>
-        <tr>
-            <th>Opis</th>
-        </tr>
-        <tr>
-            <td><?php echo $kompanija['opis']; ?></td>
-        </tr>
-
-    <?php } ?>
+    <?php foreach ($partner as $kompanija) { ?>
+        <tr><th style="color: blue;"><h1><?php echo $nazivKompanije=$kompanija['naziv']; ?></h1></th></tr>
+        <?php
+        if (isset($logoi)) {
+            for ($i = 0; $i < count($logoi); $i++) {
+                $a = $i + 1;
+                echo "<tr><th>Logo " . $a . "</th></tr>";
+                ?>
+                <tr><td><img src="<?php echo base_url($logoi[$i]['putanja']); ?>"/></td></tr>
+                <?php
+            }
+        } ?>
+        <tr><th>PIB</th> </tr>
+        <tr><td><?php echo $kompanija['PIB']; ?></td></tr>
+        <tr><th>Adresa</th> </tr>
+        <tr><td><?php echo $kompanija['adresa']; ?></td> </tr>
+        <tr><th>Grad</th></tr>
+        <tr><td><?php echo $kompanija['grad']; ?></td></tr>
+        <tr><th>Postanski broj</th></tr>
+        <tr><td><?php echo $kompanija['postanski_broj']; ?></td></tr>
+        <tr><th>Drzava</th></tr>
+        <tr><td><?php echo $kompanija['drzava']; ?></td></tr>
+        <tr><th>Ziro racun</th></tr>
+        <tr><td><?php echo $kompanija['ziro_racun']; ?></td></tr>
+        <tr><th>Valuta racuna</th></tr>
+        <tr><td><?php echo $kompanija['valuta_racuna']; ?></td></tr>
+        <tr><th>Kontakt osoba</th></tr>
+        <tr><td><?php echo $kompanija['ime_kontakt_osobe'] . " " . $kompanija['prezime_kontakt_osobe']; ?></td></tr>
+        <tr><th>Telefon kontakt osobe</th></tr>
+        <tr><td><?php echo $kompanija['telefon_kontakt_osobe']; ?></td></tr>
+        <tr><th>Email kontakt osobe</th></tr>
+        <tr><td><?php echo $kompanija['email_kontakt_osobe']; ?></td></tr>
+        <tr><th>Web adresa</th></tr>
+        <tr><td><a href="<?php echo $kompanija['veb_adresa']; ?>" target="_blanck"><?php echo $kompanija['veb_adresa']; ?></a></td></tr>
+        <?php
+    }
+    if (isset($telefoni)) {
+        for ($i = 0; $i < count($telefoni); $i++) {
+            $a = $i + 1;
+            echo "<tr><th>Telefon " . $a . "</th></tr>";
+            echo "<tr><td>" . $telefoni[$i]['telefon'] . "</td></tr>";
+        }
+    }
+    if (isset($mejlovi)) {
+        for ($i = 0; $i < count($mejlovi); $i++) {
+            $a = $i + 1;
+            echo "<tr><th>Email " . $a . "</th></tr>";
+            echo "<tr><td>" . $mejlovi[$i]['email'] . "</td></tr>";
+        }
+    }
+    ?>
+    <tr><th>Opis</th></tr>
+    <tr><td><?php echo $kompanija['opis']; ?></td></tr>
 </table>
+<?php $value=1;?>
+<input type="button" class="btn btn-default" value="Izmeni podatke" onclick="location.href = '<?php echo site_url("Korisnik/dosije/$nazivKompanije/$value");?>';">
+<br />
 <br />
 <table class="table">
-    <tr colspan="4" style="text-align: center;">
-        <th>Ugovori</th>
-    </tr>
+    <tr colspan="4" style="text-align: center;"><th>Ugovori</th></tr>
     <tr>
         <td>Tip</td>
         <td>Paket</td>
@@ -108,7 +82,6 @@
             <td><?php echo $ugovor['datum_isticanja']; ?></td>
         </tr>
         <?php
-}
-?>
-    </table>
-    
+    }
+    ?>
+</table>

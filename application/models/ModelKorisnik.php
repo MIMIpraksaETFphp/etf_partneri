@@ -229,4 +229,13 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+    
+    public function iscitajPartnera(){
+        $this->db->select('datum_isticanja, partner_idPartner, naziv, idPartner');
+        $this->db->from('ugovor, partner');
+        $this->db->where('idPartner=partner_idPartner');
+        $query= $this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
 }

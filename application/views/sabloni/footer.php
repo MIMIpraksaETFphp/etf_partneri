@@ -1,4 +1,8 @@
-
+<footer class="page-footer font-small blue pt-4 mt-4">
+     <div class="footer-copyright py-3 text-center">
+        © 2018 Copyright: MIMI
+          </div>
+</footer>
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -12,12 +16,6 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <!--<script>
-        $(document).ready(function(e) {
-           var h = $('nav').height() + 20;
-          // $('body').animate({ paddingTop: h});
-           $('body').css("paddingTop", h+20);
-        });
-    </script>-->
+    
 
 </html>

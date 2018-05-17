@@ -206,4 +206,44 @@ class ModelKorisnik extends CI_Model {
 //    $this->db->
 //}
 
+     public function ispisNovcanihUgovora(){
+        $this->db->select('faktura, uplata, vrednost, datum_uplate, datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa, novcani_ugovori.valuta, status_ugovora.opis');
+        $this->db->from('novcani_ugovori, ugovor, status_ugovora, paketi, partner');
+        $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
+        $this->db->order_by('datum_isticanja', 'asc');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+ 
+    public function dodatUgovor($novcaniUgovor) {
+        $this->db->set("datum_potpisivanja", $novcaniUgovor['datum_potpisivanja']);
+        $this->db->set("datum_isticanja", $novcaniUgovor['datum_isticanja']);
+        $this->db->set("tip", 'novcani');
+        $this->db->set("status_ugovora_idstatus_ugovora",  $novcaniUgovor['opis']);
+        $this->db->set("paketi_idPaketi", $novcaniUgovor['id_paketa']);
+        $this->db->set("partner_idPartner", $novcaniUgovor['id_partnera']);
+        $this->db->insert('ugovor');
+        $insertovanidNovcaniUgovor = $this->db->insert_id();
+        return $insertovanidNovcaniUgovor;
+    }
+    
+    public function dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor) {
+        $this->db->set("vrednost", $novcaniUgovor['vrednost']);
+        $this->db->set("valuta", $novcaniUgovor['valuta']);
+        $this->db->set("faktura", $novcaniUgovor['faktura']);
+        $this->db->set("uplata", $novcaniUgovor['uplata']);
+        $this->db->set("datum_uplate", $novcaniUgovor['datum_uplate']);
+        $this->db->set("ugovor_idugovor", $insertovanidNovcaniUgovor);
+        $this->db->insert('novcani_ugovori');
+    }
+    
+    public function paketIdNaziv() {
+        $this->db->select('idPaketi, naziv_paketa');
+        $this->db->from('paketi');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+    
 }

@@ -43,6 +43,31 @@
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("ITmenadzer/dodajPredavanje"); ?>">Dodaj Predavanja</a>
           </li>
+          
+          <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("ITmenadzer/Clanovi"); ?>">Clanovi</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Ugovori
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" name="ugovori" value="">
+            <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/novcaniUgovori"); ?>">Novcani ugovori</a>
+          <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/donatorskiUgovori"); ?>">Donatorski ugovori</a>
+        </div>
+          </li>
+          
+           <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dodaj ugovor
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" name="ugovori" value="">
+            <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovor"); ?>">Novcani ugovori</a>
+          <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajDonatorskiUgovor"); ?>">Donatorski ugovori</a>
+        </div>
+          </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url("ITmenadzer/logout");?>">Logout</a>
           </li>

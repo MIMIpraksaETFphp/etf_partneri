@@ -15,7 +15,7 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodajKompaniju($data = []) {
-        $data['tip']='dodaj';
+        $data['tip'] = 'dodaj';
         $this->loadView("dodajKompaniju.php", $data);
     }
 
@@ -278,8 +278,9 @@ class Korisnik extends CI_Controller {
             $logo = $partner['naziv'];
             $putanja = 'assets/logo/' . $logo;
             $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
+            $data['tip'] = 'dodaj';
 
-            redirect("Korisnik/dodajKompaniju");
+            redirect("Korisnik/dodajKompaniju/" . $data);
         }
     }
 
@@ -338,4 +339,46 @@ class Korisnik extends CI_Controller {
             $this->loadView("dodajKompaniju.php", $data);
         }
     }
+
+    public function promeniPartnera() {
+        $partner = array(
+            'idPartner' => $this->input->post('idPartner'),
+            'naziv' => $this->input->post('naziv'),
+            'adresa' => $this->input->post('adresa'),
+            'postanski_broj' => $this->input->post('postanski_broj'),
+            'grad' => $this->input->post('grad'),
+            'drzava' => $this->input->post('drzava'),
+            'ziro_racun' => $this->input->post('ziro_racun'),
+            'valuta_racuna' => $this->input->post('valuta_racuna'),
+            'PIB' => $this->input->post('PIB'),
+            'opis' => $this->input->post('opis'),
+            'veb_adresa' => $this->input->post('veb_adresa'),
+            'ime_kontakt_osobe' => $this->input->post('ime_kontakt_osobe'),
+            'prezime_kontakt_osobe' => $this->input->post('prezime_kontakt_osobe'),
+            'telefon_kontakt_osobe' => $this->input->post('telefon_kontakt_osobe'),
+            'email_kontakt_osobe' => $this->input->post('email_kontakt_osobe')
+        );
+        
+        $brojTelefona = $this->ModelKorisnik->brojTelefona($partner);
+        $telefon = array(
+            'idPartner' => $this->input->post('idPartner'),
+            'telefon1' => $this->input->post('telefon1'),
+            'telefon2' => $this->input->post('telefon2')
+        );
+//        $email = array(
+//            'idPartner' => $this->input->post('idPartner'),
+//            'email1' => $this->input->post('email1'),
+//            'email2' => $this->input->post('email2'),
+//            'email3' => $this->input->post('email3'),
+//            'email4' => $this->input->post('email4'),
+//            'email5' => $this->input->post('email5')
+//        );
+        $this->ModelKorisnik->promeniPartnera($partner);
+//        $this->ModelKorisnik->promeniTelefone($telefon, $partner);
+//        $this->ModelKorisnik->promeniEmail($email, $partner);
+        
+        $kompanija = $partner['naziv'];
+        redirect("Korisnik/dosije/" . $kompanija);
+    }
+
 }

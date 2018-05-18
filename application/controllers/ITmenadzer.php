@@ -30,7 +30,7 @@ class ITmenadzer extends Korisnik{
         echo "Novcani ugovori";
     }
     
-    public function donatorskiUgovori() {
+    public function donatorski_Ugovori() {
         echo "Donatorski ugovori";
     }
     
@@ -178,5 +178,13 @@ class ITmenadzer extends Korisnik{
 
         $this->loadView("partneriClanovi.php", $data);
     }
-
+    
+     public function donatorskiUgovori() {
+        $data['kontroler']='ITmenadzer';
+        $data['model']='ModelKorisnik';
+        $donatorskiUgovori = $this->ModelKorisnik->ispisDonatorskihUgovora();
+        $data['donatorskiUgovori']=$donatorskiUgovori;
+        $this->loadView("donatorskiUgovori.php", $data);
+    }
+    
 }

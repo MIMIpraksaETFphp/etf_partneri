@@ -279,4 +279,12 @@ class ModelKorisnik extends CI_Model {
         $result=$query->result_array();
         return $result;
     }
+    
+    public function statusIdUgovor() {
+        $this->db->select('idstatus_ugovora, opis');
+        $this->db->from('status_ugovora');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
 }

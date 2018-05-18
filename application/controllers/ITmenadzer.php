@@ -112,7 +112,12 @@ class ITmenadzer extends Korisnik{
 
     public function index(){
         $partnerIsticeUgovor= $this->ModelKorisnik->iscitajPartnera();
+        $iscitajPredavanje= $this->ModelKorisnik->iscitajPredavanje();
+        $iscitajOglas=$this->ModelKorisnik->iscitajOglas();
+        $data['iscitajOglas']=$iscitajOglas;
+        $data['iscitajPredavanje']=$iscitajPredavanje;
         $data['partnerIsticeUgovor']=$partnerIsticeUgovor;
+        $data['kontroler'] = 'ITmenadzer';
         $this->loadView('ITindex.php',$data);
     }
     

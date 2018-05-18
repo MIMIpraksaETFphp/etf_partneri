@@ -274,17 +274,17 @@ class ModelKorisnik extends CI_Model {
         $this->db->select('datum_isticanja, partner_idPartner, naziv, idPartner');
         //$this->db->from('ugovor, partner');
         $this->db->where('idPartner=partner_idPartner');
-        $this->db->order_by('datum_isticanja','desc');
-        $query= $this->db->get('ugovor, partner', 20, 0);
-        $result=$query->result_array();
+        $this->db->order_by('datum_isticanja', 'desc');
+        $query = $this->db->get('ugovor, partner', 20, 0);
+        $result = $query->result_array();
         return $result;
     }
 
     public function iscitajPredavanje() {
         $this->db->select('naslov_srpski, vreme_predavanja, sala');
         //$this->db->from('predavanje');
-        $query= $this->db->get('predavanje', 10, 0);
-        $result=$query->result_array();
+        $query = $this->db->get('predavanje', 10, 0);
+        $result = $query->result_array();
         return $result;
     }
 
@@ -292,8 +292,8 @@ class ModelKorisnik extends CI_Model {
         $this->db->select('naziv, datum_unosenja');
         //$this->db->from('oglas');
         $this->db->group_by('datum_unosenja', 'asc');
-        $query= $this->db->get('oglas', 5, 0);
-        $result=$query->result_array();
+        $query = $this->db->get('oglas', 5, 0);
+        $result = $query->result_array();
         return $result;
     }
 
@@ -324,19 +324,24 @@ class ModelKorisnik extends CI_Model {
         $this->db->update('partner');
     }
 
-    public function brojTelefona($partner) {
-        $this->db->where('idTelefon_partnera', $partner['idPartnera']);
+    public function telefoniuBazi($idPartner) {
+        $this->db->where('idTelefon_partnera', $idPartner);
+        $query = $this->db->get('telefon_partnera');
+        $result = $query->result_array();
+        return $result;
+    }
+
+    public function brojTelefonauBazi($idPartner) {
+        $this->db->where('idTelefon_partnera', $idPartner);
         $this->db->get('telefon_partnera');
         return $this->db->count_all_results();
     }
 
-//    public function telefoniPartnera($partner) {
-//        $this->db->select('telefon');
-//        where
-//        $query = $this->db->get('telefon_partnera');
-//        $result = $query->result_array();
-//        return $result;
-//    }
+    public function promeniTelefon($idTelefona, $telefon) {
+        $this->db->set('telefon', $telefon);
+        $this->db->where('idTelefon_partnera', $idTelefona);
+        $this->db->update('telefon_partnera');
+    }
 
 //    public function promeniTelefone($telefon, $partner) {
 //        $this->db->set("telefon", $telefon);

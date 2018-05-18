@@ -338,9 +338,7 @@ class Korisnik extends CI_Controller {
             $data['tip'] = 'promeni';
             $this->loadView("dodajKompaniju.php", $data);
         }
-
-    }   
-    
+    }
 
     public function promeniPartnera() {
         $partner = array(
@@ -360,13 +358,26 @@ class Korisnik extends CI_Controller {
             'telefon_kontakt_osobe' => $this->input->post('telefon_kontakt_osobe'),
             'email_kontakt_osobe' => $this->input->post('email_kontakt_osobe')
         );
-        
-        $brojTelefona = $this->ModelKorisnik->brojTelefona($partner);
+        $idPartner=$this->input->post('idPartner');
+
+        $telefoniuBazi = $this->ModelKorisnik->telefoniuBazi($idPartner);
+       // $brojTelefonauBazi = $this->ModelKorisnik->brojTelefonauBazi($idPartner);
+            
         $telefon = array(
-            'idPartner' => $this->input->post('idPartner'),
-            'telefon1' => $this->input->post('telefon1'),
-            'telefon2' => $this->input->post('telefon2')
+            $this->input->post('telefon1'),
+            $this->input->post('telefon2')
         );
+        $i = 1;
+        foreach ($telefoniuBazi as $telefonB){
+            $telefoni=$telefon[$i];
+            $idTelefona=$telefonB['idTelefon_partnera'];
+            $this->ModelKorisnik->promeniTelefon($idTelefona, $telefoni);
+            $i++;
+        }
+//        if (count($telefon)>$brojTelefonauBazi) {
+//            
+//            $this->ModelKorisnik->dodajTelefon();
+//        }
 //        $email = array(
 //            'idPartner' => $this->input->post('idPartner'),
 //            'email1' => $this->input->post('email1'),
@@ -378,7 +389,7 @@ class Korisnik extends CI_Controller {
         $this->ModelKorisnik->promeniPartnera($partner);
 //        $this->ModelKorisnik->promeniTelefone($telefon, $partner);
 //        $this->ModelKorisnik->promeniEmail($email, $partner);
-        
+
         $kompanija = $partner['naziv'];
         redirect("Korisnik/dosije/" . $kompanija);
     }

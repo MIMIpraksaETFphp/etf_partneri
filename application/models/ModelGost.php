@@ -78,7 +78,7 @@ class ModelGost extends CI_Model {
         $this->db->from('oglas');
         $this->db->like('idoglas',$idOglas);
         $query= $this->db->get();
-        $result=$query->result_array();
+        $result=$query->row_array();
         return $result;
     }
     

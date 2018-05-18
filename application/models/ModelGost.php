@@ -44,7 +44,7 @@ class ModelGost extends CI_Model {
     }
     
     public function pretragaOglasa(){
-        $this->db->select('o.naziv as oglas_naziv, o.opis as oglas_opis, praksa, zaposlenje, datum_unosenja, p.naziv as partner_naziv');
+        $this->db->select('o.naziv as oglas_naziv, o.opis as oglas_opis, praksa, zaposlenje, datum_unosenja, p.naziv as partner_naziv, idoglas');
         $this->db->from('oglas o, partner p');
         $this->db->where('partner_idPartner=idPartner');
         $this->db->order_by('datum_unosenja', 'desc');
@@ -72,4 +72,14 @@ class ModelGost extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+    
+    public function iscitajOglas($idOglas){
+        $this->db->select('naziv, opis, idoglas');
+        $this->db->from('oglas');
+        $this->db->like('idoglas',$idOglas);
+        $query= $this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    
 }

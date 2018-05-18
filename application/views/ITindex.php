@@ -6,10 +6,10 @@
     echo "Kompanije kojima u narednih 6 meseci istice ugovor: <br/><br/>";
     foreach ($partnerIsticeUgovor as $value) {
 
-        if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {
+        //if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
             echo "<table><tr><td><a href=" . site_url('ITmenadzer/dosije/' . $value['naziv']) . ">Dosije Kompanije</a>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td></tr>";
             echo "</table>";
-        }
+       // }
     }
 ?>
 
@@ -46,7 +46,7 @@
 <?php 
     echo "Oglasi: <br/><br/>";
     foreach ($iscitajOglas as $value) {
-        //if($danasnjiDatum<$value['datum_unosenja']){      nemamo u bazi nijedno predavanje koje sledi tako da je yato ovo zakomentarisano...kad budemo imali oglase koji nisu istekli treba da se odkomentarise
+        //if($danasnjiDatum<$value['datum_unosenja']){      nemamo u bazi nijedno predavanje koje sledi tako da je zato ovo zakomentarisano...kad budemo imali oglase koji nisu istekli treba da se odkomentarise
             echo "<table>";
             echo "<tr><td><a href=" . site_url($kontroler.'/oglasi/') . ">".$value['naziv']."</a>". "</td><td>" . $value['datum_unosenja'] . "</td></tr>";
             echo "</table>";

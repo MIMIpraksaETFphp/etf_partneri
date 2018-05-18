@@ -273,26 +273,26 @@ class ModelKorisnik extends CI_Model {
 
     public function iscitajPartnera(){
         $this->db->select('datum_isticanja, partner_idPartner, naziv, idPartner');
-        $this->db->from('ugovor, partner');
+        //$this->db->from('ugovor, partner');
         $this->db->where('idPartner=partner_idPartner');
         $this->db->order_by('datum_isticanja','desc');
-        $query= $this->db->get();
+        $query= $this->db->get('ugovor, partner', 20, 0);
         $result=$query->result_array();
         return $result;
     }
     public function iscitajPredavanje(){
         $this->db->select('naslov_srpski, vreme_predavanja, sala');
-        $this->db->from('predavanje');
-        $query= $this->db->get();
+        //$this->db->from('predavanje');
+        $query= $this->db->get('predavanje', 10, 0);
         $result=$query->result_array();
         return $result;
     }
     
     public function iscitajOglas(){
         $this->db->select('naziv, datum_unosenja');
-        $this->db->from('oglas');
+        //$this->db->from('oglas');
         $this->db->group_by('datum_unosenja', 'asc');
-        $query= $this->db->get();
+        $query= $this->db->get('oglas', 5, 0);
         $result=$query->result_array();
         return $result;
     }

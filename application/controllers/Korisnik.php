@@ -337,5 +337,5 @@ class Korisnik extends CI_Controller {
             $data['tip'] = 'promeni';
             $this->loadView("dodajKompaniju.php", $data);
         }
-    }
+    }   
 }

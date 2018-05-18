@@ -61,6 +61,12 @@ class ITmenadzer extends Korisnik{
 //        if ($this->form_validation->run() == FALSE) {
 //            $this->dodajNovcaniUgovor();
     //    } else {
+            $faktura = $this->input->post('faktura');
+            $uplata = $this->input->post('uplata');
+            if ($faktura == NULL)
+                $faktura = 0;
+            if ($uplata == NULL)
+                $uplata = 0;
             $novcaniUgovor = array(
                     'naziv' => $this->input->post('naziv'),
                     'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
@@ -69,10 +75,10 @@ class ITmenadzer extends Korisnik{
                     'id_partnera' => $this->input->post('id_partnera'),
                     'vrednost' => $this->input->post('vrednost'),
                     'valuta' => $this->input->post('valuta'),
-                    'faktura' => $this->input->post('faktura'),
-                    'uplata' => $this->input->post('uplata'),
+                    'faktura' => $faktura,
+                    'uplata' => $uplata,
                     'datum_uplate' => $this->input->post('datum_uplate'),
-                    'opis' => '1',
+                    'opis' => $this->input->post('idstatus_ugovora'),
                     'tip' => 'novcani'
             );
 
@@ -89,6 +95,8 @@ class ITmenadzer extends Korisnik{
         $data['partneriUgovori'] = $partneriUgovori;
         $paketiUgovori = $this->ModelKorisnik->paketIdNaziv();
         $data['paketiUgovori'] = $paketiUgovori;
+        $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
+        $data['statusUgovor'] = $statusUgovor;
         $this->loadView("dodajNovcaniUgovor.php", $data);
     }
 

@@ -63,6 +63,15 @@
                                 <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="text" value="">
                             </div>
                             <?php echo form_error('datum_uplate'); ?>
+                            
+                            <div class="form-group">                                
+                                <select class="form-control" style="width: 100%" name="idstatus_ugovora">
+                                    <?php foreach ($statusUgovor as $element){ ?>
+                                            <option value="<?php echo $element['idstatus_ugovora']; ?>"><?php echo $element['opis'];  ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            
                             <!-- <div class="form-group">
                                 Tip ugovora: NOVCANI
                             </div> -->

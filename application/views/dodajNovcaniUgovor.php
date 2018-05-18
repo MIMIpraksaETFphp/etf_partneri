@@ -21,13 +21,10 @@
                             </div>
                             <?php echo form_error('naziv'); ?>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Datum potpisivanja" name="datum_potpisivanja" type="text" value="">
+                                <input class="form-control" placeholder="Datum potpisivanja" name="datum_potpisivanja" type="date" 
+                                       value="<?php $datumPotpisivanja=mdate("Y-m-d H:i:s") ?>">
                             </div>
-                            <?php echo form_error('datum_potpisivanja'); ?>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Datum isticanja" name="datum_isticanja" type="text" value="">
-                            </div>
-                            <?php echo form_error('datum_isticanja'); ?>
+                            <?php echo form_error('datum_potpisivanja'); ?>                                                        
                             <div class="form-group">                                
                                 <select class="form-control" style="width: 100%" name="id_paketa">
                                     <?php foreach ($paketiUgovori as $paketiUgovor){ ?>
@@ -60,7 +57,7 @@
                                 </div> 
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="text" value="">
+                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="date" value="<?php $datumUplate=mdate("Y-m-d H:i:s") ?>">
                             </div>
                             <?php echo form_error('datum_uplate'); ?>
                             
@@ -87,7 +84,7 @@
                                 </select>
                             </div> -->
                             <br/>
-                            <?php echo form_error('opis'); ?>
+                            <?php //echo form_error('opis'); ?>
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Novcani Ugovor" name="dodajNovcaniUgovor" >
                             <br/><br/>
                         </fieldset>

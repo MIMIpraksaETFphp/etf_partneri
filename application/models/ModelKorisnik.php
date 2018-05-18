@@ -274,13 +274,30 @@ class ModelKorisnik extends CI_Model {
         $this->db->select('datum_isticanja, partner_idPartner, naziv, idPartner');
         $this->db->from('ugovor, partner');
         $this->db->where('idPartner=partner_idPartner');
-        $query = $this->db->get();
-        $result = $query->result_array();
+        $this->db->order_by('datum_isticanja','desc');
+        $query= $this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    public function iscitajPredavanje(){
+        $this->db->select('naslov_srpski, vreme_predavanja, sala');
+        $this->db->from('predavanje');
+        $query= $this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    
+    public function iscitajOglas(){
+        $this->db->select('naziv, datum_unosenja');
+        $this->db->from('oglas');
+        $this->db->group_by('datum_unosenja', 'asc');
+        $query= $this->db->get();
+        $result=$query->result_array();
         return $result;
     }
 
     public function statusIdUgovor() {
-        $this->db->select('idstatus_ugovora, opis');
+        $this->db->select('idstatus_ugovora, opis');     //donatorski_ugovori.opis   status_ugovora.opis
         $this->db->from('status_ugovora');
         $query = $this->db->get();
         $result = $query->result_array();
@@ -322,4 +339,13 @@ class ModelKorisnik extends CI_Model {
 //        
 //    }
 
+     public function ispisDonatorskihUgovora(){
+        $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta');
+        $this->db->from('donatorski_ugovori, ugovor, status_ugovora, paketi, partner');
+        $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
+        $this->db->order_by('datum_isticanja', 'asc');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+     }
 }

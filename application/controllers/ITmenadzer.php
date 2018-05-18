@@ -30,7 +30,7 @@ class ITmenadzer extends Korisnik{
         echo "Novcani ugovori";
     }
     
-    public function donatorskiUgovori() {
+    public function donatorski_Ugovori() {
         echo "Donatorski ugovori";
     }
     
@@ -67,12 +67,14 @@ class ITmenadzer extends Korisnik{
                 $faktura = 0;
             if ($uplata == NULL)
                 $uplata = 0;
+            $id_paketa=$this->input->post('id_paketa');
+            $id_partnera=$this->input->post('id_partnera');
             $novcaniUgovor = array(
                     'naziv' => $this->input->post('naziv'),
                     'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
-                    'datum_isticanja' => $this->input->post('datum_isticanja'),
-                    'id_paketa' => $this->input->post('id_paketa'),
-                    'id_partnera' => $this->input->post('id_partnera'),
+                    'datum_isticanja' => date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja')))),  //todo promeni u bazi iz datetime u date, i promeni ovde isto
+                    'id_paketa' => $id_paketa,
+                    'id_partnera' => $id_partnera,
                     'vrednost' => $this->input->post('vrednost'),
                     'valuta' => $this->input->post('valuta'),
                     'faktura' => $faktura,
@@ -81,7 +83,15 @@ class ITmenadzer extends Korisnik{
                     'opis' => $this->input->post('idstatus_ugovora'),
                     'tip' => 'novcani'
             );
-
+            if($id_paketa=='1' || $id_paketa=='2'){
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
+            } elseif($id_paketa=='3' || $id_paketa=='4') {
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
+            } elseif($id_paketa=='5') {
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+6 months", strtotime($this->input->post('datum_potpisivanja'))));
+            } elseif($id_paketa=='6') {
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja'))));
+            }
             $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
             $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
          //   }
@@ -102,7 +112,12 @@ class ITmenadzer extends Korisnik{
 
     public function index(){
         $partnerIsticeUgovor= $this->ModelKorisnik->iscitajPartnera();
+        $iscitajPredavanje= $this->ModelKorisnik->iscitajPredavanje();
+        $iscitajOglas=$this->ModelKorisnik->iscitajOglas();
+        $data['iscitajOglas']=$iscitajOglas;
+        $data['iscitajPredavanje']=$iscitajPredavanje;
         $data['partnerIsticeUgovor']=$partnerIsticeUgovor;
+        $data['kontroler'] = 'ITmenadzer';
         $this->loadView('ITindex.php',$data);
     }
     
@@ -163,5 +178,13 @@ class ITmenadzer extends Korisnik{
 
         $this->loadView("partneriClanovi.php", $data);
     }
-
+    
+     public function donatorskiUgovori() {
+        $data['kontroler']='ITmenadzer';
+        $data['model']='ModelKorisnik';
+        $donatorskiUgovori = $this->ModelKorisnik->ispisDonatorskihUgovora();
+        $data['donatorskiUgovori']=$donatorskiUgovori;
+        $this->loadView("donatorskiUgovori.php", $data);
+    }
+    
 }

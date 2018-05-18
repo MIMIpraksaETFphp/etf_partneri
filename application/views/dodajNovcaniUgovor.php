@@ -57,7 +57,7 @@
                                 </div> 
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="text" value="">
+                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="date" value="<?php $datumUplate=mdate("Y-m-d H:i:s") ?>">
                             </div>
                             <?php echo form_error('datum_uplate'); ?>
                             
@@ -84,7 +84,7 @@
                                 </select>
                             </div> -->
                             <br/>
-                            <?php echo form_error('opis'); ?>
+                            <?php //echo form_error('opis'); ?>
                             <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Novcani Ugovor" name="dodajNovcaniUgovor" >
                             <br/><br/>
                         </fieldset>

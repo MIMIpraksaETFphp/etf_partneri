@@ -11,5 +11,6 @@ foreach ($oglasi as $oglas) {
         echo "Zaposlenje<br />";
     }
     echo "<br />";
-    echo $oglas["oglas_opis"] . "<br /><br />";
+    echo $oglas["oglas_opis"] . "<br />";
+    echo "<a href=" . site_url('Gost/oglasDetaljnije/'.$oglas['idoglas']) . ">Detaljnije</a><br /><br />";
 }

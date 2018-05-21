@@ -5,7 +5,7 @@ echo "<br/><br/>Spisak predavanja na Elektrotehnickom fakultetu u Beogradu:<br/>
 foreach ($predavanja as $predavanje) {
     $datum=mdate('%Y-%m-%d %H:%i:%s', now());
     if($datum<$predavanje['vreme_predavanja']){
-    echo "<h3><br/>" . $predavanje['naslov_srpski'] . "</h3><br/>";
+    echo "<h3><br/>" . $predavanje['naslov_srpski'] . "</h3><a href=" . site_url($kontroler.'/predavanjeDetaljnije/'.$predavanje['idpredavanje']) . ">Detaljnije</a><br/>";
     echo "Opis predavanja:<br/>" . $predavanje['opis_srpski'] . "<br/>";
     echo "Sala:" . $predavanje['sala'] . "<br/>";
     echo "Vreme predavanja:" . $predavanje['vreme_predavanja'] . "<br/>";

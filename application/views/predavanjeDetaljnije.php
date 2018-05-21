@@ -1,0 +1,2 @@
+<?php            
+        echo "<h2>".$predavanje['naslov_srpski']."</h2><br/><br/><h5>".$predavanje['ime_predavaca']." ".$predavanje['prezime_predavaca']."</h5><br/><br/>".$predavanje['sala']." ".$predavanje['vreme_predavanja']."<br/>".$predavanje['opis_srpski']."<br/><br/><h5>Biografija predavaca</h5>".$predavanje['cv_srpski'];

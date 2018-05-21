@@ -281,15 +281,15 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function iscitajPredavanje() {
-        $this->db->select('naslov_srpski, vreme_predavanja, sala');
+        $this->db->select('naslov_srpski, vreme_predavanja, sala, ime_predavaca, prezime_predavaca, idpredavanje, opis_srpski, cv_srpski');
         //$this->db->from('predavanje');
         $query = $this->db->get('predavanje', 10, 0);
         $result = $query->result_array();
         return $result;
     }
 
-    public function iscitajOglas() {
-        $this->db->select('naziv, datum_unosenja');
+    public function iscitajOglase() {
+        $this->db->select('naziv, datum_unosenja, idoglas');
         //$this->db->from('oglas');
         $this->db->group_by('datum_unosenja', 'asc');
         $query = $this->db->get('oglas', 5, 0);
@@ -355,6 +355,25 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+
+    public function iscitajOglas($idOglas){
+        $this->db->select('naziv, opis, idoglas');
+        $this->db->from('oglas');
+        $this->db->like('idoglas',$idOglas);
+        $query= $this->db->get();
+        $result=$query->row_array();
+        return $result;
+    }
+    public function iscitajPredavanja($idpredavanje){
+        $this->db->select('naslov_srpski, vreme_predavanja, ime_predavaca, prezime_predavaca, sala, idpredavanje, opis_srpski, cv_srpski');
+        $this->db->from('predavanje');
+        $this->db->like('idpredavanje',$idpredavanje);
+        $query= $this->db->get();
+        $result=$query->row_array();
+        return $result;
+    }
+
+
     
     
     public function dodatUgovorDonacije($donatorskiUgovor) {
@@ -379,4 +398,5 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('donatorski_ugovori');
     }
  
+
 }

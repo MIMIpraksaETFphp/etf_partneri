@@ -137,6 +137,7 @@ class Gost extends CI_Controller {
     }
 
     public function oglasi() {
+        $data['kontroler']='gost';
         $data['oglasi']= $this->ModelGost->pretragaOglasa();
         $this->loadView("oglasi.php", $data);
     }
@@ -158,6 +159,11 @@ class Gost extends CI_Controller {
         $oglas=$this->ModelGost->iscitajOglas($idOglas);
         $data['oglas'] = $oglas;
         $this->loadView("oglasDetaljnije.php", $data);
+    }
+    public function predavanjeDetaljnije($idpredavanje){
+        $predavanje=$this->ModelGost->iscitajPredavanje($idpredavanje);
+        $data['predavanje'] = $predavanje;
+        $this->loadView("predavanjeDetaljnije.php", $data);
     }
     
 }

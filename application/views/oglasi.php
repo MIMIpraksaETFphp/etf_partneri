@@ -12,5 +12,5 @@ foreach ($oglasi as $oglas) {
     }
     echo "<br />";
     echo $oglas["oglas_opis"] . "<br />";
-    echo "<a href=" . site_url('Gost/oglasDetaljnije/'.$oglas['idoglas']) . ">Detaljnije</a><br /><br />";
+    echo "<a href=" . site_url($kontroler.'/oglasDetaljnije/'.$oglas['idoglas']) . ">Detaljnije</a><br /><br />";
 }

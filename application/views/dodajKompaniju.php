@@ -22,7 +22,7 @@
                         if($tip == 'promeni'){?>
                         <input type="hidden" name="idPartner" value="<?php echo $partner[0]['idPartner'];?>">
                          <?php } ?>
-<!--                        <form role="form" method="post" action="<?php //echo site_url('Korisnik/dodajPartnera');    ?>">-->
+                        
                         <fieldset>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Naziv" name="naziv" type="text" <?php
@@ -96,12 +96,23 @@
                                     echo "value='" . $telefoni[0]['telefon'] . "'";
                                 }
                                 ?>>
+                                <div class="form-group">
+                                <input class="form-control" name="telefonId1" type="hidden" <?php
+                                if ($tip == 'promeni' && count($telefoni) > 0) {
+                                    echo "value='" . $telefoni[0]['idTelefon_partnera'] . "'";
+                                }
+                                ?>>
                             </div>
                             <?php echo form_error('telefon1'); ?>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Telefon2" name="telefon2" type="text" <?php
                                 if ($tip == 'promeni' && count($telefoni) > 1) {
                                     echo "value='" . $telefoni[1]['telefon'] . "'";
+                                }
+                                ?>>
+                                <input class="form-control" name="telefonId2" type="hidden" <?php
+                                if ($tip == 'promeni' && count($telefoni) > 1) {
+                                    echo "value='" . $telefoni[1]['idTelefon_partnera'] . "'";
                                 }
                                 ?>>
                             </div><!--
@@ -112,12 +123,22 @@
                                     echo "value='" . $mejlovi[0]['email'] . "'";
                                 }
                                 ?>>
+                                <input class="form-control" name="emailId1" type="hidden" <?php
+                                if ($tip == 'promeni' && count($mejlovi) > 0) {
+                                    echo "value='" . $mejlovi[0]['idEmail_partnera'] . "'";
+                                }
+                                ?>>
                             </div>
                             <?php echo form_error('email1'); ?>
                             <div class="form-group">
                                 <input class="form-control" placeholder="email2" name="email2" type="text" <?php
                                 if ($tip == 'promeni' && count($mejlovi) > 1) {
                                     echo "value='" . $mejlovi[1]['email'] . "'";
+                                }
+                                ?>>
+                                <input class="form-control" name="emailId2" type="hidden" <?php
+                                if ($tip == 'promeni' && count($mejlovi) > 1) {
+                                    echo "value='" . $mejlovi[1]['idEmail_partnera'] . "'";
                                 }
                                 ?>>
                             </div>
@@ -128,6 +149,11 @@
                                     echo "value='" . $mejlovi[2]['email'] . "'";
                                 }
                                 ?>>
+                                <input class="form-control" name="emailId3" type="hidden" <?php
+                                if ($tip == 'promeni' && count($mejlovi) > 2) {
+                                    echo "value='" . $mejlovi[2]['idEmail_partnera'] . "'";
+                                }
+                                ?>>
                             </div>
                             <?php echo form_error('email3'); ?>
                             <div class="form-group">
@@ -136,12 +162,22 @@
                                     echo "value='" . $mejlovi[3]['email'] . "'";
                                 }
                                 ?>>
+                                <input class="form-control" name="emailId4" type="hidden" <?php
+                                if ($tip == 'promeni' && count($mejlovi) > 3) {
+                                    echo "value='" . $mejlovi[3]['idEmail_partnera'] . "'";
+                                }
+                                ?>>
                             </div>
                             <?php echo form_error('email4'); ?>
                             <div class="form-group">
                                 <input class="form-control" placeholder="email5" name="email5" type="text" <?php
                                 if ($tip == 'promeni' && count($mejlovi) > 4) {
                                     echo "value='" . $mejlovi[4]['email'] . "'";
+                                }
+                                ?>>
+                                <input class="form-control" name="emailId5" type="hidden" <?php
+                                if ($tip == 'promeni' && count($mejlovi) > 4) {
+                                    echo "value='" . $mejlovi[4]['idEmail_partnera'] . "'";
                                 }
                                 ?>>
                             </div>
@@ -213,5 +249,5 @@
             </div>
         </div>
     </div>
-<?php if(isset($poruka)) echo $poruka;?>
+<?php // if(isset($poruka)) echo $poruka;?>
 </span>

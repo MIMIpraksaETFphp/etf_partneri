@@ -211,7 +211,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function ispisNovcanihUgovora() {
-        $this->db->select('faktura, uplata, vrednost, datum_uplate, datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa, novcani_ugovori.valuta, status_ugovora.opis');
+        $this->db->select('faktura, uplata, vrednost, datum_uplate, datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa, novcani_ugovori.valuta, status_ugovora.opis, idstatus_ugovora, idugovor, komentar');
         $this->db->from('novcani_ugovori, ugovor, status_ugovora, paketi, partner');
         $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
         $this->db->order_by('datum_isticanja', 'asc');
@@ -340,8 +340,8 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idEmail_partnera', $idEmail);
         $this->db->update('email_partnera');
     }
-    
-    public function obrisiEmail($idEmail){
+
+    public function obrisiEmail($idEmail) {
         $this->db->where('idEmail_partnera', $idEmail);
         $this->db->delete('email_partnera');
     }
@@ -356,26 +356,24 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function iscitajOglas($idOglas){
+    public function iscitajOglas($idOglas) {
         $this->db->select('naziv, opis, idoglas');
         $this->db->from('oglas');
-        $this->db->like('idoglas',$idOglas);
-        $query= $this->db->get();
-        $result=$query->row_array();
+        $this->db->like('idoglas', $idOglas);
+        $query = $this->db->get();
+        $result = $query->row_array();
         return $result;
     }
-    public function iscitajPredavanja($idpredavanje){
+
+    public function iscitajPredavanja($idpredavanje) {
         $this->db->select('naslov_srpski, vreme_predavanja, ime_predavaca, prezime_predavaca, sala, idpredavanje, opis_srpski, cv_srpski');
         $this->db->from('predavanje');
-        $this->db->like('idpredavanje',$idpredavanje);
-        $query= $this->db->get();
-        $result=$query->row_array();
+        $this->db->like('idpredavanje', $idpredavanje);
+        $query = $this->db->get();
+        $result = $query->row_array();
         return $result;
     }
 
-
-    
-    
     public function dodatUgovorDonacije($donatorskiUgovor) {
         $this->db->set("datum_potpisivanja", $donatorskiUgovor['datum_potpisivanja']);
         $this->db->set("datum_isticanja", $donatorskiUgovor['datum_isticanja']);
@@ -387,7 +385,7 @@ class ModelKorisnik extends CI_Model {
         $insertovanidDonatorskiUgovor = $this->db->insert_id();
         return $insertovanidDonatorskiUgovor;
     }
-    
+
     public function dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor) {
         $this->db->set("procenjena_vrednost", $donatorskiUgovor['procenjena_vrednost']);
         $this->db->set("valuta", $donatorskiUgovor['valuta']);
@@ -414,4 +412,20 @@ class ModelKorisnik extends CI_Model {
         $result=$query->result_array();
         return $result;
     }
+
+    public function promeniNUgovor($faktura, $uplata, $datumUplate, $komentar, $idUgovor) {
+        $this->db->set('faktura', $faktura);
+        $this->db->set('uplata', $uplata);
+        $this->db->set('datum_uplate', $datumUplate);
+        $this->db->set('komentar', $komentar);
+        $this->db->where('ugovor_idugovor', $idUgovor);
+        $this->db->update('novcani_ugovori');
+    }
+
+    public function promeniStatusNUgovora($statusUgovora, $idUgovor) {
+        $this->db->set('status_ugovora_idstatus_ugovora', $statusUgovora);
+        $this->db->where('idugovor', $idUgovor);
+        $this->db->update('ugovor');
+    }
+
 }

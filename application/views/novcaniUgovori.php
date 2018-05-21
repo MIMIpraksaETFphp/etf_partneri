@@ -9,24 +9,63 @@ foreach ($novcaniUgovori as $nugovor) {
     echo "Datum potpisivanja: " . $nugovor['datum_potpisivanja'] . "<br/>";
     echo "Datum isticanja: " . $nugovor['datum_isticanja'] . "<br/>";
     echo "Paket: " . $nugovor['naziv_paketa'] . "<br/>";
+    echo "Tip ugovora: " . $nugovor['tip'] . "<br/>";
     echo "Vrednost: " . $nugovor['vrednost'] . "<br/>";
     echo "Valuta: " . $nugovor['valuta'] . "<br/>";
-    echo "Faktura: "; 
-            if($nugovor['faktura']==1){
-                echo "poslata" . "<br/>";;
-            } else {
-                echo "nije poslata" . "<br/>";;
-            }
-    echo "Uplata: ";
-            if($nugovor['uplata']==1){
-                echo "uplaceno" . "<br/>";;
-            } else {
-                echo "nije uplaceno" . "<br/>";;
-            }
-    echo "Datum uplate: " . $nugovor['datum_uplate'] . "<br/>";        
-    echo "Tip ugovora: " . $nugovor['tip'] . "<br/>";
-    echo "Status ugovora: " . $nugovor['opis'] . "<br/>";
-    echo "<br/><br/><br/>";
+    echo form_open("ITmenadzer/promeniPodatkeUgovora", "method=GET");
+    echo form_label("Faktura: &nbsp ");
+    ?>
+    <input type="hidden" name="idUgovor" value="<?php echo $nugovor['idugovor']; ?>"/>
+    <input type="checkbox" name="faktura" value="1" <?php
+    if ($nugovor['faktura'] == 1) {
+        echo 'checked';
     }
+    ?> />
+           <?php
+           echo "<br />";
+           echo "Uplata: &nbsp ";
+           ?>
+    <input type="checkbox" name="uplata" value="1" <?php
+    if ($nugovor['uplata'] == 1) {
+        echo 'checked';
+    }
+    ?> />
+           <?php
+           echo "<br />";
+           echo "Datum uplate: ";
+           echo "<br/>";
+           ?>
+    <input class="form-control" style="width: 25%;" placeholder="Datum uplate" name="datum_uplate" type="date" value="<?php if ($nugovor['datum_uplate'] != NULL) {
+           echo $nugovor['datum_uplate'];
+       }
+           ?>">
+           <?php
+           echo "Status ugovora: ";
+           echo "<br/>";
+           ?>
+    <div class="form-group">                                
+        <select class="form-control" style="width: 25%;" name="status_ugovora" value="<?php echo $nugovor['opis']; ?>">
+            <?php foreach ($statusUgovor as $element) { ?>
+                <option value="<?php echo $element['idstatus_ugovora']; ?>" <?php
+                if ($nugovor['idstatus_ugovora'] == $element['idstatus_ugovora']) {
+                    echo 'selected';
+                }
+                ?>>
+        <?php echo $element['opis']; ?></option>
+    <?php } ?>
+        </select>
+    </div>
+    <?php
+    //echo "<br />";
+    echo "Komentar:<br/ >";
+    ?>
+    <textarea name="komentar"><?php if ($nugovor['komentar'] != NULL) {
+        echo $nugovor['komentar'];
+    } ?></textarea><br /><br />
+    <?php
+    echo form_submit(array('id' => 'submit', 'value' => 'Submit'));
+    echo form_close();
+    echo "<br/><br/><br/>";
+}
 //}   
 ?>

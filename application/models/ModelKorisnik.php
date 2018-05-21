@@ -361,5 +361,28 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
-
+    
+    
+    public function dodatUgovorDonacije($donatorskiUgovor) {
+        $this->db->set("datum_potpisivanja", $donatorskiUgovor['datum_potpisivanja']);
+        $this->db->set("datum_isticanja", $donatorskiUgovor['datum_isticanja']);
+        $this->db->set("tip", $donatorskiUgovor['tip']);
+        $this->db->set("status_ugovora_idstatus_ugovora", $donatorskiUgovor['opis']);
+        $this->db->set("paketi_idPaketi", $donatorskiUgovor['id_paketa']);
+        $this->db->set("partner_idPartner", $donatorskiUgovor['id_partnera']);
+        $this->db->insert('ugovor');
+        $insertovanidDonatorskiUgovor = $this->db->insert_id();
+        return $insertovanidDonatorskiUgovor;
+    }
+    
+    public function dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor) {
+        $this->db->set("procenjena_vrednost", $donatorskiUgovor['procenjena_vrednost']);
+        $this->db->set("valuta", $donatorskiUgovor['valuta']);
+        $this->db->set("opis_donacije", $donatorskiUgovor['opis_donacije']);
+        $this->db->set("komentar", $donatorskiUgovor['komentar']);
+        $this->db->set("datum_isporuke", $donatorskiUgovor['datum_isporuke']);
+        $this->db->set("ugovor_idugovor", $insertovanidDonatorskiUgovor);
+        $this->db->insert('donatorski_ugovori');
+    }
+ 
 }

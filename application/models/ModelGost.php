@@ -54,7 +54,7 @@ class ModelGost extends CI_Model {
     }
     
     public function ispisPredavanja(){
-        $this->db->select('naslov_srpski, opis_srpski, cv_srpski, sala, vreme_predavanja, ime_predavaca, prezime_predavaca');
+        $this->db->select('naslov_srpski, opis_srpski, cv_srpski, sala, vreme_predavanja, ime_predavaca, prezime_predavaca, idpredavanje');
        // $this->db->from('predavanje, partner');
         $this->db->where('partner_idPartner=idPartner');
         $this->db->order_by('vreme_predavanja', 'asc');
@@ -81,5 +81,12 @@ class ModelGost extends CI_Model {
         $result=$query->row_array();
         return $result;
     }
-    
+    public function iscitajPredavanje($idpredavanje){
+        $this->db->select('naslov_srpski, vreme_predavanja, ime_predavaca, prezime_predavaca, sala, idpredavanje, opis_srpski, cv_srpski');
+        $this->db->from('predavanje');
+        $this->db->like('idpredavanje',$idpredavanje);
+        $query= $this->db->get();
+        $result=$query->row_array();
+        return $result;
+    }
 }

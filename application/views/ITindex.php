@@ -35,7 +35,7 @@
     foreach ($iscitajPredavanje as $value) {
         if($danasnjiDatum<$value['vreme_predavanja']){
             echo "<table>";
-            echo "<tr><td>" . $value['naslov_srpski'] . "</td><td>" . $value['vreme_predavanja'] . "</td><td>" . $value['sala'] . "</td></tr>";
+            echo "<tr><td><a href=" . site_url($kontroler.'/predavanjeDetaljnije/'.$value['idpredavanje']) . ">Detaljnije</a>" . $value['naslov_srpski'] . "</td><td>" . $value['vreme_predavanja'] . "</td><td>" . $value['sala'] . "</td></tr>";
             echo "</table>";
         }
     }
@@ -43,12 +43,12 @@
     <body>
         <hr>
     </body>
-<?php 
+<?php
     echo "Oglasi: <br/><br/>";
-    foreach ($iscitajOglas as $value) {
+    foreach ($iscitajOglase as $value) {
         //if($danasnjiDatum<$value['datum_unosenja']){      nemamo u bazi nijedno predavanje koje sledi tako da je zato ovo zakomentarisano...kad budemo imali oglase koji nisu istekli treba da se odkomentarise
             echo "<table>";
-            echo "<tr><td><a href=" . site_url($kontroler.'/oglasi/') . ">".$value['naziv']."</a>". "</td><td>" . $value['datum_unosenja'] . "</td></tr>";
+            echo "<tr><td><a href=" . site_url($kontroler.'/oglasDetaljnije/'.$value['idoglas']) . ">".$value['naziv']."</a>". "</td><td>" . $value['datum_unosenja'] . "</td></tr>";
             echo "</table>";
         //}
     }

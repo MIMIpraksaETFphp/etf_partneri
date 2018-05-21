@@ -113,10 +113,12 @@ class ITmenadzer extends Korisnik{
     public function index(){
         $partnerIsticeUgovor= $this->ModelKorisnik->iscitajPartnera();
         $iscitajPredavanje= $this->ModelKorisnik->iscitajPredavanje();
-        $iscitajOglas=$this->ModelKorisnik->iscitajOglas();
-        $data['iscitajOglas']=$iscitajOglas;
+        $iscitajOglase=$this->ModelKorisnik->iscitajOglase();
+        //$iscitajOglas=$this->ModelKorisnik->iscitajOglas();
+        $data['iscitajOglase']=$iscitajOglase;
         $data['iscitajPredavanje']=$iscitajPredavanje;
         $data['partnerIsticeUgovor']=$partnerIsticeUgovor;
+        //$data['iscitajOglas']=$iscitajOglas;
         $data['kontroler'] = 'ITmenadzer';
         $this->loadView('ITindex.php',$data);
     }
@@ -186,5 +188,20 @@ class ITmenadzer extends Korisnik{
         $data['donatorskiUgovori']=$donatorskiUgovori;
         $this->loadView("donatorskiUgovori.php", $data);
     }
-    
+    public function oglasi() {
+        $data['kontroler']='ITmenadzer';
+        $data['oglasi'] = $this->ModelGost->pretragaOglasa();
+        $this->loadView("oglasi.php", $data);
+    }
+    public function oglasDetaljnije($idOglas){
+        //$data['kontroler']='ITmenadzer';
+        $oglas=$this->ModelKorisnik->iscitajOglas($idOglas);
+        $data['oglas'] = $oglas;
+        $this->loadView("oglasDetaljnije.php", $data);
+    }
+    public function predavanjeDetaljnije($idpredavanje){
+        $predavanje=$this->ModelKorisnik->iscitajPredavanja($idpredavanje);
+        $data['predavanje'] = $predavanje;
+        $this->loadView("predavanjeDetaljnije.php", $data);
+    }
 }

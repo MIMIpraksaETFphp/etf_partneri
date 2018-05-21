@@ -125,8 +125,8 @@ class ITmenadzer extends Korisnik{
     
     public function part(){
         //prekopirana funkcija index iz Korisnik...
-        $data['kontroler'] = 'Korisnik';
-        $data['metoda'] = 'index';
+        $data['kontroler'] = 'ITmenadzer';
+        $data['metoda'] = 'part';
         $limit = 2;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
         
@@ -169,7 +169,7 @@ class ITmenadzer extends Korisnik{
 
         $this->config->load('bootstrap_pagination');
         $config_pagination = $this->config->item('pagination');
-        $config_pagination['base_url'] = site_url("Korisnik/index");
+        $config_pagination['base_url'] = site_url("ITmenadzer/part");
         $config_pagination['total_rows'] = $ukupanBrPartnera;
         $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';

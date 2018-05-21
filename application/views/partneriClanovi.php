@@ -31,7 +31,7 @@ echo "<br />";
 echo "<br />";
     
 foreach ($rezultat as $kompanija){ ?>
-<a href="<?php echo site_url("Korisnik/dosije/".$kompanija['naziv']);?>"><?php echo $kompanija['naziv']; ?></a>
+<a href="<?php echo site_url("$kontroler/dosije/".$kompanija['naziv']);?>"><?php echo $kompanija['naziv']; ?></a>
 
     <br />
     <?php } ?>

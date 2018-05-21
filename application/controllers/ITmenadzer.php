@@ -34,8 +34,28 @@ class ITmenadzer extends Korisnik{
         echo "Donacije";
     }
     
-    public function Clanovi() {
-        echo "Clanovi";
+     public function filtrirajClanove($clan,$partneri){        
+        $filter = array($clan['username']);
+        $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
+            return in_array($s['username'], $filter);
+        });
+        return $filtriraniPartneri;
+    }
+    
+    public function clanovi() {
+        $data['kontroler']='ITmenadzer';
+        $data['model']='ModelKorisnik';
+        $clanovi= $this->ModelKorisnik->dohvatiClanove();
+        $data['clanovi']=$clanovi;
+        $partneri= $this->ModelKorisnik->dohvatiPartnere();
+//        $data['partneri']=$partneri;
+        foreach ($clanovi as $clan){
+                $imeClana=$clan['ime'];
+                $prezimeClana=$clan['prezime'];
+                $usernameClana=$clan['username'];
+                $data['partneri'][$usernameClana]=$this->filtrirajClanove($clan,$partneri);
+            }
+        $this->loadView("clanovi.php", $data);
     }
     
     public function novcaniUgovori() {
@@ -121,6 +141,8 @@ class ITmenadzer extends Korisnik{
         //$data['iscitajOglas']=$iscitajOglas;
         $data['kontroler'] = 'ITmenadzer';
         $this->loadView('ITindex.php',$data);
+        
+        
     }
     
     public function part(){
@@ -260,9 +282,6 @@ class ITmenadzer extends Korisnik{
         redirect("ITmenadzer/donatorskiUgovori");
  //   }
     }
-
-    
-    
 
 
 

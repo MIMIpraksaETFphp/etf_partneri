@@ -398,5 +398,20 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('donatorski_ugovori');
     }
  
-
+   
+    public function dohvatiClanove() {
+        $this->db->select('ime, prezime, username');
+        $this->db->from('korisnik');    
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    public function dohvatiPartnere() {
+        $this->db->select('naziv, idPartner, ime, prezime, username, idKorisnik');   
+        $this->db->from('korisnik_ima_partner, korisnik, partner');
+        $this->db->where('partner_idPartner=idPartner and korisnik_idKorisnik=idKorisnik');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
 }

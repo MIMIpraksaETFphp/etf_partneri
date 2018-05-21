@@ -168,12 +168,12 @@ INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `p
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-07-01', '2018-10-01', '1', '5', '5', 'donatorski');
 
 alter table novcani_ugovori auto_increment=0;
-INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`) VALUES ('5000', '1', '1', '2018-03-01', 'EUR', '1');
-INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`) VALUES ('3000', '1', '1', '2018-05-01', 'EUR', '2');
-INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`) VALUES ('1000', '1', '1', '2018-04-01', 'EUR', '3');
-INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`) VALUES ('200', '1', '1', '2017-12-01', 'EUR', '4');
-INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`) VALUES ('100', '1', '1', '2018-06-01', 'EUR', '5');
-INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`) VALUES ('3000', '1', '1', '2018-06-01', 'EUR', '6');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`, `komentar`) VALUES ('5000', '1', '1', '2018-03-01', 'EUR', '1', 'Ugovor treba dopuniti');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`, `komentar`) VALUES ('3000', '1', '1', '2018-05-01', 'EUR', '2', 'Ugovor treba promeniti');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`, `komentar`) VALUES ('1000', '1', '1', '2018-04-01', 'EUR', '3','Ugovor treba raskinuti');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`, `komentar`) VALUES ('200', '0', '0', NULL, 'EUR', '4', NULL);
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`, `komentar`) VALUES ('100', '1', '1', '2018-06-01', 'EUR', '5', 'Ne produzivati');
+INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`, `komentar`) VALUES ('3000', '0', '0', NULL, 'EUR', '6', NULL);
 
 alter table donatorski_ugovori auto_increment=0;
 INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`) VALUES ('140000', '7 racunara', 'RSD', '2018-07-03', 'Racunari za RC', '8');

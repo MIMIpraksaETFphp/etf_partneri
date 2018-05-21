@@ -148,30 +148,30 @@ class ModelKorisnik extends CI_Model {
         return $insertovanidPartnera;
     }
 
-    public function dodatTelefonPartnera($telefon, $insertovanidPartnera) {
+    public function dodatTelefonPartnera($telefon, $idPartner) {
         $this->db->set("telefon", $telefon);
-        $this->db->set("partner_idPartner", $insertovanidPartnera);
+        $this->db->set("partner_idPartner", $idPartner);
         $this->db->insert('telefon_partnera');
     }
 
-    public function dodatEmailPartnera($email, $insertovanidPartnera) {
+    public function dodatEmailPartnera($email, $idPartner) {
         $this->db->set("email", $email);
-        $this->db->set("partner_idPartner", $insertovanidPartnera);
+        $this->db->set("partner_idPartner", $idPartner);
         $this->db->insert('email_partnera');
     }
 
-    public function dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa) {
+    public function dodatIdFajla($oglasnaslov, $oglasPutanja, $idOglas) {
         $this->db->set("naziv", $oglasnaslov);
         $this->db->set("putanja", $oglasPutanja);
-        $this->db->set("oglas_idoglas", $insertovanidOglasa);
+        $this->db->set("oglas_idoglas", $idOglas);
 
         $this->db->insert('fajl');
     }
 
-    public function dodatLogo($logo, $putanja, $insertovanidPartnera) {
+    public function dodatLogo($logo, $putanja, $idPartner) {
         $this->db->set("naziv", $logo);
         $this->db->set("putanja", $putanja);
-        $this->db->set("partner_idPartner", $insertovanidPartnera);
+        $this->db->set("partner_idPartner", $idPartner);
         $this->db->insert('logo');
     }
 
@@ -201,7 +201,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function pretragaTelefoni($kompanija) {
-        $this->db->select('telefon');
+        $this->db->select('telefon, idTelefon_partnera');
         $this->db->from('telefon_partnera, partner');
         $this->db->where('partner_idPartner=idPartner');
         $this->db->where('naziv', $kompanija);
@@ -221,7 +221,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function pretragaMejlovi($kompanija) {
-        $this->db->select('email');
+        $this->db->select('email, idEmail_partnera');
         $this->db->from('email_partnera, partner');
         $this->db->where('partner_idPartner=idPartner');
         $this->db->where('naziv', $kompanija);
@@ -324,36 +324,30 @@ class ModelKorisnik extends CI_Model {
         $this->db->update('partner');
     }
 
-    public function telefoniuBazi($idPartner) {
-        $this->db->where('idTelefon_partnera', $idPartner);
-        $query = $this->db->get('telefon_partnera');
-        $result = $query->result_array();
-        return $result;
+    public function obrisiTelefon($idTelefon) {
+        $this->db->where('idTelefon_partnera', $idTelefon);
+        $this->db->delete('telefon_partnera');
     }
 
-    public function brojTelefonauBazi($idPartner) {
-        $this->db->where('idTelefon_partnera', $idPartner);
-        $this->db->get('telefon_partnera');
-        return $this->db->count_all_results();
-    }
-
-    public function promeniTelefon($idTelefona, $telefon) {
+    public function promeniTelefon($idTelefon, $telefon) {
         $this->db->set('telefon', $telefon);
-        $this->db->where('idTelefon_partnera', $idTelefona);
+        $this->db->where('idTelefon_partnera', $idTelefon);
         $this->db->update('telefon_partnera');
     }
 
-//    public function promeniTelefone($telefon, $partner) {
-//        $this->db->set("telefon", $telefon);
-//        $this->db->where("partner_idPartner", $partner['idPartner']);
-//        $this->db->update('telefon_partnera');
-//    }
-//    public function promeniEmail($email) {
-//        
-//    }
+    public function promeniEmail($idEmail, $email) {
+        $this->db->set('email', $email);
+        $this->db->where('idEmail_partnera', $idEmail);
+        $this->db->update('email_partnera');
+    }
+    
+    public function obrisiEmail($idEmail){
+        $this->db->where('idEmail_partnera', $idEmail);
+        $this->db->delete('email_partnera');
+    }
 
     public function ispisDonatorskihUgovora() {
-        $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta');
+        $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, status_ugovora.opis, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta');
         $this->db->from('donatorski_ugovori, ugovor, status_ugovora, paketi, partner');
         $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
         $this->db->order_by('datum_isticanja', 'asc');
@@ -361,6 +355,7 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+
     public function iscitajOglas($idOglas){
         $this->db->select('naziv, opis, idoglas');
         $this->db->from('oglas');
@@ -377,5 +372,31 @@ class ModelKorisnik extends CI_Model {
         $result=$query->row_array();
         return $result;
     }
+
+
+    
+    
+    public function dodatUgovorDonacije($donatorskiUgovor) {
+        $this->db->set("datum_potpisivanja", $donatorskiUgovor['datum_potpisivanja']);
+        $this->db->set("datum_isticanja", $donatorskiUgovor['datum_isticanja']);
+        $this->db->set("tip", $donatorskiUgovor['tip']);
+        $this->db->set("status_ugovora_idstatus_ugovora", $donatorskiUgovor['opis']);
+        $this->db->set("paketi_idPaketi", $donatorskiUgovor['id_paketa']);
+        $this->db->set("partner_idPartner", $donatorskiUgovor['id_partnera']);
+        $this->db->insert('ugovor');
+        $insertovanidDonatorskiUgovor = $this->db->insert_id();
+        return $insertovanidDonatorskiUgovor;
+    }
+    
+    public function dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor) {
+        $this->db->set("procenjena_vrednost", $donatorskiUgovor['procenjena_vrednost']);
+        $this->db->set("valuta", $donatorskiUgovor['valuta']);
+        $this->db->set("opis_donacije", $donatorskiUgovor['opis_donacije']);
+        $this->db->set("komentar", $donatorskiUgovor['komentar']);
+        $this->db->set("datum_isporuke", $donatorskiUgovor['datum_isporuke']);
+        $this->db->set("ugovor_idugovor", $insertovanidDonatorskiUgovor);
+        $this->db->insert('donatorski_ugovori');
+    }
+ 
 
 }

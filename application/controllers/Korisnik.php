@@ -358,35 +358,40 @@ class Korisnik extends CI_Controller {
             'telefon_kontakt_osobe' => $this->input->post('telefon_kontakt_osobe'),
             'email_kontakt_osobe' => $this->input->post('email_kontakt_osobe')
         );
-        $idPartner=$this->input->post('idPartner');
-
-        $telefoniuBazi = $this->ModelKorisnik->telefoniuBazi($idPartner);
-       // $brojTelefonauBazi = $this->ModelKorisnik->brojTelefonauBazi($idPartner);
-            
-        $telefon = array(
-            $this->input->post('telefon1'),
-            $this->input->post('telefon2')
-        );
-        $i = 1;
-        foreach ($telefoniuBazi as $telefonB){
-            $telefoni=$telefon[$i];
-            $idTelefona=$telefonB['idTelefon_partnera'];
-            $this->ModelKorisnik->promeniTelefon($idTelefona, $telefoni);
-            $i++;
-        }
-//        if (count($telefon)>$brojTelefonauBazi) {
-//            
-//            $this->ModelKorisnik->dodajTelefon();
-//        }
-//        $email = array(
-//            'idPartner' => $this->input->post('idPartner'),
-//            'email1' => $this->input->post('email1'),
-//            'email2' => $this->input->post('email2'),
-//            'email3' => $this->input->post('email3'),
-//            'email4' => $this->input->post('email4'),
-//            'email5' => $this->input->post('email5')
-//        );
         $this->ModelKorisnik->promeniPartnera($partner);
+
+        $telefoni = array(array(
+                'telefon' => $this->input->post('telefon1'),
+                'idTelefon' => $this->input->post('telefonId1')),
+            array(
+                'telefon' => $this->input->post('telefon2'),
+                'idTelefon' => $this->input->post('telefonId2'))
+        );
+        for ($i = 0; $i < count($telefoni); $i++) {
+            if (!empty($telefoni[$i]['idTelefon']) && !empty($telefoni[$i]['telefon'])) {
+                $this->ModelKorisnik->promeniTelefon($telefoni[$i]['idTelefon'], $telefoni[$i]['telefon']);
+            } elseif (!empty($telefoni[$i]['idTelefon']) && empty($telefoni[$i]['telefon'])) {
+                $this->ModelKorisnik->obrisiTelefon($telefoni[$i]['idTelefon']);
+            } elseif (empty($telefoni[$i]['idTelefon']) && !empty($telefoni[$i]['telefon'])) {
+                $this->ModelKorisnik->dodatTelefonPartnera($telefoni[$i]['telefon'], $partner['idPartner']);
+            }
+        }
+        for ($i=1; $i<=5; $i++){
+        $email[$i] = array(
+            'email' => $this->input->post('email'.$i),
+            'idEmail' => $this->input->post('emailId'.$i)
+        );
+        }
+        for ($i = 1; $i <= count($email); $i++) {
+            if (!empty($email[$i]['idEmail']) && !empty($email[$i]['email'])) {
+                $this->ModelKorisnik->promeniEmail($email[$i]['idEmail'], $email[$i]['email']);
+            } elseif (!empty($email[$i]['idEmail']) && empty($email[$i]['email'])) {
+                $this->ModelKorisnik->obrisiEmail($email[$i]['idEmail']);
+            } elseif (empty($email[$i]['idEmail']) && !empty($email[$i]['email'])) {
+                $this->ModelKorisnik->dodatEmailPartnera($email[$i]['email'], $partner['idPartner']);
+            }
+        }
+        
 //        $this->ModelKorisnik->promeniTelefone($telefon, $partner);
 //        $this->ModelKorisnik->promeniEmail($email, $partner);
 

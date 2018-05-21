@@ -1,4 +1,4 @@
-
+﻿
 alter table partner auto_increment=0;
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`, `veb_adresa`) VALUES ('183953928', 'ComTrade', 'Nusiceva 12', 'Beograd', '11000', 'Srbija', '250-029939-029438', 'DIN', 'Jovana ', 'Jovic', '060888', 'jovana.jovic@test.com', 'Comtrade’s foray into informal education, Code Center offers specialty courses on Web Design and Mobile App Development. Its goal is to prepare learners for very specific entry-level professional profiles, through theory and much practice, akin to Comtrade’s day-to-day experience in software development.', 'https://www.comtrade.com/');
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`, `veb_adresa`) VALUES ('283494832', 'EPS', 'Beogradska 8', 'Beograd', '11000', 'Srbija', '310-390483-190', 'DIN', 'Mirko', 'Mirkovic', '0607854', 'mirko.mirkovic@test.com', 'The establishment of the Električno preduzeće Srbije followed in 1945. Between 1947 and 1950, the hydroelectric power plant Sokolovica and coal power plants Mali Kostolac and Veliki Kostolac, the first power stations to be built in Serbia after the Second World War.[14] In 1952, the underground mining of the coal field Kolubara had started. Four years later, coal power plant RB Kolubara went in operation. A year earlier, the hydroelectric power plants Vlasina and Zvornik have been connected to the power grid.', 'http://eps.rs/');
@@ -174,7 +174,12 @@ INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `
 INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`) VALUES ('3000', '1', '1', '2018-06-01', 'EUR', '6');
 
 
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-05-05', '2018-09-10', '3', '2', '2', 'donatorski');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-07-01', '2018-10-01', '1', '5', '5', 'donatorski');
 
+
+INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`) VALUES ('140000', '7 racunara', 'RSD', '2018-07-03', 'Racunari za RC', '8');
+INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`) VALUES ('3000', 'Kancelarijski materijal', 'RSD', '2018-06-01', 'Olovke, papiri, Fascikle', '9');
 
 
 

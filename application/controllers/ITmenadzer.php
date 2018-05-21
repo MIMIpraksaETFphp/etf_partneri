@@ -31,7 +31,7 @@ class ITmenadzer extends Korisnik{
     }
     
     public function donatorski_Ugovori() {
-        echo "Donatorski ugovori";
+        echo "Donacije";
     }
     
     public function Clanovi() {
@@ -187,4 +187,44 @@ class ITmenadzer extends Korisnik{
         $this->loadView("donatorskiUgovori.php", $data);
     }
     
+    public function dodajUgovorDonacije() {
+        $partneriUgovori = $this->ModelKorisnik->partnerIdNaziv();
+        $data['partneriUgovori'] = $partneriUgovori;
+        $paketiUgovori = $this->ModelKorisnik->paketIdNaziv();
+        $data['paketiUgovori'] = $paketiUgovori;
+        $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
+        $data['statusUgovor'] = $statusUgovor;
+        $this->loadView("dodajDonatorskiUgovor.php", $data);
+    }
+    
+    public function dodavanjeDonatorskogUgovora() {
+        $id_paketa = $this->input->post('id_paketa');
+        $id_partnera = $this->input->post('id_partnera');
+        $donatorskiUgovor = array(
+            'naziv' => $this->input->post('naziv'),
+            'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
+            'datum_isticanja' => date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja')))), //todo promeni u bazi iz datetime u date, i promeni ovde isto
+            'id_paketa' => $id_paketa,
+            'id_partnera' => $id_partnera,
+            'procenjena_vrednost' => $this->input->post('procenjena_vrednost'),
+            'valuta' => $this->input->post('valuta'),
+            'opis_donacije' => $this->input->post('opis_donacije'),
+            'datum_isporuke' => $this->input->post('datum_isporuke'),
+            'opis' => $this->input->post('idstatus_ugovora'),
+            'tip' => 'donatorski'
+        );
+        if ($id_paketa == '1' || $id_paketa == '2') {
+            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
+        } elseif ($id_paketa == '3' || $id_paketa == '4') {
+            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
+        } elseif ($id_paketa == '5') {
+            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+6 months", strtotime($this->input->post('datum_potpisivanja'))));
+        } elseif ($id_paketa == '6') {
+            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja'))));
+        }
+        $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
+        $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
+        redirect("ITmenadzer/donatorskiUgovori");
+    }
+
 }

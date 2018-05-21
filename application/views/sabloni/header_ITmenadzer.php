@@ -67,7 +67,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" name="ugovori" value="">
             <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovor"); ?>">Novcani ugovori</a>
-          <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajDonatorskiUgovor"); ?>">Donatorski ugovori</a>
+          <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovorDonacije"); ?>">Donatorski ugovori</a>
         </div>
           </li>
           

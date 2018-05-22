@@ -150,9 +150,9 @@ INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPake
 
 alter table status_ugovora auto_increment=0;
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('pripremljen');
-INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('poslat kompanija');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('poslat partneru');
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane Fakulteta');
-INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane kompanije');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane partnera');
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan sa obe strane');
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('predat arhivi Fakulteta');
 

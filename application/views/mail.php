@@ -15,23 +15,23 @@
                                     <input class="form-control" placeholder="FROM:" name="korisnik_salje_mail" type="text" >
                                 </div>-->
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="TO:" name="email_primaoca" type="text" >
+                                    <input class="form-control" placeholder="TO:" name="email_primaoca" type="email" >
                                 </div>
-                                <?php echo form_error('email_primaoca'); ?>
+                                <?php //echo form_error('email_primaoca'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="CC:" name="email_primaoca" type="text" >
+                                    <input class="form-control" placeholder="CC:" name="email_primaoca" type="email" >
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="BCC:" name="email_primaoca" type="text" >
+                                    <input class="form-control" placeholder="BCC:" name="email_primaoca" type="email" >
                                 </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Subject" name="naslov" type="text" >
                                 </div>
-                                <?php echo form_error('naslov'); ?>
+                                <?php //echo form_error('naslov'); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Sadrzaj" name="sadrzaj" type="text" >
                                 </div>
-                                <?php echo form_error('sadrzaj'); ?>
+                                <?php //echo form_error('sadrzaj'); ?>
 
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Posalji" name="email" >
 

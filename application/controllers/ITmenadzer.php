@@ -303,5 +303,47 @@ class ITmenadzer extends Korisnik {
 
         redirect("ITmenadzer/novcaniUgovori");
     }
+    
+    public function email() {
+        $this->loadView("mail.php");
+
+        $from_email = "im@test.com";
+        $to_email = $this->input->post('email');
+
+        $this->load->library('email');
+        $this->email->from($from_email, 'Ivan Markovic');
+        $this->email->to($to_email);
+        $this->email->subject('Send Email Codeigniter');
+        $this->email->message('The email send using codeigniter library');
+
+        $this->load->library('email');
+
+
+        $config = array();
+        $config['protocol'] = 'smtp';
+        $config['smtp_host'] = 'smtp.mailtrap.io';
+        $config['smtp_user'] = 'e3b10a3878459a';
+        $config['smtp_pass'] = '2cfced64cf3a57';
+        $config['smtp_port'] = 2525;
+        $this->email->initialize($config);
+        
+//       $config['protocol'] = 'sendmail';
+//       $config['mailpath'] = '/usr/sbin/sendmail';
+//       $config['charset'] = 'iso-8859-1';
+//       $config['wordwrap'] = TRUE;
+//        $this->email->initialize($config);
+        
+//        $this->email->from('im@test.com', 'Ivan Markovic');
+////        
+//        $this->email->to('someone@example.com');
+//        $this->email->cc('another@another-example.com');
+//        $this->email->bcc('them@their-example.com');
+//
+//        $this->email->subject('naslov');
+//        $this->email->message('Postovani, Pratite ETF partnere');
+
+        $this->email->send();
+        echo $this->email->print_debugger();
+    }
 
 }

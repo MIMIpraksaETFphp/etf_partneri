@@ -1,10 +1,14 @@
 <?php
-var_dump($partneri);
-var_dump($clanovi);
+// var_dump($partneri);
+// var_dump($clanovi);
 foreach ($clanovi as $clan) {
     $usernameClana=$clan['username'];
-    
-    foreach ($clan as $value) {
-        echo $value['naziv']."<br/>";
+    $filtriraniPartneri = $partneri[$usernameClana];
+    if (!empty($filtriraniPartneri)) {
+        echo $usernameClana."<br/>";
+        foreach ($filtriraniPartneri as $filtriraniPartner) {
+            echo $filtriraniPartner['naziv']."<br/>";
+        }
+        echo "<br/><br/>";
     }
 }

@@ -72,8 +72,8 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `etf_partneri`.`ugovor` (
   `idugovor` INT(11) NOT NULL AUTO_INCREMENT,
-  `datum_potpisivanja` DATETIME NOT NULL,
-  `datum_isticanja` DATETIME NOT NULL,
+  `datum_potpisivanja` DATE NOT NULL,
+  `datum_isticanja` DATE NOT NULL,
   `partner_idPartner` INT(11) NOT NULL,
   `paketi_idPaketi` INT(11) NOT NULL,
   `status_ugovora_idstatus_ugovora` INT(11) NOT NULL,
@@ -107,11 +107,12 @@ DEFAULT CHARACTER SET = latin1;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `etf_partneri`.`donatorski_ugovori` (
   `procenjena_vrednost` DOUBLE NOT NULL,
-  `opis_donacije` VARCHAR(1000) NOT NULL,
+  `opis_donacije` VARCHAR(1000) NULL,
   `valuta` VARCHAR(10) NOT NULL,
-  `datum_isporuke` DATETIME NOT NULL,
+  `datum_isporuke` DATE NULL,
   `komentar` VARCHAR(1000) NULL DEFAULT NULL,
   `ugovor_idugovor` INT(11) NOT NULL,
+  `isporuka` TINYINT NULL,
   PRIMARY KEY (`ugovor_idugovor`),
   INDEX `fk_donatorski_ugovori_ugovor1_idx` (`ugovor_idugovor` ASC),
   CONSTRAINT `fk_donatorski_ugovori_ugovor1`
@@ -138,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`email_partnera` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 10
 DEFAULT CHARACTER SET = latin1;
 
 
@@ -291,7 +292,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`novcani_ugovori` (
   `vrednost` DOUBLE NOT NULL,
   `faktura` TINYINT(4) NOT NULL,
   `uplata` TINYINT(4) NOT NULL,
-  `datum_uplate` VARCHAR(45) NULL DEFAULT NULL,
+  `datum_uplate` DATE NULL DEFAULT NULL,
   `valuta` VARCHAR(10) NOT NULL,
   `ugovor_idugovor` INT(11) NOT NULL,
   `komentar` VARCHAR(1000) NULL DEFAULT NULL,
@@ -401,7 +402,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`telefon_partnera` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 9
 DEFAULT CHARACTER SET = latin1;
 
 

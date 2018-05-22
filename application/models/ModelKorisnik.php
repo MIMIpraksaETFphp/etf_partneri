@@ -398,7 +398,7 @@ class ModelKorisnik extends CI_Model {
  
    
     public function dohvatiClanove() {
-        $this->db->select('ime, prezime, username');
+        $this->db->select('idKorisnik, ime, prezime, username');
         $this->db->from('korisnik');    
         $query=$this->db->get();
         $result=$query->result_array();

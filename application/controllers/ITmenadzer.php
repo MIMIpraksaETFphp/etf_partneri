@@ -52,6 +52,7 @@ class ITmenadzer extends Korisnik {
                 $imeClana=$clan['ime'];
                 $prezimeClana=$clan['prezime'];
                 $usernameClana=$clan['username'];
+                $idClana=$clan['idKorisnik'];
                 $data['partneri'][$usernameClana]=$this->filtrirajClanove($clan,$partneri);
             }
         $this->loadView("clanovi.php", $data);

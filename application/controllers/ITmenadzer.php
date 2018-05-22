@@ -6,6 +6,15 @@ class ITmenadzer extends Korisnik {
 
     public function __construct() {
         parent::__construct();
+        
+//        if (($this->session->userdata('korisnik')) == NULL) 
+//            redirect("Gost");
+////        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 2) 
+////            redirect("korisnik");
+////        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3) 
+////            redirect("ITmenadzer");
+//        elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
+//                redirect("Admin");
     }
 
     public function loadView($page, $data = []) {

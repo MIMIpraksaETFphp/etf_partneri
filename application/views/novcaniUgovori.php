@@ -63,9 +63,8 @@ foreach ($novcaniUgovori as $nugovor) {
         echo $nugovor['komentar'];
     } ?></textarea><br /><br />
     <?php
-    echo form_submit(array('id' => 'submit', 'value' => 'Submit'));
+    echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));
     echo form_close();
     echo "<br/><br/><br/>";
 }
-//}   
 ?>

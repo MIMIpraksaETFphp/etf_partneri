@@ -347,7 +347,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function ispisDonatorskihUgovora() {
-        $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, status_ugovora.opis, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta');
+        $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, isporuka, status_ugovora.opis, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta, idstatus_ugovora, idugovor');
         $this->db->from('donatorski_ugovori, ugovor, status_ugovora, paketi, partner');
         $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
         $this->db->order_by('datum_isticanja', 'asc');
@@ -422,10 +422,19 @@ class ModelKorisnik extends CI_Model {
         $this->db->update('novcani_ugovori');
     }
 
-    public function promeniStatusNUgovora($statusUgovora, $idUgovor) {
+    public function promeniStatusUgovora($statusUgovora, $idUgovor) {
         $this->db->set('status_ugovora_idstatus_ugovora', $statusUgovora);
         $this->db->where('idugovor', $idUgovor);
         $this->db->update('ugovor');
+    }
+    
+    public function promeniDUgovor($opisDonacije, $isporuka, $datumIsporuke, $komentar, $idUgovor){
+        $this->db->set('opis_donacije', $opisDonacije);
+        $this->db->set('isporuka', $isporuka);
+        $this->db->set('datum_isporuke',$datumIsporuke);
+        $this->db->set('komentar', $komentar);
+        $this->db->where('ugovor_idugovor', $idUgovor);
+        $this->db->update('donatorski_ugovori');
     }
 
 }

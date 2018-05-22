@@ -7,8 +7,23 @@ class Gost extends CI_Controller {
         parent::__construct();
         $this->load->model("ModelGost");
         $this->load->model("ModelKorisnik");
+        
+        if (($this->session->userdata('korisnik')) != NULL) {
+            if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 2)
+                redirect("Korisnik/index");    
+            elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3)
+                redirect("ITmenadzer/index");
+            elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
+                redirect("Admin/index");
+//            else
+//            redirect("Gost/index");
+            
+        }  
     }
 
+       
+    
+    
     public function loadView($page, $data = []) {
         $this->load->view("sabloni/header_gost.php");
         $this->load->view($page, $data);
@@ -18,16 +33,16 @@ class Gost extends CI_Controller {
     public function index() {
         // $this->loadView("partneri.php");
 
-        if (($this->session->userdata('korisnik')) != NULL) {
-            if ($korisnik->status_korisnika_idtable1 == 2)
-                redirect("Korisnik/index");
-            elseif ($korisnik->status_korisnika_idtable1 == 3)
-                redirect("ITmenadzer/index");
-            elseif ($korisnik->status_korisnika_idtable1 == 4)
-                redirect("Admin/index");
-            //else
-            //$this->loadView("partneri.php");  
-        } else {
+//        if (($this->session->userdata('korisnik')) != NULL) {
+//            if ($korisnik->status_korisnika_idtable1 == 2)
+//                redirect("Korisnik/index");
+//            elseif ($korisnik->status_korisnika_idtable1 == 3)
+//                redirect("ITmenadzer/index");
+//            elseif ($korisnik->status_korisnika_idtable1 == 4)
+//                redirect("Admin/index");
+//            //else
+//            //$this->loadView("partneri.php");  
+//        } else {
             $kompanija = $this->input->post("kompanija");
 
             $partneri = $this->ModelGost->pretraga($kompanija);
@@ -43,7 +58,7 @@ class Gost extends CI_Controller {
             $data['kontroler']='gost';
             $data['metoda']='index';
             $this->loadView("partneri.php", $data);
-        }
+//        }
     }
 
     public function login($poruka = NULL) {
@@ -62,6 +77,7 @@ class Gost extends CI_Controller {
             if (!$this->ModelKorisnik->proveraUsername($this->input->post('username')))
                 $this->login("Neispravan username");
             elseif (!$this->ModelKorisnik->proveraPassword($this->input->post('password')))
+                //elseif (!$this->ModelKorisnik->proveraPassword(md5($this->input->post('password'))))  OVAKO TREBA!!!!!!!!!
                 $this->login("Neispravan password");
             else {
                 $korisnik = $this->ModelKorisnik->korisnik;
@@ -73,9 +89,9 @@ class Gost extends CI_Controller {
                 elseif ($korisnik->status_korisnika_idtable1 == 3)
                     redirect("ITmenadzer/index");
                 elseif ($korisnik->status_korisnika_idtable1 == 4)
-                    redirect("Admin");
+                    redirect("Admin/index");
                 else
-                    redirect("Gost");
+                    redirect("korisnik/logout");
             }
         } else
             $this->login();

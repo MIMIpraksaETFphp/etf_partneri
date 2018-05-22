@@ -150,9 +150,9 @@ INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPake
 
 alter table status_ugovora auto_increment=0;
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('pripremljen');
-INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('poslat kompanija');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('poslat partneru');
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane Fakulteta');
-INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane kompanije');
+INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan od strane partnera');
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('potpisan sa obe strane');
 INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('predat arhivi Fakulteta');
 
@@ -176,8 +176,8 @@ INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `
 INSERT INTO `etf_partneri`.`novcani_ugovori` (`vrednost`, `faktura`, `uplata`, `datum_uplate`, `valuta`, `ugovor_idugovor`, `komentar`) VALUES ('3000', '0', '0', NULL, 'EUR', '6', NULL);
 
 alter table donatorski_ugovori auto_increment=0;
-INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`) VALUES ('140000', '7 racunara', 'RSD', '2018-07-03', 'Racunari za RC', '8');
-INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`) VALUES ('3000', 'Kancelarijski materijal', 'RSD', '2018-06-01', 'Olovke, papiri, Fascikle', '9');
+INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`, `isporuka`) VALUES ('140000', '7 racunara', 'RSD', '2018-07-03', 'Racunari za RC', '8', '0');
+INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`, `isporuka`) VALUES ('3000', 'Kancelarijski materijal', 'RSD', '2018-06-01', 'Olovke, papiri, Fascikle', '9', '1');
 
 
 

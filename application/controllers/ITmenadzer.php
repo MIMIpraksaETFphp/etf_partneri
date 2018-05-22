@@ -6,6 +6,15 @@ class ITmenadzer extends Korisnik {
 
     public function __construct() {
         parent::__construct();
+        
+//        if (($this->session->userdata('korisnik')) == NULL) 
+//            redirect("Gost");
+////        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 2) 
+////            redirect("korisnik");
+////        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3) 
+////            redirect("ITmenadzer");
+//        elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
+//                redirect("Admin");
     }
 
     public function loadView($page, $data = []) {
@@ -25,13 +34,13 @@ class ITmenadzer extends Korisnik {
         $this->loadView("predavanja.php", $data);
     }
 
-    public function novcani_Ugovori() {
-        echo "Novcani ugovori";
-    }
-    
-    public function donatorski_Ugovori() {
-        echo "Donacije";
-    }
+//    public function novcani_Ugovori() {
+//        echo "Novcani ugovori";
+//    }
+//    
+//    public function donatorski_Ugovori() {
+//        echo "Donacije";
+//    }
     
      public function filtrirajClanove($clan,$partneri){        
         $filter = array($clan['username']);
@@ -209,6 +218,8 @@ class ITmenadzer extends Korisnik {
         $data['model'] = 'ModelKorisnik';
         $donatorskiUgovori = $this->ModelKorisnik->ispisDonatorskihUgovora();
         $data['donatorskiUgovori'] = $donatorskiUgovori;
+        $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
+        $data['statusUgovor'] = $statusUgovor;
         $this->loadView("donatorskiUgovori.php", $data);
     }
 
@@ -300,9 +311,25 @@ class ITmenadzer extends Korisnik {
         $statusUgovora = $this->input->get('status_ugovora');
         $komentar = $this->input->get('komentar');
         $this->ModelKorisnik->promeniNUgovor($faktura, $uplata, $datumUplate, $komentar, $idUgovor);
-        $this->ModelKorisnik->promeniStatusNUgovora($statusUgovora, $idUgovor);
+        $this->ModelKorisnik->promeniStatusUgovora($statusUgovora, $idUgovor);
 
         redirect("ITmenadzer/novcaniUgovori");
+    }
+    
+    public function promeniPodatkeDonatorskihUgovora(){
+        $idUgovor = $this->input->get('idUgovor');
+        $opisDonacije = $this->input->get('opis_donacije');
+        $isporuka = $this->input->get('isporuka');
+        if ($isporuka == NULL) {
+            $isporuka = 0;
+        }
+        $datumIsporuke = $this->input->get('datum_isporuke');
+        $statusUgovora = $this->input->get('status_ugovora');
+        $komentar = $this->input->get('komentar');
+        $this->ModelKorisnik->promeniDUgovor($opisDonacije, $isporuka, $datumIsporuke, $komentar, $idUgovor);
+        $this->ModelKorisnik->promeniStatusUgovora($statusUgovora, $idUgovor);
+
+        redirect("ITmenadzer/donatorskiUgovori");
     }
 
 }

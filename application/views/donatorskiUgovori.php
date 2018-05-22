@@ -10,7 +10,11 @@ foreach ($donatorskiUgovori as $dugovor) {
     echo "Paket: " . $dugovor['naziv_paketa'] . "<br/>";
     echo "Procenjena vrednost: " . $dugovor['procenjena_vrednost'] . "<br/>";
     echo "Valuta: " . $dugovor['valuta'] . "<br/>";
-    echo "opis: " . $dugovor['opis_donacije'] . "<br/>";             
+    echo "Opis donacije: <br/>";  ?>
+    <textarea name="opis_donacije"><?php if ($dugovor['opis_donacije'] != NULL) {
+        echo $dugovor['opis_donacije'];
+    } ?></textarea><br /><br />
+    <?php
     echo "datum_isporuke" . $dugovor['datum_isporuke'] . "<br/>";    
     echo "komentar:" . $dugovor['komentar'] . "<br/>";
     echo "Tip ugovora: " . $dugovor['tip'] . "<br/>";         

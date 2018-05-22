@@ -436,5 +436,6 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('ugovor_idugovor', $idUgovor);
         $this->db->update('donatorski_ugovori');
     }
-
+    
+    
 }

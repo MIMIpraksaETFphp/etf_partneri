@@ -46,7 +46,6 @@
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("ITmenadzer/dodajPredavanje"); ?>">Dodaj Predavanja</a>
           </li>
-          
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("ITmenadzer/Clanovi"); ?>">Clanovi</a>
           </li>

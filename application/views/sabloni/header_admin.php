@@ -13,20 +13,19 @@
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
       <a class="navbar-brand" href="<?php echo site_url("Admin/index");?>">ETF Partneri</a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <div class="collapse navbar-collapse">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-            <a class="nav-link" href="<?php echo site_url("Admin/index");?>">Partneri clanovi<span class="sr-only">(current)</span></a>
+          <li class="nav-item">
+            <a class="nav-link" href="<?php echo site_url("Admin/index");?>">Partneri clanovi</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="<?php echo site_url("Admin/korisnici");?>">Korisnici</a>
+          </li>
+         <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url("Admin/partneri");?>">Partneri</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url("Admin/paketi"); ?>">Paketi</a>
+              <a class="nav-link" href="<?php echo site_url("Admin/adminPaketi"); ?>">Paketi</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("Admin/oglasi"); ?>">Oglasi</a>
@@ -42,6 +41,9 @@
           </li>
           <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url("Admin/dodajPredavanje"); ?>">Dodaj Predavanja</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url("Admin/dodajPaket"); ?>">Dodaj Paket</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="<?php echo site_url("Admin/logout");?>">Logout</a>

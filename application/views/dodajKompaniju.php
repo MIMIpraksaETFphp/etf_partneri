@@ -229,10 +229,12 @@
                                 }
                                 ?>>
                             </div>
-                            <?php echo form_error('email_kontakt_osobe'); ?>
+                            <?php echo form_error('email_kontakt_osobe'); 
+                            if ($tip == 'dodaj') { ?>
                             <div class="form-group">
                                 Logo: <input type="file" name="logo" /><br>
                             </div>
+                            <?php } ?>
                             <input class="btn btn-lg btn-success btn-block" type="submit" 
                                    value="
                                    <?php if ($tip == 'dodaj') {

@@ -403,9 +403,6 @@ class Korisnik extends CI_Controller {
             }
         }
         
-//        $this->ModelKorisnik->promeniTelefone($telefon, $partner);
-//        $this->ModelKorisnik->promeniEmail($email, $partner);
-
         $kompanija = $partner['naziv'];
         redirect("Korisnik/dosije/" . $kompanija);
     }

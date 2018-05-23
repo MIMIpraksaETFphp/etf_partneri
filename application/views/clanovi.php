@@ -9,7 +9,7 @@ foreach ($clanovi as $clan) {
         echo $usernameClana."<br/>";
         echo form_open("$kontroler/dodavanjePartneraClanu","method=post");
                 echo "Dodaj Partnera Clanu: "?>
-                <div class="row">
+            <div class="row">
             <div class="col-md-3 col-md-offset-4">
                 <input type="hidden" name="idKorisnika" value="<?php echo $clan['idKorisnik']; ?>">
                 <div class="form-control">

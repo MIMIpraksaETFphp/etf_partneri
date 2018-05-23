@@ -81,7 +81,7 @@
           </li>
           
           <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url("ITmenadzer/email"); ?>">Email</a>
+              <a class="nav-link" href="<?php echo site_url("ITmenadzer/mejl"); ?>">Mejl</a>
           </li>
           
           <li class="nav-item">

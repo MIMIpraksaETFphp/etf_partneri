@@ -395,21 +395,21 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("ugovor_idugovor", $insertovanidDonatorskiUgovor);
         $this->db->insert('donatorski_ugovori');
     }
- 
-   
+
     public function dohvatiClanove() {
         $this->db->select('idKorisnik, ime, prezime, username');
-        $this->db->from('korisnik');    
-        $query=$this->db->get();
-        $result=$query->result_array();
+        $this->db->from('korisnik');
+        $query = $this->db->get();
+        $result = $query->result_array();
         return $result;
     }
+
     public function dohvatiPartnere() {
-        $this->db->select('naziv, idPartner, ime, prezime, username, idKorisnik');   
+        $this->db->select('naziv, idPartner, ime, prezime, username, idKorisnik');
         $this->db->from('korisnik_ima_partner, korisnik, partner');
         $this->db->where('partner_idPartner=idPartner and korisnik_idKorisnik=idKorisnik');
-        $query=$this->db->get();
-        $result=$query->result_array();
+        $query = $this->db->get();
+        $result = $query->result_array();
         return $result;
     }
 
@@ -427,15 +427,25 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idugovor', $idUgovor);
         $this->db->update('ugovor');
     }
-    
-    public function promeniDUgovor($opisDonacije, $isporuka, $datumIsporuke, $komentar, $idUgovor){
+
+    public function promeniDUgovor($opisDonacije, $isporuka, $datumIsporuke, $komentar, $idUgovor) {
         $this->db->set('opis_donacije', $opisDonacije);
         $this->db->set('isporuka', $isporuka);
-        $this->db->set('datum_isporuke',$datumIsporuke);
+        $this->db->set('datum_isporuke', $datumIsporuke);
         $this->db->set('komentar', $komentar);
         $this->db->where('ugovor_idugovor', $idUgovor);
         $this->db->update('donatorski_ugovori');
     }
+
+    public function stavkeuBazi() {
+        $query = $this->db->get('stavke');
+        $result = $query->result_array();
+        return $result;
+    }
     
-    
+    public function dodajStavku($novaStavka){
+        $this->db->set('opis', $novaStavka);
+        $this->db->insert('stavke');
+    }
+
 }

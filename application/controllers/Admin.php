@@ -3,11 +3,11 @@
 require_once APPPATH . 'controllers\ITmenadzer.php';
 
 class Admin extends ITmenadzer {
-
+    
     public function __construct() {
         parent::__construct();
     }
-
+    
     public function loadView($page, $data = []) {
         $this->load->view("sabloni/header_admin.php");
         $this->load->view($page, $data);
@@ -45,4 +45,9 @@ class Admin extends ITmenadzer {
         $this->loadView("predavanja.php", $data);
     }
 
+    public function oglasi() {
+        $data['kontroler'] = 'admin';
+        $data['oglasi'] = $this->ModelGost->pretragaOglasa();
+        $this->loadView("oglasi.php", $data);
+    }
 }

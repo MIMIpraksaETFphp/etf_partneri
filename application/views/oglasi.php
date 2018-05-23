@@ -11,6 +11,11 @@ foreach ($oglasi as $oglas) {
         echo "Zaposlenje<br />";
     }
     echo "<br />";
+    if($this->session->userdata('korisnik')!=null){
+        if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3 || $this->session->userdata('korisnik')->status_korisnika_idtable1 == 4){
+            echo "<input type='submit' value='posalji studentu mejl'><br /><br />";    
+        }
+    }
     echo $oglas["oglas_opis"] . "<br />";
     echo "<a href=" . site_url($kontroler.'/oglasDetaljnije/'.$oglas['idoglas']) . ">Detaljnije</a><br /><br />";
 }

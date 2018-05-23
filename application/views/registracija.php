@@ -63,7 +63,12 @@
                                 ?>
                                 
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Registruj se" name="registruj_se" >
-
+                              <?php  if ($this->session->userdata('korisnik') != null) {
+                                    if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
+                                        echo "<a href=" . site_url($kontroler.'/promenaStatusa') .">Promena Statusa Korisnika</a><br /><br />";
+                                             }
+                                }
+                                ?>
                             </fieldset>
                         </form>
                     </div>

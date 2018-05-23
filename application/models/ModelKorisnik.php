@@ -454,4 +454,26 @@ class ModelKorisnik extends CI_Model {
         $this->db->set('partner_idPartner',$partnerClan['partner_idPartner']);
         $this->db->insert('korisnik_ima_partner');
     }
+    
+    public function iscitajKorisnikUsername() {
+        $this->db->select('idKorisnik, username, status_korisnika_idtable1');
+        $this->db->from('korisnik');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    
+     public function iscitajStatusTabelu() {
+        $this->db->select('idtable1, opis');
+        $this->db->from('status_korisnika');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    
+    public function promenaStatusa($KorisnikStatus) {
+        $this->db->set('status_korisnika_idtable1', $KorisnikStatus['status_korisnika_idtable1']);
+        $this->db->where('idKorisnik', $KorisnikStatus['idKorisnik'] );
+        $this->db->update('korisnik');             
+    }
 }

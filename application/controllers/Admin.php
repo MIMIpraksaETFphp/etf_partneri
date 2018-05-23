@@ -84,4 +84,21 @@ class Admin extends ITmenadzer {
         }
     }
     
+    public function promenaStatusa() {
+        $status= $this->ModelKorisnik->iscitajKorisnikUsername();
+        $status2= $this->ModelKorisnik->iscitajStatusTabelu();
+        $data['status']=$status;
+        $data['status2']=$status2;
+        $this->loadView("promenaStatusaKorisnika.php", $data);
+        
+    }
+    
+    public function dodavanjeStatusaClanu() {
+        $KorisnikStatus=array(
+            'idKorisnik'=> $this->input->post('idKorisnik'),
+            'status_korisnika_idtable1'=> $this->input->post('statusKorisnika'),
+        );
+        $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
+        redirect("$this->kontroler/korisnici");
+    }
 }

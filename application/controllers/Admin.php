@@ -56,7 +56,7 @@ class Admin extends ITmenadzer {
 //                }
 //            }
 //        }
-        for ($i = 0; $i < count($stavkeUbazi[0]); $i++) {
+        for ($i = 0; $i < count($stavkeUbazi); $i++) {
             for($j = 0; $j<count($stavkeUbazi); $j++) {
                 if ($stavkeUbazi[$i][$j] == 1) {
                     $stavka[] = $stavkeUbazi[$i][$j];

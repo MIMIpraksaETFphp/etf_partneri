@@ -42,7 +42,12 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("datum_rodjenja", $korisnik['datum_rodjenja']);
         $this->db->set("telefon", $korisnik['telefon']);
         $this->db->set("email", $korisnik['email']);
-        $this->db->set("status_korisnika_idtable1", 1);
+        $this->db->set("status_korisnika_idtable1", 1 );
+                  if ($this->session->userdata('korisnik') != null) {
+            if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
+                $this->db->set("status_korisnika_idtable1", $korisnik['status_korisnika_idtable1']);
+            }
+        }   
         $this->db->insert('korisnik');
     }
 

@@ -320,80 +320,81 @@ class ITmenadzer extends Korisnik {
     }
     
 
-    public function email() {
-        $this->loadView("mail.php");
+    public function mejl() {
 
-        // $this->load->library('email');
 
-        $from_email = "im@test.com";
-        $to_email = $this->input->post('email');
+        $this->loadView("mejl.php");        
+        
 
+    //     $config = Array(
+    //     'protocol' => 'smtp',
+    //     'smtp_host' => 'smtp.mail.yahoo.com',
+    //     'smtp_user' => 'majtic@yahoo.com',
+    //     'smtp_pass' => 'sifra123',
+    //     'smtp_port' => 465,
+    //     'mailtype' => 'html',
+    //     'charset' => 'iso-8859-1',
+    //     'wordwrap' => TRUE
+    //     );
+
+
+    // //    $this->email->initialize($config);
+
+
+    //     $this->load->library('email', $config);
+    //     $this->email->from('majtic@yahoo.com', 'Milan');
+    //     $this->email->to('milanajtic@gmail.com');
+    //     $this->email->subject('asdddddddddmmmmmmmmmmmmmmdddddddddasd');
+    //     $this->email->message('Radi!!!');
+    //     $this->email->set_newline('\r\n');
+
+    //     $this->email->send();
+    //     $this->email->print_debugger();
+
+
+    }
+
+    public function saljiMejl() {
         $this->load->library('email');
-        $this->email->from($from_email);
-        $this->email->to($to_email);
-        $this->email->subject('Test');
-        $this->email->message('Radi');
+        // $from = $this->input->post('from');
+        $to = $this->input->post('to');
+        $cc = $this->input->post('cc');
+        $bcc = $this->input->post('bcc');
+        $subject = $this->input->post('subject');
+        $message = $this->input->post('message');
 
-//        $config = array();
-//        $config['protocol'] = 'smtp';
-//        $config['smtp_host'] = 'smtp.mailtrap.io';
-//        $config['smtp_user'] = 'e3b10a3878459a';
-//        $config['smtp_pass'] = '2cfced64cf3a57';
-//        $config['smtp_port'] = 2525;
-//        $this->email->initialize($config);
+        // Get full html:
+        $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+        <html xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=' . strtolower(config_item('charset')) . '" />
+            <title>' . html_escape($subject) . '</title>
+            <style type="text/css">
+                body {
+                    font-family: Arial, Verdana, Helvetica, sans-serif;
+                    font-size: 16px;
+                }
+            </style>
+        </head>
+        <body>
+        ' . $message . '
+        </body>
+        </html>';
+        // Also, for getting full html you may use the following internal method:
+        //$body = $this->email->full_html($subject, $message);
 
+        $result = $this->email
+            ->from('itmenadzer@etf.rs')
+            ->reply_to('')    // Optional, an account where a human being reads.
+            ->to($to)
+            ->cc($cc)
+            ->bcc($bcc)
+            ->subject($subject)
+            ->message($body)
+            ->send();
 
-        $config['useragent'] = 'PHPMailer';              // Mail engine switcher: 'CodeIgniter' or 'PHPMailer'
-        $config['protocol'] = 'smtp';                   // 'mail', 'sendmail', or 'smtp'
-        $config['mailpath'] = '/usr/sbin/sendmail';
-        $config['smtp_host'] = 'smtp.mailtrap.io';
-        $config['smtp_user'] = 'e3b10a3878459a';
-        $config['smtp_pass'] = '2cfced64cf3a57';
-        $config['smtp_port'] = 2525;
-        $config['smtp_timeout'] = 30;                       // (in seconds)
-        $config['smtp_crypto'] = 'tls';                    // '' or 'tls' or 'ssl'
-        $config['smtp_debug'] = 0;                        // PHPMailer's SMTP debug info level: 0 = off, 1 = commands, 2 = commands and data, 3 = as 2 plus connection status, 4 = low level data output.
-        $config['debug_output'] = '';                       // PHPMailer's SMTP debug output: 'html', 'echo', 'error_log' or user defined function with parameter $str and $level. NULL or '' means 'echo' on CLI, 'html' otherwise.
-        $config['smtp_auto_tls'] = false;                    // Whether to enable TLS encryption automatically if a server supports it, even if `smtp_crypto` is not set to 'tls'.
-        $config['smtp_conn_options'] = array();                 // SMTP connection options, an array passed to the function stream_context_create() when connecting via SMTP.
-        $config['wordwrap'] = true;
-        $config['wrapchars'] = 76;
-        $config['mailtype'] = 'html';                   // 'text' or 'html'
-        $config['charset'] = null;                     // 'UTF-8', 'ISO-8859-15', ...; NULL (preferable) means config_item('charset'), i.e. the character set of the site.
-        $config['validate'] = true;
-        $config['priority'] = 3;                        // 1, 2, 3, 4, 5; on PHPMailer useragent NULL is a possible option, it means that X-priority header is not set at all, see https://github.com/PHPMailer/PHPMailer/issues/449
-        $config['crlf'] = "\n";                     // "\r\n" or "\n" or "\r"
-        $config['newline'] = "\n";                     // "\r\n" or "\n" or "\r"
-        $config['bcc_batch_mode'] = false;
-        $config['bcc_batch_size'] = 200;
-        $config['encoding'] = '8bit';                   // The body encoding. For CodeIgniter: '8bit' or '7bit'. For PHPMailer: '8bit', '7bit', 'binary', 'base64', or 'quoted-printable'.
-// DKIM Signing
-        $config['dkim_domain'] = '';                       // DKIM signing domain name, for exmple 'example.com'.
-        $config['dkim_private'] = '';                       // DKIM private key, set as a file path.
-        $config['dkim_private_string'] = '';                    // DKIM private key, set directly from a string.
-        $config['dkim_selector'] = '';                       // DKIM selector.
-        $config['dkim_passphrase'] = '';                       // DKIM passphrase, used if your key is encrypted.
-        $config['dkim_identity'] = '';                       // DKIM Identity, usually the email address used as the source of the email.
-        
-        
-        $this->email->initialize($config);
-
-//       $config['protocol'] = 'sendmail';
-//       $config['mailpath'] = '/usr/sbin/sendmail';
-//       $config['charset'] = 'iso-8859-1';
-//       $config['wordwrap'] = TRUE;
-//        $this->email->initialize($config);
-//        $this->email->from('im@test.com', 'Ivan Markovic');
-////        
-//        $this->email->to('someone@example.com');
-//        $this->email->cc('another@another-example.com');
-//        $this->email->bcc('them@their-example.com');
-//
-//        $this->email->subject('naslov');
-//        $this->email->message('Postovani, Pratite ETF partnere');
-
-        $this->email->send();
-        echo $this->email->print_debugger();
+        $data['result']=$result;
+        $this->load->view('status.php', $data);
     }
 
     public function promeniPodatkeDonatorskihUgovora(){

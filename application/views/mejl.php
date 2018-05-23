@@ -9,31 +9,28 @@
                     </div>
                     <div class="panel-body">
 
-                        <form role="form" method="post" action="<?php echo site_url('ITmenadzer/email'); ?>">
+                        <form role="form" method="post" action="<?php echo site_url('ITmenadzer/saljiMejl'); ?>">
                             <fieldset>
-<!--                                <div class="form-group">
-                                    <input class="form-control" placeholder="FROM:" name="korisnik_salje_mail" type="text" >
-                                </div>-->
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="TO:" name="email_primaoca" type="email" >
+                                    <input class="form-control" placeholder="TO:" name="to" type="text" >
                                 </div>
                                 <?php //echo form_error('email_primaoca'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="CC:" name="email_primaoca" type="email" >
+                                    <input class="form-control" placeholder="CC:" name="cc" type="text" >
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="BCC:" name="email_primaoca" type="email" >
+                                    <input class="form-control" placeholder="BCC:" name="bcc" type="text" >
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Subject" name="naslov" type="text" >
+                                    <input class="form-control" placeholder="Subject" name="subject" type="text" >
                                 </div>
                                 <?php //echo form_error('naslov'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Sadrzaj" name="sadrzaj" type="text" >
+                                    <input class="form-control" placeholder="Sadrzaj" name="message"" type="text" >
                                 </div>
                                 <?php //echo form_error('sadrzaj'); ?>
 
-                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Posalji" name="email" >
+                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Posalji" name="submit" >
 
                             </fieldset>
                         </form>

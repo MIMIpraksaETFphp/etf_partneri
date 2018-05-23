@@ -6,6 +6,17 @@
     <title>ETF Partneri</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
+    <?php      
+        if (($this->session->userdata('korisnik')) == NULL) 
+           redirect("Gost");
+//       elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 2) 
+//            redirect("korisnik");
+       elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3) 
+           redirect("ITmenadzer");
+       elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
+               redirect("Admin");
+?>  
+    
   </head>
 
   <body>

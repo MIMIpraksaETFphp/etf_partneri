@@ -4,6 +4,8 @@ require_once APPPATH . 'controllers\ITmenadzer.php';
 
 class Admin extends ITmenadzer {
     
+    public $kontroler='Admin';
+    
     public function __construct() {
         parent::__construct();
     }

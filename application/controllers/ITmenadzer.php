@@ -3,7 +3,10 @@
 require_once APPPATH . 'controllers\Korisnik.php';
 
 class ITmenadzer extends Korisnik {
-
+    
+    public $kontroler='ITmenadzer';
+    
+    
     public function __construct() {
         parent::__construct();
         
@@ -51,7 +54,7 @@ class ITmenadzer extends Korisnik {
     }
     
     public function clanovi() {
-        $data['kontroler']='ITmenadzer';
+        $data['kontroler']=$this->kontroler;
         $data['model']='ModelKorisnik';
         $clanovi= $this->ModelKorisnik->dohvatiClanove();
         $data['clanovi']=$clanovi;
@@ -410,4 +413,8 @@ class ITmenadzer extends Korisnik {
 
     }
 
+    public function izbrisiPartnerClan($idKorisnik, $idPartner){
+        $this->ModelKorisnik->izbrisiPartnerClan($idKorisnik, $idPartner);
+        redirect("$this->kontroler/clanovi");
+    }
 }

@@ -437,5 +437,10 @@ class ModelKorisnik extends CI_Model {
         $this->db->update('donatorski_ugovori');
     }
     
-    
+    public function izbrisiPartnerClan($idKorisnik, $idPartner){
+        $this->db->from('korisnik_ima_partner');
+        $this->db->where('korisnik_idKorisnik', $idKorisnik);
+        $this->db->where('partner_idPartner', $idPartner);
+        $this->db->delete();
+    }
 }

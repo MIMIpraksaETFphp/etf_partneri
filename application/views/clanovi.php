@@ -1,5 +1,6 @@
 <?php
-// var_dump($partneri);
+ //var_dump($partneri);
+ echo "<br/><br/>";
 // var_dump($clanovi);
 foreach ($clanovi as $clan) {
     $usernameClana=$clan['username'];
@@ -7,7 +8,7 @@ foreach ($clanovi as $clan) {
     if (!empty($filtriraniPartneri)) {
         echo $usernameClana."<br/>";
         foreach ($filtriraniPartneri as $filtriraniPartner) {
-            echo $filtriraniPartner['naziv']."<br/>";
+            echo $filtriraniPartner['naziv']."<a href=" . site_url("$kontroler/izbrisiPartnerClan/".$filtriraniPartner['idKorisnik']."/".$filtriraniPartner['idPartner']) . ">Izbrisi</a><br />";
         }
         echo "<br/><br/>";
     }

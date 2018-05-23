@@ -448,4 +448,10 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('partner_idPartner', $idPartner);
         $this->db->delete();
     }
+    
+    public function dodavanjePartneraClanu($partnerClan){
+        $this->db->set('korisnik_idKorisnik',$partnerClan['korisnik_idKorisnik']);
+        $this->db->set('partner_idPartner',$partnerClan['partner_idPartner']);
+        $this->db->insert('korisnik_ima_partner');
+    }
 }

@@ -67,6 +67,9 @@ class ITmenadzer extends Korisnik {
                 $idClana=$clan['idKorisnik'];
                 $data['partneri'][$usernameClana]=$this->filtrirajClanove($clan,$partneri);
             }
+        $partner=$this->ModelKorisnik->partnerIdNaziv();
+        $data['partner'] = $partner;
+            
         $this->loadView("clanovi.php", $data);
     }
    
@@ -417,4 +420,14 @@ class ITmenadzer extends Korisnik {
         $this->ModelKorisnik->izbrisiPartnerClan($idKorisnik, $idPartner);
         redirect("$this->kontroler/clanovi");
     }
+    
+    public function dodavanjePartneraClanu(){
+       $partnerClan=array(
+           'partner_idPartner' => $this->input->post('id_partnera'),
+           'korisnik_idKorisnik'=>$this->input->post('idKorisnika')
+       );
+       $this->ModelKorisnik->dodavanjePartneraClanu($partnerClan);
+       redirect("$this->kontroler/clanovi");
+    }
+    
 }

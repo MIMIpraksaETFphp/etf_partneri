@@ -42,7 +42,12 @@ class ModelKorisnik extends CI_Model {
         $this->db->set("datum_rodjenja", $korisnik['datum_rodjenja']);
         $this->db->set("telefon", $korisnik['telefon']);
         $this->db->set("email", $korisnik['email']);
-        $this->db->set("status_korisnika_idtable1", 1);
+        $this->db->set("status_korisnika_idtable1", 1 );
+                  if ($this->session->userdata('korisnik') != null) {
+            if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
+                $this->db->set("status_korisnika_idtable1", $korisnik['status_korisnika_idtable1']);
+            }
+        }   
         $this->db->insert('korisnik');
     }
 
@@ -442,5 +447,33 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('korisnik_idKorisnik', $idKorisnik);
         $this->db->where('partner_idPartner', $idPartner);
         $this->db->delete();
+    }
+    
+    public function dodavanjePartneraClanu($partnerClan){
+        $this->db->set('korisnik_idKorisnik',$partnerClan['korisnik_idKorisnik']);
+        $this->db->set('partner_idPartner',$partnerClan['partner_idPartner']);
+        $this->db->insert('korisnik_ima_partner');
+    }
+    
+    public function iscitajKorisnikUsername() {
+        $this->db->select('idKorisnik, username, status_korisnika_idtable1');
+        $this->db->from('korisnik');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    
+     public function iscitajStatusTabelu() {
+        $this->db->select('idtable1, opis');
+        $this->db->from('status_korisnika');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
+    
+    public function promenaStatusa($KorisnikStatus) {
+        $this->db->set('status_korisnika_idtable1', $KorisnikStatus['status_korisnika_idtable1']);
+        $this->db->where('idKorisnik', $KorisnikStatus['idKorisnik'] );
+        $this->db->update('korisnik');             
     }
 }

@@ -2,6 +2,8 @@
 
 class Korisnik extends CI_Controller {
 
+     public $kontroler='Korisnik';
+    
     public function __construct() {
         parent::__construct();
         $this->load->model("ModelKorisnik");

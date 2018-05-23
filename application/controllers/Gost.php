@@ -2,7 +2,9 @@
 
 // Korisnik je clan 
 class Gost extends CI_Controller {
-
+    
+    public $kontroler='Gost';
+    
     public function __construct() {
         parent::__construct();
         $this->load->model("ModelGost");
@@ -131,10 +133,16 @@ class Gost extends CI_Controller {
                 'datum_rodjenja' => $this->input->post('datum_rodjenja'),
                 'telefon' => $this->input->post('telefon'),
                 'email' => $this->input->post('email'),
-//            'status_korisnika_idtable1'=>1
+//                'status_korisnika_idtable1'=>$this->input->post('status_korisnika_idtable1')
             );
+//            
+//            if ($this->session->userdata('korisnik') != null) {
+//            if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
+//            }
+//        }
+            
             $this->ModelKorisnik->registrovanKorisnik($korisnik);
-            redirect("Korisnik/index");
+            redirect("$this->kontroler/index");
         }
     }
 

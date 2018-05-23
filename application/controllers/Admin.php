@@ -1,8 +1,8 @@
 <?php
 
-require_once APPPATH . 'controllers\Korisnik.php';
+require_once APPPATH . 'controllers\ITmenadzer.php';
 
-class Admin extends Korisnik {
+class Admin extends ITmenadzer {
 
     public function __construct() {
         parent::__construct();

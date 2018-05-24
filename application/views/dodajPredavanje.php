@@ -66,9 +66,9 @@
                                     </select>
                                 </div>
                                 
-                                <div class="form-group">
-                                    Fajl: <input type="file" name="fajl" /><br>
-                                </div>
+<!--                                <div class="form-group">
+                                    Fajl: <input type="file" name="fajl" /><br>     izbacili smo formu za dodavanje fajlova
+                                </div>-->
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Predavanje" name="dodavanjePredavanja" >
                                 <br/><br/>
                             </fieldset>

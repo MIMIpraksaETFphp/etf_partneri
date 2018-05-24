@@ -22,11 +22,11 @@
                                     <input class="form-control" placeholder="BCC:" name="bcc" type="text" >
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Subject" name="subject" type="text" >
+                                    <input class="form-control" placeholder="Subject" name="subject" type="text" value="<?php echo $subject; ?>" >
                                 </div>
                                 <?php //echo form_error('naslov'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Sadrzaj" name="message"" type="text" >
+                                    <input class="form-control" placeholder="Sadrzaj" name="message"" type="text" value="<?= $message; ?>" >
                                 </div>
                                 <?php //echo form_error('sadrzaj'); ?>
 

@@ -323,10 +323,10 @@ class ITmenadzer extends Korisnik {
     }
     
 
-    public function mejl() {
+    public function mejl($data) {
 
 
-        $this->loadView("mejl.php");        
+        $this->loadView("mejl.php", $data);
         
 
     //     $config = Array(
@@ -431,4 +431,17 @@ class ITmenadzer extends Korisnik {
        redirect("$this->kontroler/clanovi");
     }
     
+    public function posaljiOglasMejlom($idoglas){
+        $oglas=$this->ModelKorisnik->iscitajOglas($idoglas);        
+        $data['subject']=$oglas['naziv'];
+        $data['message']=$oglas['opis'];
+        $this->mejl($data);
+    }
+
+    public function posaljiPredavanjeMejlom($idpredavanje){
+        $predavanje=$this->ModelKorisnik->iscitajPredavanja($idpredavanje);        
+        $data['subject']=$predavanje['naslov_srpski'];
+        $data['message']=$predavanje['opis_srpski'];
+        $this->mejl($data);
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-//var_dump($oglasi);
+// var_dump($oglasi);
 foreach ($oglasi as $oglas) {
     echo "<h3>" . $oglas ["partner_naziv"] . "-" . $oglas["oglas_naziv"] . "</h3>" . "<br />";
     echo $oglas["datum_unosenja"] . "<br />";
@@ -10,12 +10,7 @@ foreach ($oglasi as $oglas) {
     if($oglas["zaposlenje"]==1){
         echo "Zaposlenje<br />";
     }
-    echo "<br />";
-    if($this->session->userdata('korisnik')!=null){
-        if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3 || $this->session->userdata('korisnik')->status_korisnika_idtable1 == 4){
-            echo "<input type='submit' value='posalji studentu mejl'><br /><br />";    
-        }
-    }
-    echo $oglas["oglas_opis"] . "<br />";
+    echo "<br />";    
+    echo $oglas["oglas_opis"] . "<br />";    
     echo "<a href=" . site_url($kontroler.'/oglasDetaljnije/'.$oglas['idoglas']) . ">Detaljnije</a><br /><br />";
 }

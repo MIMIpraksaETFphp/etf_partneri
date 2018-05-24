@@ -50,20 +50,22 @@ class Korisnik extends CI_Controller {
                 'datum_unosenja' => $this->input->post('datum_unosenja'),
                 'id_partnera' => $this->input->post('id_partnera')
             );
-
+            //var_dump($oglas['datum_unosenja']);
             $config['upload_path'] = './assets/fajlovi/';
             $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
-            $config['file_name'] = "IDpartnera_" . $oglas['naziv_partnera'] . "_NaslovOglasa_" . $oglas['oglasnaslov'];
-
+            //$config['file_name'] = $oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".$oglas['datum_unosenja'];
+            //$config['file_name']= uniqid(rand(),true);
+            $config['file_name'] = $oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".md5($oglas['datum_unosenja']);
+            
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
 
             $insertovanidOglasa = $this->ModelKorisnik->dodatOglas($oglas);
             $oglasnaslov = $oglas['oglasnaslov'];
-            $oglasPutanja = '/assets/fajlovi/' . $oglasnaslov;
+            $oglasPutanja = '/assets/fajlovi/' .$oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".md5($oglas['datum_unosenja']);
             $this->ModelKorisnik->dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
-            $this->ModelKorisnik->dodatOglas($oglas);
+            //$this->ModelKorisnik->dodatOglas($oglas);
 
             redirect("Korisnik/index");
         }

@@ -235,12 +235,12 @@ class ITmenadzer extends Korisnik {
         $this->loadView("oglasi.php", $data);
     }
 
-    public function oglasDetaljnije($idOglas) {
-        //$data['kontroler']='ITmenadzer';
-        $oglas = $this->ModelKorisnik->iscitajOglas($idOglas);
-        $data['oglas'] = $oglas;
-        $this->loadView("oglasDetaljnije.php", $data);
-    }
+    // public function oglasDetaljnije($idOglas) {
+    //     //$data['kontroler']='ITmenadzer';
+    //     $oglas = $this->ModelKorisnik->iscitajOglas($idOglas);
+    //     $data['oglas'] = $oglas;
+    //     $this->loadView("oglasDetaljnije.php", $data);
+    // }
 
     public function predavanjeDetaljnije($idpredavanje) {
         $predavanje = $this->ModelKorisnik->iscitajPredavanja($idpredavanje);

@@ -6,10 +6,10 @@
     echo "Kompanije kojima u narednih 6 meseci istice ugovor: <br/><br/>";
     foreach ($partnerIsticeUgovor as $value) {
 
-        //if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
+        if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
             echo "<table><tr><td><a href=" . site_url('ITmenadzer/dosije/' . $value['naziv']) . ">Dosije Kompanije</a>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td></tr>";
             echo "</table>";
-       // }
+        }
     }
 ?>
 
@@ -20,10 +20,10 @@
 <?php
     echo "Kompanije kojima je u prethodnih 6 meseci istekao ugovor: <br/><br/>";
     foreach ($partnerIsticeUgovor as $value) {
-        //if(($value['datum_isticanja']>$datum2) && $value['datum_isticanja']<$danasnjiDatum){
+        if(($value['datum_isticanja']>$datum2) && $value['datum_isticanja']<$danasnjiDatum){
         echo "<table><tr><td><a href=" . site_url('ITmenadzer/dosije/' . $value['naziv']) . ">Dosije Kompanije</a>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td>LINK ZA MAIL</td></tr>";
         echo "</table>";
-        //}
+        }
     }
 ?>
     <body>

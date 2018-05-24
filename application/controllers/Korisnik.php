@@ -411,7 +411,7 @@ class Korisnik extends CI_Controller {
         redirect("Korisnik/dosije/" . $kompanija);
     }
     public function oglasDetaljnije($idOglas){
-        $oglas=$this->ModelGost->iscitajOglas($idOglas);
+        $oglas=$this->ModelKorisnik->iscitajOglas($idOglas);
         $data['oglas'] = $oglas;
         $this->loadView("oglasDetaljnije.php", $data);
     }

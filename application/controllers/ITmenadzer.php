@@ -86,19 +86,19 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjeNovcanogUgovora() {
 //        $this->form_validation->set_rules("naziv", "naziv", "required");
-//        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
+          $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
 //        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
 //        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-//        $this->form_validation->set_rules("vrednost", "vrednost", "required");
+          $this->form_validation->set_rules("vrednost", "vrednost", "required");
 //        $this->form_validation->set_rules("valuta", "valuta", "required");
 //        $this->form_validation->set_rules("faktura", "faktura", "required");
 //        $this->form_validation->set_rules("uplata", "uplata", "required");
 //        $this->form_validation->set_rules("datum_uplate", "datum_uplate", "required");
 //        $this->form_validation->set_rules("opis", "opis", "required");
-//        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
-//        if ($this->form_validation->run() == FALSE) {
-//            $this->dodajNovcaniUgovor();
-//        } else {
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
+            $this->dodajNovcaniUgovor();
+       } else {
         $faktura = $this->input->post('faktura');
         $uplata = $this->input->post('uplata');
         if ($faktura == NULL)
@@ -135,7 +135,7 @@ class ITmenadzer extends Korisnik {
         //   }
         redirect("ITmenadzer/novcaniUgovori");
 
-        // }   
+         }   
     }
 
     public function dodajUgovor() {
@@ -260,18 +260,18 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjeDonatorskogUgovora() {
 //        $this->form_validation->set_rules("naziv", "naziv", "required");
-//        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
+          $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
 //        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
 //        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-//        $this->form_validation->set_rules("procenjena_vrednost", "procenjena_vrednost", "required");
+          $this->form_validation->set_rules("procenjena_vrednost", "procenjena_vrednost", "required");
 //        $this->form_validation->set_rules("valuta", "valuta", "required");
-//        $this->form_validation->set_rules("opis_donacije", "opis_donacije", "required");
-//        $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
+          $this->form_validation->set_rules("opis_donacije", "opis_donacije", "required");
+          $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
 //        $this->form_validation->set_rules("opis", "opis", "required");
-//        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
-//        if ($this->form_validation->run() == FALSE) {
-//            $this->dodajUgovorDonacije();
-//        } else {
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
+            $this->dodajUgovorDonacije();
+        } else {
         $id_paketa = $this->input->post('id_paketa');
         $id_partnera = $this->input->post('id_partnera');
         $donatorskiUgovor = array(
@@ -299,7 +299,7 @@ class ITmenadzer extends Korisnik {
         $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
         $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
         redirect("ITmenadzer/donatorskiUgovori");
-        //   }
+           }
     }
 
 

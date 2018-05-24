@@ -114,13 +114,13 @@ class Gost extends CI_Controller {
     public function registruj_se() {
 
         $this->form_validation->set_rules("username", "username", "required");
-        $this->form_validation->set_rules("password", "password", "required");    //ovde se unosi pass match itd
-        //  $this->form_validation->set_rules("password", "password", "required");     //ponovljeni pass...
+        $this->form_validation->set_rules("password", "password", "required|min_length[8]|max_length[12]|trim|matches[confirm_password]");  // | regex_match[/^[A-Z]{1,}a-z{5,}0-9{2,}$/] za mala i velika-ne radi...treba nesto drugacije
+        $this->form_validation->set_rules("confirm_password", "password", "required|trim");   
         $this->form_validation->set_rules("ime", "ime", "required");
         $this->form_validation->set_rules("prezime", "prezime", "required");
         $this->form_validation->set_rules("datum_rodjenja", "datum_rodjenja", "required");
-        $this->form_validation->set_rules("telefon", "telefon", "required");
-        $this->form_validation->set_rules("email", "email", "required");
+        $this->form_validation->set_rules("telefon", "telefon", "required|min_length[9]");
+        $this->form_validation->set_rules("email", "email", "required|valid_email");   
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->registracija();

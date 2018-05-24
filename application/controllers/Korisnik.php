@@ -223,14 +223,14 @@ class Korisnik extends CI_Controller {
         $this->form_validation->set_rules("ziro_racun", "ziro_racun", "required");
         $this->form_validation->set_rules("valuta_racuna", "valuta_racuna", "required");
         $this->form_validation->set_rules("PIB", "PIB", "required");
-        $this->form_validation->set_rules("telefon1", "telefon1", "required");
-        $this->form_validation->set_rules("email1", "email1", "required");
+        $this->form_validation->set_rules("telefon1", "telefon1", "required|min_length[9]");
+        $this->form_validation->set_rules("email1", "email1", "required|valid_email");
         $this->form_validation->set_rules("opis", "opis", "required");
         $this->form_validation->set_rules("veb_adresa", "veb_adresa", "required");
         $this->form_validation->set_rules("ime_kontakt_osobe", "ime_kontakt_osobe", "required");
         $this->form_validation->set_rules("prezime_kontakt_osobe", "prezime_kontakt_osobe", "required");
         $this->form_validation->set_rules("telefon_kontakt_osobe", "telefon_kontakt_osobe", "required");
-        $this->form_validation->set_rules("email_kontakt_osobe", "email_kontakt_osobe", "required");
+        $this->form_validation->set_rules("email_kontakt_osobe", "email_kontakt_osobe", "required|valid_email");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajKompaniju();

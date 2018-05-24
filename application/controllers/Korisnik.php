@@ -295,7 +295,8 @@ class Korisnik extends CI_Controller {
             $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
             $data['tip'] = 'dodaj';
 
-            redirect("Korisnik/dodajKompaniju/" . $data);
+            // redirect("Korisnik/dodajKompaniju/" . $data);
+            $this->dodajKompaniju($data);
         }
     }
 

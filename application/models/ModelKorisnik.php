@@ -488,4 +488,12 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idKorisnik', $KorisnikStatus['idKorisnik'] );
         $this->db->update('korisnik');             
     }
+    
+    public function iscitajTrenutniStatus() {
+        $this->db->select('username, status_korisnika_idtable1');
+        $this->db->from('korisnik');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
 }

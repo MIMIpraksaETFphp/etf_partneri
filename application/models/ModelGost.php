@@ -28,8 +28,9 @@ class ModelGost extends CI_Model {
  }
  
     public function spisakPaketa(){
-        $this->db->select('naziv_paketa, vrednost_paketa, valuta');
+        $this->db->select('naziv_paketa, vrednost_paketa, valuta, idPaketi');
         $this->db->from('paketi');
+        $this->db->order_by('vrednost_paketa', 'desc');
         $query=$this->db->get();
         $result= $query->result_array();
         return $result;

@@ -1,4 +1,7 @@
 <?php
+if(isset($poruka)){
+    echo $poruka."<br /><br />";
+}
 if(isset($paketi)) {
         foreach ($paketi as $paket) {
             ?>
@@ -12,8 +15,7 @@ if(isset($paketi)) {
             <?php
         }
         echo "<br />";
-        foreach ($paketi as $paket) {
-            ?>
+        foreach ($paketi as $paket) { ?>
             <a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo "<h4>".$paket['naziv_paketa'] . "</h4><a/><br/>";
             $filter = array($paket['naziv_paketa']);
             $filtriraniPaketi = array_filter($paketiStavke, function ($s) use ($filter) {
@@ -22,6 +24,10 @@ if(isset($paketi)) {
             foreach ($filtriraniPaketi as $filtriraniPaket) {
                 echo $filtriraniPaket['opis'] . "<br/>";
             }
-            echo "<br/><br/>";
+            
+            ?>
+                <input class="button" type="button" name="brisanjePaketa" value="Izbrisi paket" onclick="confirm('Da li ste sigurni?') ? location.href='<?php echo site_url();?>Admin/brisanjePaketa/<?php echo $paket['idPaketi'];?>' : false"/>
+                <br /><br />
+                <?php
         }
     }

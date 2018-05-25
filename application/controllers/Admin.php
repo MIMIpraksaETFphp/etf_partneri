@@ -81,11 +81,12 @@ class Admin extends ITmenadzer {
         $this->loadView("partneriClanovi.php", $data);
     }
 
-    public function adminPaketi() {
+    public function adminPaketi($message = NULL) {
         $paketi = $this->ModelGost->spisakPaketa();
         $paketiStavke = $this->ModelGost->ispisPaketa();
         $data['paketi'] = $paketi;
         $data['paketiStavke'] = $paketiStavke;
+        $data['poruka'] = $message;
         $this->loadView("adminPaketi.php", $data);
     }
 
@@ -110,14 +111,7 @@ class Admin extends ITmenadzer {
                 $this->ModelKorisnik->dodajStavkePaketu($insertId, $idStavke);
             }
         }
-//        $data['naziv'] = $naziv;
-//        $data['vrednost'] = $vrednost;
-//        $data['trajanje'] = $trajanje;
-//        $data['maxbroj'] = $maxbroj;
-//        $data['stavka'] = $stavkUbazi;
-//        //  $data['id'] = $id;
-//        $this->loadView("moze.php", $data);
-        redirect();
+          redirect("Admin/dodajPaket");
     }
 
     public function dodavanjeStavke() {
@@ -192,6 +186,17 @@ class Admin extends ITmenadzer {
         );
         $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
         redirect("$this->kontroler/korisnici");
+    }
+    
+    public function brisanjePaketa($idPaket){
+        $var = $this->ModelKorisnik->paketNemaUgovor($idPaket);
+        if(empty($var)){
+        $this->ModelKorisnik->brisanjePaketa($idPaket);
+        $message = "Uspesno ste izbrisali paket";
+        }else{
+           $message="Ne mozete brisati paket koji ima vezan ugovor!"; 
+        }
+        $this->adminPaketi($message);
     }
 
 }

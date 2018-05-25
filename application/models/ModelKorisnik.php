@@ -490,7 +490,7 @@ class ModelKorisnik extends CI_Model {
     }
     
     public function iscitajTrenutniStatus() {
-        $this->db->select('username, status_korisnika_idtable1');
+        $this->db->select('username, ime, prezime, status_korisnika_idtable1');
         $this->db->from('korisnik');
         $query=$this->db->get();
         $result=$query->result_array();

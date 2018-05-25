@@ -38,7 +38,9 @@ echo "<br/><br/>Trenutni status korisnika:";
 
 foreach ($trenutniStat as $el) {
 
-    echo "<br/><br/>".$el['username'] ." ";
+    echo "<br/><br/>".$el['username'] ."- ";
+    echo $el['ime'] ." ";
+    echo $el['prezime'] ." ";
     echo "Trenutni status korisnika: " . $el['status_korisnika_idtable1'] . "<br/>";
 }
 ?>

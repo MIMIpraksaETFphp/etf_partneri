@@ -28,10 +28,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Admin/index"); ?>">Partneri clanovi</a>
+                        <a class="nav-link" href="<?php echo site_url("Admin/index"); ?>">Admin</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Admin/korisnici"); ?>">Korisnici</a>
+                        <a class="nav-link" href="<?php echo site_url("Admin/korisnici"); ?>">Partneri clanovi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url("Admin/partneri"); ?>">Partneri</a>

@@ -488,7 +488,7 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idKorisnik', $KorisnikStatus['idKorisnik'] );
         $this->db->update('korisnik');             
     }
-    
+
     public function dodavanjePaketa($naziv, $vrednost, $trajanje, $maxbroj){
         $this->db->set('naziv_paketa', $naziv);
         $this->db->set('vrednost_paketa', $vrednost);
@@ -504,5 +504,12 @@ class ModelKorisnik extends CI_Model {
         $this->db->set('stavke_idstavke', $idStavke);
         $this->db->insert('paket_ima_stavke');
     }
-    
+
+    public function iscitajTrenutniStatus() {
+        $this->db->select('username, status_korisnika_idtable1');
+        $this->db->from('korisnik');
+        $query=$this->db->get();
+        $result=$query->result_array();
+        return $result;
+    }
 }

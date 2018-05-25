@@ -119,10 +119,13 @@ class Admin extends ITmenadzer {
     }
 
     public function promenaStatusa() {
-        $status = $this->ModelKorisnik->iscitajKorisnikUsername();
-        $status2 = $this->ModelKorisnik->iscitajStatusTabelu();
-        $data['status'] = $status;
-        $data['status2'] = $status2;
+
+        $status= $this->ModelKorisnik->iscitajKorisnikUsername();
+        $status2= $this->ModelKorisnik->iscitajStatusTabelu();
+        $trenutniStat=$this->ModelKorisnik->iscitajTrenutniStatus();
+        $data['status']=$status;
+        $data['status2']=$status2;
+        $data['trenutniStat']=$trenutniStat;
         $this->loadView("promenaStatusaKorisnika.php", $data);
     }
 

@@ -32,3 +32,13 @@
 </div>
 
 <?php echo form_close(); ?>
+
+<?php
+echo "<br/><br/>Trenutni status korisnika:";
+
+foreach ($trenutniStat as $el) {
+
+    echo "<br/><br/>".$el['username'] ." ";
+    echo "Trenutni status korisnika: " . $el['status_korisnika_idtable1'] . "<br/>";
+}
+?>

@@ -323,7 +323,7 @@ class ITmenadzer extends Korisnik {
     }
     
 
-    public function mejl($data) {
+    public function mejl($data=[]) {
 
 
         $this->loadView("mejl.php", $data);

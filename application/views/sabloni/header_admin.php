@@ -5,7 +5,8 @@
 
         <title>ETF Partneri</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+        <script src="https://use.fontawesome.com/1f59a29ea5.js"></script>
+        
         <?php
         if (($this->session->userdata('korisnik')) == NULL)
             redirect("Gost");
@@ -80,7 +81,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Admin/email"); ?>">Email</a>
+                        <a class="nav-link" href="<?php echo site_url("Admin/mejl"); ?>">Mejl</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url("Admin/logout"); ?>">Logout</a>

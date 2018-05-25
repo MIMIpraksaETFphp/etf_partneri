@@ -362,7 +362,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function iscitajOglas($idOglas) {
-        $this->db->select('naziv, opis, idoglas');
+        $this->db->select('naziv, opis, idoglas, datum_unosenja, partner_idPartner');
         $this->db->from('oglas');
         $this->db->like('idoglas', $idOglas);
         $query = $this->db->get();

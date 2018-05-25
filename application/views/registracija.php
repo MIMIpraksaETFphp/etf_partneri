@@ -19,9 +19,9 @@
                                     <input class="form-control" placeholder="Lozinka" name="password" type="password" value="">
                                 </div>
                                 <?php echo form_error('password'); ?>
-                                <!--                              <div class="form-group">
-                                                                  <input class="form-control" placeholder="Potvrdi Lozinku" name="password" type="password" value="">
-                                                              </div>-->
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Potvrdi Lozinku" name="confirm_password" type="password" value="">
+                                </div>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Ime" name="ime" type="text" value="">
                                 </div>
@@ -31,7 +31,7 @@
                                 </div>
                                 <?php echo form_error('prezime'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Datum rodjenja" name="datum_rodjenja" type="text" value="">
+                                    <input class="form-control" placeholder="Datum rodjenja" name="datum_rodjenja" type="date" value="">
                                 </div>
                                 <?php echo form_error('datum_rodjenja'); ?>
                                 <div class="form-group">

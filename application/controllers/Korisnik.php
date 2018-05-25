@@ -50,20 +50,22 @@ class Korisnik extends CI_Controller {
                 'datum_unosenja' => $this->input->post('datum_unosenja'),
                 'id_partnera' => $this->input->post('id_partnera')
             );
-
+            //var_dump($oglas['datum_unosenja']);
             $config['upload_path'] = './assets/fajlovi/';
             $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
-            $config['file_name'] = "IDpartnera_" . $oglas['naziv_partnera'] . "_NaslovOglasa_" . $oglas['oglasnaslov'];
-
+            //$config['file_name'] = $oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".$oglas['datum_unosenja'];
+            //$config['file_name']= uniqid(rand(),true);
+            $config['file_name'] = $oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".md5($oglas['datum_unosenja']);
+            
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
 
             $insertovanidOglasa = $this->ModelKorisnik->dodatOglas($oglas);
             $oglasnaslov = $oglas['oglasnaslov'];
-            $oglasPutanja = '/assets/fajlovi/' . $oglasnaslov;
+            $oglasPutanja = '/assets/fajlovi/' .$oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".md5($oglas['datum_unosenja']);
             $this->ModelKorisnik->dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
-            $this->ModelKorisnik->dodatOglas($oglas);
+            //$this->ModelKorisnik->dodatOglas($oglas);
 
             redirect("Korisnik/index");
         }
@@ -223,14 +225,14 @@ class Korisnik extends CI_Controller {
         $this->form_validation->set_rules("ziro_racun", "ziro_racun", "required");
         $this->form_validation->set_rules("valuta_racuna", "valuta_racuna", "required");
         $this->form_validation->set_rules("PIB", "PIB", "required");
-        $this->form_validation->set_rules("telefon1", "telefon1", "required");
-        $this->form_validation->set_rules("email1", "email1", "required");
+        $this->form_validation->set_rules("telefon1", "telefon1", "required|min_length[9]");
+        $this->form_validation->set_rules("email1", "email1", "required|valid_email");
         $this->form_validation->set_rules("opis", "opis", "required");
         $this->form_validation->set_rules("veb_adresa", "veb_adresa", "required");
         $this->form_validation->set_rules("ime_kontakt_osobe", "ime_kontakt_osobe", "required");
         $this->form_validation->set_rules("prezime_kontakt_osobe", "prezime_kontakt_osobe", "required");
         $this->form_validation->set_rules("telefon_kontakt_osobe", "telefon_kontakt_osobe", "required");
-        $this->form_validation->set_rules("email_kontakt_osobe", "email_kontakt_osobe", "required");
+        $this->form_validation->set_rules("email_kontakt_osobe", "email_kontakt_osobe", "required|valid_email");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajKompaniju();
@@ -293,7 +295,8 @@ class Korisnik extends CI_Controller {
             $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
             $data['tip'] = 'dodaj';
 
-            redirect("Korisnik/dodajKompaniju/" . $data);
+            // redirect("Korisnik/dodajKompaniju/" . $data);
+            $this->dodajKompaniju($data);
         }
     }
 
@@ -409,7 +412,7 @@ class Korisnik extends CI_Controller {
         redirect("Korisnik/dosije/" . $kompanija);
     }
     public function oglasDetaljnije($idOglas){
-        $oglas=$this->ModelGost->iscitajOglas($idOglas);
+        $oglas=$this->ModelKorisnik->iscitajOglas($idOglas);
         $data['oglas'] = $oglas;
         $this->loadView("oglasDetaljnije.php", $data);
     }

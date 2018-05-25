@@ -86,19 +86,19 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjeNovcanogUgovora() {
 //        $this->form_validation->set_rules("naziv", "naziv", "required");
-//        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
+          $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
 //        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
 //        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-//        $this->form_validation->set_rules("vrednost", "vrednost", "required");
+          $this->form_validation->set_rules("vrednost", "vrednost", "required");
 //        $this->form_validation->set_rules("valuta", "valuta", "required");
 //        $this->form_validation->set_rules("faktura", "faktura", "required");
 //        $this->form_validation->set_rules("uplata", "uplata", "required");
 //        $this->form_validation->set_rules("datum_uplate", "datum_uplate", "required");
 //        $this->form_validation->set_rules("opis", "opis", "required");
-//        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
-//        if ($this->form_validation->run() == FALSE) {
-//            $this->dodajNovcaniUgovor();
-//        } else {
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
+            $this->dodajNovcaniUgovor();
+       } else {
         $faktura = $this->input->post('faktura');
         $uplata = $this->input->post('uplata');
         if ($faktura == NULL)
@@ -135,7 +135,7 @@ class ITmenadzer extends Korisnik {
         //   }
         redirect("ITmenadzer/novcaniUgovori");
 
-        // }   
+         }   
     }
 
     public function dodajUgovor() {
@@ -235,12 +235,12 @@ class ITmenadzer extends Korisnik {
         $this->loadView("oglasi.php", $data);
     }
 
-    public function oglasDetaljnije($idOglas) {
-        //$data['kontroler']='ITmenadzer';
-        $oglas = $this->ModelKorisnik->iscitajOglas($idOglas);
-        $data['oglas'] = $oglas;
-        $this->loadView("oglasDetaljnije.php", $data);
-    }
+    // public function oglasDetaljnije($idOglas) {
+    //     //$data['kontroler']='ITmenadzer';
+    //     $oglas = $this->ModelKorisnik->iscitajOglas($idOglas);
+    //     $data['oglas'] = $oglas;
+    //     $this->loadView("oglasDetaljnije.php", $data);
+    // }
 
     public function predavanjeDetaljnije($idpredavanje) {
         $predavanje = $this->ModelKorisnik->iscitajPredavanja($idpredavanje);
@@ -260,18 +260,18 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjeDonatorskogUgovora() {
 //        $this->form_validation->set_rules("naziv", "naziv", "required");
-//        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
+          $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
 //        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
 //        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-//        $this->form_validation->set_rules("procenjena_vrednost", "procenjena_vrednost", "required");
+          $this->form_validation->set_rules("procenjena_vrednost", "procenjena_vrednost", "required");
 //        $this->form_validation->set_rules("valuta", "valuta", "required");
-//        $this->form_validation->set_rules("opis_donacije", "opis_donacije", "required");
-//        $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
+          $this->form_validation->set_rules("opis_donacije", "opis_donacije", "required");
+          $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
 //        $this->form_validation->set_rules("opis", "opis", "required");
-//        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
-//        if ($this->form_validation->run() == FALSE) {
-//            $this->dodajUgovorDonacije();
-//        } else {
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
+            $this->dodajUgovorDonacije();
+        } else {
         $id_paketa = $this->input->post('id_paketa');
         $id_partnera = $this->input->post('id_partnera');
         $donatorskiUgovor = array(
@@ -299,7 +299,7 @@ class ITmenadzer extends Korisnik {
         $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
         $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
         redirect("ITmenadzer/donatorskiUgovori");
-        //   }
+           }
     }
 
 
@@ -323,10 +323,10 @@ class ITmenadzer extends Korisnik {
     }
     
 
-    public function mejl() {
+    public function mejl($data=[]) {
 
 
-        $this->loadView("mejl.php");        
+        $this->loadView("mejl.php", $data);
         
 
     //     $config = Array(
@@ -431,4 +431,17 @@ class ITmenadzer extends Korisnik {
        redirect("$this->kontroler/clanovi");
     }
     
+    public function posaljiOglasMejlom($idoglas){
+        $oglas=$this->ModelKorisnik->iscitajOglas($idoglas);        
+        $data['subject']=$oglas['naziv'];
+        $data['message']=$oglas['opis'];
+        $this->mejl($data);
+    }
+
+    public function posaljiPredavanjeMejlom($idpredavanje){
+        $predavanje=$this->ModelKorisnik->iscitajPredavanja($idpredavanje);        
+        $data['subject']=$predavanje['naslov_srpski'];
+        $data['message']=$predavanje['opis_srpski'];
+        $this->mejl($data);
+    }
 }

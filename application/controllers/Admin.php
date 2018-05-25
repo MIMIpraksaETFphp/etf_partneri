@@ -103,16 +103,21 @@ class Admin extends ITmenadzer {
         $vrednost = $this->input->post('vrednost');
         $trajanje = $this->input->post('trajanje');
         $maxbroj = $this->input->post('maxbroj');
-        $stavkUbazi = array($this->input->post('stavkeUbazi'));
-//        $this->ModelKorisnik->dodavanjePaketa($naziv, $vrednost, $trajanje, $maxbroj);
-//        $this->ModelKorisnik->dodajStavke($stavka);
-        $data['naziv'] = $naziv;
-        $data['vrednost'] = $vrednost;
-        $data['trajanje'] = $trajanje;
-        $data['maxbroj'] = $maxbroj;
-        $data['stavka'] = $stavkUbazi;
-        //  $data['id'] = $id;
-        $this->loadView("moze.php", $data);
+        $stavke = array($this->input->post('stavkeUbazi'));
+        $insertId = $this->ModelKorisnik->dodavanjePaketa($naziv, $vrednost, $trajanje, $maxbroj);
+        foreach ($stavke as $stavka) {
+            foreach ($stavka as $idStavke) {
+                $this->ModelKorisnik->dodajStavkePaketu($insertId, $idStavke);
+            }
+        }
+//        $data['naziv'] = $naziv;
+//        $data['vrednost'] = $vrednost;
+//        $data['trajanje'] = $trajanje;
+//        $data['maxbroj'] = $maxbroj;
+//        $data['stavka'] = $stavkUbazi;
+//        //  $data['id'] = $id;
+//        $this->loadView("moze.php", $data);
+        redirect();
     }
 
     public function dodavanjeStavke() {
@@ -142,7 +147,7 @@ class Admin extends ITmenadzer {
     public function registruj_se() {
 
         $this->form_validation->set_rules("username", "username", "required");
-        $this->form_validation->set_rules("password", "password", "required");    
+        $this->form_validation->set_rules("password", "password", "required");
         //  $this->form_validation->set_rules("password", "password", "required");     //ponovljeni pass...ne traba jer ga admin dodaje licno
         $this->form_validation->set_rules("ime", "ime", "required");
         $this->form_validation->set_rules("prezime", "prezime", "required");

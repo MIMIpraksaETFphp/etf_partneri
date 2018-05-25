@@ -47,9 +47,8 @@
     <div class="form-group">
         <label for="stavkeUbazi">Izaberite stavke paketa:</label><br />
         <?php for ($i = 0; $i < count($stavkeUbazi); $i++) { ?>
-            <input type="checkbox" name="stavkeUbazi[]" value="1" id="stavke<?php echo $i; ?>"> <label for="stavke<?php echo $i;?>"><?php echo $stavkeUbazi[$i]['opis']; ?></label> 
+            <input type="checkbox" name="stavkeUbazi[]" value="<?php echo $stavkeUbazi[$i]['idstavke'];?>" id="stavke<?php echo $i; ?>"> <label for="stavke<?php echo $i;?>"><?php echo $stavkeUbazi[$i]['opis']; ?></label><br /> 
             <!--for($i) umesto foreach() zbog label taga-->
-            <input type="hidden" name="idstavke[]" value="<?php echo $stavkeUbazi[$i]['idstavke'];?>"><br />
         <?php } ?>
     </div>
     <!--                    <div class="form-group">

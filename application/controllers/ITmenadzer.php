@@ -361,6 +361,7 @@ class ITmenadzer extends Korisnik {
         $bcc = $this->input->post('bcc');
         $subject = $this->input->post('subject');
         $message = $this->input->post('message');
+        $datum = $this->input->post('datum_slanja');
 
         // Get full html:
         $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

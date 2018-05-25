@@ -28,6 +28,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Sadrzaj" name="message"" type="text" value="<?php if(!empty($message)) echo $message; ?>" >
                                 </div>
+                                <input type="hidden" name="datum_slanja" value="<?php echo mdate('%Y-%m-%d %H:%i:%s', now()); ?>"/>
                                 <?php //echo form_error('sadrzaj'); ?>
 
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Posalji" name="submit" >

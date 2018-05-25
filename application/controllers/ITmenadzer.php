@@ -395,8 +395,11 @@ class ITmenadzer extends Korisnik {
             ->subject($subject)
             ->message($body)
             ->send();
-
-        $data['result']=$result;
+        if($result){
+            $data['result']="Mejl je uspesno poslat.";            
+        } else{
+            $data['result']="Mejl nije poslat.";            
+        }
         $this->load->view('status.php', $data);
     }
 

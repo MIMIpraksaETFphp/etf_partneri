@@ -384,7 +384,7 @@ class ITmenadzer extends Korisnik {
 
         $result = $this->email
             ->from('itmenadzer@etf.rs')
-            ->reply_to('')    // Optional, an account where a human being reads.
+            ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
             ->to($to)
             ->cc($cc)
             ->bcc($bcc)

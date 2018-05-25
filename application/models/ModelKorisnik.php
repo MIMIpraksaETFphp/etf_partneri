@@ -505,6 +505,15 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('paket_ima_stavke');
     }
 
+    public function paketNemaUgovor($idPaket) {
+        $this->db->select('idugovor');
+        $this->db->from('ugovor, paketi');
+        $this->db->where('paketi_idPaketi', $idPaket);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result;
+    }
+
     public function brisanjePaketa($idPaket) {
         $this->db->where('idPaketi', $idPaket);
         $this->db->delete('paketi');

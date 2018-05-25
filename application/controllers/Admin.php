@@ -81,11 +81,12 @@ class Admin extends ITmenadzer {
         $this->loadView("partneriClanovi.php", $data);
     }
 
-    public function adminPaketi() {
+    public function adminPaketi($message = NULL) {
         $paketi = $this->ModelGost->spisakPaketa();
         $paketiStavke = $this->ModelGost->ispisPaketa();
         $data['paketi'] = $paketi;
         $data['paketiStavke'] = $paketiStavke;
+        $data['poruka'] = $message;
         $this->loadView("adminPaketi.php", $data);
     }
 
@@ -188,7 +189,14 @@ class Admin extends ITmenadzer {
     }
     
     public function brisanjePaketa($idPaket){
+        $var = $this->ModelKorisnik->paketNemaUgovor($idPaket);
+        if(empty($var)){
         $this->ModelKorisnik->brisanjePaketa($idPaket);
+        $message = "Uspesno ste izbrisali paket";
+        }else{
+           $message="Ne mozete brisati paket koji ima vezan ugovor!"; 
+        }
+        $this->adminPaketi($message);
     }
 
 }

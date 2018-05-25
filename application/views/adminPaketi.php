@@ -1,4 +1,7 @@
 <?php
+if(isset($poruka)){
+    echo $poruka."<br /><br />";
+}
 if(isset($paketi)) {
         foreach ($paketi as $paket) {
             ?>
@@ -23,7 +26,7 @@ if(isset($paketi)) {
             }
             
             ?>
-                <input class="button" type="button" name="brisanjePaketa" value="Izbrisi paket" onclick="location.href='<?php echo site_url();?>Admin/brisanjePaketa/<?php echo $paket['idPaketi'];?>'"/>
+                <input class="button" type="button" name="brisanjePaketa" value="Izbrisi paket" onclick="confirm('Da li ste sigurni?') ? location.href='<?php echo site_url();?>Admin/brisanjePaketa/<?php echo $paket['idPaketi'];?>' : false"/>
                 <br /><br />
                 <?php
         }

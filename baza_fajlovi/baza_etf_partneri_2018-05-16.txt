@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`paketi` (
   `vrednost_paketa` INT(11) NOT NULL,
   `trajanje_paketa_godine` INT(11) NOT NULL,
   `maks_broj_partnera` INT(11) NOT NULL,
+  `valuta` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`idPaketi`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7

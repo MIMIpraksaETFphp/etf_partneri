@@ -488,4 +488,21 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idKorisnik', $KorisnikStatus['idKorisnik'] );
         $this->db->update('korisnik');             
     }
+    
+    public function dodavanjePaketa($naziv, $vrednost, $trajanje, $maxbroj){
+        $this->db->set('naziv_paketa', $naziv);
+        $this->db->set('vrednost_paketa', $vrednost);
+        $this->db->set('trajanje_paketa_godine', $trajanje);
+        $this->db->set('maks_broj_partnera', $maxbroj);
+        $this->db->insert('paketi');
+        $insertId = $this->db->isert_id();
+        return $insertId;
+    }
+    
+    public function dodajStavkePaketu($insertId, $idStavke){
+        $this->db->set('paketi_idPaketi', $insertId);
+        $this->db->set('stavke_idstavke', $idStavke);
+        $this->db->insert('paket_ima_stavke');
+    }
+    
 }

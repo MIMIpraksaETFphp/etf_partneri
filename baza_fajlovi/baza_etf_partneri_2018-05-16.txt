@@ -331,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`paket_ima_stavke` (
   CONSTRAINT `fk_stavke_has_paketi_paketi1`
     FOREIGN KEY (`paketi_idPaketi`)
     REFERENCES `etf_partneri`.`paketi` (`idPaketi`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_stavke_has_paketi_stavke1`
     FOREIGN KEY (`stavke_idstavke`)

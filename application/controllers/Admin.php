@@ -54,14 +54,7 @@ class Admin extends ITmenadzer {
                 $this->ModelKorisnik->dodajStavkePaketu($insertId, $idStavke);
             }
         }
-//        $data['naziv'] = $naziv;
-//        $data['vrednost'] = $vrednost;
-//        $data['trajanje'] = $trajanje;
-//        $data['maxbroj'] = $maxbroj;
-//        $data['stavka'] = $stavkUbazi;
-//        //  $data['id'] = $id;
-//        $this->loadView("moze.php", $data);
-        redirect();
+          redirect("Admin/dodajPaket");
     }
 
     public function dodavanjeStavke() {
@@ -136,6 +129,10 @@ class Admin extends ITmenadzer {
         );
         $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
         redirect("$this->kontroler/korisnici");
+    }
+    
+    public function brisanjePaketa($idPaket){
+        $this->ModelKorisnik->brisanjePaketa($idPaket);
     }
 
 }

@@ -107,12 +107,12 @@ INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('mogućnost organizacije st
 INSERT INTO `etf_partneri`.`stavke` (`opis`) VALUES ('mogućnost predstavljanja i prezentacije kompanije studentima fakulteta najviše jednom u godini');
 
 alter table paketi auto_increment=0;
-INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('zlatni', '5000', '24', '5', 'EUR');
-INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('srebrni', '3000', '24', '10', 'EUR');
-INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('veliki', '1000', '12', '10', 'EUR');
-INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('partneri', '500', '12', '20', 'EUR');
-INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('partneri katedre', '200', '6', '20', 'EUR');
-INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`, `valuta`) VALUES ('ostali', '100', '3', '30', 'EUR');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`) VALUES ('zlatni', '5000', '24', '5');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`) VALUES ('srebrni', '3000', '24', '10');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`) VALUES ('veliki', '1000', '12', '10');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`) VALUES ('partneri', '500', '12', '20');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`) VALUES ('partneri katedre', '200', '6', '20');
+INSERT INTO `etf_partneri`.`paketi` (`naziv_paketa`, `vrednost_paketa`, `trajanje_paketa_meseci`, `maks_broj_partnera`) VALUES ('ostali', '100', '3', '30');
 
 alter table paket_ima_stavke auto_increment=0;
 INSERT INTO `etf_partneri`.`paket_ima_stavke` (`stavke_idstavke`, `paketi_idPaketi`) VALUES ('1', '1');

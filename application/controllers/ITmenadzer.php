@@ -287,15 +287,11 @@ class ITmenadzer extends Korisnik {
             'opis' => $this->input->post('idstatus_ugovora'),
             'tip' => 'donatorski'
         );
-        if ($id_paketa == '1' || $id_paketa == '2') {
+        if ($id_paketa == '1' || $id_paketa == '2'|| $id_paketa == '3') {
             $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } elseif ($id_paketa == '3' || $id_paketa == '4') {
+        } elseif ($id_paketa == '4' || $id_paketa == '5'|| $id_paketa == '6') {
             $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } elseif ($id_paketa == '5') {
-            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+6 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } elseif ($id_paketa == '6') {
-            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja'))));
-        }
+        } 
         $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
         $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
         redirect("ITmenadzer/donatorskiUgovori");

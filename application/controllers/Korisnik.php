@@ -32,7 +32,7 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodavanjeOglasa() {
-        $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");
+        $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");    // smeju da budu samo slova, brojevi, "_", "-" i razmaci 
         $this->form_validation->set_rules("oglastext", "oglastext", "required");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajOglas();
@@ -53,18 +53,19 @@ class Korisnik extends CI_Controller {
             //var_dump($oglas['datum_unosenja']);
             $config['upload_path'] = './assets/fajlovi/';
             $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
+            $config['max_size'] = '0';  // ovo znaci da je max file size neogranicen, ali nece da radi, jer php ima svoje ogranicenje od 2MB koje mora da se promeni negde u php.ini fajlu
             $sredjenNaslovOglasa=preg_replace('/\s+/', '_', $oglas['oglasnaslov']);
             $config['file_name'] = $oglas['id_partnera'] ."_".$sredjenNaslovOglasa."_".md5($oglas['datum_unosenja']);
             
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
 
+            $imeFajla=$this->upload->data('file_name');     // ova metoda "data" nam daje podatke o fajlu nakon sto je upload-ovan
             $insertovanidOglasa = $this->ModelKorisnik->dodatOglas($oglas);
             $oglasnaslov = $oglas['oglasnaslov'];
-            $oglasPutanja = 'assets/fajlovi/' .$oglas['id_partnera'] ."_".preg_replace('/\s+/', '_', $oglas['oglasnaslov'])."_".md5($oglas['datum_unosenja']);
-            $this->ModelKorisnik->dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
+            $oglasPutanja = 'assets/fajlovi/' .$imeFajla;
+            $this->ModelKorisnik->dodajOglasFajl($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
-            //$this->ModelKorisnik->dodatOglas($oglas);
 
             redirect("Korisnik/index");
         }

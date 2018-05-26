@@ -165,7 +165,7 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('email_partnera');
     }
 
-    public function dodatIdFajla($oglasnaslov, $oglasPutanja, $idOglas) {
+    public function dodajOglasFajl($oglasnaslov, $oglasPutanja, $idOglas) {
         $this->db->set("naziv", $oglasnaslov);
         $this->db->set("putanja", $oglasPutanja);
         $this->db->set("oglas_idoglas", $idOglas);

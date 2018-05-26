@@ -370,6 +370,15 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
+    public function iscitajOglasFajl($idOglas) {
+        $this->db->select('idfajl, naziv, oglas_idoglas, putanja');
+        $this->db->from('fajl');
+        $this->db->like('oglas_idoglas', $idOglas);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result;
+    }
+
     public function iscitajPredavanja($idpredavanje) {
         $this->db->select('naslov_srpski, vreme_predavanja, ime_predavaca, prezime_predavaca, sala, idpredavanje, opis_srpski, cv_srpski');
         $this->db->from('predavanje');

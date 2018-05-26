@@ -53,16 +53,15 @@ class Korisnik extends CI_Controller {
             //var_dump($oglas['datum_unosenja']);
             $config['upload_path'] = './assets/fajlovi/';
             $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
-            //$config['file_name'] = $oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".$oglas['datum_unosenja'];
-            //$config['file_name']= uniqid(rand(),true);
-            $config['file_name'] = $oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".md5($oglas['datum_unosenja']);
+            $sredjenNaslovOglasa=preg_replace('/\s+/', '_', $oglas['oglasnaslov']);
+            $config['file_name'] = $oglas['id_partnera'] ."_".$sredjenNaslovOglasa."_".md5($oglas['datum_unosenja']);
             
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
 
             $insertovanidOglasa = $this->ModelKorisnik->dodatOglas($oglas);
             $oglasnaslov = $oglas['oglasnaslov'];
-            $oglasPutanja = '/assets/fajlovi/' .$oglas['id_partnera'] ."_".$oglas['oglasnaslov']."_".md5($oglas['datum_unosenja']);
+            $oglasPutanja = 'assets/fajlovi/' .$oglas['id_partnera'] ."_".preg_replace('/\s+/', '_', $oglas['oglasnaslov'])."_".md5($oglas['datum_unosenja']);
             $this->ModelKorisnik->dodatIdFajla($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
             //$this->ModelKorisnik->dodatOglas($oglas);
@@ -413,7 +412,9 @@ class Korisnik extends CI_Controller {
     }
     public function oglasDetaljnije($idOglas){
         $oglas=$this->ModelKorisnik->iscitajOglas($idOglas);
+        $fajl=$this->ModelKorisnik->iscitajOglasFajl($idOglas);
         $data['oglas'] = $oglas;
+        $data['fajl'] = $fajl;
         $this->loadView("oglasDetaljnije.php", $data);
     }
     public function predavanjeDetaljnije($idpredavanje){

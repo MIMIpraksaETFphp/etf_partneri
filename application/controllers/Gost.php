@@ -181,7 +181,9 @@ class Gost extends CI_Controller {
     
     public function oglasDetaljnije($idOglas){
         $oglas=$this->ModelGost->iscitajOglas($idOglas);
+        $fajl=$this->ModelGost->iscitajOglasFajl($idOglas);
         $data['oglas'] = $oglas;
+        $data['fajl'] = $fajl;
         $this->loadView("oglasDetaljnije.php", $data);
     }
     public function predavanjeDetaljnije($idpredavanje){

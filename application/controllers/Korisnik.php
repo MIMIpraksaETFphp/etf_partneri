@@ -32,6 +32,7 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodavanjeOglasa() {
+        $kontroler=$this->kontroler;
         $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");    // smeju da budu samo slova, brojevi, "_", "-" i razmaci 
         $this->form_validation->set_rules("oglastext", "oglastext", "required");
         if ($this->form_validation->run() == FALSE) {
@@ -66,9 +67,38 @@ class Korisnik extends CI_Controller {
             $oglasPutanja = 'assets/fajlovi/' .$imeFajla;
             $this->ModelKorisnik->dodajOglasFajl($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
+            $this->posaljiMejlObavestenje($oglas);
 
-            redirect("Korisnik/index");
+            // redirect($kontroler."/index");
         }
+    }
+
+    public function posaljiMejlObavestenje($oglas){
+        $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($oglas['id_partnera']);
+        $adresePrimalaca = [];
+        foreach($primaociMejla as $primalacMejla){
+            array_push($adresePrimalaca, $primalacMejla['email']);
+        }
+        // $data['adresePrimalaca'] = $adresePrimalaca;
+
+        $this->load->library('email');
+        $to = implode(",", $adresePrimalaca);
+        $subject = "Dodat je oglas sa naslovom: ".$oglas['oglasnaslov'];
+        $message = "Sadrzina oglasa: ".$oglas['oglastext'];
+        $result = $this->email
+            ->from('no-reply@etf.rs')
+            ->to($to)
+            ->subject($subject)
+            ->message($message)
+            ->send();
+        if($result){
+            $data['poruka']="Mejl je uspesno poslat.";            
+        } else{
+            $data['poruka']="Mejl nije poslat.";            
+        }
+        
+        $this->loadView("slanjeObavestenja.php",$data);
+
     }
 
 //    private function paginacija($limit) {
@@ -148,6 +178,7 @@ class Korisnik extends CI_Controller {
     public function dodajOglas() {
         $partneriOglasi = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriOglasi'] = $partneriOglasi;
+        $data['kontroler'] = $this->kontroler;
         $this->loadView("dodajOglas.php", $data);
     }
 

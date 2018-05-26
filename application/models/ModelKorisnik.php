@@ -418,10 +418,13 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function dohvatiPartnere() {
-        $this->db->select('naziv, idPartner, ime, prezime, username, idKorisnik');
+    public function dohvatiPartnere($idPartner=null) {
+        $this->db->select('naziv, idPartner, ime, prezime, username, email, idKorisnik');
         $this->db->from('korisnik_ima_partner, korisnik, partner');
         $this->db->where('partner_idPartner=idPartner and korisnik_idKorisnik=idKorisnik');
+        if ($idPartner) {
+            $this->db->where('idPartner', $idPartner);
+        }
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;

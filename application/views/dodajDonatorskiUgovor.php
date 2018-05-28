@@ -9,7 +9,7 @@
                     </div>
                     <div class="panel-body">
 
-                        <?php echo form_open_multipart('ITmenadzer/dodavanjeDonatorskogUgovora', "method=post"); ?>
+                        <?php echo form_open_multipart("$kontroler/dodavanjeDonatorskogUgovora", "method=post"); ?>
 <!--                        <form role="form" method="post" action="<?php //echo site_url('Korisnik/dodajPartnera');  ?>">-->
                         <fieldset>
                             <div class="form-group">

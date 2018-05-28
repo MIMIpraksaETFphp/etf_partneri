@@ -1,7 +1,5 @@
 <?php
-//echo "paketi";
 if (isset($paketi)) {
-    //var_dump($paketi);
     foreach ($paketi as $paket) {
         ?>
         <table>

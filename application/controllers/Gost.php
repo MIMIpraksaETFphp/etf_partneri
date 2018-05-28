@@ -17,15 +17,10 @@ class Gost extends CI_Controller {
                 redirect("ITmenadzer/index");
             elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
                 redirect("Admin/index");
-//            else
-//            redirect("Gost/index");
-            
+
         }  
     }
 
-       
-    
-    
     public function loadView($page, $data = []) {
         $this->load->view("sabloni/header_gost.php");
         $this->load->view($page, $data);
@@ -33,7 +28,6 @@ class Gost extends CI_Controller {
     }
 
     public function index() {
-        // $this->loadView("partneri.php");
 
 //        if (($this->session->userdata('korisnik')) != NULL) {
 //            if ($korisnik->status_korisnika_idtable1 == 2)
@@ -133,25 +127,12 @@ class Gost extends CI_Controller {
                 'datum_rodjenja' => $this->input->post('datum_rodjenja'),
                 'telefon' => $this->input->post('telefon'),
                 'email' => $this->input->post('email'),
-//                'status_korisnika_idtable1'=>$this->input->post('status_korisnika_idtable1')
             );
-//            
-//            if ($this->session->userdata('korisnik') != null) {
-//            if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
-//            }
-//        }
-            
             $this->ModelKorisnik->registrovanKorisnik($korisnik);
             redirect("$this->kontroler/index");
         }
     }
 
-//    public function prikaziPartnere(){
-//   $kompanija=$this->input->post("kompanija");
-//   $rezultat=$this->ModelGost->pretraga($kompanija);
-//   $data['naziv']=$rezultat;
-//   $this->loadView("partneri.php", $data);
-//}
     public function paketi() {
         $paketi = $this->ModelGost->spisakPaketa();
         $paketiStavke = $this->ModelGost->ispisPaketa();
@@ -186,6 +167,7 @@ class Gost extends CI_Controller {
         $data['fajl'] = $fajl;
         $this->loadView("oglasDetaljnije.php", $data);
     }
+    
     public function predavanjeDetaljnije($idpredavanje){
         $predavanje=$this->ModelGost->iscitajPredavanje($idpredavanje);
         $data['predavanje'] = $predavanje;

@@ -1,6 +1,6 @@
 <br />
 <?php
-echo form_open("$kontroler/$metoda/", "method=post");
+echo form_open("$kontroler/partneri/", "method=post");
 echo "Pretraga partnera po nazivu<br />";
 echo "<br />";
 echo form_input(array(
@@ -48,7 +48,7 @@ foreach ($paketi as $paket) {
             ?>
         <a href="<?php echo $filtriraniPartner['veb_adresa'];?>" target="_blank">
             <img src="<?php echo base_url($filtriraniPartner['putanja']);?>" style="vertical-align: middle; border-style: none; 
-                 width: 350px; height: 95px; margin-left: 350px;">
+                 width: 350px; height: 105px; margin-left: 350px;">
         </a><br />
             <?php
             echo "<p>".$filtriraniPartner['opis'] . "</p><br />";

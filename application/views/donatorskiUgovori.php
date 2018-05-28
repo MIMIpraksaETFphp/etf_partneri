@@ -9,7 +9,7 @@ foreach ($donatorskiUgovori as $dugovor) {
     echo "Paket: " . $dugovor['naziv_paketa'] . "<br/>";
     echo "Procenjena vrednost: " . $dugovor['procenjena_vrednost'] . "<br/>";
     echo "Valuta: " . $dugovor['valuta'] . "<br/>";
-    echo form_open("ITmenadzer/promeniPodatkeDonatorskihUgovora", "method=GET");
+    echo form_open("$kontroler/promeniPodatkeDonatorskihUgovora", "method=GET");
     echo "Opis donacije: <br/>";
     ?>
     <input type="hidden" name="idUgovor" value="<?php echo $dugovor['idugovor']; ?>"/>

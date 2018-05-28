@@ -7,7 +7,7 @@
                         <h3 class="panel-title">Dodaj Predavanje</h3>
                     </div>
                     <div class="panel-body">
-                        <?php echo form_open_multipart("Korisnik/dodavanjePredavanja","method=post");?>
+                        <?php echo form_open_multipart("$kontroler/dodavanjePredavanja","method=post");?>
                         <!--<form role="form" method="post" action="<?php //echo site_url('Korisnik/dodavanjeOglasa'); ?>">-->
                             <fieldset>
 

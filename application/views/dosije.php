@@ -1,4 +1,4 @@
-<?php //var_dump($partner);?>
+<?php //var_dump($kontroler);?>
 <table class="table">
     <?php foreach ($partner as $kompanija) { ?>
         <tr><th style="color: blue;"><h1><?php echo $nazivKompanije=$kompanija['naziv']; ?></h1></th></tr>
@@ -55,7 +55,7 @@
     <tr><td><?php echo $kompanija['opis']; ?></td></tr>
 </table>
 <?php $value=1;?>
-<input type="button" class="btn btn-default" value="Izmeni podatke" onclick="location.href = '<?php echo site_url("Korisnik/dosije/$nazivKompanije/$value");?>';">
+<input type="button" class="btn btn-default" value="Izmeni podatke" onclick="location.href = '<?php echo site_url("$kontroler/dosije/$nazivKompanije/$value");?>';">
 <br />
 <br />
 <table class="table">

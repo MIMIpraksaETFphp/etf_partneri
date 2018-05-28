@@ -3,21 +3,11 @@
 require_once APPPATH . 'controllers\Korisnik.php';
 
 class ITmenadzer extends Korisnik {
-    
-    public $kontroler='ITmenadzer';
-    
-    
+
+    public $kontroler = 'ITmenadzer';
+
     public function __construct() {
         parent::__construct();
-        
-//        if (($this->session->userdata('korisnik')) == NULL) 
-//            redirect("Gost");
-////        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 2) 
-////            redirect("korisnik");
-////        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3) 
-////            redirect("ITmenadzer");
-//        elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
-//                redirect("Admin");
     }
 
     public function loadView($page, $data = []) {
@@ -26,57 +16,46 @@ class ITmenadzer extends Korisnik {
         $this->load->view("sabloni/footer.php");
     }
 
-    public function korisnici() {
-        $this->loadView("partneriClanovi.php");
-    }
+//    public function korisnici() {
+//        $this->loadView("partneriClanovi.php");
+//    }
 
     public function predavanja() {
         $predavanja = $this->ModelGost->ispisPredavanja();
-        $data['kontroler'] = 'ITmenadzer';
+        $data['kontroler'] = $this->kontroler;
         $data['predavanja'] = $predavanja;
         $this->loadView("predavanja.php", $data);
     }
 
-//    public function novcani_Ugovori() {
-//        echo "Novcani ugovori";
-//    }
-//    
-//    public function donatorski_Ugovori() {
-//        echo "Donacije";
-//    }
-    
-     public function filtrirajClanove($clan,$partneri){        
+    public function filtrirajClanove($clan, $partneri) {
         $filter = array($clan['username']);
         $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
             return in_array($s['username'], $filter);
         });
         return $filtriraniPartneri;
     }
-    
+
     public function clanovi() {
-        $data['kontroler']=$this->kontroler;
-        $data['model']='ModelKorisnik';
-        $clanovi= $this->ModelKorisnik->dohvatiClanove();
-        $data['clanovi']=$clanovi;
-        $partneri= $this->ModelKorisnik->dohvatiPartnere();
+        $data['kontroler'] = $this->kontroler;
+        $clanovi = $this->ModelKorisnik->dohvatiClanove();
+        $data['clanovi'] = $clanovi;
+        $partneri = $this->ModelKorisnik->dohvatiPartnere();
 //        $data['partneri']=$partneri;
-        foreach ($clanovi as $clan){
-                $imeClana=$clan['ime'];
-                $prezimeClana=$clan['prezime'];
-                $usernameClana=$clan['username'];
-                $idClana=$clan['idKorisnik'];
-                $data['partneri'][$usernameClana]=$this->filtrirajClanove($clan,$partneri);
-            }
-        $partner=$this->ModelKorisnik->partnerIdNaziv();
+        foreach ($clanovi as $clan) {
+            //$imeClana = $clan['ime'];
+            // $prezimeClana = $clan['prezime'];
+            $usernameClana = $clan['username'];
+            // $idClana = $clan['idKorisnik'];
+            $data['partneri'][$usernameClana] = $this->filtrirajClanove($clan, $partneri);
+        }
+        $partner = $this->ModelKorisnik->partnerIdNaziv();
         $data['partner'] = $partner;
-            
+
         $this->loadView("clanovi.php", $data);
     }
-   
 
     public function novcaniUgovori() {
-        $data['kontroler'] = 'ITmenadzer';
-        $data['model'] = 'ModelKorisnik';
+        $data['kontroler'] = $this->kontroler;
         $novcaniUgovori = $this->ModelKorisnik->ispisNovcanihUgovora();
         $data['novcaniUgovori'] = $novcaniUgovori;
         $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
@@ -86,10 +65,10 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjeNovcanogUgovora() {
 //        $this->form_validation->set_rules("naziv", "naziv", "required");
-          $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
+        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
 //        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
 //        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-          $this->form_validation->set_rules("vrednost", "vrednost", "required");
+        $this->form_validation->set_rules("vrednost", "vrednost", "required");
 //        $this->form_validation->set_rules("valuta", "valuta", "required");
 //        $this->form_validation->set_rules("faktura", "faktura", "required");
 //        $this->form_validation->set_rules("uplata", "uplata", "required");
@@ -97,48 +76,50 @@ class ITmenadzer extends Korisnik {
 //        $this->form_validation->set_rules("opis", "opis", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
-            $this->dodajNovcaniUgovor();
-       } else {
-        $faktura = $this->input->post('faktura');
-        $uplata = $this->input->post('uplata');
-        if ($faktura == NULL)
-            $faktura = 0;
-        if ($uplata == NULL)
-            $uplata = 0;
-        $id_paketa = $this->input->post('id_paketa');
-        $id_partnera = $this->input->post('id_partnera');
-        $novcaniUgovor = array(
-            'naziv' => $this->input->post('naziv'),
-            'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
-            'datum_isticanja' => date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja')))), //todo promeni u bazi iz datetime u date, i promeni ovde isto
-            'id_paketa' => $id_paketa,
-            'id_partnera' => $id_partnera,
-            'vrednost' => $this->input->post('vrednost'),
-            'valuta' => $this->input->post('valuta'),
-            'faktura' => $faktura,
-            'uplata' => $uplata,
-            'datum_uplate' => $this->input->post('datum_uplate'),
-            'opis' => $this->input->post('idstatus_ugovora'),
-            'tip' => 'novcani'
-        );
-        if ($id_paketa == '1' || $id_paketa == '2') {
-            $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } elseif ($id_paketa == '3' || $id_paketa == '4') {
-            $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } elseif ($id_paketa == '5') {
-            $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+6 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } elseif ($id_paketa == '6') {
-            $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja'))));
+            $this->dodajUgovor();
+        } else {
+            $faktura = $this->input->post('faktura');
+            $uplata = $this->input->post('uplata');
+            if ($faktura == NULL) {
+                $faktura = 0;
+            }
+            if ($uplata == NULL) {
+                $uplata = 0;
+            }
+            $id_paketa = $this->input->post('id_paketa');
+            $id_partnera = $this->input->post('id_partnera');
+            $novcaniUgovor = array(
+                'naziv' => $this->input->post('naziv'),
+                'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
+                'datum_isticanja' => date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja')))), //todo promeni u bazi iz datetime u date, i promeni ovde isto
+                'id_paketa' => $id_paketa,
+                'id_partnera' => $id_partnera,
+                'vrednost' => $this->input->post('vrednost'),
+                'valuta' => $this->input->post('valuta'),
+                'faktura' => $faktura,
+                'uplata' => $uplata,
+                'datum_uplate' => $this->input->post('datum_uplate'),
+                'opis' => $this->input->post('idstatus_ugovora'),
+                'tip' => 'novcani'
+            );
+            if ($id_paketa == '1' || $id_paketa == '2') {
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
+            } elseif ($id_paketa == '3' || $id_paketa == '4') {
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
+            } elseif ($id_paketa == '5') {
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+6 months", strtotime($this->input->post('datum_potpisivanja'))));
+            } elseif ($id_paketa == '6') {
+                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja'))));
+            }
+            $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
+            $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
+            //   }
+            redirect("$this->kontroler/novcaniUgovori");
         }
-        $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
-        $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
-        //   }
-        redirect("ITmenadzer/novcaniUgovori");
-
-         }   
     }
 
     public function dodajUgovor() {
+        $data['kontroler'] = $this->kontroler;
         $partneriUgovori = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriUgovori'] = $partneriUgovori;
         $paketiUgovori = $this->ModelKorisnik->paketIdNaziv();
@@ -149,21 +130,19 @@ class ITmenadzer extends Korisnik {
     }
 
     public function index() {
+        $data['kontroler'] = $this->kontroler;
         $partnerIsticeUgovor = $this->ModelKorisnik->iscitajPartnera();
         $iscitajPredavanje = $this->ModelKorisnik->iscitajPredavanje();
         $iscitajOglase = $this->ModelKorisnik->iscitajOglase();
-        //$iscitajOglas=$this->ModelKorisnik->iscitajOglas();
         $data['iscitajOglase'] = $iscitajOglase;
         $data['iscitajPredavanje'] = $iscitajPredavanje;
         $data['partnerIsticeUgovor'] = $partnerIsticeUgovor;
-        //$data['iscitajOglas']=$iscitajOglas;
-        $data['kontroler'] = 'ITmenadzer';
-        $this->loadView('ITindex.php',$data);        
+        $this->loadView('ITindex.php', $data);
     }
 
     public function part() {
         //prekopirana funkcija index iz Korisnik...
-        $data['kontroler'] = 'ITmenadzer';
+        $data['kontroler'] = $this->kontroler;
         $data['metoda'] = 'part';
         $limit = 2;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -220,8 +199,7 @@ class ITmenadzer extends Korisnik {
     }
 
     public function donatorskiUgovori() {
-        $data['kontroler'] = 'ITmenadzer';
-        $data['model'] = 'ModelKorisnik';
+        $data['kontroler'] = $this->kontroler;
         $donatorskiUgovori = $this->ModelKorisnik->ispisDonatorskihUgovora();
         $data['donatorskiUgovori'] = $donatorskiUgovori;
         $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
@@ -230,25 +208,19 @@ class ITmenadzer extends Korisnik {
     }
 
     public function oglasi() {
-        $data['kontroler'] = 'ITmenadzer';
+        $data['kontroler'] = $this->kontroler;
         $data['oglasi'] = $this->ModelGost->pretragaOglasa();
         $this->loadView("oglasi.php", $data);
     }
 
-    // public function oglasDetaljnije($idOglas) {
-    //     //$data['kontroler']='ITmenadzer';
-    //     $oglas = $this->ModelKorisnik->iscitajOglas($idOglas);
-    //     $data['oglas'] = $oglas;
-    //     $this->loadView("oglasDetaljnije.php", $data);
-    // }
-
-    public function predavanjeDetaljnije($idpredavanje) {
-        $predavanje = $this->ModelKorisnik->iscitajPredavanja($idpredavanje);
-        $data['predavanje'] = $predavanje;
-        $this->loadView("predavanjeDetaljnije.php", $data);
-    }
+//    public function predavanjeDetaljnije($idpredavanje) {
+//        $predavanje = $this->ModelKorisnik->iscitajPredavanja($idpredavanje);
+//        $data['predavanje'] = $predavanje;
+//        $this->loadView("predavanjeDetaljnije.php", $data);
+//    }
 
     public function dodajUgovorDonacije() {
+        $data['kontroler'] = $this->kontroler;
         $partneriUgovori = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriUgovori'] = $partneriUgovori;
         $paketiUgovori = $this->ModelKorisnik->paketIdNaziv();
@@ -260,44 +232,43 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjeDonatorskogUgovora() {
 //        $this->form_validation->set_rules("naziv", "naziv", "required");
-          $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
+        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
 //        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
 //        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-          $this->form_validation->set_rules("procenjena_vrednost", "procenjena_vrednost", "required");
+        $this->form_validation->set_rules("procenjena_vrednost", "procenjena_vrednost", "required");
 //        $this->form_validation->set_rules("valuta", "valuta", "required");
-          $this->form_validation->set_rules("opis_donacije", "opis_donacije", "required");
-          $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
+        $this->form_validation->set_rules("opis_donacije", "opis_donacije", "required");
+        $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
 //        $this->form_validation->set_rules("opis", "opis", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajUgovorDonacije();
         } else {
-        $id_paketa = $this->input->post('id_paketa');
-        $id_partnera = $this->input->post('id_partnera');
-        $donatorskiUgovor = array(
-            'naziv' => $this->input->post('naziv'),
-            'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
-            'datum_isticanja' => date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja')))), //todo promeni u bazi iz datetime u date, i promeni ovde isto
-            'id_paketa' => $id_paketa,
-            'id_partnera' => $id_partnera,
-            'procenjena_vrednost' => $this->input->post('procenjena_vrednost'),
-            'valuta' => $this->input->post('valuta'),
-            'opis_donacije' => $this->input->post('opis_donacije'),
-            'datum_isporuke' => $this->input->post('datum_isporuke'),
-            'opis' => $this->input->post('idstatus_ugovora'),
-            'tip' => 'donatorski'
-        );
-        if ($id_paketa == '1' || $id_paketa == '2'|| $id_paketa == '3') {
-            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } elseif ($id_paketa == '4' || $id_paketa == '5'|| $id_paketa == '6') {
-            $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
-        } 
-        $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
-        $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
-        redirect("ITmenadzer/donatorskiUgovori");
-           }
+            $id_paketa = $this->input->post('id_paketa');
+            $id_partnera = $this->input->post('id_partnera');
+            $donatorskiUgovor = array(
+                'naziv' => $this->input->post('naziv'),
+                'datum_potpisivanja' => $this->input->post('datum_potpisivanja'),
+                'datum_isticanja' => date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja')))), //todo promeni u bazi iz datetime u date, i promeni ovde isto
+                'id_paketa' => $id_paketa,
+                'id_partnera' => $id_partnera,
+                'procenjena_vrednost' => $this->input->post('procenjena_vrednost'),
+                'valuta' => $this->input->post('valuta'),
+                'opis_donacije' => $this->input->post('opis_donacije'),
+                'datum_isporuke' => $this->input->post('datum_isporuke'),
+                'opis' => $this->input->post('idstatus_ugovora'),
+                'tip' => 'donatorski'
+            );
+            if ($id_paketa == '1' || $id_paketa == '2' || $id_paketa == '3') {
+                $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
+            } elseif ($id_paketa == '4' || $id_paketa == '5' || $id_paketa == '6') {
+                $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
+            }
+            $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
+            $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
+            redirect("$this->kontroler/donatorskiUgovori");
+        }
     }
-
 
     public function promeniPodatkeUgovora() {
         $idUgovor = $this->input->get('idUgovor');
@@ -315,42 +286,34 @@ class ITmenadzer extends Korisnik {
         $this->ModelKorisnik->promeniNUgovor($faktura, $uplata, $datumUplate, $komentar, $idUgovor);
         $this->ModelKorisnik->promeniStatusUgovora($statusUgovora, $idUgovor);
 
-        redirect("ITmenadzer/novcaniUgovori");
+        redirect("$this->kontroler/novcaniUgovori");
     }
-    
 
-    public function mejl($data=[]) {
+    public function mejl($data = []) {
 
 
         $this->loadView("mejl.php", $data);
-        
-
-    //     $config = Array(
-    //     'protocol' => 'smtp',
-    //     'smtp_host' => 'smtp.mail.yahoo.com',
-    //     'smtp_user' => 'majtic@yahoo.com',
-    //     'smtp_pass' => 'sifra123',
-    //     'smtp_port' => 465,
-    //     'mailtype' => 'html',
-    //     'charset' => 'iso-8859-1',
-    //     'wordwrap' => TRUE
-    //     );
 
 
-    // //    $this->email->initialize($config);
-
-
-    //     $this->load->library('email', $config);
-    //     $this->email->from('majtic@yahoo.com', 'Milan');
-    //     $this->email->to('milanajtic@gmail.com');
-    //     $this->email->subject('asdddddddddmmmmmmmmmmmmmmdddddddddasd');
-    //     $this->email->message('Radi!!!');
-    //     $this->email->set_newline('\r\n');
-
-    //     $this->email->send();
-    //     $this->email->print_debugger();
-
-
+        //     $config = Array(
+        //     'protocol' => 'smtp',
+        //     'smtp_host' => 'smtp.mail.yahoo.com',
+        //     'smtp_user' => 'majtic@yahoo.com',
+        //     'smtp_pass' => 'sifra123',
+        //     'smtp_port' => 465,
+        //     'mailtype' => 'html',
+        //     'charset' => 'iso-8859-1',
+        //     'wordwrap' => TRUE
+        //     );
+        // //    $this->email->initialize($config);
+        //     $this->load->library('email', $config);
+        //     $this->email->from('majtic@yahoo.com', 'Milan');
+        //     $this->email->to('milanajtic@gmail.com');
+        //     $this->email->subject('asdddddddddmmmmmmmmmmmmmmdddddddddasd');
+        //     $this->email->message('Radi!!!');
+        //     $this->email->set_newline('\r\n');
+        //     $this->email->send();
+        //     $this->email->print_debugger();
     }
 
     public function saljiMejl() {
@@ -384,23 +347,23 @@ class ITmenadzer extends Korisnik {
         //$body = $this->email->full_html($subject, $message);
 
         $result = $this->email
-            ->from('itmenadzer@etf.rs')
-            ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
-            ->to($to)
-            ->cc($cc)
-            ->bcc($bcc)
-            ->subject($subject)
-            ->message($body)
-            ->send();
-        if($result){
-            $data['result']="Mejl je uspesno poslat.";            
-        } else{
-            $data['result']="Mejl nije poslat.";            
+                ->from('itmenadzer@etf.rs')
+                ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
+                ->to($to)
+                ->cc($cc)
+                ->bcc($bcc)
+                ->subject($subject)
+                ->message($body)
+                ->send();
+        if ($result) {
+            $data['result'] = "Mejl je uspesno poslat.";
+        } else {
+            $data['result'] = "Mejl nije poslat.";
         }
         $this->load->view('status.php', $data);
     }
 
-    public function promeniPodatkeDonatorskihUgovora(){
+    public function promeniPodatkeDonatorskihUgovora() {
         $idUgovor = $this->input->get('idUgovor');
         $opisDonacije = $this->input->get('opis_donacije');
         $isporuka = $this->input->get('isporuka');
@@ -413,35 +376,35 @@ class ITmenadzer extends Korisnik {
         $this->ModelKorisnik->promeniDUgovor($opisDonacije, $isporuka, $datumIsporuke, $komentar, $idUgovor);
         $this->ModelKorisnik->promeniStatusUgovora($statusUgovora, $idUgovor);
 
-        redirect("ITmenadzer/donatorskiUgovori");
-
+        redirect("$this->kontroler/donatorskiUgovori");
     }
 
-    public function izbrisiPartnerClan($idKorisnik, $idPartner){
+    public function izbrisiPartnerClan($idKorisnik, $idPartner) {
         $this->ModelKorisnik->izbrisiPartnerClan($idKorisnik, $idPartner);
         redirect("$this->kontroler/clanovi");
     }
-    
-    public function dodavanjePartneraClanu(){
-       $partnerClan=array(
-           'partner_idPartner' => $this->input->post('id_partnera'),
-           'korisnik_idKorisnik'=>$this->input->post('idKorisnika')
-       );
-       $this->ModelKorisnik->dodavanjePartneraClanu($partnerClan);
-       redirect("$this->kontroler/clanovi");
+
+    public function dodavanjePartneraClanu() {
+        $partnerClan = array(
+            'partner_idPartner' => $this->input->post('id_partnera'),
+            'korisnik_idKorisnik' => $this->input->post('idKorisnika')
+        );
+        $this->ModelKorisnik->dodavanjePartneraClanu($partnerClan);
+        redirect("$this->kontroler/clanovi");
     }
-    
-    public function posaljiOglasMejlom($idoglas){
-        $oglas=$this->ModelKorisnik->iscitajOglas($idoglas);        
-        $data['subject']=$oglas['naziv'];
-        $data['message']=$oglas['opis'];
+
+    public function posaljiOglasMejlom($idoglas) {
+        $oglas = $this->ModelKorisnik->iscitajOglas($idoglas);
+        $data['subject'] = $oglas['naziv'];
+        $data['message'] = $oglas['opis'];
         $this->mejl($data);
     }
 
-    public function posaljiPredavanjeMejlom($idpredavanje){
-        $predavanje=$this->ModelKorisnik->iscitajPredavanja($idpredavanje);        
-        $data['subject']=$predavanje['naslov_srpski'];
-        $data['message']=$predavanje['opis_srpski'];
+    public function posaljiPredavanjeMejlom($idpredavanje) {
+        $predavanje = $this->ModelKorisnik->iscitajPredavanja($idpredavanje);
+        $data['subject'] = $predavanje['naslov_srpski'];
+        $data['message'] = $predavanje['opis_srpski'];
         $this->mejl($data);
     }
+
 }

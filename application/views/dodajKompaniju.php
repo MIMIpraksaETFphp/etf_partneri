@@ -1,4 +1,4 @@
-<?php //var_dump($tip); ?>
+<?php //var_dump($kontroler);?>
 <span style="background-color:red;">
     <div class="container">
         <div class="row">
@@ -8,16 +8,16 @@
                         <h3 class="panel-title"><?php if($tip == 'dodaj'){
                             echo "Dodaj partnera";
                         } elseif ($tip == 'promeni') {
-                        echo "Promeni podatke partneara";
+                        echo "Promeni podatke partnera";
                     }?></h3>
                     </div>
                     <div class="panel-body">
 
                         <?php
                         if ($tip == 'dodaj') {
-                            echo form_open_multipart('Korisnik/dodajPartnera', "method=post");
+                            echo form_open_multipart($kontroler.'/dodajPartnera', "method=post");
                         } elseif ($tip == 'promeni') {
-                            echo form_open_multipart('Korisnik/promeniPartnera', "method=post");
+                            echo form_open_multipart($kontroler.'/promeniPartnera', "method=post");
                         }
                         if($tip == 'promeni'){?>
                         <input type="hidden" name="idPartner" value="<?php echo $partner[0]['idPartner'];?>">
@@ -251,5 +251,4 @@
             </div>
         </div>
     </div>
-<?php // if(isset($poruka)) echo $poruka;?>
 </span>

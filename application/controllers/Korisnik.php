@@ -9,15 +9,6 @@ class Korisnik extends CI_Controller {
         $this->load->model("ModelKorisnik");
         $this->load->model("ModelGost"); 
         
-//        if (($this->session->userdata('korisnik')) == NULL) 
-//            redirect("Gost");
-////        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 2) 
-////            redirect("korisnik");
-//        elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 3) 
-//            redirect("ITmenadzer");
-//        elseif($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
-//                redirect("Admin");
-        
     }
 
     public function loadView($page, $data = []) {
@@ -28,11 +19,12 @@ class Korisnik extends CI_Controller {
 
     public function dodajKompaniju($data = []) {
         $data['tip'] = 'dodaj';
+        $data['kontroler'] = $this->kontroler;
         $this->loadView("dodajKompaniju.php", $data);
     }
 
     public function dodavanjeOglasa() {
-        $kontroler=$this->kontroler;
+        //$kontroler=$this->kontroler;
         $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");    // smeju da budu samo slova, brojevi, "_", "-" i razmaci 
         $this->form_validation->set_rules("oglastext", "oglastext", "required");
         if ($this->form_validation->run() == FALSE) {
@@ -41,9 +33,9 @@ class Korisnik extends CI_Controller {
             $praksa = $this->input->post('praksa');
             $zaposlenje = $this->input->post('zaposlenje');
             if ($praksa == NULL)
-                $praksa = 0;
+            {$praksa = 0;}
             if ($zaposlenje == NULL)
-                $zaposlenje = 0;
+            {$zaposlenje = 0;}
             $oglas = array('oglasnaslov' => $this->input->post('oglasnaslov'),
                 'oglastext' => $this->input->post('oglastext'),
                 'praksa' => $praksa,
@@ -51,7 +43,6 @@ class Korisnik extends CI_Controller {
                 'datum_unosenja' => $this->input->post('datum_unosenja'),
                 'id_partnera' => $this->input->post('id_partnera')
             );
-            //var_dump($oglas['datum_unosenja']);
             $config['upload_path'] = './assets/fajlovi/';
             $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
             $config['max_size'] = '0';  // ovo znaci da je max file size neogranicen, ali nece da radi, jer php ima svoje ogranicenje od 2MB koje mora da se promeni negde u php.ini fajlu
@@ -101,25 +92,8 @@ class Korisnik extends CI_Controller {
 
     }
 
-//    private function paginacija($limit) {
-//        $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera(); // ovaj broj ne valja
-//
-//        $this->config->load('bootstrap_pagination');
-//        $config_pagination = $this->config->item('pagination');
-//        $config_pagination['base_url'] = site_url("Korisnik/index");    //?paket='nesto'&vazeciUgovor=
-//        $config_pagination['total_rows'] = $ukupanBrPartnera;
-//        $config_pagination['per_page'] = $limit;
-//        $config_pagination['next_link'] = 'Next';
-//        $config_pagination['prev_link'] = 'Prev';
-//        $this->pagination->initialize($config_pagination);
-//        // $data['links'] = $this->pagination->create_links();
-//        $this->pagination->initialize($config_pagination);
-//        //$data['links'] = 
-//        return $this->pagination->create_links();
-//    }
-
     public function index() {
-        $data['kontroler'] = 'Korisnik';
+        $data['kontroler'] = $this->kontroler;
         $data['metoda'] = 'index';
         $limit = 2;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
@@ -183,6 +157,7 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodajPredavanje() {
+        $data['kontroler'] = $this->kontroler;
         $partneriPredavanja = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriPredavanja'] = $partneriPredavanja;
         $this->loadView("dodajPredavanje.php", $data);
@@ -203,14 +178,14 @@ class Korisnik extends CI_Controller {
     }
 
     public function oglasi() {
-        $data['kontroler']='Korisnik';
+        $data['kontroler']= $this->kontroler;
         $data['oglasi'] = $this->ModelGost->pretragaOglasa();
         $this->loadView("oglasi.php", $data);
     }
 
     public function predavanja() {
         $predavanja = $this->ModelGost->ispisPredavanja();
-        $data['kontroler'] = 'korisnik';
+        $data['kontroler'] = $this->kontroler;
         $data['predavanja'] = $predavanja;
         $this->loadView("predavanja.php", $data);
     }
@@ -225,17 +200,13 @@ class Korisnik extends CI_Controller {
         $kompanija = $this->input->post("kompanija");
 
         $partneri = $this->ModelGost->pretraga($kompanija);
-//            $data['partneri'] = $partneri;
-
         $paketi = $this->ModelGost->spisakPaketa();
         $data['paketi'] = $paketi;
-
         foreach ($paketi as $paket) {
             $naziv_paketa = $paket['naziv_paketa'];
             $data['partneri'][$naziv_paketa] = $this->filtrirajPartnere($paket, $partneri);
         }
-        $data['kontroler'] = 'korisnik';
-        $data['metoda'] = 'partneri';
+        $data['kontroler'] = $this->kontroler;
         $this->loadView("partneri.php", $data);
     }
 
@@ -364,7 +335,7 @@ class Korisnik extends CI_Controller {
             $this->upload->do_upload('fajl');
 
             $this->ModelKorisnik->dodatoPredavanje($predavanje);
-            redirect("Korisnik/index");
+            redirect("$this->kontroler/predavanja");
         }
     }
 
@@ -379,6 +350,7 @@ class Korisnik extends CI_Controller {
         $data['mejlovi'] = $mejlovi;
         $data['partner'] = $partner;
         $data['ugovori'] = $ugovori;
+        $data['kontroler'] = $this->kontroler;
         if ($value == NULL) {
             $this->loadView("dosije.php", $data);
         } else {
@@ -440,8 +412,9 @@ class Korisnik extends CI_Controller {
         }
         
         $kompanija = $partner['naziv'];
-        redirect("Korisnik/dosije/" . $kompanija);
+        redirect("$this->kontroler/dosije/" . $kompanija);
     }
+    
     public function oglasDetaljnije($idOglas){
         $oglas=$this->ModelKorisnik->iscitajOglas($idOglas);
         $fajl=$this->ModelKorisnik->iscitajOglasFajl($idOglas);
@@ -449,6 +422,7 @@ class Korisnik extends CI_Controller {
         $data['fajl'] = $fajl;
         $this->loadView("oglasDetaljnije.php", $data);
     }
+    
     public function predavanjeDetaljnije($idpredavanje){
         $predavanje=$this->ModelGost->iscitajPredavanje($idpredavanje);
         $data['predavanje'] = $predavanje;

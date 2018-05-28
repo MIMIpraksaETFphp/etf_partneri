@@ -1,4 +1,4 @@
-<?php echo form_open("$this->kontroler/dodavanjeStatusaClanu", "method=post"); ?>
+<?php echo form_open("$kontroler/dodavanjeStatusaClanu", "method=post"); ?>
 <div class="row">
     <div class="col-md-3 col-md-offset-4">
         <div class="form-control">

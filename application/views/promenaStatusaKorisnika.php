@@ -34,13 +34,37 @@
 <?php echo form_close(); ?>
 
 <?php
-echo "<br/><br/>Trenutni status korisnika:";
-
-foreach ($trenutniStat as $el) {
-
-    echo "<br/><br/>".$el['username'] ."- ";
-    echo $el['ime'] ." ";
-    echo $el['prezime'] ." ";
-    echo "Trenutni status korisnika: " . $el['status_korisnika_idtable1'] . "<br/>";
-}
-?>
+echo "<br/><br/>Trenutni status korisnika:";?>
+<br/>
+<table class="table table-striped ">
+    <?php
+   // foreach ($trenutniStat as $el) {
+        ?>
+        <tbody>
+            <?php
+//            echo "<br/><br/>" . $el['username'] . "- ";  
+//            echo $el['ime'] . " ";
+//            echo $el['prezime'] . " ";
+//            echo "Trenutni status korisnika: " . $el['status_korisnika_idtable1'] . "<br/>";
+            ?>
+            <tr>
+                <th>Username</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Trenutni status korisnika</th>
+            </tr>
+            
+            <tr>
+                <?php
+                foreach ($trenutniStat as $el) {
+                    ?>
+                <td><?php echo $el['username']; ?></td>
+                <td><?php echo $el['ime']; ?></td>
+                <td><?php echo $el['prezime']; ?></td>
+                <td><?php echo $el['status_korisnika_idtable1']; ?></td>
+            </tr>
+        </tbody>
+        <?php
+    }
+    ?>
+</table>

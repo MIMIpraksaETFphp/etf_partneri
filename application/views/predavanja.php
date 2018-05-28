@@ -55,6 +55,9 @@
                 <td>Biografija predavaca</td>
                 <td><?php echo $predavanje['cv_srpski']; ?></td>
             </tr>
+            <tr>
+                <td></td>
+            </tr>
             <br/>
         </tbody>
 

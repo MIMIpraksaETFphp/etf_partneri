@@ -1,5 +1,5 @@
-<?php //var_dump($kontroler);?>
-<table class="table">
+<?php //var_dump($partner);?>
+<table class="table table-striped" >
     <?php foreach ($partner as $kompanija) { ?>
         <tr><th style="color: blue;"><h1><?php echo $nazivKompanije=$kompanija['naziv']; ?></h1></th></tr>
         <?php

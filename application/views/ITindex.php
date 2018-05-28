@@ -1,3 +1,9 @@
+<p>
+  A basic timeline. You can move and zoom the timeline, and select items.
+</p>
+
+<div id="visualization"></div>
+
 <?php
     $datum = date("Y-m-d H:i:s", strtotime("+6 months"));
     $datum2 = date("Y-m-d H:i:s", strtotime("-6 months"));
@@ -13,9 +19,8 @@
     }
 ?>
 
-    <body>
-        <hr>
-    </body>
+    <hr>
+    
 
 <?php
     echo "Kompanije kojima je u prethodnih 6 meseci istekao ugovor: <br/><br/>";
@@ -26,9 +31,8 @@
         }
     }
 ?>
-    <body>
-        <hr>
-    </body>
+    <hr>
+    
             <a href="<?php echo site_url($kontroler.'/predavanja/');?>">Sva predavanja</a>
 <?php
     echo "Predavanja: <br/><br/>";
@@ -40,9 +44,8 @@
         }
     }
 ?>
-    <body>
-        <hr>
-    </body>
+    <hr>
+    
 <?php
     echo "Oglasi: <br/><br/>";
     foreach ($iscitajOglase as $value) {

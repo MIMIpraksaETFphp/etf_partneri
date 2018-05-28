@@ -36,28 +36,28 @@
 <?php
 echo "<br/><br/>Trenutni status korisnika:";?>
 <br/>
-<table class="table table-striped ">
+<table class="table" >
     <?php
-   // foreach ($trenutniStat as $el) {
-        ?>
-        <tbody>
-            <?php
-//            echo "<br/><br/>" . $el['username'] . "- ";  
+    // foreach ($trenutniStat as $el) {
+    ?>
+    <tbody>
+        <?php
+//            echo "<br/><br/>" . $el['username'] . "- ";                                        // table-striped za poboljsavanje tabele al moze i ovako klot
 //            echo $el['ime'] . " ";
 //            echo $el['prezime'] . " ";
 //            echo "Trenutni status korisnika: " . $el['status_korisnika_idtable1'] . "<br/>";
-            ?>
-            <tr>
-                <th>Username</th>
-                <th>Ime</th>
-                <th>Prezime</th>
-                <th>Trenutni status korisnika</th>
-            </tr>
-            
-            <tr>
-                <?php
-                foreach ($trenutniStat as $el) {
-                    ?>
+        ?>
+        <tr>
+            <th>Username</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Trenutni status korisnika</th>
+        </tr>
+
+        <tr>
+            <?php
+            foreach ($trenutniStat as $el) {
+                ?>
                 <td><?php echo $el['username']; ?></td>
                 <td><?php echo $el['ime']; ?></td>
                 <td><?php echo $el['prezime']; ?></td>

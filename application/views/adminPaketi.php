@@ -1,6 +1,6 @@
 <?php
 if(isset($poruka)){
-    echo $poruka."<br /><br />";
+    echo "<span style='color:red;'>".$poruka."</span><br /><br />";
 }
 if(isset($paketi)) {
         foreach ($paketi as $paket) {

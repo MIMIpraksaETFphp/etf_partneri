@@ -9,7 +9,7 @@
                     </div>
                     <div class="panel-body">
 
-                        <form role="form" method="post" action="<?php echo site_url("$this->kontroler/registruj_se"); ?>">
+                        <form role="form" method="post" action="<?php echo site_url("$kontroler/registruj_se"); ?>">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Korisnicko ime" name="username" type="text" autofocus>

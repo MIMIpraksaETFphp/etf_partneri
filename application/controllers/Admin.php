@@ -17,16 +17,13 @@ class Admin extends ITmenadzer {
     }
 
     public function index() {
-        
         $data['kontroler'] = $this->kontroler;
         $this->loadView("registracija.php", $data);
-    
-        //$this->loadView("admin.php");
     }
 
     public function korisnici() {
-        $data['kontroler'] = 'Admin';
-        $data['metoda'] = 'Korisnici';
+        $data['kontroler'] = $this->kontroler;
+        $data['metoda'] = 'korisnici';
         $limit = 2;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
@@ -69,7 +66,7 @@ class Admin extends ITmenadzer {
 
         $this->config->load('bootstrap_pagination');
         $config_pagination = $this->config->item('pagination');
-        $config_pagination['base_url'] = site_url("Admin/Korisnici");
+        $config_pagination['base_url'] = site_url("Admin/korisnici");
         $config_pagination['total_rows'] = $ukupanBrPartnera;
         $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';
@@ -111,7 +108,7 @@ class Admin extends ITmenadzer {
                 $this->ModelKorisnik->dodajStavkePaketu($insertId, $idStavke);
             }
         }
-          redirect("Admin/dodajPaket");
+          redirect("$this->kontroler/adminPaketi");
     }
 
     public function dodavanjeStavke() {
@@ -125,21 +122,20 @@ class Admin extends ITmenadzer {
         }
     }
 
-    public function predavanja() {
-        $predavanja = $this->ModelGost->ispisPredavanja();
-        $data['kontroler'] = 'admin';
-        $data['predavanja'] = $predavanja;
-        $this->loadView("predavanja.php", $data);
-    }
+//    public function predavanja() {
+//        $predavanja = $this->ModelGost->ispisPredavanja();
+//        $data['kontroler'] = 'admin';
+//        $data['predavanja'] = $predavanja;
+//        $this->loadView("predavanja.php", $data);
+//    }
 
-    public function oglasi() {
-        $data['kontroler'] = 'admin';
-        $data['oglasi'] = $this->ModelGost->pretragaOglasa();
-        $this->loadView("oglasi.php", $data);
-    }
+//    public function oglasi() {
+//        $data['kontroler'] = 'admin';
+//        $data['oglasi'] = $this->ModelGost->pretragaOglasa();
+//        $this->loadView("oglasi.php", $data);
+//    }
 
     public function registruj_se() {
-
         $this->form_validation->set_rules("username", "username", "required");
         $this->form_validation->set_rules("password", "password", "required");
         //  $this->form_validation->set_rules("password", "password", "required");     //ponovljeni pass...ne traba jer ga admin dodaje licno
@@ -176,6 +172,7 @@ class Admin extends ITmenadzer {
         $data['status']=$status;
         $data['status2']=$status2;
         $data['trenutniStat']=$trenutniStat;
+        $data['kontroler'] = $this->kontroler;
         $this->loadView("promenaStatusaKorisnika.php", $data);
     }
 

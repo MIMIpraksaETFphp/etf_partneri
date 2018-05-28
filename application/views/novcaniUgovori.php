@@ -12,7 +12,7 @@ foreach ($novcaniUgovori as $nugovor) {
     echo "Tip ugovora: " . $nugovor['tip'] . "<br/>";
     echo "Vrednost: " . $nugovor['vrednost'] . "<br/>";
     echo "Valuta: " . $nugovor['valuta'] . "<br/>";
-    echo form_open("ITmenadzer/promeniPodatkeUgovora", "method=GET");
+    echo form_open("$kontroler/promeniPodatkeUgovora", "method=GET");
     echo form_label("Faktura: &nbsp ");
     ?>
     <input type="hidden" name="idUgovor" value="<?php echo $nugovor['idugovor']; ?>"/>

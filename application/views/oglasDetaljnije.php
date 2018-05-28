@@ -1,5 +1,6 @@
 
-<?php            
+<?php      
+        echo "<br/>";
         echo "<h2>".$oglas['naziv']."</h2><br/><br/>".$oglas['opis'];
         echo "<br/>";
         // var_dump($oglas);

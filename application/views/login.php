@@ -16,7 +16,7 @@
                         <form name="loginform" action="<?php //echo site_url('Gost/ulogujse') ?>" method="post">
                             <div class="form-group">
                                 <label for="Username">Username:</label>
-                                <input type="text" class="form-control" name="username" id="Username"  value="<?php echo set_value('username') ?>">
+                                <input type="text" class="form-control" name="username" id="Username"  value="<?php //echo set_value('username') ?>">
                                 <?php //echo form_error("username","<font color='red'>","</font>"); ?><br>                                     
                             </div>
                             <div class="form-group">

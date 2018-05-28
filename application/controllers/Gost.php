@@ -94,7 +94,8 @@ class Gost extends CI_Controller {
     }
 
     public function registracija() {
-        $this->loadView("registracija.php");
+        $data['kontroler'] = $this->kontroler;
+        $this->loadView("registracija.php", $data);
     }
 
     private function filtrirajPartnere($paket,$partneri){

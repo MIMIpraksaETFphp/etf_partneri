@@ -76,7 +76,8 @@ foreach ($iscitajOglase as $value) {
 }
 ?>
         </table>
-
+</div>
+    </div>
 
         <script type="text/javascript">
 

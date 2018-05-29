@@ -26,7 +26,7 @@
                 <img src="<?php echo base_url('assets/logo/etfetf.jpg'); ?>" alt="etf" class="img-responsive" width="100%" height="200"> 
             </div>
         </div>    
-        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
             <a class="navbar-brand" href="<?php echo site_url("Korisnik/index"); ?>">ETF Partneri</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">

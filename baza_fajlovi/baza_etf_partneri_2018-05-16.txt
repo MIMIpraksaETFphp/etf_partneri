@@ -11,7 +11,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema etf_partneri
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `etf_partneri` DEFAULT CHARACTER SET latin1 ;
+CREATE SCHEMA IF NOT EXISTS `etf_partneri` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci  ;
 USE `etf_partneri` ;
 
 -- -----------------------------------------------------
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`paketi` (
   PRIMARY KEY (`idPaketi`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`partner` (
   PRIMARY KEY (`idPartner`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`status_ugovora` (
   PRIMARY KEY (`idstatus_ugovora`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`ugovor` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 10
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`donatorski_ugovori` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`email_partnera` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 9
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`oglas` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -182,7 +182,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`fajl` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -194,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`status_korisnika` (
   PRIMARY KEY (`idtable1`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 6
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`korisnik` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 5
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -243,7 +243,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`korisnik_ima_partner` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -263,7 +263,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`logo` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 7
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -283,7 +283,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`mejl` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -305,7 +305,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`novcani_ugovori` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`stavke` (
   PRIMARY KEY (`idstavke`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 15
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -340,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`paket_ima_stavke` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -368,7 +368,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`predavanje` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 27
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -385,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`primalac_mejla` (
     ON DELETE NO ACTION
     ON UPDATE CASCADE)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 -- -----------------------------------------------------
@@ -404,7 +404,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`telefon_partnera` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB
 AUTO_INCREMENT = 9
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

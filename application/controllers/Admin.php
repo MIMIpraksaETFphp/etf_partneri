@@ -122,19 +122,6 @@ class Admin extends ITmenadzer {
         }
     }
 
-//    public function predavanja() {
-//        $predavanja = $this->ModelGost->ispisPredavanja();
-//        $data['kontroler'] = 'admin';
-//        $data['predavanja'] = $predavanja;
-//        $this->loadView("predavanja.php", $data);
-//    }
-
-//    public function oglasi() {
-//        $data['kontroler'] = 'admin';
-//        $data['oglasi'] = $this->ModelGost->pretragaOglasa();
-//        $this->loadView("oglasi.php", $data);
-//    }
-
     public function registruj_se() {
         $this->form_validation->set_rules("username", "username", "required");
         $this->form_validation->set_rules("password", "password", "required");
@@ -165,7 +152,6 @@ class Admin extends ITmenadzer {
     }
 
     public function promenaStatusa() {
-
         $status= $this->ModelKorisnik->iscitajKorisnikUsername();
         $status2= $this->ModelKorisnik->iscitajStatusTabelu();
         $trenutniStat=$this->ModelKorisnik->iscitajTrenutniStatus();

@@ -9,13 +9,21 @@ if (isset($paketi)) {
                 <td><?php echo $paket['valuta']; ?></td>
             </tr>
         </table>
+
         <?php
     }
-
+    echo "<br />";
     foreach ($paketi as $paket) {
         ?>
         <a name="<?php echo $paket['naziv_paketa']; ?>"><?php
-            echo $paket['naziv_paketa'] . "<a/><br/>";
+            echo "<h3>" . $paket['naziv_paketa'] . "</h3><a/><br/>";
+            echo "<p>Paket ";
+            if ($paket['trajanje_paketa_godine'] == 1) {
+                echo "na jednogodisnjem nivou";
+            } elseif ($paket['trajanje_paketa_godine'] == 2) {
+                echo "na dvogodisnjem nivou";
+            }
+            echo " obuhvata:</p >";
             $filter = array($paket['naziv_paketa']);
             $filtriraniPaketi = array_filter($paketiStavke, function ($s) use ($filter) {
                 return in_array($s['naziv_paketa'], $filter);

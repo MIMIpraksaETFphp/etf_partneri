@@ -10,25 +10,25 @@
                     <div class="panel-body">
 
                         <?php echo form_open_multipart("$kontroler/dodavanjeNovcanogUgovora", "method=post"); ?>
-<!--                        <form role="form" method="post" action="<?php //echo site_url('Korisnik/dodajPartnera');  ?>">-->
+<!--                        <form role="form" method="post" action="<?php //echo site_url('Korisnik/dodajPartnera');   ?>">-->
                         <fieldset>
                             <div class="form-group">
                                 <select name="id_partnera" class="form-control">
-                                        <?php foreach ($partneriUgovori as $partneriUgovor){ ?>
-                                            <option value="<?php echo $partneriUgovor['idPartner']; ?>"><?php echo $partneriUgovor['naziv'];  ?></option>
-                                        <?php } ?>
+                                    <?php foreach ($partneriUgovori as $partneriUgovor) { ?>
+                                        <option value="<?php echo $partneriUgovor['idPartner']; ?>"><?php echo $partneriUgovor['naziv']; ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <?php echo form_error('naziv'); ?>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Datum potpisivanja" name="datum_potpisivanja" type="date" 
-                                       value="<?php $datumPotpisivanja=mdate("Y-m-d H:i:s") ?>">
+                                       value="<?php $datumPotpisivanja = mdate("Y-m-d H:i:s") ?>">
                             </div>
                             <?php echo form_error('datum_potpisivanja'); ?>                                                        
                             <div class="form-group">                                
                                 <select class="form-control" style="width: 100%" name="id_paketa">
-                                    <?php foreach ($paketiUgovori as $paketiUgovor){ ?>
-                                            <option value="<?php echo $paketiUgovor['idPaketi']; ?>"><?php echo $paketiUgovor['naziv_paketa'];  ?></option>
+                                    <?php foreach ($paketiUgovori as $paketiUgovor) { ?>
+                                        <option value="<?php echo $paketiUgovor['idPaketi']; ?>"><?php echo $paketiUgovor['naziv_paketa']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -57,18 +57,18 @@
                                 </div> 
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="date" value="<?php $datumUplate=mdate("Y-m-d H:i:s") ?>">
+                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="date" value="<?php $datumUplate = mdate("Y-m-d H:i:s") ?>">
                             </div>
                             <?php echo form_error('datum_uplate'); ?>
-                            
+
                             <div class="form-group">                                
                                 <select class="form-control" style="width: 100%" name="idstatus_ugovora">
-                                    <?php foreach ($statusUgovor as $element){ ?>
-                                            <option value="<?php echo $element['idstatus_ugovora']; ?>"><?php echo $element['opis'];  ?></option>
+                                    <?php foreach ($statusUgovor as $element) { ?>
+                                        <option value="<?php echo $element['idstatus_ugovora']; ?>"><?php echo $element['opis']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
-                            
+
                             <!-- <div class="form-group">
                                 Tip ugovora: NOVCANI
                             </div> -->
@@ -95,9 +95,28 @@
             </div>
         </div>
     </div>
-
-
-
-
-
 </span>
+<?php 
+if(isset($message)){?>
+    <span style="color:<?php echo $boja;?>"> <?php echo $message;?></span><br />
+    <?php } ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <table class="table">
+                <tr>
+                    <th>Paket</th>
+                    <th>Broj Partnera u paketu</th>
+                    <th>Max broj Parnera</th>
+                </tr>
+                <?php foreach ($brojPartnera as $broj){?>
+                <tr>
+                    <td><?php echo $broj['naziv_paketa']; ?></td>
+                    <td><?php echo $broj['broj'];?></td>
+                    <td><?php echo $broj['maks_broj_partnera'];?></td>
+                </tr>
+                <?php }?>
+            </table>
+        </div>
+    </div>
+</div>

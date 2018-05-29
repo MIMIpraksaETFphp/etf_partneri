@@ -419,7 +419,7 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function dohvatiPartnere($idPartner=null) {
+    public function dohvatiPartnere($idPartner = null) {
         $this->db->select('naziv, idPartner, ime, prezime, username, email, idKorisnik');
         $this->db->from('korisnik_ima_partner, korisnik, partner');
         $this->db->where('partner_idPartner=idPartner and korisnik_idKorisnik=idKorisnik');
@@ -556,4 +556,25 @@ class ModelKorisnik extends CI_Model {
         $this->db->set('mejl_idmejl', $idMejla);
         $this->db->insert('primalac_mejla');
     }
+    public function brojPartneraPaket() {
+        $query = $this->db->query('SELECT idPaketi, naziv_paketa, COUNT(paketi_idPaketi) as broj, maks_broj_partnera
+                                   FROM paketi 
+                                   LEFT JOIN ugovor ON idPaketi = paketi_idPaketi
+                                   GROUP BY naziv_paketa
+                                   ORDER BY idPaketi asc;');
+        $result = $query->result_array();
+        return $result;
+    }
+
+    public function brojPartneraPoPaketu($idPaketi) {
+        $query = $this->db->query("SELECT idPaketi, naziv_paketa, COUNT(paketi_idPaketi) as broj, maks_broj_partnera
+                                   FROM paketi 
+                                   LEFT JOIN ugovor ON idPaketi = paketi_idPaketi
+                                   WHERE idPaketi=$idPaketi
+                                   GROUP BY naziv_paketa
+                                   ORDER BY idPaketi asc;");
+        $result = $query->result_array();
+        return $result;
+    }
+
 }

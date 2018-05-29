@@ -17,7 +17,7 @@ echo form_input(array(
   'placeholder' => 'Naziv kompanije',
 ));
 echo "<br /><br />";
-echo form_label( form_checkbox( array(
+echo form_label(form_checkbox( array(
     'name'        => 'vazeciUgovor',
     'value'       => '1',
 ) ) . ' Vazeci ugovori' );
@@ -25,7 +25,7 @@ echo "<br /><br />";
 echo form_submit("pronadji", "Pronadji");
 echo "<br /><br />";
 echo form_close();
-var_dump($ukupanBroj);
+//var_dump($ukupanBroj);
 echo "<br />";
 echo "<br />";
     

@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`paketi` (
   `idPaketi` INT(11) NOT NULL AUTO_INCREMENT,
   `naziv_paketa` VARCHAR(45) NOT NULL,
   `vrednost_paketa` INT(11) NOT NULL,
-  `trajanje_paketa_godine` INT(11) NOT NULL,
+  `trajanje_paketa_godine` INT(11),
   `maks_broj_partnera` INT(11) NOT NULL,
   `valuta` VARCHAR(11) NOT NULL,
   PRIMARY KEY (`idPaketi`))

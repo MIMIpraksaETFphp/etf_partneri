@@ -16,17 +16,6 @@ class ITmenadzer extends Korisnik {
         $this->load->view("sabloni/footer.php");
     }
 
-//    public function korisnici() {
-//        $this->loadView("partneriClanovi.php");
-//    }
-
-    public function predavanja() {
-        $predavanja = $this->ModelGost->ispisPredavanja();
-        $data['kontroler'] = $this->kontroler;
-        $data['predavanja'] = $predavanja;
-        $this->loadView("predavanja.php", $data);
-    }
-
     public function filtrirajClanove($clan, $partneri) {
         $filter = array($clan['username']);
         $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
@@ -102,6 +91,8 @@ class ITmenadzer extends Korisnik {
                 'opis' => $this->input->post('idstatus_ugovora'),
                 'tip' => 'novcani'
             );
+            $brojPartneraPoPaketu = $this->ModelKorisnik->brojPartneraPoPaketu($novcaniUgovor['id_paketa']);
+
             if ($id_paketa == '1' || $id_paketa == '2') {
                 $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
             } elseif ($id_paketa == '3' || $id_paketa == '4') {
@@ -111,14 +102,29 @@ class ITmenadzer extends Korisnik {
             } elseif ($id_paketa == '6') {
                 $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja'))));
             }
-            $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
-            $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
-            //   }
-            redirect("$this->kontroler/novcaniUgovori");
+            if ($brojPartneraPoPaketu != NULL) {
+                if ($brojPartneraPoPaketu[0]['broj'] < $brojPartneraPoPaketu[0]['maks_broj_partnera']) {
+                    $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
+                    $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
+                    $message = "Uspesno ste dodali novi Ugovor.";
+                    $boja = "blue";
+                    $this->dodajUgovor($message, $boja);
+                } else {
+                    $message = "Iskoriscen je maksimalni broj Partnera u Paketu!";
+                    $boja = "red";
+                    $this->dodajUgovor($message, $boja);
+                }
+            } else {
+                $this->dodajUgovor();
+            }
         }
     }
 
-    public function dodajUgovor() {
+    public function dodajUgovor($message = NULL, $boja = NULL) {
+        if ($message != NULL && $boja != NULL) {
+            $data['message'] = $message;
+            $data['boja'] = $boja;
+        }
         $data['kontroler'] = $this->kontroler;
         $partneriUgovori = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriUgovori'] = $partneriUgovori;
@@ -126,6 +132,8 @@ class ITmenadzer extends Korisnik {
         $data['paketiUgovori'] = $paketiUgovori;
         $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
         $data['statusUgovor'] = $statusUgovor;
+        $brojPartnera = $this->ModelKorisnik->brojPartneraPaket();
+        $data['brojPartnera'] = $brojPartnera;
         $this->loadView("dodajNovcaniUgovor.php", $data);
     }
 
@@ -207,19 +215,11 @@ class ITmenadzer extends Korisnik {
         $this->loadView("donatorskiUgovori.php", $data);
     }
 
-    public function oglasi() {
-        $data['kontroler'] = $this->kontroler;
-        $data['oglasi'] = $this->ModelGost->pretragaOglasa();
-        $this->loadView("oglasi.php", $data);
-    }
-
-//    public function predavanjeDetaljnije($idpredavanje) {
-//        $predavanje = $this->ModelKorisnik->iscitajPredavanja($idpredavanje);
-//        $data['predavanje'] = $predavanje;
-//        $this->loadView("predavanjeDetaljnije.php", $data);
-//    }
-
-    public function dodajUgovorDonacije() {
+    public function dodajUgovorDonacije($message = NULL, $boja = NULL) {
+        if ($message != NULL && $boja != NULL) {
+            $data['message'] = $message;
+            $data['boja'] = $boja;
+        }
         $data['kontroler'] = $this->kontroler;
         $partneriUgovori = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriUgovori'] = $partneriUgovori;
@@ -227,6 +227,8 @@ class ITmenadzer extends Korisnik {
         $data['paketiUgovori'] = $paketiUgovori;
         $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
         $data['statusUgovor'] = $statusUgovor;
+        $brojPartnera = $this->ModelKorisnik->brojPartneraPaket();
+        $data['brojPartnera'] = $brojPartnera;
         $this->loadView("dodajDonatorskiUgovor.php", $data);
     }
 
@@ -257,6 +259,7 @@ class ITmenadzer extends Korisnik {
                 'opis_donacije' => $this->input->post('opis_donacije'),
                 'datum_isporuke' => $this->input->post('datum_isporuke'),
                 'opis' => $this->input->post('idstatus_ugovora'),
+                'komentar' => $this->input->post('komentar'),
                 'tip' => 'donatorski'
             );
             if ($id_paketa == '1' || $id_paketa == '2' || $id_paketa == '3') {
@@ -264,9 +267,25 @@ class ITmenadzer extends Korisnik {
             } elseif ($id_paketa == '4' || $id_paketa == '5' || $id_paketa == '6') {
                 $donatorskiUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
             }
-            $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
-            $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
-            redirect("$this->kontroler/donatorskiUgovori");
+            $brojPartneraPoPaketu = $this->ModelKorisnik->brojPartneraPoPaketu($donatorskiUgovor['id_paketa']);
+            if ($brojPartneraPoPaketu != NULL) {
+                if ($brojPartneraPoPaketu[0]['broj'] < $brojPartneraPoPaketu[0]['maks_broj_partnera']) {
+                    $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
+                    $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
+                    $message = "Uspesno ste dodali novi Ugovor.";
+                    $boja = "blue";
+                    $this->dodajUgovorDonacije($message, $boja);
+                } else {
+                    $message = "Iskoriscen je maksimalni broj Partnera u Paketu!";
+                    $boja = "red";
+                    $this->dodajUgovorDonacije($message, $boja);
+                }
+            } else {
+                $this->dodajUgovorDonacije();
+            }
+//            $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
+//            $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
+//            redirect("$this->kontroler/donatorskiUgovori");
         }
     }
 

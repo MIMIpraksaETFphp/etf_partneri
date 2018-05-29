@@ -31,6 +31,7 @@
                                 </div>
                                 <?php echo form_error('prezime'); ?>
                                 <div class="form-group">
+                                    <label for="sel1">Datum rodjenja:</label>
                                     <input class="form-control" placeholder="Datum rodjenja" name="datum_rodjenja" type="date" value="">
                                 </div>
                                 <?php echo form_error('datum_rodjenja'); ?>

@@ -31,6 +31,7 @@
                                 </div>
                                 <?php echo form_error('prezime'); ?>
                                 <div class="form-group">
+                                    <label for="sel1">Datum rodjenja:</label>
                                     <input class="form-control" placeholder="Datum rodjenja" name="datum_rodjenja" type="date" value="">
                                 </div>
                                 <?php echo form_error('datum_rodjenja'); ?>
@@ -65,7 +66,7 @@
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Registruj se" name="registruj_se" >
                               <?php  if ($this->session->userdata('korisnik') != null) {
                                     if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
-                                        echo "<a href=" . site_url($kontroler.'/promenaStatusa') .">Promena Statusa Korisnika</a><br /><br />";
+                                        echo "<br/><h5><a href=" . site_url($kontroler.'/promenaStatusa') .">Promena Statusa Korisnika</h5></a><br /><br />";
                                              }
                                 }
                                 ?>

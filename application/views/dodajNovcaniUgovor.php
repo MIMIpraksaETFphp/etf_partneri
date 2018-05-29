@@ -21,6 +21,7 @@
                             </div>
                             <?php echo form_error('naziv'); ?>
                             <div class="form-group">
+                                <label for="sel1">Datum potpisivanja:</label>
                                 <input class="form-control" placeholder="Datum potpisivanja" name="datum_potpisivanja" type="date" 
                                        value="<?php $datumPotpisivanja = mdate("Y-m-d H:i:s") ?>">
                             </div>
@@ -57,7 +58,10 @@
                                 </div> 
                             </div>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="date" value="<?php $datumUplate = mdate("Y-m-d H:i:s") ?>">
+
+                                <label for="sel1">Datum uplate:</label>
+                                <input class="form-control" placeholder="Datum uplate" name="datum_uplate" type="date" value="<?php $datumUplate=mdate("Y-m-d H:i:s") ?>">
+
                             </div>
                             <?php echo form_error('datum_uplate'); ?>
 

@@ -317,50 +317,85 @@ class ITmenadzer extends Korisnik {
     }
 
     public function saljiMejl() {
-        $this->load->library('email');
-        // $from = $this->input->post('from');
-        $to = $this->input->post('to');
-        $cc = $this->input->post('cc');
-        $bcc = $this->input->post('bcc');
-        $subject = $this->input->post('subject');
-        $message = $this->input->post('message');
-        $datum = $this->input->post('datum_slanja');
-
-        // Get full html:
-        $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-        <html xmlns="http://www.w3.org/1999/xhtml">
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=' . strtolower(config_item('charset')) . '" />
-            <title>' . html_escape($subject) . '</title>
-            <style type="text/css">
-                body {
-                    font-family: Arial, Verdana, Helvetica, sans-serif;
-                    font-size: 16px;
-                }
-            </style>
-        </head>
-        <body>
-        ' . $message . '
-        </body>
-        </html>';
-        // Also, for getting full html you may use the following internal method:
-        //$body = $this->email->full_html($subject, $message);
-
-        $result = $this->email
-                ->from('itmenadzer@etf.rs')
-                ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
-                ->to($to)
-                ->cc($cc)
-                ->bcc($bcc)
-                ->subject($subject)
-                ->message($body)
-                ->send();
-        if ($result) {
-            $data['result'] = "Mejl je uspesno poslat.";
+        $this->form_validation->set_rules("to", "TO", "required|callback_testAdrese");
+        $this->form_validation->set_rules("cc", "CC", "callback_testAdrese");
+        $this->form_validation->set_rules("bcc", "BCC", "callback_testAdrese");
+        if ($this->form_validation->run() == FALSE) {
+            $this->mejl();
         } else {
-            $data['result'] = "Mejl nije poslat.";
+            $this->load->library('email');
+            // $from = $this->input->post('from');
+            $to = $this->input->post('to');
+            $cc = $this->input->post('cc');
+            $bcc = $this->input->post('bcc');
+            $subject = $this->input->post('subject');
+            $message = $this->input->post('message');
+            $datum = $this->input->post('datum_slanja');
+
+            // Get full html:
+            $body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+            <html xmlns="http://www.w3.org/1999/xhtml">
+            <head>
+                <meta http-equiv="Content-Type" content="text/html; charset=' . strtolower(config_item('charset')) . '" />
+                <title>' . html_escape($subject) . '</title>
+                <style type="text/css">
+                    body {
+                        font-family: Arial, Verdana, Helvetica, sans-serif;
+                        font-size: 16px;
+                    }
+                </style>
+            </head>
+            <body>
+            ' . $message . '
+            </body>
+            </html>';
+            // Also, for getting full html you may use the following internal method:
+            //$body = $this->email->full_html($subject, $message);
+
+            $result = $this->email
+                    ->from('itmenadzer@etf.rs')
+                    ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
+                    ->to($to)
+                    ->cc($cc)
+                    ->bcc($bcc)
+                    ->subject($subject)
+                    ->message($body)
+                    ->send();
+            if ($result) {
+                $data['result'] = "Mejl je uspesno poslat.";
+                $adrese = $to;
+                if(!empty($cc)){
+                    $adrese = $adrese . "," . $cc;
+                }
+                if(!empty($bcc)){
+                    $adrese = $adrese . "," . $bcc;
+                }
+                // $adrese = preg_replace("/,+/", ",", $adrese);   // pretvara vise zareza u jedan zarez
+                $adrese = preg_replace("/[, ]+/", ",", $adrese);        // pretvara zareze i razmake u jedan zarez
+                $adrese = trim($adrese, ',');
+                $adreseNiz= explode("," , $adrese);
+                $idKorisnik = $this->session->korisnik->idKorisnik;
+                $insertovaniIdMejla = $this->ModelKorisnik->dodajMejl($subject, $message, $datum, $idKorisnik);
+                for($i=0 ; $i<count($adreseNiz) ; $i++){
+                    $this->ModelKorisnik->dodajPrimaocaMejla($adreseNiz[$i], $insertovaniIdMejla);
+                }
+                $data['adreseNiz'] = $adreseNiz;
+            } else {
+                $data['result'] = "Mejl nije poslat.";
+            }
+            $this->load->view('status.php', $data);
         }
-        $this->load->view('status.php', $data);
+    }
+
+    public function testAdrese($adresa)
+    {
+        if(preg_match("/^\s*(([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)(\s*,\s*|\s*$))*$/", $adresa)){
+              return true;
+        }
+        else {
+            $this->form_validation->set_message("testAdrese", '{field} nije u ispravnom obliku, morate uneti mejl adrese razdvojene jednim zarezom');
+            return false;
+        }
     }
 
     public function promeniPodatkeDonatorskihUgovora() {

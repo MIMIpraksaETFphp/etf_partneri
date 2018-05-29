@@ -540,4 +540,20 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
+    public function dodajMejl($subject, $message, $datum, $idKorisnik)
+    {
+        $this->db->set('naslov', $subject);
+        $this->db->set('sadrzaj', $message);
+        $this->db->set('datum_slanja', $datum);
+        $this->db->set('korisnik_idKorisnik', $idKorisnik);
+        $this->db->insert('mejl');
+        $insertovaniIdMejla = $this->db->insert_id();
+        return $insertovaniIdMejla;
+    }
+
+    public function dodajPrimaocaMejla($adresaPrimaoca, $idMejla){
+        $this->db->set('email_primaoca', $adresaPrimaoca);
+        $this->db->set('mejl_idmejl', $idMejla);
+        $this->db->insert('primalac_mejla');
+    }
 }

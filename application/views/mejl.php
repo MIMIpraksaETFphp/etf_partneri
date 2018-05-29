@@ -14,13 +14,15 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="TO:" name="to" type="text" >
                                 </div>
-                                <?php //echo form_error('email_primaoca'); ?>
+                                <?php echo form_error('to'); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="CC:" name="cc" type="text" >
                                 </div>
+                                <?php echo form_error('cc'); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="BCC:" name="bcc" type="text" >
                                 </div>
+                                <?php echo form_error('bcc'); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Subject" name="subject" type="text" value="<?php if(!empty($subject)) echo $subject; ?>" >
                                 </div>

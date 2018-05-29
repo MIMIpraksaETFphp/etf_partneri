@@ -274,6 +274,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`mejl` (
   `datum_slanja` DATETIME NOT NULL,
   `sadrzaj` VARCHAR(10000) NOT NULL,
   `korisnik_idKorisnik` INT(11) NOT NULL,
+  `naslov` VARCHAR(300) NOT NULL,
   PRIMARY KEY (`idmejl`),
   INDEX `fk_mejl_korisnik1_idx` (`korisnik_idKorisnik` ASC),
   CONSTRAINT `fk_mejl_korisnik1`

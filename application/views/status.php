@@ -1,9 +1,8 @@
 <?php
-    // var_dump($result);
+    var_dump($adreseNiz);
+    var_dump($this->session->korisnik);
     echo $result;
-    echo '<br />';
-    echo $this->email->print_debugger();
-
-    // exit;
+    echo '<br />';    
+    exit;
 
 ?>

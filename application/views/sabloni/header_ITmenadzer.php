@@ -102,5 +102,4 @@
             </div>
 
         </nav>
-        IT menadzer
         <div class="container body">

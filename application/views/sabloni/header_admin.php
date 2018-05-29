@@ -96,5 +96,4 @@
             </div>
 
         </nav>
-        Admin
         <div class="container body">

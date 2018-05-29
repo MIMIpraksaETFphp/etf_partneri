@@ -25,7 +25,7 @@
                         
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Naziv" name="naziv" type="text" <?php
+                                <input class="form-control" placeholder="Naziv" name="naziv" type="text" autofocus <?php
                                 if ($tip == 'promeni') {
                                     echo "value='" . $partner[0]['naziv'] . "'";
                                 }

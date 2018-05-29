@@ -59,7 +59,7 @@
                             </div>
                         </div>-->
 
-    <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Paket" name="dodavanjePaketa"/>
+    <input class="btn btn-lg btn-success " type="submit" value="Dodaj Paket" name="dodavanjePaketa"/>
 
     <!--                </fieldset>-->
     <?php echo form_close(); ?>
@@ -68,7 +68,7 @@
     <div class="form-group">
         <label for="novaStavka">Nova Stavka</label><br />
         <input class="form-control" type="text" name="novaStavka" placeholder="Uneti novu Stavku" id="novaStavka"><br />
-        <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Stavku" name="dodavanjeStavke"/>
+        <input class="btn btn-lg btn-success " type="submit" value="Dodaj Stavku" name="dodavanjeStavke"/>
     </div>
     <?php if (isset($message)) { ?>
         <script type='text/javascript'>alert('<?php echo $message; ?>')</script>

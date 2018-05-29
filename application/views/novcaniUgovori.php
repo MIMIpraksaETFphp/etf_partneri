@@ -62,8 +62,13 @@ foreach ($novcaniUgovori as $nugovor) {
     <textarea name="komentar"><?php if ($nugovor['komentar'] != NULL) {
         echo $nugovor['komentar'];
     } ?></textarea><br /><br />
-    <?php
-    echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));
+   <div class="btn btn-lg ">
+       <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" >
+        <?php
+   // echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));   
+    ?>
+       </div>
+       <?php
     echo form_close();
     echo "<br/><br/><br/>";
 }

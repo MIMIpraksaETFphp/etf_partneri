@@ -50,8 +50,12 @@ foreach ($donatorskiUgovori as $dugovor) {
             echo $dugovor['komentar'];
         }
         ?></textarea><br /><br />
+        <div class="btn btn-lg ">
+           <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" >
     <?php
-    echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));
+    //echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));?>
+            </div>
+                <?php
     echo form_close();
     echo "<br /><br />";
 }

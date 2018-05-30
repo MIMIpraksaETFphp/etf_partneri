@@ -1,7 +1,3 @@
-<p>
-    A basic timeline. You can move and zoom the timeline, and select items.
-</p>
-
 <div id="visualization"></div>
 <?php
 // var_dump($partnerIsticeUgovor);

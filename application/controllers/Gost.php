@@ -130,7 +130,8 @@ class Gost extends CI_Controller {
                 'email' => $this->input->post('email'),
             );
             $this->ModelKorisnik->registrovanKorisnik($korisnik);
-            redirect("$this->kontroler/index");
+           // redirect("$this->kontroler/index");
+           $this->loadView("potvrdaRegistracije.php");    //ispisuje mu poruku da je uspesno registrovan...
         }
     }
 

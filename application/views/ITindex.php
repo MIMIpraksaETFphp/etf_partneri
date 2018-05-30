@@ -21,7 +21,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             foreach ($partnerIsticeUgovor as $value) {
                 
                 if ( $value['datum_isticanja'] > $danasnjiDatum && ($value['datum_isticanja'] < $datum3)) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td>LINK mail</td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Posalji mejl</a></td></tr>";
                 }
                 
                 
@@ -38,7 +38,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             <?php
             foreach ($partnerIsticeUgovor as $value) {
                 if (($value['datum_isticanja'] > $datum2) && $value['datum_isticanja'] < $danasnjiDatum) {
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td>LINK ZA MAIL</td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Posalji mejl</a></td></tr>";
                 }
             }
             ?>
@@ -106,7 +106,10 @@ for ($i = 0; $i < count($partnerIsticeUgovor); $i++) {
             ]);
 
             // Configuration for the Timeline
-            var options = {};
+            var options = {
+                //max: '2018-09-27',
+                //min: Date.now()       da li da krene od danasnjeg datuma??
+            };
 
             // Create a Timeline
             var timeline = new vis.Timeline(container, items, options);

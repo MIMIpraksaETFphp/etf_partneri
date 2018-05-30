@@ -87,11 +87,6 @@
                     </li>
 
                 </ul>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?php echo site_url("ITmenadzer/logout"); ?>">Logout</a>
-                        </li>
-                    </ul>
                 </nav>
             </div>
         </header>

@@ -6,6 +6,9 @@
         <title>ETF Partneri</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <script src="https://use.fontawesome.com/1f59a29ea5.js"></script>
+        
+        <script src="<?php echo base_url('assets/js/vis.js'); ?>"></script>
+        <link href="<?php echo base_url(); ?>assets/css/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
         <?php
         if (($this->session->userdata('korisnik')) == NULL)
@@ -23,7 +26,7 @@
     <body>
         <div class="row">
             <div class="col-md-12">  
-                <img src="<?php echo base_url('assets/logo/etfetf.jpg'); ?>" alt="etf" class="img-responsive" width="100%" height="200"> 
+                <img src="<?php echo base_url('assets/logo/etf.jpg'); ?>" alt="etf" class="img-responsive" width="100%" height="200"> 
             </div>
         </div>    
         <nav class="navbar navbar-expand-md navbar-light bg-light">
@@ -33,6 +36,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url("Admin/index"); ?>">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo site_url("Admin/dashboard"); ?>">Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url("Admin/korisnici"); ?>">Partneri clanovi</a>

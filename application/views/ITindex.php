@@ -81,7 +81,7 @@ foreach ($iscitajOglase as $value) {
 
         <script type="text/javascript">
 
-            var item = 'item5<br><a href="http://visjs.org" target="_blank">click here</a>';
+//            var item = 'item5<br><a href="http://visjs.org" target="_blank">click here</a>';
 
             // DOM element where the Timeline will be attached
             var container = document.getElementById('visualization');
@@ -92,7 +92,8 @@ foreach ($iscitajOglase as $value) {
 for ($i = 0; $i < count($partnerIsticeUgovor); $i++) {
     if (($partnerIsticeUgovor[$i]['datum_isticanja'] < $datum) && $partnerIsticeUgovor[$i]['datum_isticanja'] > $danasnjiDatum) {
         ?>
-                        {id: <?php echo $i ?>, content: '<?php echo $partnerIsticeUgovor[$i]["naziv"] . " - " . $partnerIsticeUgovor[$i]["naziv_paketa"] . '<br><a href="http://visjs.org" target="_blank">click here</a>'; ?>', start: '<?php echo $partnerIsticeUgovor[$i]["datum_isticanja"]; ?>'},
+                        {id: <?php echo $i; ?>, content: '<?php echo $partnerIsticeUgovor[$i]["naziv"] . " - " . $partnerIsticeUgovor[$i]["naziv_paketa"];?>
+            <a href="<?php echo site_url("$kontroler/dosije/". $partnerIsticeUgovor[$i]["naziv"]);?>" target="_blank">dosije</a>', start: '<?php echo $partnerIsticeUgovor[$i]["datum_isticanja"]; ?>'},
         <?php
     }
 }

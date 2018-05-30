@@ -1,5 +1,6 @@
 <footer class="page-footer font-small blue pt-4 mt-4">
     <div class="footer-copyright py-3 text-center">
+        Kontakt e-mail: admin@etf.rs<br/>
         © 2018 Copyright: MIMI
     </div>
     

@@ -461,4 +461,10 @@ class ITmenadzer extends Korisnik {
         $this->mejl($data);
     }
 
+    public function posaljiMejlPartneruKomeIsticeUgovor($naziv) {
+        $partner = $this->ModelKorisnik->dohvatiPartnera($naziv);
+        $data['subject'] = "Produzenje saradnje sa ETF-om";
+        $data['to'] = $partner['email_kontakt_osobe'];
+        $this->mejl($data);
+    }
 }

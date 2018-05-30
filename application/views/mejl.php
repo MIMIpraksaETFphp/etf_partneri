@@ -12,7 +12,7 @@
                         <form role="form" method="post" action="<?php echo site_url('ITmenadzer/saljiMejl'); ?>">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="TO:" name="to" type="text" >
+                                    <input class="form-control" placeholder="TO:" name="to" type="text" value="<?php if(!empty($to)) echo $to; ?>">
                                 </div>
                                 <?php echo form_error('to'); ?>
                                 <div class="form-group">

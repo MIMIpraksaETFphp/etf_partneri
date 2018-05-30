@@ -1,7 +1,3 @@
-<p>
-    A basic timeline. You can move and zoom the timeline, and select items.
-</p>
-
 <div id="visualization"></div>
 <?php
 // var_dump($partnerIsticeUgovor);
@@ -16,12 +12,12 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
     <div class="col-md-12">
         <table class="table table-bordered">
 
-            <th colspan="4"><?php echo "Kompanije kojima u narednih 6 meseci istice ugovor: <br/><br/>"; ?></th>
+            <th colspan="4"><?php echo "Kompanije kojima u narednih 6 meseci ističe ugovor: <br/><br/>"; ?></th>
             <?php
             foreach ($partnerIsticeUgovor as $value) {
                 
                 if ( $value['datum_isticanja'] > $danasnjiDatum && ($value['datum_isticanja'] < $datum3)) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td>LINK mail</td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/pošaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
                 }
                 
                 
@@ -38,7 +34,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             <?php
             foreach ($partnerIsticeUgovor as $value) {
                 if (($value['datum_isticanja'] > $datum2) && $value['datum_isticanja'] < $danasnjiDatum) {
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td>LINK ZA MAIL</td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
                 }
             }
             ?>
@@ -55,7 +51,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
 foreach ($iscitajPredavanje as $value) {
     if ($danasnjiDatum < $value['vreme_predavanja']) {
 
-        echo "<tr><td><a href=" . site_url($kontroler . '/predavanjeDetaljnije/' . $value['idpredavanje']) . ">Detaljnije</a></td><td>" . $value['naslov_srpski'] . "</td><td>" . $value['vreme_predavanja'] . "</td><td>" . $value['sala'] . "</td><td>" . "<a href=" . site_url($kontroler . '/posaljiPredavanjeMejlom/' . $value['idpredavanje']) . ">Posalji studentima na mejl</a><br/>" . "</td></tr>";
+        echo "<tr><td><a href=" . site_url($kontroler . '/predavanjeDetaljnije/' . $value['idpredavanje']) . ">Detaljnije</a></td><td>" . $value['naslov_srpski'] . "</td><td>" . $value['vreme_predavanja'] . "</td><td>" . $value['sala'] . "</td><td>" . "<a href=" . site_url($kontroler . '/posaljiPredavanjeMejlom/' . $value['idpredavanje']) . ">Pošalji studentima na mejl</a><br/>" . "</td></tr>";
     }
 }
 ?>
@@ -70,7 +66,7 @@ foreach ($iscitajPredavanje as $value) {
 foreach ($iscitajOglase as $value) {
     //if($danasnjiDatum<$value['datum_unosenja']){      nemamo u bazi nijedno predavanje koje sledi tako da je zato ovo zakomentarisano...kad budemo imali oglase koji nisu istekli treba da se odkomentarise
 
-    echo "<tr><td><a href=" . site_url($kontroler . '/oglasDetaljnije/' . $value['idoglas']) . ">" . $value['naziv'] . "</a>" . "</td><td>" . $value['datum_unosenja'] . "</td><td>" . "<a href=" . site_url($kontroler . '/posaljiOglasMejlom/' . $value['idoglas']) . ">Posalji studentima na mejl</a><br/>" . "</td></tr>";
+    echo "<tr><td><a href=" . site_url($kontroler . '/oglasDetaljnije/' . $value['idoglas']) . ">" . $value['naziv'] . "</a>" . "</td><td>" . $value['datum_unosenja'] . "</td><td>" . "<a href=" . site_url($kontroler . '/posaljiOglasMejlom/' . $value['idoglas']) . ">Pošalji studentima na mejl</a><br/>" . "</td></tr>";
 
     //}
 }
@@ -106,7 +102,10 @@ for ($i = 0; $i < count($partnerIsticeUgovor); $i++) {
             ]);
 
             // Configuration for the Timeline
-            var options = {};
+            var options = {
+                //max: '2018-09-27',
+                //min: Date.now()       da li da krene od danasnjeg datuma??
+            };
 
             // Create a Timeline
             var timeline = new vis.Timeline(container, items, options);

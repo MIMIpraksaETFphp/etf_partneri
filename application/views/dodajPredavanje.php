@@ -32,7 +32,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Vreme predavanja" name="vreme_predavanja" type="text">
+                                    <input class="form-control" placeholder="Vreme predavanja" name="vreme_predavanja" type="date">
                                 </div>
                                 <?php echo form_error('vreme_predavanja'); ?>
                                 <div class="form-group">

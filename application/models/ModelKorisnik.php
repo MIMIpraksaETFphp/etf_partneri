@@ -430,6 +430,14 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+    public function dohvatiPartnera($naziv) {
+        $this->db->select('email_kontakt_osobe, naziv');
+        $this->db->from('partner');
+        $this->db->where('naziv', $naziv);
+        $query = $this->db->get();
+        $result = $query->row_array();
+        return $result;
+    }
 
     public function promeniNUgovor($faktura, $uplata, $datumUplate, $komentar, $idUgovor) {
         $this->db->set('faktura', $faktura);

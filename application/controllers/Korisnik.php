@@ -428,4 +428,16 @@ class Korisnik extends CI_Controller {
         $data['predavanje'] = $predavanje;
         $this->loadView("predavanjeDetaljnije.php", $data);
     }
+
+    public function mojProfil()
+    {
+        $data['kontroler'] = $this->kontroler;
+        $this->loadView("mojProfil.php", $data);
+    }
+
+    public function promeniPassword()
+    {      
+        $data['kontroler'] = $this->kontroler;
+        $this->loadView("promeniPassword.php", $data);
+    }
 }

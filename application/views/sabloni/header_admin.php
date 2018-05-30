@@ -94,6 +94,9 @@
                         <a class="nav-link" href="<?php echo site_url("Admin/mejl"); ?>">Mejl</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="<?php echo site_url("Admin/mojProfil"); ?>">Moj profil</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url("Admin/logout"); ?>">Logout</a>
                     </li>
 

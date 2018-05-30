@@ -60,9 +60,11 @@
                         <a class="nav-link" href="<?php echo site_url("Korisnik/dodajPredavanje"); ?>">Dodaj Predavanja</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/logout"); ?>">Logout</a>
+                        <a class="nav-link" href="<?php echo site_url("Korisnik/mojProfil"); ?>">Moj profil</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo site_url("Korisnik/logout"); ?>">Logout</a>
+                    </li>                    
                 </ul>
 
             </div>

@@ -92,7 +92,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url("ITmenadzer/mejl"); ?>">Mejl</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?php echo site_url("ITmenadzer/mojProfil"); ?>">Moj profil</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?php echo site_url("ITmenadzer/logout"); ?>">Logout</a>
                     </li>

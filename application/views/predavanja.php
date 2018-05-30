@@ -36,12 +36,8 @@
                 <td><?php echo $predavanje['opis_srpski']; ?></td>
             </tr>
             <tr>
-                <td>Ime predavaca</td>
-                <td><?php echo $predavanje['ime_predavaca']; ?></td>
-            </tr>
-            <tr>
-                <td>Prezime predavaca</td>
-                <td><?php echo $predavanje['prezime_predavaca']; ?></td>
+                <td>Predavač</td>
+                <td><?php echo $predavanje['ime_predavaca']." ".$predavanje['prezime_predavaca']; ?></td>
             </tr>
             <tr>
                 <td>Sala</td>
@@ -55,12 +51,7 @@
                 <td>Biografija predavaca</td>
                 <td><?php echo $predavanje['cv_srpski']; ?></td>
             </tr>
-            <tr>
-                <td></td>
-            </tr>
-           
         </tbody>
-
     <?php
     }
 }

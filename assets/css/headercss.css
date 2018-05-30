@@ -1,0 +1,93 @@
+#header{
+    background: #884541 url('../logo/etf.jpg') center/cover;
+    margin: 0;
+    padding-top: 0;
+    display: block;
+}
+
+#header > .container {
+    max-width: 720px;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+}
+
+#logo {
+    display: block;
+    padding: .5rem 0 2.5rem;
+    box-sizing: border-box;
+    padding-top: 50px;
+
+}
+
+img {
+    max-width: 75%;
+    display: block;
+    vertical-align: middle;
+    border-style: none;
+    height: 100px;
+}
+a {
+    text-decoration: none;
+    background-color: transparent;
+    display: block;
+}
+
+#nav-wrap {
+    background: rgba(0,0,0,0.33);
+    box-sizing: border-box;
+    margin: 0;
+}
+
+#nav {
+    display: block;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#logo {
+    box-sizing: border-box;
+    font-weight: bolder;
+}
+
+.nav-strane {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    box-sizing: border-box;
+}
+.nav-strane > li {
+    display: inline-block;
+    padding: 1rem 0;
+    position: relative;
+}
+.nav-strane > li > a {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    line-height: 1;
+    color: #fff;
+    text-transform: uppercase;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.33);
+}
+
+.nav-strane > li.active > a {
+    color: #eeb85a;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+.nav-strane > li > a {
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    line-height: 1;
+    text-transform: uppercase;
+    
+}

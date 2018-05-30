@@ -24,11 +24,13 @@
 }
 
 img {
-    max-width: 75%;
+    max-width: 55%;
     display: block;
     vertical-align: middle;
     border-style: none;
-    height: 100px;
+    height: 80px;
+    font-weight: bolder;
+    line-height: 1.5;
 }
 a {
     text-decoration: none;
@@ -85,7 +87,7 @@ a {
 
 .nav-strane > li > a {
     padding: .5rem 1rem;
-    font-size: 1rem;
+    font-size: 15px;
     letter-spacing: 1px;
     line-height: 1;
     text-transform: uppercase;

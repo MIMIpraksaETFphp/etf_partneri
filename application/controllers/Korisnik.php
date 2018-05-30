@@ -198,7 +198,6 @@ class Korisnik extends CI_Controller {
 
     public function partneri() {
         $kompanija = $this->input->post("kompanija");
-
         $partneri = $this->ModelGost->pretraga($kompanija);
         $paketi = $this->ModelGost->spisakPaketa();
         $data['paketi'] = $paketi;

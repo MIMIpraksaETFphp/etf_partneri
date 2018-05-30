@@ -6,7 +6,7 @@
         <title>ETF Partneri</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <script src="https://use.fontawesome.com/1f59a29ea5.js"></script>
-
+        <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />
         <?php
         if (($this->session->userdata('korisnik')) == NULL)
             redirect("Gost");
@@ -17,57 +17,39 @@
         elseif ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4)
             redirect("Admin");
         ?>  
-
     </head>
-
     <body>
-        <div class="row">
-            <div class="col-md-12">  
-                <img src="<?php echo base_url('assets/logo/etf.jpg'); ?>" alt="etf" class="img-responsive" width="100%" height="250"> 
+        <header id="header">
+            <div class="container">
+                <strong id="logo">
+                    <a title="" href="<?php echo site_url("Korisnik/index"); ?>">
+                        <img src="<?php echo base_url('assets/logo/etf2.png'); ?>" alt="etf" class="img-responsive" width="100%" height="200"> 
+                    </a>
+                </strong>
             </div>
-        </div>    
-        <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <a class="navbar-brand" href="<?php echo site_url("Korisnik/index"); ?>">ETF Partneri</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav">
-                    <li class="nav-item ">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/index"); ?>">Partneri clanovi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/partneri"); ?>">Partneri</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/paketi"); ?>">Paketi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/oglasi"); ?>">Oglasi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/predavanja"); ?>">Predavanja</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/dodajPartnera"); ?>">Dodaj Kompaniju</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/dodajOglas"); ?>">Dodaj Oglasa</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/dodajPredavanje"); ?>">Dodaj Predavanja</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/mojProfil"); ?>">Moj profil</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?php echo site_url("Korisnik/logout"); ?>">Logout</a>
-                    </li>                    
-                </ul>
-
+            <div id="nav-wrap">
+                <nav id="nav">
+                    <ul class="nav-strane">
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/index"); ?>">Pretraga partnera</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/partneri"); ?>">Partneri fakulteta</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/paketi"); ?>">Paketi</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/oglasi"); ?>">Oglasi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/predavanja"); ?>">Predavanja</a> </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dodaj
+                            </a>
+                            <div class="dropdown-menu" name="dodaj" value="">
+                                <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajPartnera"); ?>">Dodaj Kompaniju</a>
+                                <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajOglas"); ?>">Dodaj Oglas</a>
+                                <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajPredavanje"); ?>">Dodaj Predavanje</a>
+                            </div>
+                        </li>             
+                        <li><a href="<?php echo site_url("Admin/Clanovi"); ?>">Članovi</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/mojProfil"); ?>">Moj profil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/logout"); ?>">Logout</a></li>
+                    </ul>
+                </nav>
             </div>
-
-        </nav>
+        </header>
         <div class="container body">

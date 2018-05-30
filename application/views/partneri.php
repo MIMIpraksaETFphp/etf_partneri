@@ -13,7 +13,8 @@ echo form_close();
 ?>
 <br />
 <?php if (isset($paketi)) { ?>
-    <ul>
+
+    <ul class="list-unstyled" style="font-size:24px">
         <?php
         foreach ($paketi as $paket) {
 

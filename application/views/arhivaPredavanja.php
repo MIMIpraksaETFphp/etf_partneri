@@ -1,4 +1,4 @@
-<?php echo "<br/><br/><h3>Arhiva predavanja na Elektrotehnickom fakultetu u Beogradu:</h3><br/><br/><br/>"; ?>
+<?php echo "<br/><br/><h3>Arhiva predavanja na Elektrotehničkom fakultetu u Beogradu:</h3><br/><br/><br/>"; ?>
 <table class="table table-striped ">
     <?php
     foreach ($predavanja as $predavanje) {

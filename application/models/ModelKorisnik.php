@@ -585,4 +585,10 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
+    public function promeniPassword($idKorisnik, $novi_password)
+    {
+        $this->db->set('password', $novi_password);
+        $this->db->where('idKorisnik', $idKorisnik);
+        $this->db->update('korisnik');
+    }
 }

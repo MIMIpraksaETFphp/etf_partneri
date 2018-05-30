@@ -20,6 +20,17 @@ class Admin extends ITmenadzer {
         $data['kontroler'] = $this->kontroler;
         $this->loadView("registracija.php", $data);
     }
+    
+    public function dashboard() {
+        $data['kontroler'] = $this->kontroler;
+        $partnerIsticeUgovor = $this->ModelKorisnik->iscitajPartnera();
+        $iscitajPredavanje = $this->ModelKorisnik->iscitajPredavanje();
+        $iscitajOglase = $this->ModelKorisnik->iscitajOglase();
+        $data['iscitajOglase'] = $iscitajOglase;
+        $data['iscitajPredavanje'] = $iscitajPredavanje;
+        $data['partnerIsticeUgovor'] = $partnerIsticeUgovor;
+        $this->loadView('ITindex.php', $data);
+    }
 
     public function korisnici() {
         $data['kontroler'] = $this->kontroler;

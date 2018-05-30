@@ -11,17 +11,20 @@
                     </div>
                     <div class="panel-body">
 
-                        <form role="form" method="post" action="<?php echo site_url("$kontroler/promeniPodatke"); ?>">
+                        <form role="form" method="post" action="<?php echo site_url("$kontroler/menjajPassword"); ?>">
                             <fieldset>
-                                <?php echo form_error('username'); ?>                                                            
+
+                                <?php
+                                echo $poruka;
+                                echo form_error('username'); ?>                                                            
                                 <div class="form-group">
                                     <input class="form-control" name="username" type="text" value="" placeholder="Unesi username">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="password" type="text" value="" placeholder="Unesi staru lozinku">
+                                    <input class="form-control" name="stari_password" type="text" value="" placeholder="Unesi staru lozinku">
                                 </div>  
                                 <div class="form-group">
-                                    <input class="form-control" name="password" type="text" value="" placeholder="Unesi novu lozinku">
+                                    <input class="form-control" name="novi_password" type="text" value="" placeholder="Unesi novu lozinku">
                                 </div>                                                                                   
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Promeni password" name="promeniPassword" >                              
                             </fieldset>

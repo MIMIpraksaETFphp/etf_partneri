@@ -434,9 +434,31 @@ class Korisnik extends CI_Controller {
         $this->loadView("mojProfil.php", $data);
     }
 
-    public function promeniPassword()
+    public function promeniPassword($poruka = null)
     {      
+        $data['poruka'] = $poruka;
         $data['kontroler'] = $this->kontroler;
         $this->loadView("promeniPassword.php", $data);
+    }
+
+    public function menjajPassword()
+    {        
+        $idKorisnik = $this->session->korisnik->idKorisnik;
+        $username = $this->session->korisnik->username;
+        $stari_password = $this->session->korisnik->password;
+        if (($username == $this->input->post('username')) && ($stari_password == $this->input->post('stari_password')) && ($stari_password != $this->input->post('novi_password')))  {
+            $novi_password = $this->input->post('novi_password');
+            $this->ModelKorisnik->promeniPassword($idKorisnik, $novi_password);
+            $this->logout();
+        } elseif ($username != $this->input->post('username')) {
+            $poruka = "Pogresan username!";
+            $this->promeniPassword($poruka);            
+        } elseif ($stari_password != $this->input->post('stari_password')) {
+            $poruka = "Pogresan stari password!";
+            $this->promeniPassword($poruka);            
+        } elseif ($stari_password == $this->input->post('novi_password')) {
+            $poruka = "Novi password ne sme da bude isti kao stari password!";
+            $this->promeniPassword($poruka);            
+        }
     }
 }

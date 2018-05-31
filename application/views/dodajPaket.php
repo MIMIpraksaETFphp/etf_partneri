@@ -21,6 +21,7 @@
 <!--<div class="row">
     <div class="col-md-4 col-md-offset-4">
         <div class="login-panel panel panel-success">-->
+<br/>
 <div class="panel-heading">
     <h3 class="panel-title">Dodaj Paket</h3>
 </div>

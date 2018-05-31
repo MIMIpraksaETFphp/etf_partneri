@@ -2,13 +2,12 @@
 
 class Korisnik extends CI_Controller {
 
-     public $kontroler='Korisnik';
-    
+    public $kontroler = 'Korisnik';
+
     public function __construct() {
         parent::__construct();
         $this->load->model("ModelKorisnik");
-        $this->load->model("ModelGost"); 
-        
+        $this->load->model("ModelGost");
     }
 
     public function loadView($page, $data = []) {
@@ -25,17 +24,20 @@ class Korisnik extends CI_Controller {
 
     public function dodavanjeOglasa() {
         //$kontroler=$this->kontroler;
-        $this->form_validation->set_rules("oglasnaslov", "oglasnaslov", "required");    // smeju da budu samo slova, brojevi, "_", "-" i razmaci 
-        $this->form_validation->set_rules("oglastext", "oglastext", "required");
+        $this->form_validation->set_rules("oglasnaslov", "Naslov oglasa", "required");    // smeju da budu samo slova, brojevi, "_", "-" i razmaci 
+        $this->form_validation->set_rules("oglastext", "Tekst oglasa", "required");
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajOglas();
         } else {
             $praksa = $this->input->post('praksa');
             $zaposlenje = $this->input->post('zaposlenje');
-            if ($praksa == NULL)
-            {$praksa = 0;}
-            if ($zaposlenje == NULL)
-            {$zaposlenje = 0;}
+            if ($praksa == NULL) {
+                $praksa = 0;
+            }
+            if ($zaposlenje == NULL) {
+                $zaposlenje = 0;
+            }
             $oglas = array('oglasnaslov' => $this->input->post('oglasnaslov'),
                 'oglastext' => $this->input->post('oglastext'),
                 'praksa' => $praksa,
@@ -46,9 +48,9 @@ class Korisnik extends CI_Controller {
             $config['upload_path'] = './assets/fajlovi/';
             $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
             $config['max_size'] = '0';  // ovo znaci da je max file size neogranicen, ali nece da radi, jer php ima svoje ogranicenje od 2MB koje mora da se promeni negde u php.ini fajlu
-            $sredjenNaslovOglasa=preg_replace('/\s+/', '_', $oglas['oglasnaslov']);
-            $config['file_name'] = $oglas['id_partnera'] ."_".$sredjenNaslovOglasa."_".md5($oglas['datum_unosenja']);
-            
+            $sredjenNaslovOglasa = preg_replace('/\s+/', '_', $oglas['oglasnaslov']);
+            $config['file_name'] = $oglas['id_partnera'] . "_" . $sredjenNaslovOglasa . "_" . md5($oglas['datum_unosenja']);
+
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
 
@@ -59,37 +61,34 @@ class Korisnik extends CI_Controller {
             $this->ModelKorisnik->dodajOglasFajl($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
             $this->posaljiMejlObavestenje($oglas);
-
-            // redirect($kontroler."/index");
         }
     }
 
-    public function posaljiMejlObavestenje($oglas){
+    public function posaljiMejlObavestenje($oglas) {
         $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($oglas['id_partnera']);
         $adresePrimalaca = [];
-        foreach($primaociMejla as $primalacMejla){
+        foreach ($primaociMejla as $primalacMejla) {
             array_push($adresePrimalaca, $primalacMejla['email']);
         }
         // $data['adresePrimalaca'] = $adresePrimalaca;
 
         $this->load->library('email');
         $to = implode(",", $adresePrimalaca);
-        $subject = "Dodat je oglas sa naslovom: ".$oglas['oglasnaslov'];
-        $message = "Sadrzina oglasa: ".$oglas['oglastext'];
+        $subject = "Dodat je oglas sa naslovom: " . $oglas['oglasnaslov'];
+        $message = "Sadrzina oglasa: " . $oglas['oglastext'];
         $result = $this->email
-            ->from('no-reply@etf.rs')
-            ->to($to)
-            ->subject($subject)
-            ->message($message)
-            ->send();
-        if($result){
-            $data['poruka']="Mejl je uspesno poslat.";            
-        } else{
-            $data['poruka']="Mejl nije poslat.";            
+                ->from('no-reply@etf.rs')
+                ->to($to)
+                ->subject($subject)
+                ->message($message)
+                ->send();
+        if ($result) {
+            $data['poruka'] = "Mejl je uspesno poslat.";
+        } else {
+            $data['poruka'] = "Mejl nije poslat.";
         }
-        
-        $this->loadView("slanjeObavestenja.php",$data);
 
+        $this->loadView("slanjeObavestenja.php", $data);
     }
 
     public function index() {
@@ -178,7 +177,7 @@ class Korisnik extends CI_Controller {
     }
 
     public function oglasi() {
-        $data['kontroler']= $this->kontroler;
+        $data['kontroler'] = $this->kontroler;
         $data['oglasi'] = $this->ModelGost->pretragaOglasa();
         $this->loadView("oglasi.php", $data);
     }
@@ -220,21 +219,23 @@ class Korisnik extends CI_Controller {
     public function dodajPartnera() {
         $this->form_validation->set_rules("naziv", "naziv", "required");
         $this->form_validation->set_rules("adresa", "adresa", "required");
-        $this->form_validation->set_rules("postanski_broj", "postanski_broj", "required");
+        $this->form_validation->set_rules("postanski_broj", "postanski broj", "required");
         $this->form_validation->set_rules("grad", "grad", "required");
         $this->form_validation->set_rules("drzava", "drzava", "required");
-        $this->form_validation->set_rules("ziro_racun", "ziro_racun", "required");
-        $this->form_validation->set_rules("valuta_racuna", "valuta_racuna", "required");
+        $this->form_validation->set_rules("ziro_racun", "ziro racun", "required");
+        $this->form_validation->set_rules("valuta_racuna", "valuta racuna", "required");
         $this->form_validation->set_rules("PIB", "PIB", "required");
         $this->form_validation->set_rules("telefon1", "telefon1", "required|min_length[9]");
         $this->form_validation->set_rules("email1", "email1", "required|valid_email");
         $this->form_validation->set_rules("opis", "opis", "required");
-        $this->form_validation->set_rules("veb_adresa", "veb_adresa", "required");
-        $this->form_validation->set_rules("ime_kontakt_osobe", "ime_kontakt_osobe", "required");
-        $this->form_validation->set_rules("prezime_kontakt_osobe", "prezime_kontakt_osobe", "required");
-        $this->form_validation->set_rules("telefon_kontakt_osobe", "telefon_kontakt_osobe", "required");
-        $this->form_validation->set_rules("email_kontakt_osobe", "email_kontakt_osobe", "required|valid_email");
+        $this->form_validation->set_rules("veb_adresa", "veb adresa", "required");
+        $this->form_validation->set_rules("ime_kontakt_osobe", "ime kontakt osobe", "required");
+        $this->form_validation->set_rules("prezime_kontakt_osobe", "prezime kontakt osobe", "required");
+        $this->form_validation->set_rules("telefon_kontakt_osobe", "telefon kontakt osobe", "required");
+        $this->form_validation->set_rules("email_kontakt_osobe", "email kontakt osobe", "required|valid_email");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        $this->form_validation->set_message("min_length", "Polje {field} mora imati najmanje 9 karaktera");
+        $this->form_validation->set_message("valid_email", "Polje {field} mora sadržati validnu email adresu");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajKompaniju();
         } else {
@@ -302,12 +303,12 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodavanjePredavanja() {
-        $this->form_validation->set_rules("naslov_srpski", "naslov_srpski", "required");
-        $this->form_validation->set_rules("opis_srpski", "opis_srpski", "required");
-        $this->form_validation->set_rules("vreme_predavanja", "vreme_predavanja", "required");
+        $this->form_validation->set_rules("naslov_srpski", "naslov srpski", "required");
+        $this->form_validation->set_rules("opis_srpski", "opis srpski", "required");
+        $this->form_validation->set_rules("vreme_predavanja", "vreme predavanja", "required");
         $this->form_validation->set_rules("sala", "sala", "required");
-        $this->form_validation->set_rules("ime_predavaca", "ime_predavaca", "required");
-        $this->form_validation->set_rules("prezime_predavaca", "prezime_predavaca", "required");
+        $this->form_validation->set_rules("ime_predavaca", "ime predavaca", "required");
+        $this->form_validation->set_rules("prezime_predavaca", "prezime predavaca", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajPredavanje();
@@ -394,11 +395,11 @@ class Korisnik extends CI_Controller {
                 $this->ModelKorisnik->dodatTelefonPartnera($telefoni[$i]['telefon'], $partner['idPartner']);
             }
         }
-        for ($i=1; $i<=5; $i++){
-        $email[$i] = array(
-            'email' => $this->input->post('email'.$i),
-            'idEmail' => $this->input->post('emailId'.$i)
-        );
+        for ($i = 1; $i <= 5; $i++) {
+            $email[$i] = array(
+                'email' => $this->input->post('email' . $i),
+                'idEmail' => $this->input->post('emailId' . $i)
+            );
         }
         for ($i = 1; $i <= count($email); $i++) {
             if (!empty($email[$i]['idEmail']) && !empty($email[$i]['email'])) {
@@ -409,56 +410,54 @@ class Korisnik extends CI_Controller {
                 $this->ModelKorisnik->dodatEmailPartnera($email[$i]['email'], $partner['idPartner']);
             }
         }
-        
+
         $kompanija = $partner['naziv'];
         redirect("$this->kontroler/dosije/" . $kompanija);
     }
-    
-    public function oglasDetaljnije($idOglas){
-        $oglas=$this->ModelKorisnik->iscitajOglas($idOglas);
-        $fajl=$this->ModelKorisnik->iscitajOglasFajl($idOglas);
+
+    public function oglasDetaljnije($idOglas) {
+        $oglas = $this->ModelKorisnik->iscitajOglas($idOglas);
+        $fajl = $this->ModelKorisnik->iscitajOglasFajl($idOglas);
         $data['oglas'] = $oglas;
         $data['fajl'] = $fajl;
         $this->loadView("oglasDetaljnije.php", $data);
     }
-    
-    public function predavanjeDetaljnije($idpredavanje){
-        $predavanje=$this->ModelGost->iscitajPredavanje($idpredavanje);
+
+    public function predavanjeDetaljnije($idpredavanje) {
+        $predavanje = $this->ModelGost->iscitajPredavanje($idpredavanje);
         $data['predavanje'] = $predavanje;
         $this->loadView("predavanjeDetaljnije.php", $data);
     }
 
-    public function mojProfil()
-    {
+    public function mojProfil() {
         $data['kontroler'] = $this->kontroler;
         $this->loadView("mojProfil.php", $data);
     }
 
-    public function promeniPassword($poruka = null)
-    {      
+    public function promeniPassword($poruka = null) {
         $data['poruka'] = $poruka;
         $data['kontroler'] = $this->kontroler;
         $this->loadView("promeniPassword.php", $data);
     }
 
-    public function menjajPassword()
-    {        
+    public function menjajPassword() {
         $idKorisnik = $this->session->korisnik->idKorisnik;
         $username = $this->session->korisnik->username;
         $stari_password = $this->session->korisnik->password;
-        if (($username == $this->input->post('username')) && ($stari_password == $this->input->post('stari_password')) && ($stari_password != $this->input->post('novi_password')))  {
+        if (($username == $this->input->post('username')) && ($stari_password == $this->input->post('stari_password')) && ($stari_password != $this->input->post('novi_password'))) {
             $novi_password = $this->input->post('novi_password');
             $this->ModelKorisnik->promeniPassword($idKorisnik, $novi_password);
             $this->logout();
         } elseif ($username != $this->input->post('username')) {
             $poruka = "Pogresan username!";
-            $this->promeniPassword($poruka);            
+            $this->promeniPassword($poruka);
         } elseif ($stari_password != $this->input->post('stari_password')) {
             $poruka = "Pogresan stari password!";
-            $this->promeniPassword($poruka);            
+            $this->promeniPassword($poruka);
         } elseif ($stari_password == $this->input->post('novi_password')) {
             $poruka = "Novi password ne sme da bude isti kao stari password!";
-            $this->promeniPassword($poruka);            
+            $this->promeniPassword($poruka);
         }
     }
+
 }

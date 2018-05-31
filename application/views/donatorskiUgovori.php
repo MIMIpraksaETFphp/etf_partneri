@@ -57,10 +57,13 @@
             echo $dugovor['komentar'];
         }
             ?></textarea><br /><br /></td></tr>
-    <tr><td colspan="2">    <div class="btn btn-lg ">
+<!--</table>-->
+    <tr><td colspan="2">    
+            <div class="btn btn-lg ">
                 <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" >
                 <?php //echo form_submit(array('id' => 'submit', 'value' => 'Promeni')); ?>
-            </div><br/><br/>
+            </div>
+<!--            <br/><br/>-->
         </td></tr>
     <?php
     echo form_close();

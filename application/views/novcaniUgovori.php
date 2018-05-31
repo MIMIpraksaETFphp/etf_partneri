@@ -7,7 +7,7 @@ foreach ($novcaniUgovori as $nugovor) {?>
     <tr><td colspan="2">
   <?php  //$datum=mdate('%Y-%m-%d %H:%i:%s', now());
     //if($novcaniUgovorir<$nugovor['vreme_predavanja']){
-    echo "<h3>" . $nugovor['naziv'] . "</h3><br/>";?></td></tr>
+    echo "<h3>" . $nugovor['naziv'] . "</h3>";?></td></tr>
             <?php
     echo "<tr><td>Datum potpisivanja:</td><td> " . $nugovor['datum_potpisivanja'] . "</td></tr>";
     echo "<tr><td>Datum isticanja:</td><td> " . $nugovor['datum_isticanja'] . "</td></tr>";
@@ -66,12 +66,14 @@ foreach ($novcaniUgovori as $nugovor) {?>
    <td> <textarea name="komentar"><?php if ($nugovor['komentar'] != NULL) {
         echo $nugovor['komentar'];
     } ?></textarea><br /><br /></td></tr>
-  <tr><td colspan="2"> <div class="btn btn-lg ">
-       <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" >
+  <tr><td colspan="2"> 
+          <!--<div class="btn btn-lg ">-->
+       <input class="btn btn-lg btn-success " type="submit" value="Promeni" name=""/>
         <?php
    // echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));   
     ?>
-       </div></td></tr>
+       <!--</div>-->
+      </td></tr>
        <?php
     echo form_close();
 }

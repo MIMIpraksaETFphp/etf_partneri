@@ -1,3 +1,4 @@
+<br />
 <?php //var_dump($partner);?>
 <br/>
 <table class="table table-striped" >

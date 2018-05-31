@@ -20,7 +20,7 @@ class Admin extends ITmenadzer {
         $data['kontroler'] = $this->kontroler;
         $this->loadView("registracija.php", $data);
     }
-    
+
     public function dashboard() {
         $data['kontroler'] = $this->kontroler;
         $partnerIsticeUgovor = $this->ModelKorisnik->iscitajPartnera();
@@ -98,38 +98,45 @@ class Admin extends ITmenadzer {
         $this->loadView("adminPaketi.php", $data);
     }
 
-    public function dodajPaket($message = NULL) {
+    public function dodajPaket() {
         $stavkeUbazi = $this->ModelKorisnik->stavkeuBazi();
-        if ($message != NULL) {
-            $data['message'] = $message;
-        }
         $data['stavkeUbazi'] = $stavkeUbazi;
         $this->loadView("dodajPaket.php", $data);
     }
 
     public function dodavanjePaketa() {
-        $naziv = $this->input->post('naziv');
-        $vrednost = $this->input->post('vrednost');
-        $trajanje = $this->input->post('trajanje');
-        $maxbroj = $this->input->post('maxbroj');
-        $stavke = array($this->input->post('stavkeUbazi'));
-        $insertId = $this->ModelKorisnik->dodavanjePaketa($naziv, $vrednost, $trajanje, $maxbroj);
-        foreach ($stavke as $stavka) {
-            foreach ($stavka as $idStavke) {
-                $this->ModelKorisnik->dodajStavkePaketu($insertId, $idStavke);
+        $this->form_validation->set_rules("naziv", "naziv", "required");
+        $this->form_validation->set_rules("vrednost", "vrednost", "required");
+        $this->form_validation->set_rules("trajanje", "trajanje", "required");
+        $this->form_validation->set_rules("maxbroj", "maxbroj", "required");
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
+            $this->dodajPaket();
+        } else {
+            $naziv = $this->input->post('naziv');
+            $vrednost = $this->input->post('vrednost');
+            $trajanje = $this->input->post('trajanje');
+            $maxbroj = $this->input->post('maxbroj');
+            $stavke = array($this->input->post('stavkeUbazi'));
+            $insertId = $this->ModelKorisnik->dodavanjePaketa($naziv, $vrednost, $trajanje, $maxbroj);
+            foreach ($stavke as $stavka) {
+                foreach ($stavka as $idStavke) {
+                    $this->ModelKorisnik->dodajStavkePaketu($insertId, $idStavke);
+                }
             }
+            redirect("$this->kontroler/adminPaketi");
         }
-          redirect("$this->kontroler/adminPaketi");
     }
 
     public function dodavanjeStavke() {
-        $novaStavka = $this->input->post('novaStavka');
-        if (!empty($novaStavka) || $novaStavka != NULL) {
-            $this->ModelKorisnik->dodajStavku($novaStavka);
+        $this->form_validation->set_rules("novaStavka", "Nova stavka", "required");
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        if ($this->form_validation->run() == FALSE) {
             $this->dodajPaket();
         } else {
-            $message = "Polje stavke ne moze biti prazno";
-            $this->dodajPaket($message);
+        $novaStavka = $this->input->post('novaStavka');
+        $this->ModelKorisnik->dodajStavku($novaStavka);
+        $this->dodajPaket();
         }
     }
 
@@ -163,12 +170,12 @@ class Admin extends ITmenadzer {
     }
 
     public function promenaStatusa() {
-        $status= $this->ModelKorisnik->iscitajKorisnikUsername();
-        $status2= $this->ModelKorisnik->iscitajStatusTabelu();
-        $trenutniStat=$this->ModelKorisnik->iscitajTrenutniStatus();
-        $data['status']=$status;
-        $data['status2']=$status2;
-        $data['trenutniStat']=$trenutniStat;
+        $status = $this->ModelKorisnik->iscitajKorisnikUsername();
+        $status2 = $this->ModelKorisnik->iscitajStatusTabelu();
+        $trenutniStat = $this->ModelKorisnik->iscitajTrenutniStatus();
+        $data['status'] = $status;
+        $data['status2'] = $status2;
+        $data['trenutniStat'] = $trenutniStat;
         $data['kontroler'] = $this->kontroler;
         $this->loadView("promenaStatusaKorisnika.php", $data);
     }
@@ -181,14 +188,14 @@ class Admin extends ITmenadzer {
         $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
         redirect("$this->kontroler/korisnici");
     }
-    
-    public function brisanjePaketa($idPaket){
+
+    public function brisanjePaketa($idPaket) {
         $var = $this->ModelKorisnik->paketNemaUgovor($idPaket);
-        if(empty($var)){
-        $this->ModelKorisnik->brisanjePaketa($idPaket);
-        $message = "Uspesno ste izbrisali paket";
-        }else{
-           $message="Ne mozete brisati paket koji ima vezan ugovor!"; 
+        if (empty($var)) {
+            $this->ModelKorisnik->brisanjePaketa($idPaket);
+            $message = "Uspesno ste izbrisali paket";
+        } else {
+            $message = "Ne mozete brisati paket koji ima vezan ugovor!";
         }
         $this->adminPaketi($message);
     }

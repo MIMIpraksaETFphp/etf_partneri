@@ -53,8 +53,8 @@
                                 <a class="dropdown-item" href="<?php echo site_url("Admin/dodajPartnera"); ?>">Dodaj Kompaniju</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Admin/dodajOglas"); ?>">Dodaj Oglas</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Admin/dodajPredavanje"); ?>">Dodaj Predavanje</a>
-                                <a class="dropdown-item" href="<?php echo site_url("Admin/dodajUgovor"); ?>">Dodaj novčani ugovor</a>
-                                <a class="dropdown-item" href="<?php echo site_url("Admin/dodajUgovorDonacije"); ?>">Dodaj donatorski ugovor</a>
+                                <a class="dropdown-item" href="<?php echo site_url("Admin/dodajUgovor"); ?>">Dodaj Novčani ugovor</a>
+                                <a class="dropdown-item" href="<?php echo site_url("Admin/dodajUgovorDonacije"); ?>">Dodaj Donatorski ugovor</a>
                             </div>
                         </li>             
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/Clanovi"); ?>">Članovi</a></li>

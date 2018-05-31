@@ -15,17 +15,16 @@
 
 <br/>
 <table class="table table-striped ">
-    <tbody>
+
     <th colspan="2"><?php echo $oglas['naziv']; ?></th>
     <tr>
         <td></td>
         <td><?php echo $oglas['opis']; ?></td>
     </tr>
-</tbody>
+
 </table>
 <?php 
-if(file_exists($fajl['putanja']))
-{  ?>
+if(file_exists($fajl['putanja'])) {  ?>
 <i class="fa fa-file" aria-hidden="true"></i>
 <a href="<?php echo base_url($fajl['putanja']); ?>"><?php echo $oglas['naziv'];?></a>
 <?php 

@@ -1,3 +1,4 @@
+<br />
 <?php
 if (isset($poruka)) {
     echo "<span style='color:red;'>" . $poruka . "</span><br /><br />";

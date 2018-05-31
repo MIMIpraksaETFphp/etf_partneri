@@ -52,8 +52,8 @@
                                 <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajPartnera"); ?>">Dodaj Kompaniju</a>
                                 <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajOglas"); ?>">Dodaj Oglas</a>
                                 <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajPredavanje"); ?>">Dodaj Predavanje</a>
-                                <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovor"); ?>">Dodaj novcani ugovor</a>
-                                <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovorDonacije"); ?>">Dodaj donatorski ugovor</a>
+                                <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovor"); ?>">Dodaj Novčani ugovor</a>
+                                <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovorDonacije"); ?>">Dodaj Donatorski ugovor</a>
                             </div>
                         </li>             
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/Clanovi"); ?>">Članovi</a></li>

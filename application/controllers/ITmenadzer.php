@@ -439,12 +439,36 @@ class ITmenadzer extends Korisnik {
     }
 
     public function dodavanjePartneraClanu() {
+        $this->form_validation->set_rules("id_partnera", "id_partnera", "callback_proveraKorisnikPartner");
+        $this->form_validation->set_message("proveraKorisnikPartner", "Taj clan je vec zaduzen za tu kompaniju");
+        if ($this->form_validation->run()==false){
+            $this->clanovi();   // kad se prikazuje form_error, mora ovako, ne sme redirect!
+        }    
+        else {
         $partnerClan = array(
             'partner_idPartner' => $this->input->post('id_partnera'),
             'korisnik_idKorisnik' => $this->input->post('idKorisnika')
         );
         $this->ModelKorisnik->dodavanjePartneraClanu($partnerClan);
         redirect("$this->kontroler/clanovi");
+        }
+    }
+
+    public function proveraKorisnikPartner()
+    {
+        $korisnik = $this->input->post('idKorisnika');
+        $partner = $this->input->post('id_partnera');
+        $this->db->select('korisnik_idKorisnik, partner_idPartner');
+        $this->db->from('korisnik_ima_partner');
+        $this->db->where('korisnik_idKorisnik', $korisnik);
+        $this->db->where('partner_idPartner', $partner);
+        $query = $this->db->get();
+        $num = $query->num_rows();
+        if ($num > 0) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
     public function posaljiOglasMejlom($idoglas) {

@@ -1,10 +1,11 @@
 <?php
-//var_dump($partneri);
-echo "<br/><br/>";
+// var_dump($partner);
 //var_dump($clanovi);
+echo form_error('id_partnera'); 
 foreach ($clanovi as $clan) {
     $usernameClana = $clan['username'];
     $filtriraniPartneri = $partneri[$usernameClana];
+    // var_dump($filtriraniPartneri);
     ?>
 
     <div class="row">
@@ -35,7 +36,7 @@ foreach ($clanovi as $clan) {
                     ?>
                     <tr>
                         <td><?php echo $filtriraniPartner['naziv']; ?>
-                        <a href="<?php site_url("$kontroler/izbrisiPartnerClan/" . $filtriraniPartner['idKorisnik'] . "/" . $filtriraniPartner['idPartner'])?>">Izbrisi</a></td>
+                        <a href="<?php echo site_url($kontroler.'/izbrisiPartnerClan/'.$filtriraniPartner['idKorisnik'].'/'.$filtriraniPartner['idPartner']);?>">Izbrisi</a></td>
                     </tr>
                     <?php
                 }

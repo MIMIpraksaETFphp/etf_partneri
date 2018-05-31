@@ -15,13 +15,13 @@
 
 <br/>
 <table class="table table-striped ">
-    <tbody>
+
     <th colspan="2"><?php echo $oglas['naziv']; ?></th>
     <tr>
         <td></td>
         <td><?php echo $oglas['opis']; ?></td>
     </tr>
-</tbody>
+
 </table>
 <?php 
 if(file_exists($fajl['putanja']))

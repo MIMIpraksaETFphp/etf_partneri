@@ -1,3 +1,4 @@
+<br/>
 <?php if (isset($paketi)) { ?>
     <div class="row">
         <table class="table table-striped ">

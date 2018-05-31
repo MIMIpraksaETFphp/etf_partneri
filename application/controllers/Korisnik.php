@@ -52,10 +52,10 @@ class Korisnik extends CI_Controller {
             $this->load->library('upload', $config);
             $this->upload->do_upload('fajl');
 
-            $imeFajla=$this->upload->data('file_name');     // ova metoda "data" nam daje podatke o fajlu nakon sto je upload-ovan
+            $imeFajla = $this->upload->data('file_name');     // ova metoda "data" nam daje podatke o fajlu nakon sto je upload-ovan
             $insertovanidOglasa = $this->ModelKorisnik->dodatOglas($oglas);
             $oglasnaslov = $oglas['oglasnaslov'];
-            $oglasPutanja = 'assets/fajlovi/' .$imeFajla;
+            $oglasPutanja = 'assets/fajlovi/' . $imeFajla;
             $this->ModelKorisnik->dodajOglasFajl($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
             $this->posaljiMejlObavestenje($oglas);

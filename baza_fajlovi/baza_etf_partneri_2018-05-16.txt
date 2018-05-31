@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`fajl` (
   `idfajl` INT(11) NOT NULL AUTO_INCREMENT,
   `naziv` VARCHAR(45) NOT NULL,
   `oglas_idoglas` INT(11) NOT NULL,
-  `putanja` VARCHAR(45) NOT NULL,
+  `putanja` VARCHAR(500) NOT NULL,
   PRIMARY KEY (`idfajl`),
   INDEX `fk_fajl_oglas1_idx` (`oglas_idoglas` ASC),
   CONSTRAINT `fk_fajl_oglas1`

@@ -1,4 +1,4 @@
-<br />
+<br/>
 <?php 
 $podaci = array(
     'ime' => $this->session->korisnik->ime,

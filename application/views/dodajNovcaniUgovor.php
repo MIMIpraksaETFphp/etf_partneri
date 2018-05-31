@@ -1,4 +1,4 @@
-<br />
+<br/>
 <span style="background-color:red;">
     <div class="container">
         <div class="row">

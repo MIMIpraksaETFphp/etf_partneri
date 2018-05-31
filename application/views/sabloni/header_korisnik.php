@@ -44,8 +44,7 @@
                                 <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajOglas"); ?>">Dodaj Oglas</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajPredavanje"); ?>">Dodaj Predavanje</a>
                             </div>
-                        </li>             
-                        <li><a href="<?php echo site_url("Admin/Clanovi"); ?>">Članovi</a></li>
+                        </li>        
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/mojProfil"); ?>">Moj profil</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/logout"); ?>">Logout</a></li>
                     </ul>

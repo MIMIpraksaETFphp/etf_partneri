@@ -24,10 +24,9 @@
 </tbody>
 </table>
 <?php 
-if(file_exists($fajl['putanja']))
-{  ?>
+//if(file_exists($fajl['putanja'])) {  ?>
 <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 <a href="<?php echo base_url($fajl['putanja']); ?>"><?php echo $oglas['naziv'];?></a>
 <?php 
-} 
+//} 
 ?>

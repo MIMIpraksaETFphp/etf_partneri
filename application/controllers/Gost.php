@@ -28,25 +28,10 @@ class Gost extends CI_Controller {
     }
 
     public function index() {
-
-//        if (($this->session->userdata('korisnik')) != NULL) {
-//            if ($korisnik->status_korisnika_idtable1 == 2)
-//                redirect("Korisnik/index");
-//            elseif ($korisnik->status_korisnika_idtable1 == 3)
-//                redirect("ITmenadzer/index");
-//            elseif ($korisnik->status_korisnika_idtable1 == 4)
-//                redirect("Admin/index");
-//            //else
-//            //$this->loadView("partneri.php");  
-//        } else {
             $kompanija = $this->input->post("kompanija");
-
             $partneri = $this->ModelGost->pretraga($kompanija);
-//            $data['partneri'] = $partneri;
-
             $paketi = $this->ModelGost->spisakPaketa();
             $data['paketi'] = $paketi;
-
             foreach ($paketi as $paket){
                 $naziv_paketa=$paket['naziv_paketa'];
                 $data['partneri'][$naziv_paketa]=$this->filtrirajPartnere($paket,$partneri);
@@ -54,13 +39,12 @@ class Gost extends CI_Controller {
             $data['kontroler']='gost';
             $data['metoda']='index';
             $this->loadView("partneri.php", $data);
-//        }
     }
 
     public function login($poruka = NULL) {
         $podaci = array();
         if ($poruka)
-            $podaci['poruka'] = $poruka;
+        {$podaci['poruka'] = $poruka;}
         $this->loadView("login.php", $podaci);
     }
 

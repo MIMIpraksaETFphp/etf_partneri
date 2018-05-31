@@ -22,7 +22,7 @@
             ?>
 
 <br/>
-<h3>Spisak predavanja na Elektrotehnickom fakultetu u Beogradu:</h3>
+<h3>Spisak predavanja na Elektrotehnickom fakultetu u Beogradu:</h3><br />
 <table class="table table-striped ">
     <?php
     foreach ($predavanja as $predavanje) {

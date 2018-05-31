@@ -1,7 +1,5 @@
+<br />
 <?php
-//var_dump($partneri);
-echo "<br/><br/>";
-//var_dump($clanovi);
 foreach ($clanovi as $clan) {
     $usernameClana = $clan['username'];
     $filtriraniPartneri = $partneri[$usernameClana];
@@ -43,7 +41,7 @@ foreach ($clanovi as $clan) {
             </table>
         </div>
     </div>
-    <br/><br/>
+    <br/>
 <?php }
 ?>
 

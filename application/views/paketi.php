@@ -1,3 +1,4 @@
+<br />
 <?php if (isset($paketi)) { ?>
     <div class="row">
         <table class="table table-striped ">
@@ -6,8 +7,8 @@
 
                 <tr>
                     <th class="col-sm-4"><a href="#<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa']; ?></a></th>
-                    <td class="col-sm-4"><?php echo $paket['vrednost_paketa']; ?></td>
-                    <td><?php echo $paket['valuta']; ?></td>
+                    <td class="col-sm-4"><?php echo $paket['vrednost_paketa']." EUR"; ?></td>
+<!--                    <td><?php //echo $paket['valuta']; ?></td>-->
                 </tr>
 
 

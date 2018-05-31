@@ -53,16 +53,8 @@ class ITmenadzer extends Korisnik {
     }
 
     public function dodavanjeNovcanogUgovora() {
-//        $this->form_validation->set_rules("naziv", "naziv", "required");
-        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
-//        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
-//        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
+        $this->form_validation->set_rules("datum_potpisivanja", "datum potpisivanja", "required");
         $this->form_validation->set_rules("vrednost", "vrednost", "required");
-//        $this->form_validation->set_rules("valuta", "valuta", "required");
-//        $this->form_validation->set_rules("faktura", "faktura", "required");
-//        $this->form_validation->set_rules("uplata", "uplata", "required");
-//        $this->form_validation->set_rules("datum_uplate", "datum_uplate", "required");
-//        $this->form_validation->set_rules("opis", "opis", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajUgovor();
@@ -234,14 +226,13 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjeDonatorskogUgovora() {
 //        $this->form_validation->set_rules("naziv", "naziv", "required");
-        $this->form_validation->set_rules("datum_potpisivanja", "datum_potpisivanja", "required");
+        $this->form_validation->set_rules("datum_potpisivanja", "datum potpisivanja", "required");
 //        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
 //        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-        $this->form_validation->set_rules("procenjena_vrednost", "procenjena_vrednost", "required");
+        $this->form_validation->set_rules("procenjena_vrednost", "procenjena vrednost", "required");
 //        $this->form_validation->set_rules("valuta", "valuta", "required");
-        $this->form_validation->set_rules("opis_donacije", "opis_donacije", "required");
-        $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
-//        $this->form_validation->set_rules("opis", "opis", "required");
+        $this->form_validation->set_rules("opis_donacije", "opis donacije", "required");
+        //  $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajUgovorDonacije();
@@ -383,19 +374,19 @@ class ITmenadzer extends Korisnik {
             if ($result) {
                 $data['result'] = "Mejl je uspesno poslat.";
                 $adrese = $to;
-                if(!empty($cc)){
+                if (!empty($cc)) {
                     $adrese = $adrese . "," . $cc;
                 }
-                if(!empty($bcc)){
+                if (!empty($bcc)) {
                     $adrese = $adrese . "," . $bcc;
                 }
                 // $adrese = preg_replace("/,+/", ",", $adrese);   // pretvara vise zareza u jedan zarez
                 $adrese = preg_replace("/[, ]+/", ",", $adrese);        // pretvara zareze i razmake u jedan zarez
                 $adrese = trim($adrese, ',');
-                $adreseNiz= explode("," , $adrese);
+                $adreseNiz = explode(",", $adrese);
                 $idKorisnik = $this->session->korisnik->idKorisnik;
                 $insertovaniIdMejla = $this->ModelKorisnik->dodajMejl($subject, $message, $datum, $idKorisnik);
-                for($i=0 ; $i<count($adreseNiz) ; $i++){
+                for ($i = 0; $i < count($adreseNiz); $i++) {
                     $this->ModelKorisnik->dodajPrimaocaMejla($adreseNiz[$i], $insertovaniIdMejla);
                 }
                 $data['adreseNiz'] = $adreseNiz;
@@ -406,12 +397,10 @@ class ITmenadzer extends Korisnik {
         }
     }
 
-    public function testAdrese($adresa)
-    {
-        if(preg_match("/^\s*(([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)(\s*,\s*|\s*$))*$/", $adresa)){
-              return true;
-        }
-        else {
+    public function testAdrese($adresa) {
+        if (preg_match("/^\s*(([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)(\s*,\s*|\s*$))*$/", $adresa)) {
+            return true;
+        } else {
             $this->form_validation->set_message("testAdrese", '{field} nije u ispravnom obliku, morate uneti mejl adrese razdvojene jednim zarezom');
             return false;
         }
@@ -467,4 +456,5 @@ class ITmenadzer extends Korisnik {
         $data['to'] = $partner['email_kontakt_osobe'];
         $this->mejl($data);
     }
+
 }

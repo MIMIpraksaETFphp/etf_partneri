@@ -1,3 +1,4 @@
+<br />
 <?php //var_dump($partner);?>
 <table class="table table-striped" >
     <?php foreach ($partner as $kompanija) { ?>

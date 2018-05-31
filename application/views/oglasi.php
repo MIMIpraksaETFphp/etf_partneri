@@ -7,7 +7,7 @@ foreach ($oglasi as $oglas) {
         <div  class="col-sm-12">
             <table class="table table-striped">
 
-                <?php echo "<h3>" . $oglas ["partner_naziv"] . "-" . $oglas["oglas_naziv"] . "</h3>" . "<br />"; ?>
+                <?php echo "<h3>" . $oglas ["partner_naziv"] . "-" . $oglas["oglas_naziv"] . "</h3>"; ?>
                 <tbody>
                     <tr>
                         <td><?php echo $oglas["datum_unosenja"] . "<br />"; ?></td>

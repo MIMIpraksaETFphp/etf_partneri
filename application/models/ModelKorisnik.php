@@ -591,4 +591,19 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idKorisnik', $idKorisnik);
         $this->db->update('korisnik');
     }
+
+    public function proveraKorisnikPartner($korisnik, $partner) {
+        $this->db->select('korisnik_idKorisnik, partner_idPartner');
+        $this->db->from('korisnik_ima_partner');
+        $this->db->where('korisnik_idKorisnik', $korisnik);
+        $this->db->where('partner_idPartner', $partner);
+        $query = $this->db->get();
+        $num = $query->num_rows();
+        if ($num > 0) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
 }

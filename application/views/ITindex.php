@@ -65,12 +65,12 @@ foreach ($iscitajPredavanje as $value) {
             <th colspan="3"><?php echo "Oglasi: "; ?></th>
 <?php
 foreach ($iscitajOglase as $value) {
-    //if($danasnjiDatum<$value['datum_unosenja']){      nemamo u bazi nijedno predavanje koje sledi tako da je zato ovo zakomentarisano...kad budemo imali oglase koji nisu istekli treba da se odkomentarise
+   // if($danasnjiDatum<$value['datum_unosenja']){   
 
     echo "<tr><td><a href=" . site_url($kontroler . '/oglasDetaljnije/' . $value['idoglas']) . ">" . $value['naziv'] . "</a>" . "</td><td>" . $value['datum_unosenja'] . "</td><td>" . "<a href=" . site_url($kontroler . '/posaljiOglasMejlom/' . $value['idoglas']) . ">Pošalji studentima na mejl</a><br/>" . "</td></tr>";
 
-    //}
-}
+    }
+//}
 ?>
         </table>
 </div>

@@ -297,8 +297,8 @@ class ModelKorisnik extends CI_Model {
     public function iscitajOglase() {
         $this->db->select('naziv, datum_unosenja, idoglas');
         //$this->db->from('oglas');
-        $this->db->group_by('datum_unosenja', 'asc');
-        $query = $this->db->get('oglas', 5, 0);
+        $this->db->order_by('datum_unosenja', 'desc');
+        $query = $this->db->get('oglas', 10, 0);
         $result = $query->result_array();
         return $result;
     }

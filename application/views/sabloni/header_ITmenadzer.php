@@ -6,7 +6,7 @@
         <title>ETF Partneri</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous"> 
         <script src="https://use.fontawesome.com/1f59a29ea5.js"></script>
-
+        <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
         <script src="<?php echo base_url('assets/js/vis.js'); ?>"></script>
         <link href="<?php echo base_url(); ?>assets/css/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />  
         <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />

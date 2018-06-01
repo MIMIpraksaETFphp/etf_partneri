@@ -393,7 +393,7 @@ class ITmenadzer extends Korisnik {
             } else {
                 $data['result'] = "Mejl nije poslat.";
             }
-            $this->load->view('status.php', $data);
+            $this->loadview('status.php', $data);
         }
     }
 

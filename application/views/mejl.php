@@ -38,7 +38,7 @@
                                 <input type="hidden" name="datum_slanja" value="<?php echo mdate('%Y-%m-%d %H:%i:%s', now()); ?>"/>
                                 <?php //echo form_error('sadrzaj'); ?>
 
-                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Posalji" name="submit" >
+                                <input class="btn btn-lg btn-success btn-block" type="submit" value="Pošalji" name="submit" >
 
                             </fieldset>
                         </form>

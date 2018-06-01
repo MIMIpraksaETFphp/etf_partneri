@@ -1,4 +1,4 @@
-<?php echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehnickom fakultetu u Beogradu:</h3><br/>"; ?>
+<?php echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>"; ?>
 <table class="table table-striped table-bordered">
     <?php foreach ($donatorskiUgovori as $dugovor) { ?>
         <tr><td colspan="2">

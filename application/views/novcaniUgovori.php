@@ -1,6 +1,6 @@
 <?php
 //echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
-echo "<br/><h3>Spisak novcanih ugovora na Elektrotehnickom fakultetu u Beogradu:</h3><br/>";?>
+echo "<br/><h3>Spisak novčanih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>";?>
 <table class="table table-striped table-bordered">
         <?php
 foreach ($novcaniUgovori as $nugovor) {?>

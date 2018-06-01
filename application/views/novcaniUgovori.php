@@ -1,12 +1,18 @@
 <?php
 //echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
-echo "<br/><h3>Spisak novčanih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>";?>
+echo "<br/><h3>Spisak novčanih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>";
+//var_dump($novcaniUgovori);
+//    if($novcaniUgovori['idstatus_ugovora']!='6'){
+//        ?>
 <table class="table table-striped table-bordered">
         <?php
 foreach ($novcaniUgovori as $nugovor) {?>
+    <?php if($nugovor['idstatus_ugovora']!='6'){?>
+    
     <tr><td colspan="2">
   <?php  //$datum=mdate('%Y-%m-%d %H:%i:%s', now());
     //if($novcaniUgovorir<$nugovor['vreme_predavanja']){
+  
     echo "<h3>" . $nugovor['naziv'] . "</h3>";?></td></tr>
             <?php
     echo "<tr><td>Datum potpisivanja:</td><td> " . $nugovor['datum_potpisivanja'] . "</td></tr>";
@@ -48,7 +54,7 @@ foreach ($novcaniUgovori as $nugovor) {?>
            echo "Status ugovora: ";
            ?></td>
    <td> <div class="form-group">                                
-        <select class="form-control" style="width: 25%;" name="status_ugovora" value="<?php echo $nugovor['opis']; ?>">
+        <select class="form-control" style="width: 25%;" name="status_ugovora" value="<?php echo $nugovor['opis']; ?>" >
             <?php foreach ($statusUgovor as $element) { ?>
                 <option value="<?php echo $element['idstatus_ugovora']; ?>" <?php
                 if ($nugovor['idstatus_ugovora'] == $element['idstatus_ugovora']) {
@@ -68,7 +74,7 @@ foreach ($novcaniUgovori as $nugovor) {?>
     } ?></textarea><br /><br /></td></tr>
   <tr><td colspan="2"> 
           <!--<div class="btn btn-lg ">-->
-       <input class="btn btn-lg btn-success " type="submit" value="Promeni" name=""/>
+       <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" onclick="return confirm('Da li ste sigurni da zelite da promenite ugovor?');"/>
         <?php
    // echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));   
     ?>
@@ -82,5 +88,8 @@ foreach ($novcaniUgovori as $nugovor) {?>
        <?php
     echo form_close();
 }
+} 
 ?>
 </table>
+
+<a href="<?php echo site_url($kontroler . '/ispisNovcanihUgovoraArhiva/'); ?>"><h3>Arhiva Ugovora</h3></a>

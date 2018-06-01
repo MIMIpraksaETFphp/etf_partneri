@@ -1,7 +1,10 @@
 <?php echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>"; ?>
 <table class="table table-striped table-bordered">
     <?php foreach ($donatorskiUgovori as $dugovor) { ?>
+    <?php if($dugovor['idstatus_ugovora']!='6'){
+        ?>
         <tr><td colspan="2">
+                
                 <?php echo "<h3>" . $dugovor['naziv'] . "</h3>"; ?></td></tr>
                 <?php
         echo "<tr><td>Tip ugovora:</td><td> " . $dugovor['tip'] . "</td></tr>";
@@ -60,7 +63,7 @@
 <!--</table>-->
     <tr><td colspan="2">    
             <div class="btn btn-lg ">
-                <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" >
+                <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" onclick="return confirm('Da li ste sigurni da zelite da promenite ugovor?');" >
                 <?php //echo form_submit(array('id' => 'submit', 'value' => 'Promeni')); ?>
             </div>
 <!--            <br/><br/>-->
@@ -72,5 +75,7 @@
     echo form_close();
     //echo "<br />";
 }
+    }
 ?>
 </table>
+<a href="<?php echo site_url($kontroler .'/ispisDonatorskihUgovoraArhiva/'); ?>"><h3>Arhiva Ugovora</h3></a>

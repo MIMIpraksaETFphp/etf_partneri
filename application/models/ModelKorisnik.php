@@ -606,4 +606,21 @@ class ModelKorisnik extends CI_Model {
         }
     }
 
+    public function ispisNovcanihUgovoraArhiva() {
+        $this->db->select('vrednost, ugovor_idugovor, komentar, datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa, novcani_ugovori.valuta, status_ugovora.opis, idstatus_ugovora, idugovor');
+        $this->db->from('novcani_ugovori, ugovor, status_ugovora, paketi, partner');
+        $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+     public function ispisDonatorskihUgovoraArhiva() {
+        $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, isporuka, status_ugovora.opis, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta, idstatus_ugovora, idugovor');
+        $this->db->from('donatorski_ugovori, ugovor, status_ugovora, paketi, partner');
+        $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+    
 }

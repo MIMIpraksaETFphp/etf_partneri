@@ -472,4 +472,14 @@ class ITmenadzer extends Korisnik {
         $this->mejl($data);
     }
 
+    public function ispisNovcanihUgovoraArhiva() {
+        $NovUgovor=$this->ModelKorisnik->ispisNovcanihUgovoraArhiva();
+        $data['NovUgovor']=$NovUgovor;
+        $this->loadView("arhivaNovcanihUgovora.php",$data);
+    }
+    public function ispisDonatorskihUgovoraArhiva() {
+        $DonUgovor=$this->ModelKorisnik->ispisDonatorskihUgovoraArhiva();
+        $data['DonUgovor']=$DonUgovor;
+        $this->loadView("arhivaDonatorskihUgovora.php",$data);
+    }
 }

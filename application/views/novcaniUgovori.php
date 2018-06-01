@@ -74,6 +74,11 @@ foreach ($novcaniUgovori as $nugovor) {?>
     ?>
        <!--</div>-->
       </td></tr>
+  <tr>
+      <td>
+          
+      </td>
+  </tr>
        <?php
     echo form_close();
 }

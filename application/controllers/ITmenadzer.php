@@ -301,7 +301,7 @@ class ITmenadzer extends Korisnik {
 
     public function mejl($data = []) {
 
-
+        $data['kontroler'] = $this->kontroler;
         $this->loadView("mejl.php", $data);
 
 
@@ -372,7 +372,7 @@ class ITmenadzer extends Korisnik {
                     ->message($body)
                     ->send();
             if ($result) {
-                $data['result'] = "Mejl je uspesno poslat.";
+                $data['poruka'] = "Mejl je uspesno poslat.";
                 $adrese = $to;
                 if (!empty($cc)) {
                     $adrese = $adrese . "," . $cc;
@@ -391,7 +391,7 @@ class ITmenadzer extends Korisnik {
                 }
                 $data['adreseNiz'] = $adreseNiz;
             } else {
-                $data['result'] = "Mejl nije poslat.";
+                $data['poruka'] = "Mejl nije poslat.";
             }
             $this->loadview('status.php', $data);
         }

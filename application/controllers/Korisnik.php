@@ -83,12 +83,12 @@ class Korisnik extends CI_Controller {
                 ->message($message)
                 ->send();
         if ($result) {
-            $data['poruka'] = "Mejl je uspesno poslat.";
+            $data['poruka'] = "Mejl obavestenje je uspesno poslato.";
         } else {
-            $data['poruka'] = "Mejl nije poslat.";
+            $data['poruka'] = "Mejl obavestenje nije uspesno poslato.";
         }
 
-        $this->loadView("slanjeObavestenja.php", $data);
+        $this->loadView("status.php", $data);
     }
 
     public function index() {

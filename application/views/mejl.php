@@ -9,7 +9,7 @@
                     </div>
                     <div class="panel-body">
 
-                        <form role="form" method="post" action="<?php echo site_url('ITmenadzer/saljiMejl'); ?>">
+                        <form role="form" method="post" action="<?php echo site_url("$kontroler/saljiMejl"); ?>">
                             <fieldset>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="TO:" name="to" type="text" value="<?php if(!empty($to)) echo $to; ?>">

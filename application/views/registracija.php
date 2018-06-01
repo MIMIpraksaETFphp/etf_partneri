@@ -59,17 +59,16 @@
                                         </div>
 
                                         <?php
-                                        echo "<input type='submit' value='Posalji mail registrovanom korisniku'><br /><br />";
                                     }
                                 }
                                 ?>
                                 
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Registruj se" name="registruj_se" >
-                              <?php  if ($this->session->userdata('korisnik') != null) {
-                                    if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
-                                        echo "<br/><h5><a href=" . site_url($kontroler.'/promenaStatusa') .">Promena Statusa Korisnika</h5></a><br /><br />";
-                                             }
-                                }
+                              <?php // if ($this->session->userdata('korisnik') != null) {
+                                    // if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
+                                        // echo "<br/><h5><a href=" . site_url($kontroler.'/promenaStatusa') .">Promena Statusa Korisnika</h5></a><br /><br />";
+                                            //  }
+                                // }
                                 ?>
                             </fieldset>
                         </form>

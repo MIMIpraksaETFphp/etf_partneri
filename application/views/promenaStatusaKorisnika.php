@@ -69,3 +69,5 @@ echo "<br/><br/>Trenutni status korisnika:";?>
     }
     ?>
 </table>
+
+<br/><h5><a href="<?php echo site_url($kontroler.'/registracija');?>">Registruj novog korisnika</h5></a><br /><br />

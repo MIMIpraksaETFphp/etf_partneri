@@ -17,8 +17,15 @@ class Admin extends ITmenadzer {
     }
 
     public function index() {
+        $status = $this->ModelKorisnik->iscitajKorisnikUsername();
+        $status2 = $this->ModelKorisnik->iscitajStatusTabelu();
+        $trenutniStat = $this->ModelKorisnik->iscitajTrenutniStatus();
+        $data['status'] = $status;
+        $data['status2'] = $status2;
+        $data['trenutniStat'] = $trenutniStat;
         $data['kontroler'] = $this->kontroler;
-        $this->loadView("registracija.php", $data);
+        $this->loadView("promenaStatusaKorisnika.php", $data);    
+
     }
 
     public function dashboard() {
@@ -153,7 +160,7 @@ class Admin extends ITmenadzer {
         $this->form_validation->set_message("matches", "Morate uneti isti password");
         $this->form_validation->set_message("proveraIdenticanUsername", "Taj username vec postoji");
         if ($this->form_validation->run() == FALSE) {
-            $this->index();
+            $this->registracija();
         } else {
             $korisnik = array(
                 'username' => $this->input->post('username', 'field is NOT NULL'),
@@ -176,18 +183,7 @@ class Admin extends ITmenadzer {
         $username = $this->input->post('username');
         $status = $this->ModelKorisnik->proveraIdenticanUsername($username);
         return $status;
-    }
-
-    public function promenaStatusa() {
-        $status = $this->ModelKorisnik->iscitajKorisnikUsername();
-        $status2 = $this->ModelKorisnik->iscitajStatusTabelu();
-        $trenutniStat = $this->ModelKorisnik->iscitajTrenutniStatus();
-        $data['status'] = $status;
-        $data['status2'] = $status2;
-        $data['trenutniStat'] = $trenutniStat;
-        $data['kontroler'] = $this->kontroler;
-        $this->loadView("promenaStatusaKorisnika.php", $data);
-    }
+    }    
 
     public function dodavanjeStatusaClanu() {
         $KorisnikStatus = array(
@@ -209,4 +205,9 @@ class Admin extends ITmenadzer {
         $this->adminPaketi($message);
     }
 
+    public function registracija()
+    {
+        $data['kontroler'] = $this->kontroler;
+        $this->loadView("registracija.php", $data);
+    }
 }

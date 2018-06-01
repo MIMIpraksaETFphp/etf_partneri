@@ -1,5 +1,5 @@
 <br /> 
-<h3>Spisak predavanja na Elektrotehnickom fakultetu u Beogradu:</h3>
+<h3>Spisak predavanja na Elektrotehničkom fakultetu u Beogradu:</h3>
     <br/>
     <?php
     foreach ($predavanja as $predavanje) {

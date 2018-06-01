@@ -1,3 +1,5 @@
+<br /> 
+<h3>Spisak oglasa na Elektrotehničkom fakultetu u Beogradu:</h3>
 <?php
 // var_dump($oglasi);
 echo "<br/>";

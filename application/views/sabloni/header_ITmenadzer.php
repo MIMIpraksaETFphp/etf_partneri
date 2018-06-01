@@ -42,7 +42,7 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/paketi"); ?>">Paketi</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/oglasi"); ?>">Oglasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/predavanja"); ?>">Predavanja</a> </li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/novcaniUgovori"); ?>">Novcani ugovori</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/novcaniUgovori"); ?>">Novčani ugovori</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/donatorskiUgovori"); ?>">Donatorski ugovori</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

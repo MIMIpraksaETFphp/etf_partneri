@@ -20,7 +20,7 @@ echo "<br /><br />";
 echo form_label(form_checkbox( array(
     'name'        => 'vazeciUgovor',
     'value'       => '1',
-) ) . ' Vazeci ugovori' );
+) ) . ' Važeci ugovori' );
 echo "<br /><br />";
 echo form_submit("pronadji", "Pronadji");
 echo "<br /><br />";

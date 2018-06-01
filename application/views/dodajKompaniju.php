@@ -1,4 +1,5 @@
 <br/>
+<?php //var_dump($mejlovi);?>
 <span style="background-color:red;">
     <div class="container">
         <div class="row">
@@ -109,7 +110,7 @@
                             <div class="form-group">
                                 <input class="form-control" placeholder="Telefon1" name="telefon1" type="text" value="<?php
                                 if ($tip == 'promeni' && count($telefoni) > 0) {
-                                    echo $partner[0]['telefon1'];
+                                    echo $telefoni[0]['telefon'];
                                 } else {
                                     echo set_value('telefon1');
                                 }
@@ -125,7 +126,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Telefon2" name="telefon2" type="text" value="<?php
                                     if ($tip == 'promeni' && count($telefoni) > 1) {
-                                        echo $partner[0]['telefon2'];
+                                        echo $telefoni[1]['telefon'];
                                     } else {
                                         echo set_value('telefon2');
                                     }
@@ -140,7 +141,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="email1" name="email1" type="text" value="<?php
                                     if ($tip == 'promeni' && count($mejlovi) > 0) {
-                                        echo $partner[0]['email1'];
+                                        echo $mejlovi[0]['email'];
                                     } else {
                                         echo set_value('email1');
                                     }
@@ -155,7 +156,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="email2" name="email2" type="text" value="<?php
                                     if ($tip == 'promeni' && count($mejlovi) > 1) {
-                                        echo $partner[0]['email2'];
+                                        echo $mejlovi[1]['email'];
                                     } else {
                                         echo set_value('email2');
                                     }
@@ -170,7 +171,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="email3" name="email3" type="text" value="<?php
                                     if ($tip == 'promeni' && count($mejlovi) > 2) {
-                                        echo $partner[0]['email3'];
+                                        echo $mejlovi[2]['email'];
                                     } else {
                                         echo set_value('email3');
                                     }
@@ -185,7 +186,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="email4" name="email4" type="text" value="<?php
                                     if ($tip == 'promeni' && count($mejlovi) > 3) {
-                                        echo $partner[0]['email4'];
+                                        echo $mejlovi[3]['email'];
                                     } else {
                                         echo set_value('email4');
                                     }
@@ -200,7 +201,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="email5" name="email5" type="text" value="<?php
                                     if ($tip == 'promeni' && count($mejlovi) > 4) {
-                                        echo $partner[0]['email5'];
+                                        echo $mejlovi[4]['email'];
                                     } else {
                                         echo set_value('email5');
                                     }
@@ -225,7 +226,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Veb adresa" name="veb_adresa" type="text" value="<?php
                                     if ($tip == 'promeni') {
-                                        echo "value='" . $partner[0]['veb_adresa'] . "'";
+                                        echo $partner[0]['veb_adresa'];
                                     } else {
                                         echo set_value('veb_adresa');
                                     }
@@ -235,7 +236,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Ime" name="ime_kontakt_osobe" type="text" value="<?php
                                     if ($tip == 'promeni') {
-                                        echo "value='" . $partner[0]['ime_kontakt_osobe'] . "'";
+                                        echo $partner[0]['ime_kontakt_osobe'];
                                     } else {
                                         echo set_value('ime_kontakt_osobe');
                                     }
@@ -245,7 +246,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Prezime" name="prezime_kontakt_osobe" type="text" value="<?php
                                     if ($tip == 'promeni') {
-                                        echo "value='" . $partner[0]['prezime_kontakt_osobe'] . "'";
+                                        echo $partner[0]['prezime_kontakt_osobe'];
                                     } else {
                                         echo set_value('prezime_kontakt_osobe');
                                     }
@@ -255,7 +256,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Telefon kontakt osobe" name="telefon_kontakt_osobe" type="number" value="<?php
                                     if ($tip == 'promeni') {
-                                        echo "value='" . $partner[0]['telefon_kontakt_osobe'] . "'";
+                                        echo $partner[0]['telefon_kontakt_osobe'];
                                     } else {
                                         echo set_value('telefon_kontakt_osobe');
                                     }
@@ -265,7 +266,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Email kontakt osobe" name="email_kontakt_osobe" type="text" value="<?php
                                     if ($tip == 'promeni') {
-                                        echo "value='" . $partner[0]['email_kontakt_osobe'] . "'";
+                                        echo $partner[0]['email_kontakt_osobe'];
                                     } else {
                                         echo set_value('email_kontakt_osobe');
                                     }

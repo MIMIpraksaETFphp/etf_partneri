@@ -186,7 +186,7 @@ class ITmenadzer extends Korisnik {
 
         $this->config->load('bootstrap_pagination');
         $config_pagination = $this->config->item('pagination');
-        $config_pagination['base_url'] = site_url("ITmenadzer/part");
+        $config_pagination['base_url'] = site_url("$this->kontroler/part");
         $config_pagination['total_rows'] = $ukupanBrPartnera;
         $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';

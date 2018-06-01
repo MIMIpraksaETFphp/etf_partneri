@@ -12,7 +12,7 @@
                         <form role="form" method="post" action="<?php echo site_url("$kontroler/registruj_se"); ?>">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Korisnicko ime" name="username" type="text" autofocus>
+                                    <input class="form-control" placeholder="Korisnicko ime" name="username" type="text" value="<?php echo set_value('username');?>" autofocus>
                                 </div>
                                 <?php echo form_error('username'); ?>
                                 <div class="form-group">
@@ -23,24 +23,24 @@
                                     <input class="form-control" placeholder="Potvrdi Lozinku" name="confirm_password" type="password" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Ime" name="ime" type="text" value="">
+                                    <input class="form-control" placeholder="Ime" name="ime" type="text" value="<?php echo set_value('ime');?>">
                                 </div>
                                 <?php echo form_error('ime'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Prezime" name="prezime" type="text" value="">
+                                    <input class="form-control" placeholder="Prezime" name="prezime" type="text" value="<?php echo set_value('prezime');?>">
                                 </div>
                                 <?php echo form_error('prezime'); ?>
                                 <div class="form-group">
                                     <label for="sel1">Datum rodjenja:</label>
-                                    <input class="form-control" placeholder="Datum rodjenja" name="datum_rodjenja" type="date" value="">
+                                    <input class="form-control" placeholder="Datum rodjenja" name="datum_rodjenja" type="date" value="<?php echo set_value('datum_rodjenja');?>">
                                 </div>
                                 <?php echo form_error('datum_rodjenja'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Telefon" name="telefon" type="number" value="">
+                                    <input class="form-control" placeholder="Telefon" name="telefon" type="number" value="<?php echo set_value('telefon');?>">
                                 </div>
                                 <?php echo form_error('telefon'); ?>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="email" name="email" type="text" value="">
+                                    <input class="form-control" placeholder="email" name="email" type="text" value="<?php echo set_value('email');?>">
                                 </div>
                                 <?php echo form_error('email'); ?>
                                 

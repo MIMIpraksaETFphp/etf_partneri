@@ -1,6 +1,6 @@
 <?php 
 echo "<br />";
-echo form_open("$kontroler/$metoda/", "method=get");
+echo form_open("$kontroler/part/", "method=get");
 echo "Pretraga po nazivu paketa";
 echo "<br />";
 echo form_input(array(
@@ -25,7 +25,7 @@ echo "<br /><br />";
 echo form_submit("pronadji", "Pronadji");
 echo "<br /><br />";
 echo form_close();
-//var_dump($ukupanBroj);
+var_dump($ukupanBroj);
 echo "<br />";
 echo "<br />";
     

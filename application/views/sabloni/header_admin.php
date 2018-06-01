@@ -10,6 +10,7 @@
         <script src="<?php echo base_url('assets/js/vis.js'); ?>"></script>
         <link href="<?php echo base_url(); ?>assets/css/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/css/partnericss.css" rel="stylesheet" type="text/css" />
         <?php
         if (($this->session->userdata('korisnik')) == NULL)
             redirect("Gost");
@@ -37,7 +38,7 @@
                     <ul class="nav-strane">
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/index"); ?>">Admin</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/dashboard"); ?>">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/korisnici"); ?>">Pretraga partnera</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/part"); ?>">Pretraga partnera</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/partneri"); ?>">Partneri fakulteta</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/paketi"); ?>">Paketi</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/oglasi"); ?>">Oglasi</a></li>

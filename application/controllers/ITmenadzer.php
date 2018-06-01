@@ -170,12 +170,12 @@ class ITmenadzer extends Korisnik {
         }
         $vazeciUgovor = '';
         if ($this->input->get('vazeciUgovor')) {
-//            $this->session->unset_userdata('kompanija');
-//            $this->session->unset_userdata('paket');
+            $this->session->unset_userdata('kompanija');
+            $this->session->unset_userdata('paket');
             $vazeciUgovor = $this->input->get('vazeciUgovor');
             $this->session->set_userdata('vazeciUgovor', $vazeciUgovor);
         } elseif ($this->session->userdata('vazeciUgovor')) {
-            $vazeciUgovor = $this->session->userdata('paket');
+            $vazeciUgovor = $this->session->userdata('vazeciUgovor');
         }
 
         $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
@@ -186,7 +186,7 @@ class ITmenadzer extends Korisnik {
 
         $this->config->load('bootstrap_pagination');
         $config_pagination = $this->config->item('pagination');
-        $config_pagination['base_url'] = site_url("ITmenadzer/part");
+        $config_pagination['base_url'] = site_url("$this->kontroler/part");
         $config_pagination['total_rows'] = $ukupanBrPartnera;
         $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';
@@ -335,6 +335,7 @@ class ITmenadzer extends Korisnik {
         } else {
             $this->load->library('email');
             // $from = $this->input->post('from');
+            $from = $this->session->korisnik->email;
             $to = $this->input->post('to');
             $cc = $this->input->post('cc');
             $bcc = $this->input->post('bcc');
@@ -363,7 +364,7 @@ class ITmenadzer extends Korisnik {
             //$body = $this->email->full_html($subject, $message);
 
             $result = $this->email
-                    ->from('itmenadzer@etf.rs')
+                    ->from($from)
                     ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
                     ->to($to)
                     ->cc($cc)

@@ -120,18 +120,17 @@ class Korisnik extends CI_Controller {
         }
         $vazeciUgovor = '';
         if ($this->input->get('vazeciUgovor')) {
-//            $this->session->unset_userdata('kompanija');
-//            $this->session->unset_userdata('paket');
+            $this->session->unset_userdata('kompanija');
+            $this->session->unset_userdata('paket');
             $vazeciUgovor = $this->input->get('vazeciUgovor');
             $this->session->set_userdata('vazeciUgovor', $vazeciUgovor);
         } elseif ($this->session->userdata('vazeciUgovor')) {
-            $vazeciUgovor = $this->session->userdata('paket');
+            $vazeciUgovor = $this->session->userdata('vazeciUgovor');
         }
 
         $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);
         $data['rezultat'] = $rezultat;
         $ukupanBrPartnera = $this->ModelKorisnik->brojPartnera($kompanija, $paket, $vazeciUgovor);
-
         $data['ukupanBroj'] = $ukupanBrPartnera;
 
         $this->config->load('bootstrap_pagination');
@@ -204,6 +203,7 @@ class Korisnik extends CI_Controller {
             $naziv_paketa = $paket['naziv_paketa'];
             $data['partneri'][$naziv_paketa] = $this->filtrirajPartnere($paket, $partneri);
         }
+        $data['metoda'] = 'partneri';
         $data['kontroler'] = $this->kontroler;
         $this->loadView("partneri.php", $data);
     }

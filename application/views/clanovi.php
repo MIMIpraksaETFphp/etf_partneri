@@ -8,7 +8,7 @@ foreach ($clanovi as $clan) {
     $filtriraniPartneri = $partneri[$usernameClana];
     // var_dump($filtriraniPartneri);
     ?>
-
+<br />
     <div class="row">
         <div class="col-md-4 col-md-offset-4 ">
             <table class="table table-bordered">
@@ -45,7 +45,6 @@ foreach ($clanovi as $clan) {
             </table>
         </div>
     </div>
-    <br/><br/>
 <?php }
 ?>
 

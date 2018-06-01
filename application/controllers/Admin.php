@@ -141,8 +141,8 @@ class Admin extends ITmenadzer {
     }
 
     public function registruj_se() {
-        $this->form_validation->set_rules("username", "username", "required");
-        $this->form_validation->set_rules("password", "password", "required");
+        $this->form_validation->set_rules("username", "username", "required|callback_proveraIdenticanUsername");
+        $this->form_validation->set_rules("password", "password", "required|min_length[8]|max_length[12]");
         $this->form_validation->set_rules("confirm_password", "password", "required|trim|matches[password]");                                               // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Milanov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
         $this->form_validation->set_rules("ime", "ime", "required");
         $this->form_validation->set_rules("prezime", "prezime", "required");
@@ -151,6 +151,7 @@ class Admin extends ITmenadzer {
         $this->form_validation->set_rules("email", "email", "required|valid_email");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         $this->form_validation->set_message("matches", "Morate uneti isti password");
+        $this->form_validation->set_message("proveraIdenticanUsername", "Taj username vec postoji");
         if ($this->form_validation->run() == FALSE) {
             $this->index();
         } else {
@@ -168,6 +169,13 @@ class Admin extends ITmenadzer {
             $this->ModelKorisnik->registrovanKorisnik($korisnik);
             redirect("$this->kontroler/clanovi");
         }
+    }
+
+    public function proveraIdenticanUsername()
+    {
+        $username = $this->input->post('username');
+        $status = $this->ModelKorisnik->proveraIdenticanUsername($username);
+        return $status;
     }
 
     public function promenaStatusa() {

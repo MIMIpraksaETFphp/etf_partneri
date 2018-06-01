@@ -614,7 +614,8 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
-     public function ispisDonatorskihUgovoraArhiva() {
+    
+    public function ispisDonatorskihUgovoraArhiva() {
         $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, isporuka, status_ugovora.opis, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta, idstatus_ugovora, idugovor');
         $this->db->from('donatorski_ugovori, ugovor, status_ugovora, paketi, partner');
         $this->db->where('status_ugovora_idstatus_ugovora=idstatus_ugovora and partner_idPartner=idPartner and paketi_idPaketi=idPaketi and ugovor_idugovor=idugovor');
@@ -623,4 +624,17 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
     
+    public function proveraIdenticanUsername($username) {
+        $this->db->select('username');
+        $this->db->from('korisnik');
+        $this->db->where('username', $username);        
+        $query = $this->db->get();
+        $num = $query->num_rows();
+        if ($num > 0) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
+    }
+
 }

@@ -60,11 +60,11 @@ class Korisnik extends CI_Controller {
             $oglasPutanja = 'assets/fajlovi/' . $imeFajla;
             $this->ModelKorisnik->dodajOglasFajl($oglasnaslov, $oglasPutanja, $insertovanidOglasa);
 
-            $this->posaljiMejlObavestenje($oglas);
+            $this->posaljiMejlObavestenjeOglas($oglas);
         }
     }
 
-    public function posaljiMejlObavestenje($oglas) {
+    public function posaljiMejlObavestenjeOglas($oglas) {
         $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($oglas['id_partnera']);
         $adresePrimalaca = [];
         foreach ($primaociMejla as $primalacMejla) {
@@ -327,16 +327,44 @@ class Korisnik extends CI_Controller {
                 'partner_idPartner' => $this->input->post('id_partnera')
             );
 
-            $config['upload_path'] = './assets/fajlovi/';
-            $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
-            $config['file_name'] = $predavanje['naslov_srpski'] . "_" . $predavanje['ime_predavaca'] . $predavanje['prezime_predavaca'];
+            // $config['upload_path'] = './assets/fajlovi/';
+            // $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
+            // $config['file_name'] = $predavanje['naslov_srpski'] . "_" . $predavanje['ime_predavaca'] . $predavanje['prezime_predavaca'];
 
-            $this->load->library('upload', $config);
-            $this->upload->do_upload('fajl');
-
+            // $this->load->library('upload', $config);
+            // $this->upload->do_upload('fajl');
+            
             $this->ModelKorisnik->dodatoPredavanje($predavanje);
-            redirect("$this->kontroler/predavanja");
+            $this->posaljiMejlObavestenjePredavanje($predavanje);
+            // redirect("$this->kontroler/predavanja");
+            }
         }
+
+        public function posaljiMejlObavestenjePredavanje($predavanje) {
+            $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($predavanje['partner_idPartner']);
+            $adresePrimalaca = [];
+            foreach ($primaociMejla as $primalacMejla) {
+                array_push($adresePrimalaca, $primalacMejla['email']);
+            }
+            // $data['adresePrimalaca'] = $adresePrimalaca;
+
+            $this->load->library('email');
+            $to = implode(",", $adresePrimalaca);
+            $subject = "Dodato je predavanje sa naslovom: " . $predavanje['naslov_srpski'];
+            $message = "Sadrzina predavanja: " . $predavanje['opis_srpski'];
+            $result = $this->email
+                    ->from('no-reply@etf.rs')
+                    ->to($to)
+                    ->subject($subject)
+                    ->message($message)
+                    ->send();
+            if ($result) {
+                $data['poruka'] = "Mejl obavestenje je uspesno poslato.";
+            } else {
+                $data['poruka'] = "Mejl obavestenje nije uspesno poslato.";
+        }
+    
+            $this->loadView("status.php", $data);
     }
 
     public function dosije($kompanija, $value = NULL) {

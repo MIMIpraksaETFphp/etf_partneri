@@ -38,7 +38,7 @@
                     <ul class="nav-strane">
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/index"); ?>">Admin</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/dashboard"); ?>">Dashboard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/korisnici"); ?>">Pretraga partnera</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/part"); ?>">Pretraga partnera</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/partneri"); ?>">Partneri fakulteta</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/adminPaketi"); ?>">Paketi</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/oglasi"); ?>">Oglasi</a></li>

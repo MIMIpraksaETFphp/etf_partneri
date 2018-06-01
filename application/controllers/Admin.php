@@ -66,7 +66,7 @@ class Admin extends ITmenadzer {
             $vazeciUgovor = $this->input->get('vazeciUgovor');
             $this->session->set_userdata('vazeciUgovor', $vazeciUgovor);
         } elseif ($this->session->userdata('vazeciUgovor')) {
-            $vazeciUgovor = $this->session->userdata('paket');
+            $vazeciUgovor = $this->session->userdata('vazeciUgovor');
         }
 
         $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);

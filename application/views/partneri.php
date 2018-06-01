@@ -1,12 +1,12 @@
 <br />
 <?php
-echo form_open("$kontroler/partneri/", "method=post");
+echo form_open("$kontroler/$metoda/", "method=post");
 echo "Pretraga partnera po nazivu<br />";
 echo "<br />";
 echo form_input(array(
-  'name' => 'kompanija',
-  'value' => '',
-  'placeholder' => 'Naziv kompanije',
+    'name' => 'kompanija',
+//    'value' => '',
+    'placeholder' => 'Naziv kompanije',
 ));
 echo form_submit("pronadji", "Pronadji");
 echo form_close();
@@ -40,21 +40,38 @@ echo form_close();
 foreach ($paketi as $paket) {
     $naziv_paketa = $paket['naziv_paketa'];
     $filtriraniPartneri = $partneri[$naziv_paketa];
-   //   var_dump($filtriraniPartneri);
+    //   var_dump($filtriraniPartneri);
     if (!empty($filtriraniPartneri)) {
         ?>
-        <h1><a name="<?php echo $paket['naziv_paketa']; ?>"><?php echo $paket['naziv_paketa']; ?></a></h1>
+        <h1><a name="<?php echo $paket['naziv_paketa']; ?>"><?php
+                echo ucfirst($paket['naziv_paketa']);
+                if ($paket['naziv_paketa'] != "partneri" && $paket['naziv_paketa'] != "partneri katedre") {
+                    echo " partneri";
+                }
+                if ($paket['naziv_paketa'] != "partneri katedre" && $paket['naziv_paketa'] != "ostali") {
+                    echo " ETF-a";
+                }
+                ?></a></h1>
         <?php
         foreach ($filtriraniPartneri as $filtriraniPartner) {
             ?>
-        <a href="<?php echo $filtriraniPartner['veb_adresa'];?>" target="_blank">
-            <img src="<?php echo base_url($filtriraniPartner['putanja']);?>" style="vertical-align: middle; border-style: none; 
-                 width: 350px; height: 105px; margin-left: 350px;">
-        </a><br />
+            <div class="<?php echo str_replace(' ', '_', $paket['naziv_paketa']); ?>">
+                
+                    <a href="<?php echo $filtriraniPartner['veb_adresa']; ?>" target="_blank">
+                        <?php if ($paket['naziv_paketa'] != "ostali") { ?>
+                        <img src="<?php echo base_url($filtriraniPartner['putanja']); ?>"><br />
+                        <?php } ?>
+                    </a>
+                
+            </div>
+
             <?php
-            echo "<p>".$filtriraniPartner['opis'] . "</p><br />";
+            if ($paket['naziv_paketa'] != "partneri" && $paket['naziv_paketa'] != "partneri katedre" && $paket['naziv_paketa'] != "ostali") {
+                echo "<p>" . $filtriraniPartner['opis'] . "</p><br />";
+            }
+           // echo "<br />";
         }
-        echo "<br/><br/>";
+        echo "<br/>";
     }
 }
 ?>

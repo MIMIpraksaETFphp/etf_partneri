@@ -170,12 +170,12 @@ class ITmenadzer extends Korisnik {
         }
         $vazeciUgovor = '';
         if ($this->input->get('vazeciUgovor')) {
-//            $this->session->unset_userdata('kompanija');
-//            $this->session->unset_userdata('paket');
+            $this->session->unset_userdata('kompanija');
+            $this->session->unset_userdata('paket');
             $vazeciUgovor = $this->input->get('vazeciUgovor');
             $this->session->set_userdata('vazeciUgovor', $vazeciUgovor);
         } elseif ($this->session->userdata('vazeciUgovor')) {
-            $vazeciUgovor = $this->session->userdata('paket');
+            $vazeciUgovor = $this->session->userdata('vazeciUgovor');
         }
 
         $rezultat = $this->ModelKorisnik->pretragaPartnera($limit, $pocetni_index, $vazeciUgovor, $kompanija, $paket);

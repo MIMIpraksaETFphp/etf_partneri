@@ -10,6 +10,7 @@
         <script src="<?php echo base_url('assets/js/vis.js'); ?>"></script>
         <link href="<?php echo base_url(); ?>assets/css/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/css/partnericss.css" rel="stylesheet" type="text/css" />
         <?php
         if (($this->session->userdata('korisnik')) == NULL)
             redirect("Gost");

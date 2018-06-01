@@ -1,0 +1,47 @@
+.zlatni {
+    margin-left: 350px;
+}
+
+.zlatni a img {
+    width: 320px;
+    height: 125px;
+    max-width: 100%;
+}
+
+.srebrni a img {
+    height: 85px;
+    width: 280px;
+    float: left;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.veliki a img {
+    height: 44px;
+    width: 194px;
+    margin-left: 20px;
+    margin-right: 20px;
+    float: left;
+}
+
+.partneri a img {
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 62px;
+    width: 194px;
+}
+
+.partneri_katedre a img {
+    width: 120px;
+    margin-top: 20px;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    vertical-align: middle;
+    border-style: none;
+    float: left;
+}
+
+.ostali a img {
+
+}

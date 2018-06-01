@@ -25,7 +25,7 @@ echo "<br /><br />";
 echo form_submit("pronadji", "Pronadji");
 echo "<br /><br />";
 echo form_close();
-//var_dump($ukupanBroj);
+var_dump($ukupanBroj);
 echo "<br />";
 echo "<br />";
     

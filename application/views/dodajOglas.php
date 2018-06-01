@@ -1,6 +1,6 @@
 <br />
 <div class="row">
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-8 col-md-offset-4">
         <div class="login-panel panel panel-success">
             <div class="panel-heading">
                 <h3 class="panel-title">Dodaj Oglas</h3>
@@ -15,6 +15,10 @@
                     <div class="form-group">
                         <label for="oglastext">Tekst Oglasa</label>
                         <textarea class="form-control" rows="10" name="oglastext" id="oglastext"><?php echo set_value('oglastext'); ?></textarea>
+                        <script>
+                                        document.getElementById("oglastext").value = " ";
+                                        CKEDITOR.replace("oglastext");
+                        </script>
                     </div>
                     <span style="color: red;"><?php echo form_error('oglastext'); ?></span>
 

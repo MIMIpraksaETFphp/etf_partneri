@@ -30,6 +30,7 @@
                                 </div>
                                 
                                 <div class="form-group">
+                                    <label>Datum predavanja</label>
                                     <input class="form-control" placeholder="Vreme predavanja" name="vreme_predavanja" type="date" value="<?php echo set_value('vreme_predavanja');?>">
                                 </div>
                                 <span style="color: red;"><?php echo form_error('vreme_predavanja'); ?></span>

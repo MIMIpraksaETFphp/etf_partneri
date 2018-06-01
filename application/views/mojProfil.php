@@ -13,7 +13,7 @@ $podaci = array(
 ?>
 
 <table class="table table-striped ">
-<th colspan='2'>Vasi podaci</th>
+<th colspan='2'>Vaši podaci</th>
 <?php
     echo "<tr><td>Ime:</td><td> " . $podaci['ime'] . "</td></tr>";
     echo "<tr><td>Prezime:</td><td> " . $podaci['prezime'] . "</td></tr>";

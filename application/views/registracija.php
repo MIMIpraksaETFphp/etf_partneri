@@ -22,6 +22,7 @@
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Potvrdi Lozinku" name="confirm_password" type="password" value="">
                                 </div>
+                                <?php echo form_error('confirm_password'); ?>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Ime" name="ime" type="text" value="<?php echo set_value('ime');?>">
                                 </div>

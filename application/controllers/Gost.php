@@ -101,6 +101,7 @@ class Gost extends CI_Controller {
         $this->form_validation->set_rules("telefon", "telefon", "required|min_length[9]");
         $this->form_validation->set_rules("email", "email", "required|valid_email");   
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        $this->form_validation->set_message("matches", "Morate uneti isti password");
         if ($this->form_validation->run() == FALSE) {
             $this->registracija();
         } else {

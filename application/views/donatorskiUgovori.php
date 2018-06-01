@@ -1,5 +1,5 @@
-<?php echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehnickom fakultetu u Beogradu:</h3><br/>"; ?>
-<table class="table table-striped ">
+<?php echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>"; ?>
+<table class="table table-striped table-bordered">
     <?php foreach ($donatorskiUgovori as $dugovor) { ?>
         <tr><td colspan="2">
                 <?php echo "<h3>" . $dugovor['naziv'] . "</h3>"; ?></td></tr>
@@ -17,7 +17,7 @@
             echo "<td>Opis donacije: </td>";
             ?>
         <input type="hidden" name="idUgovor" value="<?php echo $dugovor['idugovor']; ?>"/>
-        <td><textarea name="opis_donacije"><?php
+        <td><textarea rows="3" cols="40" name="opis_donacije"><?php
         if ($dugovor['opis_donacije'] != NULL) {
             echo $dugovor['opis_donacije'];
         }
@@ -52,7 +52,7 @@
             <?php
             echo "Komentar:<br />";
             ?></td>
-        <td><textarea name="komentar"><?php
+        <td><textarea rows="3" cols="40" name="komentar"><?php
         if ($dugovor['komentar'] != NULL) {
             echo $dugovor['komentar'];
         }
@@ -65,6 +65,9 @@
             </div>
 <!--            <br/><br/>-->
         </td></tr>
+    <tr>
+        <td></td>
+        </tr>
     <?php
     echo form_close();
     //echo "<br />";

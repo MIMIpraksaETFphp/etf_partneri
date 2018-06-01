@@ -1,7 +1,7 @@
 <?php
 //echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
-echo "<br/><h3>Spisak novcanih ugovora na Elektrotehnickom fakultetu u Beogradu:</h3><br/>";?>
-<table class="table table-striped ">
+echo "<br/><h3>Spisak novčanih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>";?>
+<table class="table table-striped table-bordered">
         <?php
 foreach ($novcaniUgovori as $nugovor) {?>
     <tr><td colspan="2">
@@ -63,7 +63,7 @@ foreach ($novcaniUgovori as $nugovor) {?>
     //echo "<br />";
     echo "Komentar:<br/ >";
     ?></td>
-   <td> <textarea name="komentar"><?php if ($nugovor['komentar'] != NULL) {
+   <td> <textarea rows="4" cols="70" name="komentar"><?php if ($nugovor['komentar'] != NULL) {
         echo $nugovor['komentar'];
     } ?></textarea><br /><br /></td></tr>
   <tr><td colspan="2"> 
@@ -74,6 +74,11 @@ foreach ($novcaniUgovori as $nugovor) {?>
     ?>
        <!--</div>-->
       </td></tr>
+  <tr>
+      <td>
+          
+      </td>
+  </tr>
        <?php
     echo form_close();
 }

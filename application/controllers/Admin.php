@@ -186,7 +186,7 @@ class Admin extends ITmenadzer {
             'status_korisnika_idtable1' => $this->input->post('statusKorisnika'),
         );
         $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
-        redirect("$this->kontroler/korisnici");
+        redirect("$this->kontroler/promenaStatusa");
     }
 
     public function brisanjePaketa($idPaket) {

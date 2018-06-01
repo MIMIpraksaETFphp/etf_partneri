@@ -1,3 +1,4 @@
+<br />
 <?php
 // var_dump($partner);
 //var_dump($clanovi);

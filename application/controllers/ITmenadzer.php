@@ -335,6 +335,7 @@ class ITmenadzer extends Korisnik {
         } else {
             $this->load->library('email');
             // $from = $this->input->post('from');
+            $from = $this->session->korisnik->email;
             $to = $this->input->post('to');
             $cc = $this->input->post('cc');
             $bcc = $this->input->post('bcc');
@@ -363,7 +364,7 @@ class ITmenadzer extends Korisnik {
             //$body = $this->email->full_html($subject, $message);
 
             $result = $this->email
-                    ->from('itmenadzer@etf.rs')
+                    ->from($from)
                     ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
                     ->to($to)
                     ->cc($cc)

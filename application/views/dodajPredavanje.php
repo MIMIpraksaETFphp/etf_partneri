@@ -21,15 +21,22 @@
                                 <div class="form-group">
                                  Opis predavanja(srpski)
                                  <textarea class="form-control" rows="10" name="opis_srpski"><?php echo set_value('opis_srpski');?></textarea>
+                                 <script>
+                                       CKEDITOR.replace("opis_srpski");
+                                 </script>
                                 </div>
                                 <span style="color: red;"><?php echo form_error('opis_srpski'); ?></span>
                                 
                                 <div class="form-group">
                                  Opis predavanja(engleski)
                                     <textarea class="form-control" rows="10" name="opis_engleski" ><?php echo set_value('opis_engleski');?></textarea>
+                                    <script>
+                                       CKEDITOR.replace("opis_engleski");
+                                    </script>
                                 </div>
                                 
                                 <div class="form-group">
+                                    <label>Datum predavanja</label>
                                     <input class="form-control" placeholder="Vreme predavanja" name="vreme_predavanja" type="date" value="<?php echo set_value('vreme_predavanja');?>">
                                 </div>
                                 <span style="color: red;"><?php echo form_error('vreme_predavanja'); ?></span>
@@ -48,11 +55,17 @@
                                 <div class="form-group">
                                  CV predavaca(srpski)
                                     <textarea class="form-control" rows="10" name="cv_srpski"><?php echo set_value('prezime_predavaca');?></textarea>
+                                    <script>
+                                       CKEDITOR.replace("cv_srpski");
+                                    </script>
                                 </div>
                                 
                                 <div class="form-group">
                                  CV predavaca(engleski)
                                     <textarea class="form-control" rows="10" name="cv_engleski"><?php echo set_value('prezime_predavaca');?></textarea>
+                                    <script>
+                                       CKEDITOR.replace("cv_engleski");
+                                    </script>
                                 </div>
                                 
                                 <div class="form-control">

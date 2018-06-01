@@ -15,6 +15,9 @@
                     <div class="form-group">
                         <label for="oglastext">Tekst Oglasa</label>
                         <textarea class="form-control" rows="10" name="oglastext" id="oglastext"><?php echo set_value('oglastext'); ?></textarea>
+                        <script>
+                                        CKEDITOR.replace("oglastext");
+                        </script>
                     </div>
                     <span style="color: red;"><?php echo form_error('oglastext'); ?></span>
 

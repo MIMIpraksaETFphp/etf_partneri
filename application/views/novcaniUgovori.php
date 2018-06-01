@@ -1,4 +1,5 @@
 <?php
+$danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
 //echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
 echo "<br/><h3>Spisak novčanih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>";
 //var_dump($novcaniUgovori);
@@ -16,7 +17,13 @@ foreach ($novcaniUgovori as $nugovor) {?>
     echo "<h3>" . $nugovor['naziv'] . "</h3>";?></td></tr>
             <?php
     echo "<tr><td>Datum potpisivanja:</td><td> " . $nugovor['datum_potpisivanja'] . "</td></tr>";
-    echo "<tr><td>Datum isticanja:</td><td> " . $nugovor['datum_isticanja'] . "</td></tr>";
+    echo "<tr><td>Datum isticanja:</td><td> "?><?php if($danasnjiDatum>$nugovor['datum_isticanja']){
+            echo "<font color='red'>".$nugovor['datum_isticanja']."</font>";
+    }else{ 
+        echo $nugovor['datum_isticanja'];
+    
+    } ?></td></tr>
+    <?php
     echo "<tr><td>Paket:</td><td> " . $nugovor['naziv_paketa'] . "</td></tr>";
     echo "<tr><td>Tip ugovora:</td><td> " . $nugovor['tip'] . "</td></tr>";
     echo "<tr><td>Vrednost: </td><td>" . $nugovor['vrednost'] . "</td></tr>";

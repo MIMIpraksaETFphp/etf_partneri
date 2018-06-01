@@ -1,4 +1,5 @@
-<?php echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>"; ?>
+<?php  $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
+echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>"; ?>
 <table class="table table-striped table-bordered">
     <?php foreach ($donatorskiUgovori as $dugovor) { ?>
     <?php if($dugovor['idstatus_ugovora']!='6'){
@@ -9,8 +10,13 @@
                 <?php
         echo "<tr><td>Tip ugovora:</td><td> " . $dugovor['tip'] . "</td></tr>";
         echo "<tr><td>Datum potpisivanja:</td><td> " . $dugovor['datum_potpisivanja'] . "</td></tr>";
-        echo "<tr><td>Datum isticanja:</td><td>" . $dugovor['datum_isticanja'] . "</td></tr>";
-        echo "<tr><td>Paket:</td><td>" . $dugovor['naziv_paketa'] . "</td></tr>";
+        echo "<tr><td>Datum isticanja:</td><td>"?><?php if($danasnjiDatum>$dugovor['datum_isticanja']){
+            echo "<font color='red'>".$dugovor['datum_isticanja']."</font>";
+    }else{ 
+        echo $dugovor['datum_isticanja'];
+    
+    } ?></td></tr>
+        <?php echo "<tr><td>Paket:</td><td>" . $dugovor['naziv_paketa'] . "</td></tr>";
         echo "<tr><td>Procenjena vrednost:</td><td>" . $dugovor['procenjena_vrednost'] . "</td></tr>";
         echo "<tr><td>Valuta:</td><td>" . $dugovor['valuta'] . "</td></tr>";
         ?>

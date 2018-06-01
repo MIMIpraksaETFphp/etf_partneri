@@ -39,8 +39,7 @@ if (isset($paketi)) {
                             echo $filtriraniPaket['opis'] . "<br/>";
                         }
                         ?>
-                        <input class="button" type="button" name="brisanjePaketa" value="Izbrisi paket" onclick="confirm('Da li ste sigurni?') ? location.href = '
-                               <?php echo site_url(); ?>Admin / brisanjePaketa /<?php echo $paket['idPaketi']; ?>' : false"/>
+                        <input class="button" type="button" name="brisanjePaketa" value="Izbrisi paket" onclick="confirm('Da li ste sigurni?') ? location.href = '<?php echo site_url(); ?>Admin/brisanjePaketa/<?php echo $paket['idPaketi']; ?>' : false"/>
                         <br /><br />
                         <?php
                     }

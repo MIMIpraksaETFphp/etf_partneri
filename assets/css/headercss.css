@@ -93,3 +93,7 @@ a {
     text-transform: uppercase;
     
 }
+
+#nav-right {
+    float: right;
+}

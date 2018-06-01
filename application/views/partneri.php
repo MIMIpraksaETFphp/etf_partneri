@@ -56,20 +56,22 @@ foreach ($paketi as $paket) {
         foreach ($filtriraniPartneri as $filtriraniPartner) {
             ?>
             <div class="<?php echo str_replace(' ', '_', $paket['naziv_paketa']); ?>">
-                
-                    <a href="<?php echo $filtriraniPartner['veb_adresa']; ?>" target="_blank">
-                        <?php if ($paket['naziv_paketa'] != "ostali") { ?>
+                <a href="<?php echo $filtriraniPartner['veb_adresa']; ?>" target="_blank">
+                    <?php if ($paket['naziv_paketa'] != "ostali") { ?>
                         <img src="<?php echo base_url($filtriraniPartner['putanja']); ?>"><br />
-                        <?php } ?>
-                    </a>
-                
+                    <?php } else {
+                        echo $filtriraniPartner['naziv'];
+                    }
+                    ?>
+
+                </a>
             </div>
 
             <?php
             if ($paket['naziv_paketa'] != "partneri" && $paket['naziv_paketa'] != "partneri katedre" && $paket['naziv_paketa'] != "ostali") {
                 echo "<p>" . $filtriraniPartner['opis'] . "</p><br />";
             }
-           // echo "<br />";
+             echo "<br />";
         }
         echo "<br/>";
     }

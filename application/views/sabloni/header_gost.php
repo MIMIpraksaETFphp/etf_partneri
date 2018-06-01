@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
         <script src="https://use.fontawesome.com/1f59a29ea5.js"></script>
         <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/css/partnericss.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>
@@ -25,6 +26,8 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/paketi"); ?>">Paketi</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/oglasi"); ?>">Oglasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/predavanja"); ?>">Predavanja</a> </li>
+                    </ul>
+                    <ul class="nav-strane" id="nav-right">
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/registracija"); ?>">Registracija</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/login"); ?>">Login</a></li>
                     </ul>

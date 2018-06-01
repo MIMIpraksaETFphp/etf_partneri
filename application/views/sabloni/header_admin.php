@@ -40,7 +40,7 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/dashboard"); ?>">Dashboard</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/korisnici"); ?>">Pretraga partnera</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/partneri"); ?>">Partneri fakulteta</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/paketi"); ?>">Paketi</a> </li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/adminPaketi"); ?>">Paketi</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/oglasi"); ?>">Oglasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/predavanja"); ?>">Predavanja</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/novcaniUgovori"); ?>">Novčani ugovori</a></li>
@@ -60,6 +60,8 @@
                         </li>             
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/Clanovi"); ?>">Članovi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mejl"); ?>">Mejl</a></li>
+                        </ul>
+                    <ul class="nav-strane" id="nav-right">
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mojProfil"); ?>">Moj profil</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/logout"); ?>">Logout</a></li>
                     </ul>

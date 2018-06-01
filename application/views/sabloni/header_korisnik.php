@@ -8,6 +8,7 @@
         <script src="https://use.fontawesome.com/1f59a29ea5.js"></script>
          <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
         <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/css/partnericss.css" rel="stylesheet" type="text/css" />
         <?php
         if (($this->session->userdata('korisnik')) == NULL)
             redirect("Gost");
@@ -46,6 +47,8 @@
                                 <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajPredavanje"); ?>">Dodaj Predavanje</a>
                             </div>
                         </li>        
+                    </ul>
+                    <ul class="nav-strane" id="nav-right">
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/mojProfil"); ?>">Moj profil</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/logout"); ?>">Logout</a></li>
                     </ul>

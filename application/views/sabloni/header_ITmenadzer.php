@@ -58,6 +58,7 @@
                         </li>             
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/Clanovi"); ?>">Članovi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/mejl"); ?>">Mejl</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/arhivaMejl"); ?>">Arhiva mejlova</a></li>
                     </ul>
                     <ul class="nav-strane" id="nav-right">
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/mojProfil"); ?>">Moj profil</a></li>

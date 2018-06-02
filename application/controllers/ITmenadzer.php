@@ -365,7 +365,7 @@ class ITmenadzer extends Korisnik {
 
             $result = $this->email
                     ->from($from)
-                    ->reply_to('itmenadzer@etf.rs')    // Optional, an account where a human being reads.
+                    ->reply_to($from)    // Optional, an account where a human being reads.
                     ->to($to)
                     ->cc($cc)
                     ->bcc($bcc)
@@ -388,7 +388,9 @@ class ITmenadzer extends Korisnik {
                 $idKorisnik = $this->session->korisnik->idKorisnik;
                 $insertovaniIdMejla = $this->ModelKorisnik->dodajMejl($subject, $message, $datum, $idKorisnik);
                 for ($i = 0; $i < count($adreseNiz); $i++) {
-                    $this->ModelKorisnik->dodajPrimaocaMejla($adreseNiz[$i], $insertovaniIdMejla);
+                    if($this->ModelKorisnik->proveraIdenticnaMejlAdresa($adreseNiz[$i], $insertovaniIdMejla)) {
+                        $this->ModelKorisnik->dodajPrimaocaMejla($adreseNiz[$i], $insertovaniIdMejla);
+                    }
                 }
                 $data['adreseNiz'] = $adreseNiz;
             } else {
@@ -478,9 +480,17 @@ class ITmenadzer extends Korisnik {
         $data['NovUgovor']=$NovUgovor;
         $this->loadView("arhivaNovcanihUgovora.php",$data);
     }
+
     public function ispisDonatorskihUgovoraArhiva() {
         $DonUgovor=$this->ModelKorisnik->ispisDonatorskihUgovoraArhiva();
         $data['DonUgovor']=$DonUgovor;
         $this->loadView("arhivaDonatorskihUgovora.php",$data);
+    }
+
+    public function arhivaMejl()
+    {
+        $data['mejlovi'] = $this->ModelKorisnik->ispisMejlova();
+        $data['kontroler'] = $this->kontroler;
+        $this->loadView("arhivaMejl.php", $data);
     }
 }

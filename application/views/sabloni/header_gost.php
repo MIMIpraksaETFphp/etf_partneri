@@ -12,6 +12,12 @@
 
     <body>
         <header id="header">
+            <div class="toolbar">
+                <ul id="nav-right">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/registracija"); ?>">Registracija</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/login"); ?>">Login</a></li>
+                </ul>
+            </div>
             <div class="container">
                 <strong id="logo">
                     <a title="" href="<?php echo site_url("Gost/index"); ?>">
@@ -26,10 +32,6 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/paketi"); ?>">Paketi</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/oglasi"); ?>">Oglasi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/predavanja"); ?>">Predavanja</a> </li>
-                    </ul>
-                    <ul class="nav-strane" id="nav-right">
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/registracija"); ?>">Registracija</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Gost/login"); ?>">Login</a></li>
                     </ul>
                 </nav>
             </div>

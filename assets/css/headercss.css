@@ -32,6 +32,7 @@ img {
     font-weight: bolder;
     line-height: 1.5;
 }
+
 a {
     text-decoration: none;
     background-color: transparent;
@@ -64,12 +65,13 @@ a {
     display: inline-block;
     box-sizing: border-box;
 }
-.nav-strane > li {
+.nav-item {
     display: inline-block;
     padding: 1rem 0;
     position: relative;
 }
-.nav-strane > li > a {
+
+.nav-link {
     padding: .5rem 1rem;
     font-size: 1rem;
     letter-spacing: 1px;
@@ -85,15 +87,17 @@ a {
     text-shadow: none;
 }
 
-.nav-strane > li > a {
-    padding: .5rem 1rem;
-    font-size: 15px;
-    letter-spacing: 1px;
-    line-height: 1;
-    text-transform: uppercase;
-    
-}
-
 #nav-right {
     float: right;
+}
+
+#nav-right li {
+    float: left;
+    background: rgba(0,0,0,0);
+}
+
+.toolbar {
+    order: -1;
+    align-self: flex-end;
+    margin: 0;
 }

@@ -26,6 +26,12 @@
     </head>
     <body>
         <header id="header">
+            <div class="toolbar">
+                <ul id="nav-right">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mojProfil"); ?>">Moj profil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/logout"); ?>">Logout</a></li>
+                </ul>
+            </div>
             <div class="container">
                 <strong id="logo">
                     <a title="" href="<?php echo site_url("ITmenadzer/index"); ?>">
@@ -59,10 +65,6 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/Clanovi"); ?>">Članovi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/mejl"); ?>">Mejl</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/arhivaMejl"); ?>">Arhiva mejlova</a></li>
-                    </ul>
-                    <ul class="nav-strane" id="nav-right">
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/mojProfil"); ?>">Moj profil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("ITmenadzer/logout"); ?>">Logout</a></li>
                     </ul>
                 </nav>
             </div>

@@ -26,12 +26,19 @@
 
     <body>
         <header id="header">
+            <div class="toolbar">
+                <ul id="nav-right">
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mojProfil"); ?>">Moj profil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/logout"); ?>">Logout</a></li>
+                </ul>
+            </div>
             <div class="container">
                 <strong id="logo">
                     <a title="" href="<?php echo site_url("Admin/index"); ?>">
                         <img src="<?php echo base_url('assets/logo/etf2.png'); ?>" alt="etf" class="img-responsive" width="100%" height="200"> 
                     </a>
                 </strong>
+
             </div>
             <div id="nav-wrap">
                 <nav id="nav">
@@ -61,10 +68,6 @@
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/Clanovi"); ?>">Članovi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mejl"); ?>">Mejl</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/arhivaMejl"); ?>">Arhiva mejlova</a></li>
-                        </ul>
-                    <ul class="nav-strane" id="nav-right">
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mojProfil"); ?>">Moj profil</a></li>
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/logout"); ?>">Logout</a></li>
                     </ul>
                 </nav>
             </div>

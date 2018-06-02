@@ -60,6 +60,7 @@
                         </li>             
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/Clanovi"); ?>">Članovi</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mejl"); ?>">Mejl</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/arhivaMejl"); ?>">Arhiva mejlova</a></li>
                         </ul>
                     <ul class="nav-strane" id="nav-right">
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mojProfil"); ?>">Moj profil</a></li>

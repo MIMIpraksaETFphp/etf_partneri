@@ -81,7 +81,7 @@ foreach ($novcaniUgovori as $nugovor) {?>
     } ?></textarea><br /><br /></td></tr>
   <tr><td colspan="2"> 
           <!--<div class="btn btn-lg ">-->
-       <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" onclick="return confirm('Da li ste sigurni da zelite da promenite ugovor?');"/>
+       <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" onclick="return confirm('Da li ste sigurni da zelite da promenite status ugovora?');"/>
         <?php
    // echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));   
     ?>

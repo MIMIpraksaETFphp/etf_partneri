@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="form-group">
-                        Logo: <input type="file" name="fajl" /><br>
+                        File .pdf: <input type="file" name="fajl" /><br>
                     </div>
                     <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Oglas" name="dodavanjeOglasa" >
                 </fieldset>

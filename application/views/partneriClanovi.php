@@ -1,6 +1,6 @@
 <?php 
 echo "<br />";
-echo form_open("$kontroler/part/", "method=get");
+echo form_open("$kontroler/$metoda/", "method=get");
 echo "Pretraga po nazivu paketa";
 echo "<br />";
 echo form_input(array(

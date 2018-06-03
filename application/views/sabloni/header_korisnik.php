@@ -24,8 +24,8 @@
         <header id="header">
             <div class="toolbar">
                 <ul id="nav-right">
-                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/mojProfil"); ?>">Moj profil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Admin/logout"); ?>">Logout</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/mojProfil"); ?>">Moj profil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/logout"); ?>">Logout</a></li>
                 </ul>
             </div>
             <div class="container">

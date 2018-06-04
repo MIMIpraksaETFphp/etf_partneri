@@ -112,11 +112,12 @@ class Admin extends ITmenadzer {
     }
 
     public function dodavanjePaketa() {
-        $this->form_validation->set_rules("naziv", "naziv", "required");
-        $this->form_validation->set_rules("vrednost", "vrednost", "required");
-        $this->form_validation->set_rules("trajanje", "trajanje", "required");
-        $this->form_validation->set_rules("maxbroj", "maxbroj", "required");
+        $this->form_validation->set_rules("naziv", "Naziv Paketa", "required");
+        $this->form_validation->set_rules("vrednost", "Vrednost Paketa", "required");
+        $this->form_validation->set_rules("trajanje", "Trajanje ugovora", "required");
+        $this->form_validation->set_rules("maxbroj", "Maksimalni broj kompanija", "required|max_length[3]");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
+        $this->form_validation->set_message("max_length", "Polje {field} može imati najviše 3 karaktera");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajPaket();
         } else {
@@ -148,17 +149,19 @@ class Admin extends ITmenadzer {
     }
 
     public function registruj_se() {
-        $this->form_validation->set_rules("username", "username", "required|callback_proveraIdenticanUsername");
-        $this->form_validation->set_rules("password", "password", "required|min_length[8]|max_length[12]");
-        $this->form_validation->set_rules("confirm_password", "password", "required|trim|matches[password]");                                               // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Milanov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
-        $this->form_validation->set_rules("ime", "ime", "required");
-        $this->form_validation->set_rules("prezime", "prezime", "required");
-        $this->form_validation->set_rules("datum_rodjenja", "datum_rodjenja", "required");
-        $this->form_validation->set_rules("telefon", "telefon", "required");
-        $this->form_validation->set_rules("email", "email", "required|valid_email");
+        $this->form_validation->set_rules("username", "Korisničko ime", "required|callback_proveraIdenticanUsername");
+        $this->form_validation->set_rules("password", "Lozinka", "required|min_length[8]|max_length[12]"/*, array("min_lenght" => "Polje {field} mora imati najmanje 8 karaktera", "max_lenght" => "Polje {field} može imati najviše 12 karaktera")*/);
+        $this->form_validation->set_rules("confirm_password", "Potvrdi Lozinku", "required|trim|matches[password]");                                               // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Milanov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
+        $this->form_validation->set_rules("ime", "Ime", "required");
+        $this->form_validation->set_rules("prezime", "Prezime", "required");
+        $this->form_validation->set_rules("datum_rodjenja", "Datum rodjenja", "required");
+        $this->form_validation->set_rules("telefon", "Telefon", "required");
+        $this->form_validation->set_rules("email", "Email", "required|valid_email");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
-        $this->form_validation->set_message("matches", "Morate uneti isti password");
-        $this->form_validation->set_message("proveraIdenticanUsername", "Taj username vec postoji");
+        $this->form_validation->set_message("matches", "Morate uneti istu lozinku");
+        $this->form_validation->set_message("proveraIdenticanUsername", "To korisničko ime već postoji");
+        $this->form_validation->set_message("min_length", "Polje {field} mora imati najmanje 8 karaktera");
+        $this->form_validation->set_message("max_length", "Polje {field} može imati najviše 12 karaktera");
         if ($this->form_validation->run() == FALSE) {
             $this->registracija();
         } else {
@@ -178,8 +181,7 @@ class Admin extends ITmenadzer {
         }
     }
 
-    public function proveraIdenticanUsername()
-    {
+    public function proveraIdenticanUsername() {
         $username = $this->input->post('username');
         $status = $this->ModelKorisnik->proveraIdenticanUsername($username);
         return $status;
@@ -191,7 +193,7 @@ class Admin extends ITmenadzer {
             'status_korisnika_idtable1' => $this->input->post('statusKorisnika'),
         );
         $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
-        redirect("$this->kontroler/promenaStatusa");
+        redirect("$this->kontroler/index");
     }
 
     public function brisanjePaketa($idPaket) {
@@ -205,8 +207,7 @@ class Admin extends ITmenadzer {
         $this->adminPaketi($message);
     }
 
-    public function registracija()
-    {
+    public function registracija() {
         $data['kontroler'] = $this->kontroler;
         $this->loadView("registracija.php", $data);
     }

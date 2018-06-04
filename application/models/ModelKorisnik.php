@@ -430,6 +430,7 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
+
     public function dohvatiPartnera($naziv) {
         $this->db->select('email_kontakt_osobe, naziv');
         $this->db->from('partner');
@@ -541,15 +542,15 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function iscitajTrenutniStatus() {
-        $this->db->select('username, ime, prezime, status_korisnika_idtable1');
-        $this->db->from('korisnik');
+        $this->db->select('username, ime, prezime, status_korisnika_idtable1, opis');
+        $this->db->from('korisnik, status_korisnika');
+        $this->db->where('idtable1=status_korisnika_idtable1');
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
     }
 
-    public function dodajMejl($subject, $message, $datum, $idKorisnik)
-    {
+    public function dodajMejl($subject, $message, $datum, $idKorisnik) {
         $this->db->set('naslov', $subject);
         $this->db->set('sadrzaj', $message);
         $this->db->set('datum_slanja', $datum);
@@ -559,11 +560,12 @@ class ModelKorisnik extends CI_Model {
         return $insertovaniIdMejla;
     }
 
-    public function dodajPrimaocaMejla($adresaPrimaoca, $idMejla){
+    public function dodajPrimaocaMejla($adresaPrimaoca, $idMejla) {
         $this->db->set('email_primaoca', $adresaPrimaoca);
         $this->db->set('mejl_idmejl', $idMejla);
         $this->db->insert('primalac_mejla');
     }
+
     public function brojPartneraPaket() {
         $query = $this->db->query('SELECT idPaketi, naziv_paketa, COUNT(paketi_idPaketi) as broj, maks_broj_partnera
                                    FROM paketi 
@@ -585,8 +587,7 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function promeniPassword($idKorisnik, $novi_password)
-    {
+    public function promeniPassword($idKorisnik, $novi_password) {
         $this->db->set('password', $novi_password);
         $this->db->where('idKorisnik', $idKorisnik);
         $this->db->update('korisnik');
@@ -614,7 +615,7 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
-    
+
     public function ispisDonatorskihUgovoraArhiva() {
         $this->db->select('procenjena_vrednost, opis_donacije, datum_potpisivanja, donatorski_ugovori.valuta, datum_isticanja, isporuka, status_ugovora.opis, tip, naziv, datum_isporuke, komentar, naziv_paketa, donatorski_ugovori.valuta, idstatus_ugovora, idugovor');
         $this->db->from('donatorski_ugovori, ugovor, status_ugovora, paketi, partner');
@@ -623,11 +624,11 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
-    
+
     public function proveraIdenticanUsername($username) {
         $this->db->select('username');
         $this->db->from('korisnik');
-        $this->db->where('username', $username);        
+        $this->db->where('username', $username);
         $query = $this->db->get();
         $num = $query->num_rows();
         if ($num > 0) {
@@ -649,14 +650,13 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function ispisPrimalacaMejlova() {
-
+        
     }
 
-    public function proveraIdenticnaMejlAdresa($emailPrimaoca, $idMejla)
-    {
+    public function proveraIdenticnaMejlAdresa($emailPrimaoca, $idMejla) {
         $this->db->select('email_primaoca, mejl_idmejl');
         $this->db->from('primalac_mejla');
-        $this->db->where('email_primaoca', $emailPrimaoca);     
+        $this->db->where('email_primaoca', $emailPrimaoca);
         $this->db->where('mejl_idmejl', $idMejla);
         $query = $this->db->get();
         $num = $query->num_rows();
@@ -665,6 +665,21 @@ class ModelKorisnik extends CI_Model {
         } else {
             return TRUE;
         }
+    }
+
+    public function godinePaket($id_paketa) {
+        $this->db->select('trajanje_paketa_godine');
+        $this->db->where('idPaketi', $id_paketa);
+        $query = $this->db->get('paketi');
+        $result = $query->result_array();
+        return $result;
+    }
+
+    public function brojPaketa() {
+        $this->db->select('count(idPaketi)');
+        $query = $this->db->get('paketi');
+        $result = $query->result_array();
+        return $result;
     }
 
 }

@@ -36,7 +36,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label>Datum predavanja</label>
+                                    <label>Vreme predavanja</label>
                                     <input class="form-control" placeholder="Vreme predavanja" name="vreme_predavanja" type="date" value="<?php echo set_value('vreme_predavanja');?>">
                                 </div>
                                 <span style="color: red;"><?php echo form_error('vreme_predavanja'); ?></span>
@@ -45,15 +45,15 @@
                                 </div>
                                 <span style="color: red;"><?php echo form_error('sala');?></span>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Ime predavaca" name="ime_predavaca" type="text" value="<?php echo set_value('ime_predavaca');?>">
+                                    <input class="form-control" placeholder="Ime predavača" name="ime_predavaca" type="text" value="<?php echo set_value('ime_predavaca');?>">
                                 </div>
                                 <span style="color: red;"><?php echo form_error('ime_predavaca'); ?></span>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Prezime predavaca" name="prezime_predavaca" type="text" value="<?php echo set_value('prezime_predavaca');?>">
+                                    <input class="form-control" placeholder="Prezime predavača" name="prezime_predavaca" type="text" value="<?php echo set_value('prezime_predavaca');?>">
                                 </div>
                                 <span style="color: red;"><?php echo form_error('prezime_predavaca'); ?></span>
                                 <div class="form-group">
-                                 CV predavaca(srpski)
+                                 CV predavača(srpski)
                                     <textarea class="form-control" rows="10" name="cv_srpski"><?php echo set_value('prezime_predavaca');?></textarea>
                                     <script>
                                        CKEDITOR.replace("cv_srpski");
@@ -61,7 +61,7 @@
                                 </div>
                                 
                                 <div class="form-group">
-                                 CV predavaca(engleski)
+                                 CV predavača(engleski)
                                     <textarea class="form-control" rows="10" name="cv_engleski"><?php echo set_value('prezime_predavaca');?></textarea>
                                     <script>
                                        CKEDITOR.replace("cv_engleski");

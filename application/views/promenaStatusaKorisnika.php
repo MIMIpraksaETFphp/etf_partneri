@@ -62,7 +62,7 @@ echo "<br/><br/>Trenutni status korisnika:";?>
                 <td><?php echo $el['username']; ?></td>
                 <td><?php echo $el['ime']; ?></td>
                 <td><?php echo $el['prezime']; ?></td>
-                <td><?php echo $el['status_korisnika_idtable1']; ?></td>
+                <td><?php echo $el['opis']; ?></td>
             </tr>
         </tbody>
         <?php

@@ -12,38 +12,38 @@
                         <form role="form" method="post" action="<?php echo site_url("$kontroler/registruj_se"); ?>">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Korisnicko ime" name="username" type="text" value="<?php echo set_value('username');?>" autofocus>
+                                    <input class="form-control" placeholder="Korisničko ime" name="username" type="text" value="<?php echo set_value('username');?>" autofocus>
                                 </div>
-                                <?php echo form_error('username'); ?>
+                                <span style="color: red;"><?php echo form_error('username'); ?></span>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Lozinka" name="password" type="password" value="">
                                 </div>
-                                <?php echo form_error('password'); ?>
+                                <span style="color: red;"><?php echo form_error('password'); ?></span>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Potvrdi Lozinku" name="confirm_password" type="password" value="">
                                 </div>
-                                <?php echo form_error('confirm_password'); ?>
+                                <span style="color: red;"><?php echo form_error('confirm_password'); ?></span>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Ime" name="ime" type="text" value="<?php echo set_value('ime');?>">
                                 </div>
-                                <?php echo form_error('ime'); ?>
+                                <span style="color: red;"><?php echo form_error('ime'); ?></span>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Prezime" name="prezime" type="text" value="<?php echo set_value('prezime');?>">
                                 </div>
-                                <?php echo form_error('prezime'); ?>
+                                <span style="color: red;"><?php echo form_error('prezime'); ?></span>
                                 <div class="form-group">
                                     <label for="sel1">Datum rodjenja:</label>
                                     <input class="form-control" placeholder="Datum rodjenja" name="datum_rodjenja" type="date" value="<?php echo set_value('datum_rodjenja');?>">
                                 </div>
-                                <?php echo form_error('datum_rodjenja'); ?>
+                                <span style="color: red;"><?php echo form_error('datum_rodjenja'); ?></span>
                                 <div class="form-group">
                                     <input class="form-control" placeholder="Telefon" name="telefon" type="number" value="<?php echo set_value('telefon');?>">
                                 </div>
-                                <?php echo form_error('telefon'); ?>
+                                <span style="color: red;"><?php echo form_error('telefon'); ?></span>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="email" name="email" type="text" value="<?php echo set_value('email');?>">
+                                    <input class="form-control" placeholder="Email" name="email" type="text" value="<?php echo set_value('email');?>">
                                 </div>
-                                <?php echo form_error('email'); ?>
+                                <span style="color: red;"><?php echo form_error('email'); ?></span>
                                 
                                 <?php
                                 if ($this->session->userdata('korisnik') != null) {
@@ -52,8 +52,8 @@
                                         <div class="form-group">
                                             <label for="sel1">Status korisnika:</label>
                                             <select class="form-control" style="width: 100%" name="status_korisnika_idtable1">
-                                                <option value="2">Clan tima</option>
-                                                <option value="3">IT menadzer</option>
+                                                <option value="2">Član tima</option>
+                                                <option value="3">IT menadžer</option>
                                                 <option value="4">Admin</option>
                                             </select>
                                         </div>
@@ -62,14 +62,7 @@
                                     }
                                 }
                                 ?>
-                                
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Registruj se" name="registruj_se" >
-                              <?php // if ($this->session->userdata('korisnik') != null) {
-                                    // if ($this->session->userdata('korisnik')->status_korisnika_idtable1 == 4) {
-                                        // echo "<br/><h5><a href=" . site_url($kontroler.'/promenaStatusa') .">Promena Statusa Korisnika</h5></a><br /><br />";
-                                            //  }
-                                // }
-                                ?>
                             </fieldset>
                         </form>
                     </div>

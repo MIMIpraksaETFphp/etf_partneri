@@ -2,7 +2,8 @@
 $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
 //echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
 echo "<br/><h3>Spisak novčanih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>";
-//var_dump($novcaniUgovori);
+var_dump($broj);
+//echo $godinePaket[0]['trajanje_paketa_godine'];
 //    if($novcaniUgovori['idstatus_ugovora']!='6'){
 //        ?>
 <table class="table table-striped table-bordered">

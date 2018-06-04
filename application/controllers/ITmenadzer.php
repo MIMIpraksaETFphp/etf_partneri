@@ -49,12 +49,16 @@ class ITmenadzer extends Korisnik {
         $data['novcaniUgovori'] = $novcaniUgovori;
         $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
         $data['statusUgovor'] = $statusUgovor;
+        $godinePaket = $this->ModelKorisnik->godinePaket('4');
+        $data['godinePaket']=$godinePaket;
+         $brojPaketa= $this->ModelKorisnik->brojPaketa();
+         $data['broj']=$brojPaketa;
         $this->loadView("novcaniUgovori.php", $data);
     }
 
     public function dodavanjeNovcanogUgovora() {
-        $this->form_validation->set_rules("datum_potpisivanja", "datum potpisivanja", "required");
-        $this->form_validation->set_rules("vrednost", "vrednost", "required");
+        $this->form_validation->set_rules("datum_potpisivanja", "Datum potpisivanja", "required");
+        $this->form_validation->set_rules("vrednost", "Vrednost", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajUgovor();
@@ -83,17 +87,16 @@ class ITmenadzer extends Korisnik {
                 'opis' => $this->input->post('idstatus_ugovora'),
                 'tip' => 'novcani'
             );
-            $brojPartneraPoPaketu = $this->ModelKorisnik->brojPartneraPoPaketu($novcaniUgovor['id_paketa']);
-
-            if ($id_paketa == '1' || $id_paketa == '2') {
-                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+24 months", strtotime($this->input->post('datum_potpisivanja'))));
-            } elseif ($id_paketa == '3' || $id_paketa == '4') {
-                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+12 months", strtotime($this->input->post('datum_potpisivanja'))));
-            } elseif ($id_paketa == '5') {
-                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+6 months", strtotime($this->input->post('datum_potpisivanja'))));
-            } elseif ($id_paketa == '6') {
-                $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+3 months", strtotime($this->input->post('datum_potpisivanja'))));
+            $brojPaketa= $this->ModelKorisnik->brojPaketa();
+            $broj = $brojPaketa[0]["count(idPaketi)"];
+            for ($i = 1; $i <= $broj; $i++) {
+                if ($id_paketa == $i) {
+                    $godinePaket = $this->ModelKorisnik->godinePaket($id_paketa);
+                    $godina = $godinePaket[0]['trajanje_paketa_godine'];
+                    $novcaniUgovor['datum_isticanja'] = date("Y-m-d H:i:s", strtotime("+$godina years", strtotime($this->input->post('datum_potpisivanja'))));
+                }
             }
+            $brojPartneraPoPaketu = $this->ModelKorisnik->brojPartneraPoPaketu($novcaniUgovor['id_paketa']);
             if ($brojPartneraPoPaketu != NULL) {
                 if ($brojPartneraPoPaketu[0]['broj'] < $brojPartneraPoPaketu[0]['maks_broj_partnera']) {
                     $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
@@ -225,14 +228,9 @@ class ITmenadzer extends Korisnik {
     }
 
     public function dodavanjeDonatorskogUgovora() {
-//        $this->form_validation->set_rules("naziv", "naziv", "required");
-        $this->form_validation->set_rules("datum_potpisivanja", "datum potpisivanja", "required");
-//        $this->form_validation->set_rules("datum_isticanja", "datum_isticanja", "required");
-//        $this->form_validation->set_rules("naziv_paketa", "naziv_paketa", "required");
-        $this->form_validation->set_rules("procenjena_vrednost", "procenjena vrednost", "required");
-//        $this->form_validation->set_rules("valuta", "valuta", "required");
-        $this->form_validation->set_rules("opis_donacije", "opis donacije", "required");
-        //  $this->form_validation->set_rules("datum_isporuke", "datum_isporuke", "required");
+        $this->form_validation->set_rules("datum_potpisivanja", "Datum potpisivanja", "required");
+        $this->form_validation->set_rules("procenjena_vrednost", "Procenjena vrednost", "required");
+        $this->form_validation->set_rules("opis_donacije", "Opis donacije", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajUgovorDonacije();
@@ -388,7 +386,7 @@ class ITmenadzer extends Korisnik {
                 $idKorisnik = $this->session->korisnik->idKorisnik;
                 $insertovaniIdMejla = $this->ModelKorisnik->dodajMejl($subject, $message, $datum, $idKorisnik);
                 for ($i = 0; $i < count($adreseNiz); $i++) {
-                    if($this->ModelKorisnik->proveraIdenticnaMejlAdresa($adreseNiz[$i], $insertovaniIdMejla)) {
+                    if ($this->ModelKorisnik->proveraIdenticnaMejlAdresa($adreseNiz[$i], $insertovaniIdMejla)) {
                         $this->ModelKorisnik->dodajPrimaocaMejla($adreseNiz[$i], $insertovaniIdMejla);
                     }
                 }
@@ -433,21 +431,19 @@ class ITmenadzer extends Korisnik {
     public function dodavanjePartneraClanu() {
         $this->form_validation->set_rules("id_partnera", "id_partnera", "callback_proveraKorisnikPartner");
         $this->form_validation->set_message("proveraKorisnikPartner", "Taj clan je vec zaduzen za tu kompaniju");
-        if ($this->form_validation->run()==false){
+        if ($this->form_validation->run() == false) {
             $this->clanovi();   // kad se prikazuje form_error, mora ovako, ne sme redirect!
-        }    
-        else {
-        $partnerClan = array(
-            'partner_idPartner' => $this->input->post('id_partnera'),
-            'korisnik_idKorisnik' => $this->input->post('idKorisnika')
-        );
-        $this->ModelKorisnik->dodavanjePartneraClanu($partnerClan);
-        redirect("$this->kontroler/clanovi");
+        } else {
+            $partnerClan = array(
+                'partner_idPartner' => $this->input->post('id_partnera'),
+                'korisnik_idKorisnik' => $this->input->post('idKorisnika')
+            );
+            $this->ModelKorisnik->dodavanjePartneraClanu($partnerClan);
+            redirect("$this->kontroler/clanovi");
         }
     }
 
-    public function proveraKorisnikPartner()
-    {
+    public function proveraKorisnikPartner() {
         $korisnik = $this->input->post('idKorisnika');
         $partner = $this->input->post('id_partnera');
         $status = $this->ModelKorisnik->proveraKorisnikPartner($korisnik, $partner);
@@ -476,21 +472,21 @@ class ITmenadzer extends Korisnik {
     }
 
     public function ispisNovcanihUgovoraArhiva() {
-        $NovUgovor=$this->ModelKorisnik->ispisNovcanihUgovoraArhiva();
-        $data['NovUgovor']=$NovUgovor;
-        $this->loadView("arhivaNovcanihUgovora.php",$data);
+        $NovUgovor = $this->ModelKorisnik->ispisNovcanihUgovoraArhiva();
+        $data['NovUgovor'] = $NovUgovor;
+        $this->loadView("arhivaNovcanihUgovora.php", $data);
     }
 
     public function ispisDonatorskihUgovoraArhiva() {
-        $DonUgovor=$this->ModelKorisnik->ispisDonatorskihUgovoraArhiva();
-        $data['DonUgovor']=$DonUgovor;
-        $this->loadView("arhivaDonatorskihUgovora.php",$data);
+        $DonUgovor = $this->ModelKorisnik->ispisDonatorskihUgovoraArhiva();
+        $data['DonUgovor'] = $DonUgovor;
+        $this->loadView("arhivaDonatorskihUgovora.php", $data);
     }
 
-    public function arhivaMejl()
-    {
+    public function arhivaMejl() {
         $data['mejlovi'] = $this->ModelKorisnik->ispisMejlova();
         $data['kontroler'] = $this->kontroler;
         $this->loadView("arhivaMejl.php", $data);
     }
+
 }

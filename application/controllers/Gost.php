@@ -92,17 +92,19 @@ class Gost extends CI_Controller {
     
     public function registruj_se() {
 
-        $this->form_validation->set_rules("username", "username", "required|callback_proveraIdenticanUsername");
-        $this->form_validation->set_rules("password", "password", "required|min_length[8]|max_length[12]");  // | regex_match[/^[A-Z]{1,}a-z{5,}0-9{2,}$/] za mala i velika-ne radi...treba nesto drugacije moj regex
-        $this->form_validation->set_rules("confirm_password", "password", "required|trim|matches[password]");                                               // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Milanov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
-        $this->form_validation->set_rules("ime", "ime", "required");
-        $this->form_validation->set_rules("prezime", "prezime", "required");
-        $this->form_validation->set_rules("datum_rodjenja", "datum_rodjenja", "required");
-        $this->form_validation->set_rules("telefon", "telefon", "required|min_length[9]");
-        $this->form_validation->set_rules("email", "email", "required|valid_email");   
+        $this->form_validation->set_rules("username", "Korisničko ime", "required|callback_proveraIdenticanUsername");
+        $this->form_validation->set_rules("password", "Lozinka", "required|min_length[8]|max_length[12]");  // | regex_match[/^[A-Z]{1,}a-z{5,}0-9{2,}$/] za mala i velika-ne radi...treba nesto drugacije moj regex
+        $this->form_validation->set_rules("confirm_password", "Potvrdi Lozinku", "required|trim|matches[password]");   // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Milanov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
+        $this->form_validation->set_rules("ime", "Ime", "required");
+        $this->form_validation->set_rules("prezime", "Prezime", "required");
+        $this->form_validation->set_rules("datum_rodjenja", "Datum rodjenja", "required");
+        $this->form_validation->set_rules("telefon", "Telefon", "required|min_length[9]");
+        $this->form_validation->set_rules("email", "Email", "required|valid_email");   
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         $this->form_validation->set_message("matches", "Morate uneti isti password");
         $this->form_validation->set_message("proveraIdenticanUsername", "Taj username vec postoji");
+        $this->form_validation->set_message("min_length", "Polje {field} mora imati najmanje 8 karaktera");
+        $this->form_validation->set_message("max_length", "Polje {field} može imati najviše 12 karaktera");
         if ($this->form_validation->run() == FALSE) {
             $this->registracija();
         } else {

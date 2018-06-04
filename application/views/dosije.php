@@ -13,7 +13,7 @@
                 echo "<tr><th>Logo " . $a . "</th></tr>";
                 ?>
                 <tr>
-                    <td colspan="2"><img src="<?php echo base_url($logoi[$i]['putanja']); ?>"/></td>
+                    <td colspan="2"><img src="<?php echo base_url($logoi[$i]['putanja']);?>" alt="$nazivKompanije"/></td>
                 </tr>
                 <?php
             }

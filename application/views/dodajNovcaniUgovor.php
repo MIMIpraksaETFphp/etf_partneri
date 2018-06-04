@@ -69,7 +69,7 @@
                                 </select>
                             </div>
                             <br/>
-                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Novcani Ugovor" name="dodajNovcaniUgovor" >
+                            <input class="btn btn-lg btn-success btn-block" type="submit" value="Dodaj Novčani Ugovor" name="dodajNovcaniUgovor" >
                             <br/><br/>
                         </fieldset>
                         <?php echo form_close(); ?>

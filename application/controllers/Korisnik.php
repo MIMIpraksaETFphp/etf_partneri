@@ -217,22 +217,22 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodajPartnera() {
-        $this->form_validation->set_rules("naziv", "naziv", "required");
-        $this->form_validation->set_rules("adresa", "adresa", "required");
-        $this->form_validation->set_rules("postanski_broj", "postanski broj", "required");
-        $this->form_validation->set_rules("grad", "grad", "required");
-        $this->form_validation->set_rules("drzava", "drzava", "required");
-        $this->form_validation->set_rules("ziro_racun", "ziro racun", "required");
-        $this->form_validation->set_rules("valuta_racuna", "valuta racuna", "required");
+        $this->form_validation->set_rules("naziv", "Naziv", "required");
+        $this->form_validation->set_rules("adresa", "Adresa", "required");
+        $this->form_validation->set_rules("postanski_broj", "Postanski broj", "required");
+        $this->form_validation->set_rules("grad", "Grad", "required");
+        $this->form_validation->set_rules("drzava", "Drzava", "required");
+        $this->form_validation->set_rules("ziro_racun", "Žiro racun", "required");
+        $this->form_validation->set_rules("valuta_racuna", "Valuta racuna", "required");
         $this->form_validation->set_rules("PIB", "PIB", "required");
-        $this->form_validation->set_rules("telefon1", "telefon1", "required|min_length[9]");
-        $this->form_validation->set_rules("email1", "email1", "required|valid_email");
-        $this->form_validation->set_rules("opis", "opis", "required");
-        $this->form_validation->set_rules("veb_adresa", "veb adresa", "required");
-        $this->form_validation->set_rules("ime_kontakt_osobe", "ime kontakt osobe", "required");
-        $this->form_validation->set_rules("prezime_kontakt_osobe", "prezime kontakt osobe", "required");
-        $this->form_validation->set_rules("telefon_kontakt_osobe", "telefon kontakt osobe", "required");
-        $this->form_validation->set_rules("email_kontakt_osobe", "email kontakt osobe", "required|valid_email");
+        $this->form_validation->set_rules("telefon1", "Telefon", "required|min_length[9]");
+        $this->form_validation->set_rules("email1", "Email", "required|valid_email");
+        $this->form_validation->set_rules("opis", "Opis", "required");
+        $this->form_validation->set_rules("veb_adresa", "Veb adresa", "required");
+        $this->form_validation->set_rules("ime_kontakt_osobe", "Ime kontakt osobe", "required");
+        $this->form_validation->set_rules("prezime_kontakt_osobe", "Prezime kontakt osobe", "required");
+        $this->form_validation->set_rules("telefon_kontakt_osobe", "Telefon kontakt osobe", "required");
+        $this->form_validation->set_rules("email_kontakt_osobe", "Email kontakt osobe", "required|valid_email");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         $this->form_validation->set_message("min_length", "Polje {field} mora imati najmanje 9 karaktera");
         $this->form_validation->set_message("valid_email", "Polje {field} mora sadržati validnu email adresu");
@@ -292,7 +292,8 @@ class Korisnik extends CI_Controller {
             $this->load->library('upload', $config);
             $this->upload->do_upload('logo');
 
-            $logo = $partner['naziv'];
+//            $logo = $partner['naziv'];
+             $logo = $this->upload->data('file_name');
             $putanja = 'assets/logo/' . $logo;
             $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
             $data['tip'] = 'dodaj';
@@ -303,12 +304,12 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodavanjePredavanja() {
-        $this->form_validation->set_rules("naslov_srpski", "naslov srpski", "required");
-        $this->form_validation->set_rules("opis_srpski", "opis srpski", "required");
-        $this->form_validation->set_rules("vreme_predavanja", "vreme predavanja", "required");
-        $this->form_validation->set_rules("sala", "sala", "required");
-        $this->form_validation->set_rules("ime_predavaca", "ime predavaca", "required");
-        $this->form_validation->set_rules("prezime_predavaca", "prezime predavaca", "required");
+        $this->form_validation->set_rules("naslov_srpski", "Naslov srpski", "required");
+        $this->form_validation->set_rules("opis_srpski", "Opis srpski", "required");
+        $this->form_validation->set_rules("vreme_predavanja", "Vreme predavanja", "required");
+        $this->form_validation->set_rules("sala", "Sala", "required");
+        $this->form_validation->set_rules("ime_predavaca", "Ime predavaca", "required");
+        $this->form_validation->set_rules("prezime_predavaca", "Prezime predavaca", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajPredavanje();
@@ -330,41 +331,40 @@ class Korisnik extends CI_Controller {
             // $config['upload_path'] = './assets/fajlovi/';
             // $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
             // $config['file_name'] = $predavanje['naslov_srpski'] . "_" . $predavanje['ime_predavaca'] . $predavanje['prezime_predavaca'];
-
             // $this->load->library('upload', $config);
             // $this->upload->do_upload('fajl');
-            
+
             $this->ModelKorisnik->dodatoPredavanje($predavanje);
             $this->posaljiMejlObavestenjePredavanje($predavanje);
             // redirect("$this->kontroler/predavanja");
-            }
+        }
+    }
+
+    public function posaljiMejlObavestenjePredavanje($predavanje) {
+        $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($predavanje['partner_idPartner']);
+        $adresePrimalaca = [];
+        foreach ($primaociMejla as $primalacMejla) {
+            array_push($adresePrimalaca, $primalacMejla['email']);
+        }
+        // $data['adresePrimalaca'] = $adresePrimalaca;
+
+        $this->load->library('email');
+        $to = implode(",", $adresePrimalaca);
+        $subject = "Dodato je predavanje sa naslovom: " . $predavanje['naslov_srpski'];
+        $message = "Sadrzina predavanja: " . $predavanje['opis_srpski'];
+        $result = $this->email
+                ->from('no-reply@etf.rs')
+                ->to($to)
+                ->subject($subject)
+                ->message($message)
+                ->send();
+        if ($result) {
+            $data['poruka'] = "Mejl obavestenje je uspesno poslato.";
+        } else {
+            $data['poruka'] = "Mejl obavestenje nije uspesno poslato.";
         }
 
-        public function posaljiMejlObavestenjePredavanje($predavanje) {
-            $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($predavanje['partner_idPartner']);
-            $adresePrimalaca = [];
-            foreach ($primaociMejla as $primalacMejla) {
-                array_push($adresePrimalaca, $primalacMejla['email']);
-            }
-            // $data['adresePrimalaca'] = $adresePrimalaca;
-
-            $this->load->library('email');
-            $to = implode(",", $adresePrimalaca);
-            $subject = "Dodato je predavanje sa naslovom: " . $predavanje['naslov_srpski'];
-            $message = "Sadrzina predavanja: " . $predavanje['opis_srpski'];
-            $result = $this->email
-                    ->from('no-reply@etf.rs')
-                    ->to($to)
-                    ->subject($subject)
-                    ->message($message)
-                    ->send();
-            if ($result) {
-                $data['poruka'] = "Mejl obavestenje je uspesno poslato.";
-            } else {
-                $data['poruka'] = "Mejl obavestenje nije uspesno poslato.";
-        }
-    
-            $this->loadView("status.php", $data);
+        $this->loadView("status.php", $data);
     }
 
     public function dosije($kompanija, $value = NULL) {

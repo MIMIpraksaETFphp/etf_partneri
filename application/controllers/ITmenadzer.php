@@ -490,6 +490,11 @@ class ITmenadzer extends Korisnik {
     public function arhivaMejl()
     {
         $data['mejlovi'] = $this->ModelKorisnik->ispisMejlova();
+        $brojMejlova = $this->ModelKorisnik->brojMejlova();
+        for ($i=1;$i<$brojMejlova+1;$i++){
+            $primaociMejla[$i] = $this->ModelKorisnik->ispisPrimalacaMejlova($i);
+        }
+        $data['primaociMejla'] = $primaociMejla;
         $data['kontroler'] = $this->kontroler;
         $this->loadView("arhivaMejl.php", $data);
     }

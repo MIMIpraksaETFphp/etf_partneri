@@ -218,6 +218,35 @@ INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALU
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('nordeus-primary-logo-2-rgb.png', 'assets/logo/nordeus-primary-logo-2-rgb.png', '6');
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('facebook.png', 'assets/logo/facebook.png', '3');
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('benestar.png', 'assets/logo/benestar.png', '4');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('hld.png', 'assets/logo/hdl.png', '7');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('elsys.jpg', 'assets/logo/elsys.jpg', '8');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('enel.jpg', 'assets/logo/enel.jpg', '9');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('microsoft.jpg', 'assets/logo/microsoft.jpg', '10');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('vast.jpg', 'assets/logo/vast.jpg', '11');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('simens.jpg', 'assets/logo/simens.jpg', '12');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('LOGO3.png', 'assets/logo/LOGO3.png', '13');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('RT-RK.png', 'assets/logo/RT-RK.png', '14');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('SpiceFactory.png', 'assets/logo/SpiceFactory.png', '15');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('M2E.png', 'assets/logo/M2E.png', '16');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('marketview.jpg', 'assets/logo/marketview.jpg', '17');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('amd.png', 'assets/logo/amd.png', '18');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('mikroe.png', 'assets/logo/mikroe.png', '19');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('Nvidia.png', 'assets/logo/Nvidia.png', '20');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('JaneStreet.png', 'assets/logo/JaneStreet.png', '21');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('NetSet.png', 'assets/logo/NetSet.png', '22');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('Levi9.jpg', 'assets/logo/Levi9.jpg', '23');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('unolux.png', 'assets/logo/unolux.png', '24');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('Micom.png', 'assets/logo/Micom.png', '25');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('icce.png', 'assets/logo/icce.png', '26');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('danieli.png', 'assets/logo/danieli.png', '27');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('Alshoala.jpg', 'assets/logo/Alshoala.jpg', '28');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('atos.png', 'assets/logo/atos.png', '29');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('Coming.png', 'assets/logo/Coming.png', '30');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('endova.png', 'assets/logo/endova.png', '31');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('novelIC.png', 'assets/logo/novelIC.png', '32');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('frame.png', 'assets/logo/frame.png', '33');
+
+
 
 alter table predavanje auto_increment=0;
 INSERT INTO `etf_partneri`.`predavanje` (`naslov_srpski`, `naslov_engleski`, `opis_srpski`, `opis_engleski`, `cv_srpski`, `cv_engleski`, `sala`, `vreme_predavanja`, `ime_predavaca`, `prezime_predavaca`, `partner_idPartner`) VALUES ('Predavanje u okviru proslave 40 godina od upisa ETFa generacije 1978 EL', '0', 'Pripremajući se da diplomirate, sigurno provodite dosta vremena razmišljajući šta ćete da radite posle diplomiranja. Verovatno ćete početi da radite, nastavite studije, putujete, pravite lične/porodične planove, a možda razmišljate i da pokrenete svoj biznis.', '0', 'Dr. Jelena Vučetić je osnivač konsultantske fime Alpha Mission, Inc. sa sedištem u Aleksandriji (Virdžinija, SAD). Fokus ove firme je u oblasti telekomunikacija, računara, tehnologije, aplikacija i obrazovanja preko Interneta, uključujući inženjering, strateško planiranje, patente, marketing, prodaju, operacije i proizvodnju.', '0', 'Amfiteatar 65, ETF', '2018-06-02 12:00:00', 'Jelena', 'Vučetić', '1');

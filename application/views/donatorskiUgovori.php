@@ -1,9 +1,11 @@
 <?php  $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
 echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>"; ?>
-<table class="table table-striped table-bordered">
+
     <?php foreach ($donatorskiUgovori as $dugovor) { ?>
     <?php if($dugovor['idstatus_ugovora']!='6'){
         ?>
+<table class="table table-striped table-bordered">
+    <tbody>
         <tr><td colspan="2">
                 
                 <?php echo "<h3>" . $dugovor['naziv'] . "</h3>"; ?></td></tr>
@@ -74,14 +76,13 @@ echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogr
             </div>
 <!--            <br/><br/>-->
         </td></tr>
-    <tr>
-        <td></td>
-        </tr>
+   
     <?php
     echo form_close();
     //echo "<br />";
 }
     }
 ?>
+        </tbody>
 </table>
 <a href="<?php echo site_url($kontroler .'/ispisDonatorskihUgovoraArhiva/'); ?>"><h3>Arhiva Ugovora</h3></a>

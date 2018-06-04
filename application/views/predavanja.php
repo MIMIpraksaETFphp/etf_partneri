@@ -25,7 +25,7 @@
                 <td><?php echo $predavanje['vreme_predavanja']; ?></td>
             </tr>
                      </table>
-                <br/><br/>
+                <br/>     
     <?php
     }
 }

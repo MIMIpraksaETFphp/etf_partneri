@@ -649,8 +649,34 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function ispisPrimalacaMejlova() {
-        
+    public function brojMejlova() {
+        $this->db->select('idmejl');
+        $this->db->from('mejl');
+        $query = $this->db->get();                    
+        $num = $query->num_rows();
+        return $num;
+    }
+
+    public function ispisMejlovaNovi() {
+        $this->db->select('idmejl, datum_slanja, naslov, sadrzaj, ime, prezime, email, email_primaoca');
+        $this->db->from('korisnik, mejl, primalac_mejla');
+        $this->db->where('korisnik_idKorisnik=idKorisnik');
+        $this->db->where('idmejl=mejl_idmejl');
+        $this->db->order_by('idmejl', 'asc');
+        // $this->db->where('idmejl', $idmejl);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
+    public function ispisPrimalacaMejlova($idmejl) {
+        $this->db->select('email_primaoca');
+        $this->db->from('mejl, primalac_mejla');
+        $this->db->where('idmejl=mejl_idmejl');
+        $this->db->where('idmejl', $idmejl);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
     }
 
     public function proveraIdenticnaMejlAdresa($emailPrimaoca, $idMejla) {

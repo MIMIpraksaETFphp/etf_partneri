@@ -147,7 +147,7 @@ class ITmenadzer extends Korisnik {
         //prekopirana funkcija index iz Korisnik...
         $data['kontroler'] = $this->kontroler;
         $data['metoda'] = 'part';
-        $limit = 2;
+        $limit = 10;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
         if ($this->input->get('pronadji') == 'Pronadji') {

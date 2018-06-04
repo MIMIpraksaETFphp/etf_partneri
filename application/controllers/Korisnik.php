@@ -94,7 +94,7 @@ class Korisnik extends CI_Controller {
     public function index() {
         $data['kontroler'] = $this->kontroler;
         $data['metoda'] = 'index';
-        $limit = 2;
+        $limit = 10;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
         if ($this->input->get('pronadji') == 'Pronadji') {

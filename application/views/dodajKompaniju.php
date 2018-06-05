@@ -269,8 +269,9 @@
                             <span style="color: red;"><?php echo form_error('email_kontakt_osobe'); ?></span>
                             <?php if ($tip == 'dodaj') { ?>
                                 <div class="form-group">
-                                    Logo: <input type="file" name="logo" /><br>
+                                    Logo: <input type="file" name="logo" value="<?php echo set_value('logo'); ?>"/><br>
                                 </div>
+                            <span style="color: red;"><?php echo form_error('logo'); ?></span>
                             <?php } ?>
                             <input class="btn btn-lg btn-success btn-block" type="submit" 
                                    value="

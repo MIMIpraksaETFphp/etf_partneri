@@ -123,8 +123,7 @@ class Gost extends CI_Controller {
         }
     }
 
-    public function proveraIdenticanUsername()
-    {
+    public function proveraIdenticanUsername() {
         $username = $this->input->post('username');
         $status = $this->ModelKorisnik->proveraIdenticanUsername($username);
         return $status;

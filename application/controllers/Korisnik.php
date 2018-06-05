@@ -233,6 +233,9 @@ class Korisnik extends CI_Controller {
         $this->form_validation->set_rules("prezime_kontakt_osobe", "Prezime kontakt osobe", "required");
         $this->form_validation->set_rules("telefon_kontakt_osobe", "Telefon kontakt osobe", "required");
         $this->form_validation->set_rules("email_kontakt_osobe", "Email kontakt osobe", "required|valid_email");
+        if (empty($_FILES['logo']['name'])) {
+            $this->form_validation->set_rules('logo', 'Logo', 'required');
+        }
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         $this->form_validation->set_message("min_length", "Polje {field} mora imati najmanje 9 karaktera");
         $this->form_validation->set_message("valid_email", "Polje {field} mora sadržati validnu email adresu");
@@ -293,7 +296,7 @@ class Korisnik extends CI_Controller {
             $this->upload->do_upload('logo');
 
 //            $logo = $partner['naziv'];
-             $logo = $this->upload->data('file_name');
+            $logo = $this->upload->data('file_name');
             $putanja = 'assets/logo/' . $logo;
             $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
             $data['tip'] = 'dodaj';

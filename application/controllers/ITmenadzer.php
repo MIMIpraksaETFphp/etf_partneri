@@ -49,10 +49,10 @@ class ITmenadzer extends Korisnik {
         $data['novcaniUgovori'] = $novcaniUgovori;
         $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
         $data['statusUgovor'] = $statusUgovor;
-        $godinePaket = $this->ModelKorisnik->godinePaket('4');
-        $data['godinePaket']=$godinePaket;
-         $brojPaketa= $this->ModelKorisnik->brojPaketa();
-         $data['broj']=$brojPaketa;
+//        $godinePaket = $this->ModelKorisnik->godinePaket('4');
+//        $data['godinePaket']=$godinePaket;
+//         $brojPaketa= $this->ModelKorisnik->brojPaketa();
+//         $data['broj']=$brojPaketa;
         $this->loadView("novcaniUgovori.php", $data);
     }
 
@@ -489,7 +489,9 @@ class ITmenadzer extends Korisnik {
         for ($i=1;$i<$brojMejlova+1;$i++){
             $primaociMejla[$i] = $this->ModelKorisnik->ispisPrimalacaMejlova($i);
         }
+        if(!empty($primaociMejla)){
         $data['primaociMejla'] = $primaociMejla;
+        }
         $data['kontroler'] = $this->kontroler;
         $this->loadView("arhivaMejl.php", $data);
     }

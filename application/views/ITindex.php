@@ -1,7 +1,7 @@
 <br/>
 <div id="visualization"></div>
 <?php
-// var_dump($partnerIsticeUgovor);
+ //var_dump($partnerIsticeUgovor);
 $datum = date("Y-m-d H:i:s", strtotime("+6 months"));
 $datum2 = date("Y-m-d H:i:s", strtotime("-6 months"));
 $datum3 = date("Y-m-d H:i:s", strtotime("+2 months"));
@@ -18,12 +18,12 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             foreach ($partnerIsticeUgovor as $value) {
                 
                 if ( $value['datum_isticanja'] > $danasnjiDatum && ($value['datum_isticanja'] < $datum3)) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['idPartner']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
                 }
                 
                 
                 else if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td></td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['idPartner']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td></td></tr>";
                 }
             }
             ?>
@@ -35,7 +35,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             <?php
             foreach ($partnerIsticeUgovor as $value) {
                 if (($value['datum_isticanja'] > $datum2) && $value['datum_isticanja'] < $danasnjiDatum) {
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['idPartner']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
                 }
             }
             ?>
@@ -90,7 +90,7 @@ for ($i = 0; $i < count($partnerIsticeUgovor); $i++) {
     if (($partnerIsticeUgovor[$i]['datum_isticanja'] < $datum) && $partnerIsticeUgovor[$i]['datum_isticanja'] > $danasnjiDatum) {
         ?>
                         {id: <?php echo $i; ?>, content: '<?php echo $partnerIsticeUgovor[$i]["naziv"] . " - " . $partnerIsticeUgovor[$i]["naziv_paketa"];?>
-            <a href="<?php echo site_url("$kontroler/dosije/". $partnerIsticeUgovor[$i]["naziv"]);?>" target="_blank">dosije</a>', start: '<?php echo $partnerIsticeUgovor[$i]["datum_isticanja"]; ?>'},
+            <a href="<?php echo site_url("$kontroler/dosije/". $partnerIsticeUgovor[$i]["idPartner"]);?>">dosije</a>', start: '<?php echo $partnerIsticeUgovor[$i]["datum_isticanja"]; ?>'},
         <?php
     }
 }

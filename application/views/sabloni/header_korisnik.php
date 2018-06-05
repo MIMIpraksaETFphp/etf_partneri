@@ -9,6 +9,7 @@
          <script src="//cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
         <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/css/partnericss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/css/formacss.css" rel="stylesheet" type="text/css" />
         <?php
         if (($this->session->userdata('korisnik')) == NULL)
             redirect("Gost");
@@ -48,7 +49,7 @@
                                 Dodaj
                             </a>
                             <div class="dropdown-menu" name="dodaj" value="">
-                                <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajPartnera"); ?>">Dodaj Kompaniju</a>
+                                <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajKompaniju"); ?>">Dodaj Kompaniju</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajOglas"); ?>">Dodaj Oglas</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajPredavanje"); ?>">Dodaj Predavanje</a>
                             </div>

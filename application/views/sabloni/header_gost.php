@@ -8,6 +8,7 @@
         <script src="https://use.fontawesome.com/1f59a29ea5.js"></script>
         <link href="<?php echo base_url(); ?>assets/css/headercss.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url(); ?>assets/css/partnericss.css" rel="stylesheet" type="text/css" />
+        <link href="<?php echo base_url(); ?>assets/css/formacss.css" rel="stylesheet" type="text/css" />
     </head>
 
     <body>

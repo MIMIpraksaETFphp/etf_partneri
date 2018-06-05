@@ -281,13 +281,11 @@ class Korisnik extends CI_Controller {
             }
 
             $config['upload_path'] = './assets/logo/';
-
             $config['allowed_types'] = 'png|jpg|jpeg|gif|tiff';
             $config['max_size'] = 1000;
             $config['max_width'] = 1524;
             $config['max_height'] = 1068;
             $config['file_name'] = $partner['naziv'];
-
 
             $this->load->library('upload');
             $this->upload->initialize($config);
@@ -299,10 +297,10 @@ class Korisnik extends CI_Controller {
             $logo = $this->upload->data('file_name');
             $putanja = 'assets/logo/' . $logo;
             $this->ModelKorisnik->dodatLogo($logo, $putanja, $insertovanidPartnera);
-            $data['tip'] = 'dodaj';
+            //$data['tip'] = 'dodaj';
 
             // redirect("Korisnik/dodajKompaniju/" . $data);
-            $this->dodajKompaniju($data);
+            $this->index();
         }
     }
 
@@ -442,8 +440,8 @@ class Korisnik extends CI_Controller {
             }
         }
 
-        $kompanija = $partner['naziv'];
-        redirect("$this->kontroler/dosije/" . $kompanija);
+        $idPartner = $partner['idPartner'];
+        redirect("$this->kontroler/dosije/" . $idPartner);
     }
 
     public function oglasDetaljnije($idOglas) {

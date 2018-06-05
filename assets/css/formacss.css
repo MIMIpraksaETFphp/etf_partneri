@@ -1,0 +1,12 @@
+.form-control {
+    float: left;
+}
+
+.message {
+    float: right;
+    color: red;
+}
+
+.form-group {
+    padding: 20px;
+}

@@ -69,9 +69,9 @@ INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postans
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`, `veb_adresa`) VALUES ('78410711', 'Frame', 'Cara Dušana 1', 'Beograd', '11000', 'Srbija', '285-11322377-788', 'DIN', 'Stefan', 'Ilić', '060707073', 'silic@test.com', 'Frame is an ultimate security solution: with apps running in the cloud and not on your computer, your data never leaves the secure datacenter.', 'https://www.fra.me/');
 
 
-INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('1', 'na cekanju');
-INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('2', 'clan tima');
-INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('3', 'it menadzer');
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('1', 'na čekanju');
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('2', 'član tima');
+INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('3', 'it menadžer');
 INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('4', 'admin');
 INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('5', 'banovan');
 

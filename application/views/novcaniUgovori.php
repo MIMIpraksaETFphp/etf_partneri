@@ -2,7 +2,7 @@
 $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
 //echo mdate('%Y-%m-%d %H:%i:%s', now())."<br>";
 echo "<br/><h3>Spisak novčanih ugovora na Elektrotehničkom fakultetu u Beogradu:</h3><br/>";
-var_dump($broj);
+//var_dump($broj);
 //echo $godinePaket[0]['trajanje_paketa_godine'];
 //    if($novcaniUgovori['idstatus_ugovora']!='6'){
 //        
@@ -90,7 +90,7 @@ var_dump($broj);
                 ?></textarea><br /><br /></td></tr>
         <tr><td colspan="2"> 
                 <!--<div class="btn btn-lg ">-->
-                <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" onclick="return confirm('Da li ste sigurni da zelite da promenite status ugovora?');"/>
+                <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" onclick="return confirm('Da li ste sigurni da zelite da promenite ugovor?');"/>
         <?php
         // echo form_submit(array('id' => 'submit', 'value' => 'Promeni'));   
         ?>

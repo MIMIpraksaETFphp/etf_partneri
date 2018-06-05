@@ -63,20 +63,20 @@ class ModelKorisnik extends CI_Model {
         return $insertovanidOglas;
     }
 
-    public function pretragaPartnera($limit = 1000, $pocetak = 0, $vazeciUgovor, $kompanija = NULL, $paket = NULL) {
+    public function pretragaPartnera($limit = 1000, $pocetak = 0, $vazeciUgovor = 0, $kompanija = NULL, $paket = NULL) {
         $this->db->select('naziv');
         if (!empty($kompanija)) {
-            $this->db->from('ugovor');
             $this->db->like('naziv', $kompanija);
-            $this->db->where('partner_idPartner=idPartner');
             $this->db->group_by('naziv');
             if ($vazeciUgovor == 1) {
                 $this->db->where('status_ugovora_idstatus_ugovora=5');
+                $this->db->from('ugovor');
+                $this->db->where('partner_idPartner=idPartner');
             }
         } elseif (!empty($paket)) {
             $this->db->from('ugovor, paketi');
-            $this->db->where('partner_idPartner=idPartner and paketi_idPaketi=idPaketi');
             $this->db->like('naziv_paketa', $paket);
+            $this->db->where('partner_idPartner=idPartner and paketi_idPaketi=idPaketi');
             $this->db->group_by('naziv');
             if ($vazeciUgovor == 1) {
                 $this->db->where('status_ugovora_idstatus_ugovora=5');
@@ -652,7 +652,7 @@ class ModelKorisnik extends CI_Model {
     public function brojMejlova() {
         $this->db->select('idmejl');
         $this->db->from('mejl');
-        $query = $this->db->get();                    
+        $query = $this->db->get();
         $num = $query->num_rows();
         return $num;
     }

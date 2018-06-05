@@ -370,12 +370,12 @@ class Korisnik extends CI_Controller {
         $this->loadView("status.php", $data);
     }
 
-    public function dosije($kompanija, $value = NULL) {
-        $partner = $this->ModelKorisnik->dosijePartner($kompanija);
-        $ugovori = $this->ModelKorisnik->pretragaUgovora($kompanija);
-        $telefoni = $this->ModelKorisnik->pretragaTelefoni($kompanija);
-        $mejlovi = $this->ModelKorisnik->pretragaMejlovi($kompanija);
-        $logoi = $this->ModelKorisnik->pretragaLogo($kompanija);
+    public function dosije($idPartner, $value = NULL) {
+        $partner = $this->ModelKorisnik->dosijePartner($idPartner);
+        $ugovori = $this->ModelKorisnik->pretragaUgovora($idPartner);
+        $telefoni = $this->ModelKorisnik->pretragaTelefoni($idPartner);
+        $mejlovi = $this->ModelKorisnik->pretragaMejlovi($idPartner);
+        $logoi = $this->ModelKorisnik->pretragaLogo($idPartner);
         $data['logoi'] = $logoi;
         $data['telefoni'] = $telefoni;
         $data['mejlovi'] = $mejlovi;

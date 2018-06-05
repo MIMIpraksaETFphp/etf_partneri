@@ -152,6 +152,12 @@ class ModelKorisnik extends CI_Model {
         $insertovanidPartnera = $this->db->insert_id();
         return $insertovanidPartnera;
     }
+    
+    public function poveziKorisnikPartner($idPartnera,$idKorisnik){
+        $this->db->set("korisnik_idKorisnik", $idKorisnik);
+        $this->db->set("partner_idPartner", $idPartnera);
+        $this->db->insert('korisnik_ima_partner');
+    }
 
     public function dodatTelefonPartnera($telefon, $idPartner) {
         $this->db->set("telefon", $telefon);

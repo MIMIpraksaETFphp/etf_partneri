@@ -267,6 +267,8 @@ class Korisnik extends CI_Controller {
             );
 
             $insertovanidPartnera = $this->ModelKorisnik->dodatPartner($partner);
+            $idKorisnik= $this->session->korisnik->idKorisnik;
+            $this->ModelKorisnik->poveziKorisnikPartner($insertovanidPartnera,$idKorisnik);
             for ($i = 1; $i <= 5; $i++) {
                 if (!empty($partner['email' . $i])) {
                     $email = $partner['email' . $i];

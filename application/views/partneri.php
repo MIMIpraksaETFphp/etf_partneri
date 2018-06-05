@@ -43,7 +43,7 @@ foreach ($paketi as $paket) {
     //   var_dump($filtriraniPartneri);
     if (!empty($filtriraniPartneri)) {
         ?>
-        <h1><a name="<?php echo $paket['naziv_paketa']; ?>"><?php
+        <br /><h1><a name="<?php echo $paket['naziv_paketa']; ?>"><?php
                 echo ucfirst($paket['naziv_paketa']);
                 if ($paket['naziv_paketa'] != "partneri" && $paket['naziv_paketa'] != "partneri katedre") {
                     echo " partneri";
@@ -58,8 +58,9 @@ foreach ($paketi as $paket) {
             <div class="<?php echo str_replace(' ', '_', $paket['naziv_paketa']); ?>">
                 <a href="<?php echo $filtriraniPartner['veb_adresa']; ?>" target="_blank">
                     <?php if ($paket['naziv_paketa'] != "ostali") { ?>
-                        <img src="<?php echo base_url($filtriraniPartner['putanja']); ?>"><br />
-                    <?php } else {
+                        <img src="<?php echo base_url($filtriraniPartner['putanja']); ?>">
+                    <?php
+                    } else {
                         echo $filtriraniPartner['naziv'];
                     }
                     ?>
@@ -71,9 +72,9 @@ foreach ($paketi as $paket) {
             if ($paket['naziv_paketa'] != "partneri" && $paket['naziv_paketa'] != "partneri katedre" && $paket['naziv_paketa'] != "ostali") {
                 echo "<p>" . $filtriraniPartner['opis'] . "</p><br />";
             }
-             echo "<br />";
+            // echo "<br />";
         }
-        echo "<br/>";
     }
+    echo "<br/><br/>";
 }
 ?>

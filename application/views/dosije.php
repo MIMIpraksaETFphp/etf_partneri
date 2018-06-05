@@ -2,9 +2,10 @@
 <?php //var_dump($partner);?>
 <br/>
 <table class="table table-striped" >
-    <?php foreach ($partner as $kompanija) { ?>
+    <?php foreach ($partner as $kompanija) { 
+    $idPartner = $kompanija['idPartner'];?>
         <tr>
-            <th colspan="2" style="color: blue;"><h1><?php echo $nazivKompanije=$kompanija['naziv']; ?></h1></th>
+            <th colspan="2" style="color: blue;"><h1><?php echo $kompanija['naziv']; ?></h1></th>
         </tr>
         <?php
         if (isset($logoi)) {
@@ -85,7 +86,7 @@
     </tr>
 </table>
 <?php $value=1;?>
-<input type="button" class="btn btn-default" value="Izmeni podatke" onclick="location.href = '<?php echo site_url("$kontroler/dosije/$nazivKompanije/$value");?>';">
+<input type="button" class="btn btn-default" value="Izmeni podatke" onclick="location.href = '<?php echo site_url("$kontroler/dosije/$idPartner/$value");?>';">
 <br />
 <br />
 <table class="table">

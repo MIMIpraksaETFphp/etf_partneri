@@ -14,13 +14,13 @@ foreach ($mejlovi as $mejl) {
                 //echo "<tr><td>id mejla: </td><td>" . $mejl['idmejl'] . "</td></tr>";
                 echo "<tr><td>from: </td><td>" . $mejl['email'] . "</td></tr>";
                 echo "<tr><td>Ime i prezime pošiljaoca: </td><td>" . $mejl['ime'] . " " . $mejl['prezime'] . "</td></tr>";
-                echo "<tr><td>to: </td>";
+                echo "<tr><td>to: </td><td>";
                 $idMejl = $mejl['idmejl'];
                 // var_dump($primaociMejla[$idMejl]);
                 for ($i = 0; $i < count($primaociMejla[$idMejl]); $i++) {
-                    echo "<td>" . $primaociMejla[$idMejl][$i]['email_primaoca'] . ", </td></tr>";
+                    echo $primaociMejla[$idMejl][$i]['email_primaoca'] . ", ";
                 }
-                //echo "<br/>";
+                echo "</td></tr>";
                 echo "<tr><td>vreme slanja: </td><td>" . $mejl['datum_slanja'] . "</td></tr>";
                 echo "<tr><td>naslov mejla: </td><td>" . $mejl['naslov'] . "</td></tr>";
                 echo "<tr><td>sadrzaj mejla: </td><td>" . $mejl['sadrzaj'] . "</td></tr><br />";

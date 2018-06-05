@@ -27,7 +27,7 @@
                         <?php } ?>
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control col-md-6" placeholder="Naziv" name="naziv" type="text" autofocus <?php if($this->session->userdata('korisnik')->status_korisnika_idtable1 != 4){echo "readonly";}?> value="<?php
+                                <input class="form-control col-md-6" placeholder="Naziv" name="naziv" type="text" autofocus <?php if ($tip == 'promeni') { if($this->session->userdata('korisnik')->status_korisnika_idtable1 != 4){echo "readonly";}}?> value="<?php
                                 if ($tip == 'promeni') {
                                     echo $partner[0]['naziv'];
                                 } else {

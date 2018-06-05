@@ -281,7 +281,7 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idPartner=partner_idPartner');
         $this->db->where('idPaketi=paketi_idPaketi');
         $this->db->order_by('datum_isticanja', 'desc');
-        $query = $this->db->get('ugovor, partner, paketi', 20, 0);
+        $query = $this->db->get('ugovor, partner, paketi'); 
         $result = $query->result_array();
         return $result;
     }

@@ -16,10 +16,11 @@ class Admin extends ITmenadzer {
         $this->load->view("sabloni/footer.php");
     }
 
-    public function index() {
+    public function index($poruka=null) {
         $status = $this->ModelKorisnik->iscitajKorisnikUsername();
         $status2 = $this->ModelKorisnik->iscitajStatusTabelu();
         $trenutniStat = $this->ModelKorisnik->iscitajTrenutniStatus();
+        $data['poruka'] = $poruka;
         $data['status'] = $status;
         $data['status2'] = $status2;
         $data['trenutniStat'] = $trenutniStat;
@@ -135,8 +136,20 @@ class Admin extends ITmenadzer {
             'idKorisnik' => $this->input->post('idKorisnik'),
             'status_korisnika_idtable1' => $this->input->post('statusKorisnika'),
         );
-        $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
-        redirect("$this->kontroler/index");
+        if($KorisnikStatus['status_korisnika_idtable1'] == 1 || $KorisnikStatus['status_korisnika_idtable1'] == 5){
+            $KorisnikNemaPartnere = $this->ModelKorisnik->proveraKorisnikPartner($KorisnikStatus['idKorisnik']);
+            if($KorisnikNemaPartnere == false){
+                $poruka = 'Ne mozete banovati korisnika koji ima partnere';
+                $this->index($poruka);
+            }
+            else{
+                $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
+                redirect("$this->kontroler/index");
+            }
+        } else{
+            $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
+            redirect("$this->kontroler/index");
+        }
     }
 
     public function brisanjePaketa($idPaket) {

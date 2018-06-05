@@ -18,7 +18,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             foreach ($partnerIsticeUgovor as $value) {
                 
                 if ( $value['datum_isticanja'] > $danasnjiDatum && ($value['datum_isticanja'] < $datum3)) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['idPartner']) . ">Pošalji mejl</a></td></tr>";
                 }
                 
                 
@@ -35,7 +35,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             <?php
             foreach ($partnerIsticeUgovor as $value) {
                 if (($value['datum_isticanja'] > $datum2) && $value['datum_isticanja'] < $danasnjiDatum) {
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['naziv']) . ">Pošalji mejl</a></td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['idPartner']) . ">Pošalji mejl</a></td></tr>";
                 }
             }
             ?>

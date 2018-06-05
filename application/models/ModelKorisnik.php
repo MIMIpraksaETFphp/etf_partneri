@@ -412,7 +412,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function dohvatiClanove() {
-        $this->db->select('idKorisnik, ime, prezime, username');
+        $this->db->select('idKorisnik, ime, prezime, username, status_korisnika_idtable1');
         $this->db->from('korisnik');
         $query = $this->db->get();
         $result = $query->result_array();
@@ -431,10 +431,10 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function dohvatiPartnera($naziv) {
+    public function dohvatiPartnera($idPartner) {
         $this->db->select('email_kontakt_osobe, naziv');
         $this->db->from('partner');
-        $this->db->where('naziv', $naziv);
+        $this->db->where('idPartner', $idPartner);
         $query = $this->db->get();
         $result = $query->row_array();
         return $result;
@@ -593,11 +593,13 @@ class ModelKorisnik extends CI_Model {
         $this->db->update('korisnik');
     }
 
-    public function proveraKorisnikPartner($korisnik, $partner) {
+    public function proveraKorisnikPartner($korisnik, $partner=null) {
         $this->db->select('korisnik_idKorisnik, partner_idPartner');
-        $this->db->from('korisnik_ima_partner');
+        $this->db->from('korisnik_ima_partner');      
         $this->db->where('korisnik_idKorisnik', $korisnik);
-        $this->db->where('partner_idPartner', $partner);
+        if($partner){
+            $this->db->where('partner_idPartner', $partner);
+        }
         $query = $this->db->get();
         $num = $query->num_rows();
         if ($num > 0) {

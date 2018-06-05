@@ -64,7 +64,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function pretragaPartnera($limit = 1000, $pocetak = 0, $vazeciUgovor = 0, $kompanija = NULL, $paket = NULL) {
-        $this->db->select('naziv');
+        $this->db->select('naziv, idPartner');
         if (!empty($kompanija)) {
             $this->db->like('naziv', $kompanija);
             $this->db->group_by('naziv');
@@ -118,8 +118,8 @@ class ModelKorisnik extends CI_Model {
         return $this->db->count_all_results();
     }
 
-    public function dosijePartner($kompanija) {
-        $this->db->where('naziv', $kompanija);
+    public function dosijePartner($idPartner) {
+        $this->db->where('idPartner', $idPartner);
         $query = $this->db->get('partner');
         $result = $query->result_array();
         return $result;
@@ -195,21 +195,21 @@ class ModelKorisnik extends CI_Model {
         $this->db->insert('predavanje');
     }
 
-    public function pretragaUgovora($kompanija) {
+    public function pretragaUgovora($idPartner) {
         $this->db->select('datum_potpisivanja, datum_isticanja, tip, naziv, naziv_paketa');
         $this->db->from('ugovor, partner, paketi');
         $this->db->where('partner_idPartner=idPartner and idPaketi=paketi_idPaketi');
-        $this->db->where('naziv', $kompanija);
+        $this->db->where('idPartner', $idPartner);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
     }
 
-    public function pretragaTelefoni($kompanija) {
+    public function pretragaTelefoni($idPartner) {
         $this->db->select('telefon, idTelefon_partnera');
         $this->db->from('telefon_partnera, partner');
         $this->db->where('partner_idPartner=idPartner');
-        $this->db->where('naziv', $kompanija);
+        $this->db->where('idPartner', $idPartner);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
@@ -225,11 +225,11 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function pretragaMejlovi($kompanija) {
+    public function pretragaMejlovi($idPartner) {
         $this->db->select('email, idEmail_partnera');
         $this->db->from('email_partnera, partner');
         $this->db->where('partner_idPartner=idPartner');
-        $this->db->where('naziv', $kompanija);
+        $this->db->where('idPartner', $idPartner);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
@@ -265,11 +265,11 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function pretragaLogo($kompanija) {
+    public function pretragaLogo($idPartner) {
         $this->db->select('putanja');
         $this->db->from('logo, partner p');
         $this->db->where('partner_idPartner=idPartner');
-        $this->db->where('p.naziv', $kompanija);
+        $this->db->where('idPartner', $idPartner);
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;
@@ -288,7 +288,6 @@ class ModelKorisnik extends CI_Model {
 
     public function iscitajPredavanje() {
         $this->db->select('naslov_srpski, vreme_predavanja, sala, ime_predavaca, prezime_predavaca, idpredavanje, opis_srpski, cv_srpski');
-        //$this->db->from('predavanje');
         $query = $this->db->get('predavanje', 10, 0);
         $result = $query->result_array();
         return $result;

@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+.zlatni a {
+     width: 420px;
+    height: 125px;
+}
+
 .zlatni a img {
     width: 420px;
     height: 125px;
@@ -33,6 +38,12 @@
     width: 174px;
 }
 
+.partneri_katedre {
+    width: 120px;
+    height: 50px;
+    float: left;
+}
+
 .partneri_katedre a img {
     width: 120px;
     height: 50px;
@@ -44,5 +55,4 @@
 
 .ostali {
     margin-left: 20px;
-    padding: 20px;
 }

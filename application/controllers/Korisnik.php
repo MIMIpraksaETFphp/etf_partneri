@@ -92,6 +92,15 @@ class Korisnik extends CI_Controller {
     }
 
     public function index() {
+        $danasnjiDatum = mdate('%Y-%m-%d', now());
+        $petIsticanja=$this->ModelKorisnik->iscitajPetKompanijaIsticanje($danasnjiDatum);
+        $petPotpisivanja=$this->ModelKorisnik->iscitajPetKompanijaPotpisivanje();
+        $data['petIsticanja']=$petIsticanja;
+        $data['petPotpisivanja']=$petPotpisivanja;
+        $this->loadView("ClanTimaIndex.php", $data);
+    }
+    
+    public function part() {
         $data['kontroler'] = $this->kontroler;
         $data['metoda'] = 'index';
         $limit = 10;

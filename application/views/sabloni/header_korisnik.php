@@ -39,7 +39,8 @@
             <div id="nav-wrap">
                 <nav id="nav">
                     <ul class="nav-strane">
-                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/index"); ?>">Pretraga partnera</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/index"); ?>">Član tima</a></li>
+                        <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/part"); ?>">Pretraga partnera</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/partneri"); ?>">Partneri fakulteta</a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/paketi"); ?>">Paketi</a> </li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo site_url("Korisnik/oglasi"); ?>">Oglasi</a></li>

@@ -95,9 +95,9 @@ class Korisnik extends CI_Controller {
         $idKorisnik = $this->session->korisnik->idKorisnik;
         $danasnjiDatum = mdate('%Y-%m-%d', now());
         $petIsticanja=$this->ModelKorisnik->iscitajPetKompanijaIsticanje($danasnjiDatum);
-        $petPotpisivanja=$this->ModelKorisnik->iscitajPetKompanijaPotpisivanje();
-        $clanUgovor = $this->ModelKorisnik->clanImaUgovor($idKorisnik);
-        $data['clanUgovor'] = $clanUgovor;
+        $petPotpisivanja=$this->ModelKorisnik->iscitajPetKompanijaPotpisivanje($danasnjiDatum);
+        $clanoviUgovor = $this->ModelKorisnik->clanImaUgovor($idKorisnik);
+        $data['clanoviUgovor'] = $clanoviUgovor;
         $data['petIsticanja']=$petIsticanja;
         $data['petPotpisivanja']=$petPotpisivanja;
         $this->loadView("ClanTimaIndex.php", $data);

@@ -716,9 +716,10 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
-    public function iscitajPetKompanijaPotpisivanje() {
+    public function iscitajPetKompanijaPotpisivanje($danasnjiDatum) {
         $this->db->select('datum_isticanja, datum_potpisivanja, partner_idPartner, naziv, idPartner, tip, idugovor');
         $this->db->where('idPartner=partner_idPartner');
+        $this->db->where("datum_potpisivanja <'$danasnjiDatum'");
         $this->db->order_by('datum_potpisivanja', 'desc');
         $query = $this->db->get('ugovor, partner', 5, 0);
         $result = $query->result_array();

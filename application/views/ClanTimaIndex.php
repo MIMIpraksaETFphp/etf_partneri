@@ -1,8 +1,9 @@
 <?php //echo "ClanTima";
  //var_dump($petPotpisivanja);
  echo "<br />";
- //var_dump($petIsticanja);
- 
+ var_dump($petIsticanja);
+// echo "<br />";   
+ var_dump($clanUgovor);
  $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
 
 ?>
@@ -13,9 +14,11 @@
             <tr><td>Naziv Kompanije</td><td>Datum isticanja</td><td>Datum potpisivanja</td><td>Tip ugovora</td></tr>
             <?php
             foreach ($petPotpisivanja as $value) {
+                foreach ($clanUgovor as $idUgovor){
+                    if ($value)
                     echo "<tr><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td>" . $value['datum_potpisivanja'] . "</td><td>" . $value['tip'] . "</td></tr>";
                 }
-            
+            }
             ?>
         </table>
 

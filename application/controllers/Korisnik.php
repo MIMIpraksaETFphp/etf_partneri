@@ -92,9 +92,12 @@ class Korisnik extends CI_Controller {
     }
 
     public function index() {
+        $idKorisnik = $this->session->korisnik->idKorisnik;
         $danasnjiDatum = mdate('%Y-%m-%d', now());
         $petIsticanja=$this->ModelKorisnik->iscitajPetKompanijaIsticanje($danasnjiDatum);
         $petPotpisivanja=$this->ModelKorisnik->iscitajPetKompanijaPotpisivanje();
+        $clanUgovor = $this->ModelKorisnik->clanImaUgovor($idKorisnik);
+        $data['clanUgovor'] = $clanUgovor;
         $data['petIsticanja']=$petIsticanja;
         $data['petPotpisivanja']=$petPotpisivanja;
         $this->loadView("ClanTimaIndex.php", $data);

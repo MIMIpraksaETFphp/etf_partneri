@@ -152,8 +152,8 @@ class ModelKorisnik extends CI_Model {
         $insertovanidPartnera = $this->db->insert_id();
         return $insertovanidPartnera;
     }
-    
-    public function poveziKorisnikPartner($idPartnera,$idKorisnik){
+
+    public function poveziKorisnikPartner($idPartnera, $idKorisnik) {
         $this->db->set("korisnik_idKorisnik", $idKorisnik);
         $this->db->set("partner_idPartner", $idPartnera);
         $this->db->insert('korisnik_ima_partner');
@@ -287,7 +287,7 @@ class ModelKorisnik extends CI_Model {
         $this->db->where('idPartner=partner_idPartner');
         $this->db->where('idPaketi=paketi_idPaketi');
         $this->db->order_by('datum_isticanja', 'desc');
-        $query = $this->db->get('ugovor, partner, paketi'); 
+        $query = $this->db->get('ugovor, partner, paketi');
         $result = $query->result_array();
         return $result;
     }
@@ -599,11 +599,11 @@ class ModelKorisnik extends CI_Model {
         $this->db->update('korisnik');
     }
 
-    public function proveraKorisnikPartner($korisnik, $partner=null) {
+    public function proveraKorisnikPartner($korisnik, $partner = null) {
         $this->db->select('korisnik_idKorisnik, partner_idPartner');
-        $this->db->from('korisnik_ima_partner');      
+        $this->db->from('korisnik_ima_partner');
         $this->db->where('korisnik_idKorisnik', $korisnik);
-        if($partner){
+        if ($partner) {
             $this->db->where('partner_idPartner', $partner);
         }
         $query = $this->db->get();
@@ -715,25 +715,34 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
-    
-    
+
     public function iscitajPetKompanijaPotpisivanje() {
-        $this->db->select('datum_isticanja, datum_potpisivanja, partner_idPartner, naziv, idPartner, tip');
+        $this->db->select('datum_isticanja, datum_potpisivanja, partner_idPartner, naziv, idPartner, tip, idugovor');
         $this->db->where('idPartner=partner_idPartner');
         $this->db->order_by('datum_potpisivanja', 'desc');
         $query = $this->db->get('ugovor, partner', 5, 0);
         $result = $query->result_array();
         return $result;
-       }
-       
-       public function iscitajPetKompanijaIsticanje($danasnjiDatum) {
-        $this->db->select('datum_isticanja, datum_potpisivanja, partner_idPartner, naziv, idPartner, tip');
+    }
+
+    public function iscitajPetKompanijaIsticanje($danasnjiDatum) {
+        $this->db->select('datum_isticanja, datum_potpisivanja, partner_idPartner, naziv, idPartner, tip, idugovor');
         $this->db->where('idPartner=partner_idPartner');
         $this->db->where("datum_isticanja >'$danasnjiDatum'");
         $this->db->order_by('datum_isticanja', 'asc');
-        $query = $this->db->get('ugovor, partner',5,0);
+        $query = $this->db->get('ugovor, partner', 5, 0);
         $result = $query->result_array();
         return $result;
-       
     }
+
+    public function clanImaUgovor($idKorisnik) {
+        $this->db->select('idugovor');
+        $this->db->from('partner, ugovor u, korisnik, korisnik_ima_partner k');
+        $this->db->where('u.partner_idPartner=idPartner and korisnik_idKorisnik=idKorisnik and k.partner_idPartner=idPartner');
+        $this->db->where('idKorisnik', $idKorisnik);
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
 }

@@ -65,7 +65,8 @@ class Korisnik extends CI_Controller {
     }
 
     public function posaljiMejlObavestenjeOglas($oglas) {
-        $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($oglas['id_partnera']);
+        $podaci['idPartner'] = $oglas['id_partnera'];
+        $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($podaci);
         $adresePrimalaca = [];
         foreach ($primaociMejla as $primalacMejla) {
             array_push($adresePrimalaca, $primalacMejla['email']);
@@ -160,16 +161,28 @@ class Korisnik extends CI_Controller {
     }
 
     public function dodajOglas() {
+        $data['kontroler'] = $this->kontroler;
+
         $partneriOglasi = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriOglasi'] = $partneriOglasi;
-        $data['kontroler'] = $this->kontroler;
+
+        $podaci['idKorisnik'] = $this->session->korisnik->idKorisnik;
+        $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+        $data['partneriKorisnika'] = $partneriKorisnika;
+
         $this->loadView("dodajOglas.php", $data);
     }
 
     public function dodajPredavanje() {
         $data['kontroler'] = $this->kontroler;
+
         $partneriPredavanja = $this->ModelKorisnik->partnerIdNaziv();
         $data['partneriPredavanja'] = $partneriPredavanja;
+
+        $podaci['idKorisnik'] = $this->session->korisnik->idKorisnik;
+        $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+        $data['partneriKorisnika'] = $partneriKorisnika;
+
         $this->loadView("dodajPredavanje.php", $data);
     }
 
@@ -356,7 +369,8 @@ class Korisnik extends CI_Controller {
     }
 
     public function posaljiMejlObavestenjePredavanje($predavanje) {
-        $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($predavanje['partner_idPartner']);
+        $podaci['idPartner'] = $predavanje['partner_idPartner'];
+        $primaociMejla = $this->ModelKorisnik->dohvatiPartnere($podaci);
         $adresePrimalaca = [];
         foreach ($primaociMejla as $primalacMejla) {
             array_push($adresePrimalaca, $primalacMejla['email']);

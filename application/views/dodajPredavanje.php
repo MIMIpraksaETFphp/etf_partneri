@@ -67,9 +67,22 @@
                             <div class="form-control col-md-6">
                                 <label>Naziv Partnera</label>
                                 <select name="id_partnera" class="form-control">
-                                    <?php foreach ($partneriPredavanja as $partneriPredavanje) { ?>
-                                        <option value="<?php echo $partneriPredavanje['idPartner']; ?>"><?php echo $partneriPredavanje['naziv']; ?></option>
-                                    <?php } ?>
+                                    <?php 
+                                    if($this->session->korisnik->status_korisnika_idtable1 == 2){
+                                        foreach ($partneriKorisnika as $partnerKorisnika) {
+                                    ?>
+                                            <option value="<?php echo $partnerKorisnika['idPartner']; ?>"><?php echo $partnerKorisnika['naziv']; ?></option>                                
+                                    <?php
+                                        }
+                                    }
+                                    else{
+                                        foreach ($partneriPredavanja as $partneriPredavanje) {
+                                    ?>
+                                            <option value="<?php echo $partneriPredavanje['idPartner']; ?>"><?php echo $partneriPredavanje['naziv']; ?></option>
+                                    <?php
+                                        }
+                                    }
+                                    ?>
                                 </select>
                             </div><br /><br /><br /><br />
                             <div class="form-group">

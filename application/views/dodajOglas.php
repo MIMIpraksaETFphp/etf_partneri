@@ -1,3 +1,6 @@
+<?php 
+// var_dump($partneriKorisnika);
+?>
 <br />
 <div class="row">
     <div class="col-md-12">
@@ -30,9 +33,22 @@
                     <div class="form-group">
                         <label>Naziv Partnera</label><br />
                         <select name="id_partnera" class="form-control col-md-6">
-                            <?php foreach ($partneriOglasi as $partneriOglas) { ?>
+                        <?php
+                        if($this->session->korisnik->status_korisnika_idtable1 == 2){
+                            foreach ($partneriKorisnika as $partnerKorisnika) {
+                        ?>
+                                <option value="<?php echo $partnerKorisnika['idPartner']; ?>"><?php echo $partnerKorisnika['naziv']; ?></option>                                
+                        <?php
+                            }
+                        }
+                        else{
+                            foreach ($partneriOglasi as $partneriOglas) {
+                        ?>
                                 <option value="<?php echo $partneriOglas['idPartner']; ?>"><?php echo $partneriOglas['naziv']; ?></option>
-                            <?php } ?>
+                        <?php
+                            }
+                        } 
+                        ?>
                         </select>
                     </div>
                     <br />

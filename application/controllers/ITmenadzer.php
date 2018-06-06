@@ -49,10 +49,6 @@ class ITmenadzer extends Korisnik {
         $data['novcaniUgovori'] = $novcaniUgovori;
         $statusUgovor = $this->ModelKorisnik->statusIdUgovor();
         $data['statusUgovor'] = $statusUgovor;
-//        $godinePaket = $this->ModelKorisnik->godinePaket('4');
-//        $data['godinePaket']=$godinePaket;
-//         $brojPaketa= $this->ModelKorisnik->brojPaketa();
-//         $data['broj']=$brojPaketa;
         $this->loadView("novcaniUgovori.php", $data);
     }
 

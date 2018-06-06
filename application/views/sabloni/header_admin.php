@@ -59,7 +59,7 @@
                             </a>
                             <div class="dropdown-menu" name="dodaj" value="">
                                 <a class="dropdown-item" href="<?php echo site_url("Admin/dodajPaket"); ?>">Dodaj Paket</a>
-                                <a class="dropdown-item" href="<?php echo site_url("Admin/dodajPartnera"); ?>">Dodaj Kompaniju</a>
+                                <a class="dropdown-item" href="<?php echo site_url("Admin/dodajPartnera"); ?>">Dodaj Partnera</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Admin/dodajOglas"); ?>">Dodaj Oglas</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Admin/dodajPredavanje"); ?>">Dodaj Predavanje</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Admin/dodajUgovor"); ?>">Dodaj Novčani ugovor</a>

@@ -49,7 +49,7 @@
                                 Dodaj
                             </a>
                             <div class="dropdown-menu" name="dodaj" value="">
-                                <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajKompaniju"); ?>">Dodaj Kompaniju</a>
+                                <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajKompaniju"); ?>">Dodaj Partnera</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajOglas"); ?>">Dodaj Oglas</a>
                                 <a class="dropdown-item" href="<?php echo site_url("Korisnik/dodajPredavanje"); ?>">Dodaj Predavanje</a>
                             </div>

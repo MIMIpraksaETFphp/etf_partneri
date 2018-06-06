@@ -56,7 +56,7 @@
                                 Dodaj
                             </a>
                             <div class="dropdown-menu" name="dodaj" value="">
-                                <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajPartnera"); ?>">Dodaj Kompaniju</a>
+                                <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajPartnera"); ?>">Dodaj Partnera</a>
                                 <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajOglas"); ?>">Dodaj Oglas</a>
                                 <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajPredavanje"); ?>">Dodaj Predavanje</a>
                                 <a class="dropdown-item" href="<?php echo site_url("ITmenadzer/dodajUgovor"); ?>">Dodaj Novčani ugovor</a>

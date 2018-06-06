@@ -575,7 +575,8 @@ class ModelKorisnik extends CI_Model {
         $query = $this->db->query('SELECT idPaketi, naziv_paketa, COUNT(paketi_idPaketi) as broj, maks_broj_partnera
                                    FROM paketi 
                                    LEFT JOIN ugovor ON idPaketi = paketi_idPaketi
-                                   GROUP BY naziv_paketa
+                                   WHERE status_ugovora_idstatus_ugovora<>6
+                                   GROUP BY naziv_paketa  
                                    ORDER BY idPaketi asc;');
         $result = $query->result_array();
         return $result;
@@ -585,7 +586,7 @@ class ModelKorisnik extends CI_Model {
         $query = $this->db->query("SELECT idPaketi, naziv_paketa, COUNT(paketi_idPaketi) as broj, maks_broj_partnera
                                    FROM paketi 
                                    LEFT JOIN ugovor ON idPaketi = paketi_idPaketi
-                                   WHERE idPaketi=$idPaketi
+                                   WHERE idPaketi=$idPaketi and status_ugovora_idstatus_ugovora<>6
                                    GROUP BY naziv_paketa
                                    ORDER BY idPaketi asc;");
         $result = $query->result_array();

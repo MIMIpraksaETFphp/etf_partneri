@@ -33,7 +33,7 @@
                                 } else {
                                     echo set_value('naziv');
                                 }
-                                ?>"> 
+                                ?>">
                                 <span class="message col-md-6"><?php echo form_error('naziv'); ?></span>
                             </div>
                             <div class="form-group">

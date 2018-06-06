@@ -715,5 +715,25 @@ class ModelKorisnik extends CI_Model {
         $result = $query->result_array();
         return $result;
     }
-
+    
+    
+    public function iscitajPetKompanijaPotpisivanje() {
+        $this->db->select('datum_isticanja, datum_potpisivanja, partner_idPartner, naziv, idPartner, tip');
+        $this->db->where('idPartner=partner_idPartner');
+        $this->db->order_by('datum_potpisivanja', 'desc');
+        $query = $this->db->get('ugovor, partner', 5, 0);
+        $result = $query->result_array();
+        return $result;
+       }
+       
+       public function iscitajPetKompanijaIsticanje($danasnjiDatum) {
+        $this->db->select('datum_isticanja, datum_potpisivanja, partner_idPartner, naziv, idPartner, tip');
+        $this->db->where('idPartner=partner_idPartner');
+        $this->db->where("datum_isticanja >'$danasnjiDatum'");
+        $this->db->order_by('datum_isticanja', 'asc');
+        $query = $this->db->get('ugovor, partner',5,0);
+        $result = $query->result_array();
+        return $result;
+       
+    }
 }

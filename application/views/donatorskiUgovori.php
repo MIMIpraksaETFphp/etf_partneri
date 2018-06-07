@@ -42,14 +42,14 @@ echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogr
             ?>/></td></tr>
     <tr><td>
             <?php echo "Datum isporuke"; ?></td>
-        <td><input class="form-control" style="width: 25%;" placeholder="Datum isporuke" type="date" name="datum_isporuke" value="<?php
+        <td><input class="form-control" style="width: 45%;" placeholder="Datum isporuke" type="date" name="datum_isporuke" value="<?php
             if (isset($dugovor['datum_isporuke'])) {
                 echo $dugovor['datum_isporuke'];
             }
             ?>" /></td></tr>
     <!--    </select>-->
     <tr><td><?php echo "Status ugovora: <br />"; ?></td>
-        <td> <select class="form-control" style="width: 25%;" name="status_ugovora" value="<?php echo $dugovor['opis']; ?>">
+        <td> <select class="form-control" style="width: 45%;" name="status_ugovora" value="<?php echo $dugovor['opis']; ?>">
                 <?php foreach ($statusUgovor as $element) { ?>
                     <option value="<?php echo $element['idstatus_ugovora']; ?>" <?php
             if ($dugovor['idstatus_ugovora'] == $element['idstatus_ugovora']) {
@@ -68,18 +68,14 @@ echo "<br/><h3>Spisak donatorskih ugovora na Elektrotehničkom fakultetu u Beogr
             echo $dugovor['komentar'];
         }
             ?></textarea><br /><br /></td></tr>
-<!--</table>-->
     <tr><td colspan="2">    
             <div class="btn btn-lg ">
                 <input class="btn btn-lg btn-success " type="submit" value="Promeni" name="" onclick="return confirm('Da li ste sigurni da zelite da promenite ugovor?');" >
-                <?php //echo form_submit(array('id' => 'submit', 'value' => 'Promeni')); ?>
             </div>
-<!--            <br/><br/>-->
         </td></tr>
    
     <?php
     echo form_close();
-    //echo "<br />";
 }
     }
 ?>

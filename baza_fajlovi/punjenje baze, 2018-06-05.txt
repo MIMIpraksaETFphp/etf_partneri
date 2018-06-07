@@ -9,7 +9,7 @@ INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postans
 
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`, `veb_adresa`) VALUES ('83799837', 'Benestra', 'Einsteins 3', 'Bratislava', '5900', 'Slovacka', 'IBAN233 1233S23', 'EUR', 'Jan', 'Jankulovsky', '+322 243460071', 'jan.jankulovsky@test.com', 'BENESTRA is a national telecommunications operator that provides a comprehensive portfolio of voice, data, internet and hosting services of guaranteed quality. The company entered the Slovak market in 1999. Since merging with five companies on an alternative telecommunication market in 2006, it has been operating as GTS Nextra.', 'https://www.benestra.sk/');
 
-INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`, `veb_adresa`) VALUES ('93453299', 'ABBA', 'Dunavski kej bb', 'Beograd', '11000', 'Srbija', '250-23323-12', 'DIN', 'Nikola', 'Nenadovic', '0608383', 'nikola.nenadovic@test.com', 'ABB is a pioneering technology leader that works closely with utilities, industry, transportation and infrastructure customers to write the future of industrial digitalization and realize value.ABB Ability is our unified, cross-industry digital capability — extending from device to edge to cloud — with devices, systems, solutions, services and a platform that enable our customers to know more, do more, do better, together.', 'http://new.abb.com/rs');
+INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`, `veb_adresa`) VALUES ('93453299', 'ABB', 'Dunavski kej bb', 'Beograd', '11000', 'Srbija', '250-23323-12', 'DIN', 'Nikola', 'Nenadovic', '0608383', 'nikola.nenadovic@test.com', 'ABB is a pioneering technology leader that works closely with utilities, industry, transportation and infrastructure customers to write the future of industrial digitalization and realize value.ABB Ability is our unified, cross-industry digital capability — extending from device to edge to cloud — with devices, systems, solutions, services and a platform that enable our customers to know more, do more, do better, together.', 'http://new.abb.com/rs');
 
 INSERT INTO `etf_partneri`.`partner` (`PIB`, `naziv`, `adresa`, `grad`, `postanski_broj`, `drzava`, `ziro_racun`, `valuta_racuna`, `ime_kontakt_osobe`, `prezime_kontakt_osobe`, `telefon_kontakt_osobe`, `email_kontakt_osobe`, `opis`, `veb_adresa`) VALUES ('23234453', 'Nordeus', 'Bulevar Mihaila Pupina 1656v', 'Beograd', '11000', 'Srbija', '189-456254-129', 'DIN', 'Tamara', 'Markovic', '06123545', 'tamara@test.com', 'We’re a mobile gaming company with big ambitions and a fiercely independent mindset. Fueled by our dream to create competitive games, we now enable millions of people around the globe to be champions. Proud of where we’re from, we’re putting Belgrade on the gaming map.', 'https://nordeus.com/');
 
@@ -351,40 +351,40 @@ INSERT INTO `etf_partneri`.`status_ugovora` (`opis`) VALUES ('predat arhivi Faku
 
 alter table ugovor auto_increment=0;
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-03-01', '2020-03-01', '1', '1', '5', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-05-01', '2020-05-01', '2', '2', '2', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-05-01', '2020-05-01', '2', '2', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-04-01', '2019-04-01', '3', '3', '3', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-12-01', '2018-06-01', '4', '5', '1', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-06-01', '2018-09-01', '5', '6', '4', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-06-01', '2018-09-01', '5', '6', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-09-15', '2017-12-15', '6', '2', '5', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2015-06-01', '2017-06-01', '1', '1', '6', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2015-06-01', '2017-06-01', '1', '1', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-05-05', '2018-09-10', '3', '2', '2', 'donatorski');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-07-01', '2018-10-01', '1', '5', '5', 'donatorski');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-05-15', '2018-05-15', '7', '2', '6', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-04-01', '2018-04-01', '8', '1', '5', 'novcani');
 
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-07-03', '2018-07-03', '9', '5', '3', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-07-03', '2018-07-03', '9', '5', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-11-08', '2019-11-08', '10', '2', '5', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-04-03', '2019-04-03', '11', '1', '3', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-04-03', '2019-04-03', '11', '1', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2015-06-15', '2017-06-15', '12', '3', '6', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-06-03', '2018-06-03', '13', '1', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2015-01-01', '2017-01-01', '14', '1', '6', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-07-03', '2018-07-03', '15', '4', '3', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-11-08', '2018-11-08', '16', '2', '2', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-05-03', '2018-05-03', '17', '3', '3', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-07-03', '2018-07-03', '15', '4', '5', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-11-08', '2018-11-08', '16', '2', '5', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-05-03', '2018-05-03', '17', '3', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2013-02-01', '2015-02-01', '18', '3', '6', 'novcani');
 
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-05-15', '2019-05-15', '19', '2', '2', 'donatorski');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-05-15', '2019-05-15', '19', '2', '5', 'donatorski');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-10-01', '2018-10-01', '20', '5', '5', 'donatorski');
 
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-05-03', '2019-05-03', '21', '3', '3', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2014-02-01', '2015-02-01', '22', '4', '6', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-05-05', '2019-05-05', '23', '2', '2', 'donatorski');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-05-03', '2019-05-03', '21', '3', '5', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2014-02-01', '2015-02-01', '22', '4', '5', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-05-05', '2019-05-05', '23', '2', '5', 'donatorski');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-09-01', '2018-09-01', '24', '5', '5', 'donatorski');
 
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-05-08', '2018-05-08', '25', '2', '2', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-09-03', '2019-09-03', '26', '3', '3', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2016-05-08', '2018-05-08', '25', '2', '5', 'novcani');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-09-03', '2019-09-03', '26', '3', '5', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2013-02-01', '2015-02-01', '27', '3', '6', 'novcani');
-INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2015-05-05', '2017-09-10', '28', '2', '2', 'donatorski');
+INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2015-05-05', '2017-09-10', '28', '2', '5', 'donatorski');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2017-10-01', '2018-10-01', '29', '5', '5', 'donatorski');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2018-02-03', '2019-02-03', '30', '5', '3', 'novcani');
 INSERT INTO `etf_partneri`.`ugovor` (`datum_potpisivanja`, `datum_isticanja`, `partner_idPartner`, `paketi_idPaketi`, `status_ugovora_idstatus_ugovora`, `tip`) VALUES ('2014-02-01', '2015-02-01', '31', '6', '6', 'novcani');
@@ -430,5 +430,17 @@ INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_do
 INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`, `isporuka`) VALUES ('120000', '6 klima uredjaja', 'RSD', '2018-06-01', 'Klima uredjaji za RC', '32', '1');
 INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`, `isporuka`) VALUES ('40000', '40 udžbenika', 'RSD', '2018-07-03', 'Udžbenici za studente', '35', '0');
 INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`, `isporuka`) VALUES ('7000', 'Hrana za životinje', 'RSD', '2018-06-01', 'Hrana za životinje u RC', '36', '1');
+
+alter table fajl auto_increment=0;
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('1.pdf', '1', 'assets/fajlovi/1.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('2.pdf', '2', 'assets/fajlovi/2.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('3.pdf', '3', 'assets/fajlovi/3.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('4.pdf', '4', 'assets/fajlovi/4.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('5.pdf', '5', 'assets/fajlovi/5.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('6.pdf', '6', 'assets/fajlovi/6.pdf');
+
+
+
+
 
 

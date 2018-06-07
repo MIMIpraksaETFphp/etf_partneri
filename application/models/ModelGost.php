@@ -12,7 +12,7 @@ class ModelGost extends CI_Model {
         $this->db->from('partner p, ugovor u, paketi, logo l');
         $this->db->where("u.partner_idPartner=idPartner and paketi_idPaketi=idPaketi and l.partner_idPartner=idPartner and status_ugovora_idstatus_ugovora='5'");
         $this->db->like('p.naziv', $kompanija);
-        $this->db->group_by('p.naziv, opis, naziv_paketa, putanja, veb_adresa'); //pitati tamaru ili prof
+        $this->db->group_by('p.naziv, opis, naziv_paketa, putanja, veb_adresa'); 
         $query = $this->db->get();
         $result = $query->result_array();
         return $result;

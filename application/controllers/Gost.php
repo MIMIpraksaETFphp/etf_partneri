@@ -42,10 +42,11 @@ class Gost extends CI_Controller {
     }
 
     public function login($poruka = NULL) {
-        $podaci = array();
-        if ($poruka)
-        {$podaci['poruka'] = $poruka;}
-        $this->loadView("login.php", $podaci);
+        $data = array();
+        if ($poruka){
+            $data['poruka'] = $poruka;
+        }
+        $this->loadView("login.php", $data);
     }
 
     public function ulogujse() {
@@ -53,10 +54,8 @@ class Gost extends CI_Controller {
         $this->form_validation->set_rules("password", "Password", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run()) {
-            //$this->ModelKorisnik->proveraUsername($this->input->post('username'));
             if (!$this->ModelKorisnik->proveraUsername($this->input->post('username')))
                 $this->login("Neispravan username");
-            //elseif (!$this->ModelKorisnik->proveraPassword($this->input->post('password')))
             elseif (!$this->ModelKorisnik->proveraPassword(md5($this->input->post('password'))))  
                 $this->login("Neispravan password");
             else {
@@ -94,7 +93,7 @@ class Gost extends CI_Controller {
 
         $this->form_validation->set_rules("username", "Korisničko ime", "required|callback_proveraIdenticanUsername");
         $this->form_validation->set_rules("password", "Lozinka", "required|min_length[8]|max_length[12]");  // | regex_match[/^[A-Z]{1,}a-z{5,}0-9{2,}$/] za mala i velika-ne radi...treba nesto drugacije moj regex
-        $this->form_validation->set_rules("confirm_password", "Potvrdi Lozinku", "required|trim|matches[password]");   // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Milanov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
+        $this->form_validation->set_rules("confirm_password", "Potvrdi Lozinku", "required|trim|matches[password]");   // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/]  da je prvo veliko itd
         $this->form_validation->set_rules("ime", "Ime", "required");
         $this->form_validation->set_rules("prezime", "Prezime", "required");
         $this->form_validation->set_rules("datum_rodjenja", "Datum rodjenja", "required");

@@ -106,7 +106,7 @@ class Korisnik extends CI_Controller {
     
     public function part() {
         $data['kontroler'] = $this->kontroler;
-        $data['metoda'] = 'index';
+        $data['metoda'] = 'part';
         $limit = 10;
         $pocetni_index = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
 
@@ -148,7 +148,7 @@ class Korisnik extends CI_Controller {
 
         $this->config->load('bootstrap_pagination');
         $config_pagination = $this->config->item('pagination');
-        $config_pagination['base_url'] = site_url("Korisnik/index");
+        $config_pagination['base_url'] = site_url("Korisnik/part");
         $config_pagination['total_rows'] = $ukupanBrPartnera;
         $config_pagination['per_page'] = $limit;
         $config_pagination['next_link'] = 'Next';

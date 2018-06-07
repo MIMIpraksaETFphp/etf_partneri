@@ -232,7 +232,7 @@ INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALU
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('amd.png', 'assets/logo/amd.png', '18');
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('mikroe.png', 'assets/logo/mikroe.png', '19');
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('Nvidia.png', 'assets/logo/Nvidia.png', '20');
-INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('JaneStreet.png', 'assets/logo/JaneStreet.png', '21');
+INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('JaneStreet.jpg', 'assets/logo/JaneStreet.jpg', '21');
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('NetSet.png', 'assets/logo/NetSet.png', '22');
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('Levi9.jpg', 'assets/logo/Levi9.jpg', '23');
 INSERT INTO `etf_partneri`.`logo` (`naziv`, `putanja`, `partner_idPartner`) VALUES ('unolux.png', 'assets/logo/unolux.png', '24');

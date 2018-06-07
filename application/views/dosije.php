@@ -14,7 +14,7 @@
                 echo "<tr><th>Logo " . $a . "</th></tr>";
                 ?>
                 <tr>
-                    <td colspan="2"><img src="<?php echo base_url($logoi[$i]['putanja']);?>" alt="$nazivKompanije"/></td>
+                    <td colspan="2"><img src="<?php echo base_url($logoi[$i]['putanja']);?>" alt="<?php echo $kompanija['naziv']; ?>"/></td>
                 </tr>
                 <?php
             }

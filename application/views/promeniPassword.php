@@ -1,5 +1,4 @@
 
-
 <br/>
 <span style="background-color:red;">
     <div class="container"><!-- container class is used to centered  the body of the browser with some decent width-->
@@ -21,10 +20,10 @@
                                     <input class="form-control" name="username" type="text" value="" placeholder="Unesi username">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" name="stari_password" type="text" value="" placeholder="Unesi staru lozinku">
+                                    <input class="form-control" name="stari_password" type="password" value="" placeholder="Unesi staru lozinku">
                                 </div>  
                                 <div class="form-group">
-                                    <input class="form-control" name="novi_password" type="text" value="" placeholder="Unesi novu lozinku">
+                                    <input class="form-control" name="novi_password" type="password" value="" placeholder="Unesi novu lozinku">
                                 </div>                                                                                   
                                 <input class="btn btn-lg btn-success btn-block" type="submit" value="Promeni password" name="promeniPassword" >                              
                             </fieldset>

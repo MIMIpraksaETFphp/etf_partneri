@@ -33,27 +33,18 @@
                     <div class="form-group">
                         <label>Naziv Partnera</label><br />
                         <select name="id_partnera" class="form-control col-md-6">
-                        <?php
-                        if($this->session->korisnik->status_korisnika_idtable1 == 2){
+                        <?php                        
                             foreach ($partneriKorisnika as $partnerKorisnika) {
                         ?>
                                 <option value="<?php echo $partnerKorisnika['idPartner']; ?>"><?php echo $partnerKorisnika['naziv']; ?></option>                                
                         <?php
                             }
-                        }
-                        else{
-                            foreach ($partneriOglasi as $partneriOglas) {
-                        ?>
-                                <option value="<?php echo $partneriOglas['idPartner']; ?>"><?php echo $partneriOglas['naziv']; ?></option>
-                        <?php
-                            }
-                        } 
-                        ?>
+                        ?>                       
                         </select>
                     </div>
                     <br />
                     <div class="form-group">
-                        File .pdf: <input type="file" name="fajl" /><br>
+                        File: <input type="file" name="fajl" /><br>
                     </div>
                     <div class="form-group">
                         <input class="btn btn-lg btn-success btn-block col-md-2" type="submit" value="Dodaj Oglas" name="dodavanjeOglasa" >

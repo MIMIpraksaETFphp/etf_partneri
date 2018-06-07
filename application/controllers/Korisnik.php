@@ -163,11 +163,13 @@ class Korisnik extends CI_Controller {
     public function dodajOglas() {
         $data['kontroler'] = $this->kontroler;
 
-        $partneriOglasi = $this->ModelKorisnik->partnerIdNaziv();
-        $data['partneriOglasi'] = $partneriOglasi;
-
         $podaci['idKorisnik'] = $this->session->korisnik->idKorisnik;
-        $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+        if($this->session->korisnik->status_korisnika_idtable1==2){
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+        }
+        else{
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere();
+        }
         $data['partneriKorisnika'] = $partneriKorisnika;
 
         $this->loadView("dodajOglas.php", $data);
@@ -176,11 +178,13 @@ class Korisnik extends CI_Controller {
     public function dodajPredavanje() {
         $data['kontroler'] = $this->kontroler;
 
-        $partneriPredavanja = $this->ModelKorisnik->partnerIdNaziv();
-        $data['partneriPredavanja'] = $partneriPredavanja;
-
         $podaci['idKorisnik'] = $this->session->korisnik->idKorisnik;
-        $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+        if($this->session->korisnik->status_korisnika_idtable1==2){
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+        }
+        else{
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere();
+        }
         $data['partneriKorisnika'] = $partneriKorisnika;
 
         $this->loadView("dodajPredavanje.php", $data);

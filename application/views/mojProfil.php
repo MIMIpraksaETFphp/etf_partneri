@@ -23,7 +23,7 @@ $podaci = array(
     echo "<tr><td>Email:</td><td> " . $podaci['email'] . "</td></tr>";
     echo "<tr><td>Partneri za koje je član zadužen:</td><td> ";
     foreach ($partneri as $partner){
-        echo "<table class='table table-striped '><tr><td>".$partner['naziv']."</td></tr></table>";
+        echo "<table class='table table-striped'><tr><td><a href=".site_url($kontroler.'/dosije/'.$partner['idPartner']).">".$partner['naziv']."</a></td></tr></table>";
     }
     echo "</td></tr>";
 ?>

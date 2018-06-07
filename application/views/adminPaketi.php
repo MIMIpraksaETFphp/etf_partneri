@@ -27,6 +27,13 @@ if (isset($paketi)) {
                 <tr>
                     <td><a name="<?php echo $paket['naziv_paketa']; ?>"><?php
                             echo "<h4>" . $paket['naziv_paketa'] . "</h4><a/><br/>";
+                            echo "<p>Paket ";
+                            if ($paket['trajanje_paketa_godine'] == 1) {
+                                echo "na jednogodisnjem nivou";
+                            } elseif ($paket['trajanje_paketa_godine'] == 2) {
+                                echo "na dvogodisnjem nivou";
+                            }
+                            echo " obuhvata:</p >";
                             $filter = array($paket['naziv_paketa']);
                             $filtriraniPaketi = array_filter($paketiStavke, function ($s) use ($filter) {
                                 return in_array($s['naziv_paketa'], $filter);

@@ -432,11 +432,11 @@ INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_do
 INSERT INTO `etf_partneri`.`donatorski_ugovori` (`procenjena_vrednost`, `opis_donacije`, `valuta`, `datum_isporuke`, `komentar`, `ugovor_idugovor`, `isporuka`) VALUES ('7000', 'Hrana za životinje', 'RSD', '2018-06-01', 'Hrana za životinje u RC', '36', '1');
 
 alter table fajl auto_increment=0;
-INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('1.pdf', '1', 'assets/fajlovi/1.pdf');
-INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('2.pdf', '2', 'assets/fajlovi/2.pdf');
-INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('3.pdf', '3', 'assets/fajlovi/3.pdf');
-INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('4.pdf', '4', 'assets/fajlovi/4.pdf');
-INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('5.pdf', '5', 'assets/fajlovi/5.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('Naziv1', '1', 'assets/fajlovi/1.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('Naziv2', '2', 'assets/fajlovi/2.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('Naziv3', '3', 'assets/fajlovi/3.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('Naziv4', '4', 'assets/fajlovi/4.pdf');
+INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('Naziv5', '5', 'assets/fajlovi/5.pdf');
 
 
 

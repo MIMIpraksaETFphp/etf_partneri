@@ -25,7 +25,7 @@
                 <tr>
                     <td>
                         <a name="<?php echo $paket['naziv_paketa']; ?>"><?php
-        echo "<h3>" . $paket['naziv_paketa'] . "</h3><a/><br/>";
+        echo "<h4>" . $paket['naziv_paketa'] . "</h4><a/><br/>";
         echo "<p>Paket ";
         if ($paket['trajanje_paketa_godine'] == 1) {
             echo "na jednogodisnjem nivou";

@@ -1,5 +1,6 @@
 <br/>
 <?php 
+var_dump($partneri);
 $podaci = array(
     'ime' => $this->session->korisnik->ime,
     'prezime' => $this->session->korisnik->prezime,

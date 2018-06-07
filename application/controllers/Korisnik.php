@@ -491,6 +491,8 @@ class Korisnik extends CI_Controller {
     }
 
     public function mojProfil() {
+        $podaci['idKorisnik'] = $this->session->korisnik->idKorisnik;
+        $data['partneri'] = $this->ModelKorisnik->dohvatiPartnere($podaci);
         $data['kontroler'] = $this->kontroler;
         $this->loadView("mojProfil.php", $data);
     }

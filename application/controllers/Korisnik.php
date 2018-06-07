@@ -165,10 +165,10 @@ class Korisnik extends CI_Controller {
 
         $podaci['idKorisnik'] = $this->session->korisnik->idKorisnik;
         if($this->session->korisnik->status_korisnika_idtable1==2){
-            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnereUgovor($podaci);
         }
         else{
-            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere();
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnereUgovor();
         }
         $data['partneriKorisnika'] = $partneriKorisnika;
 
@@ -180,10 +180,10 @@ class Korisnik extends CI_Controller {
 
         $podaci['idKorisnik'] = $this->session->korisnik->idKorisnik;
         if($this->session->korisnik->status_korisnika_idtable1==2){
-            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere($podaci);
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnereUgovor($podaci);
         }
         else{
-            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnere();
+            $partneriKorisnika = $this->ModelKorisnik->dohvatiPartnereUgovor();
         }
         $data['partneriKorisnika'] = $partneriKorisnika;
 

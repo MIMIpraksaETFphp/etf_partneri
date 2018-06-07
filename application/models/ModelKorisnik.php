@@ -749,4 +749,18 @@ class ModelKorisnik extends CI_Model {
         return $result;
     }
 
+    public function dohvatiPartnereUgovor($podaci=[]) {
+        $this->db->select('naziv, idPartner');
+        $this->db->from('korisnik_ima_partner kip, korisnik, partner,ugovor u');
+        $this->db->where('kip.partner_idPartner=idPartner and kip.korisnik_idKorisnik=idKorisnik and u.partner_idPartner=idPartner');
+        $this->db->where('status_ugovora_idstatus_ugovora=5');
+        if (isset($podaci['idKorisnik'])) {
+            $this->db->where('idKorisnik', $podaci['idKorisnik']);
+        }
+        $this->db->group_by('naziv');
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
+    }
+
 }

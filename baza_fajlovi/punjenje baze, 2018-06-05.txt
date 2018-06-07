@@ -76,10 +76,10 @@ INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('4', 
 INSERT INTO `etf_partneri`.`status_korisnika` (`idtable1`, `opis`) VALUES ('5', 'banovan');
 
 alter table korisnik auto_increment=0;
-INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('milan', 'sifra123', 'Milan', 'Ajtic', '1990-08-24', '0601', 'ma@test.com', '4');
-INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('ivanm', 'sifra123', 'Ivan', 'Markovic', '1989-02-14', '0602', 'im@test.com', '3');
-INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('marko', 'sifra123', 'Marko', 'Markovic', '1987-03-14', '0603', 'mm@test.com', '2');
-INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('ivani', 'sifra123', 'Ivan', 'Ivanovic', '1980-05-10', '0604', 'ii@test.com', '1');
+INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('milan', 'f1dc735ee3581693489eaf286088b916', 'Milan', 'Ajtic', '1990-08-24', '0601', 'ma@test.com', '4');
+INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('ivanm', 'f1dc735ee3581693489eaf286088b916', 'Ivan', 'Markovic', '1989-02-14', '0602', 'im@test.com', '3');
+INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('marko', 'f1dc735ee3581693489eaf286088b916', 'Marko', 'Markovic', '1987-03-14', '0603', 'mm@test.com', '2');
+INSERT INTO `etf_partneri`.`korisnik` (`username`, `password`, `ime`, `prezime`, `datum_rodjenja`, `telefon`, `email`, `status_korisnika_idtable1`) VALUES ('ivani', 'f1dc735ee3581693489eaf286088b916', 'Ivan', 'Ivanovic', '1980-05-10', '0604', 'ii@test.com', '1');
 
 INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('1', '1');
 INSERT INTO `etf_partneri`.`korisnik_ima_partner` (`korisnik_idKorisnik`, `partner_idPartner`) VALUES ('1', '2');
@@ -437,7 +437,6 @@ INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES (
 INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('3.pdf', '3', 'assets/fajlovi/3.pdf');
 INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('4.pdf', '4', 'assets/fajlovi/4.pdf');
 INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('5.pdf', '5', 'assets/fajlovi/5.pdf');
-INSERT INTO `etf_partneri`.`fajl` (`naziv`, `oglas_idoglas`, `putanja`) VALUES ('6.pdf', '6', 'assets/fajlovi/6.pdf');
 
 
 

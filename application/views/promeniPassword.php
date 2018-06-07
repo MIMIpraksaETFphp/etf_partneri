@@ -1,3 +1,4 @@
+
 <br/>
 <div class="container">
     <div class="row">
@@ -18,18 +19,13 @@
                                 <input class="form-control col-md-6" name="username" type="text" value="" placeholder="Unesi username">
                             </div>
                             <div class="form-group">
-                                <input class="form-control col-md-6" name="stari_password" type="text" value="" placeholder="Unesi staru lozinku">
+                                <input class="form-control col-md-6" name="stari_password" type="password" value="" placeholder="Unesi staru lozinku">
                             </div>  
                             <div class="form-group">
-                                <input class="form-control col-md-6" name="novi_password" type="text" value="" placeholder="Unesi novu lozinku">
+                                <input class="form-control col-md-6" name="novi_password" type="password" value="" placeholder="Unesi novu lozinku">
                             </div> 
                             <div class="form-group">
                                 <input class="btn btn-lg btn-success btn-block col-md-3" type="submit" value="Promeni password" name="promeniPassword" >    
                             </div>
                         </fieldset>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>

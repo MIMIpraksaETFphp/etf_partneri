@@ -56,8 +56,8 @@ class Gost extends CI_Controller {
             //$this->ModelKorisnik->proveraUsername($this->input->post('username'));
             if (!$this->ModelKorisnik->proveraUsername($this->input->post('username')))
                 $this->login("Neispravan username");
-            elseif (!$this->ModelKorisnik->proveraPassword($this->input->post('password')))
-                //elseif (!$this->ModelKorisnik->proveraPassword(md5($this->input->post('password'))))  OVAKO TREBA!!!!!!!!!
+            //elseif (!$this->ModelKorisnik->proveraPassword($this->input->post('password')))
+            elseif (!$this->ModelKorisnik->proveraPassword(md5($this->input->post('password'))))  
                 $this->login("Neispravan password");
             else {
                 $korisnik = $this->ModelKorisnik->korisnik;

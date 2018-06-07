@@ -20,10 +20,10 @@ foreach ($predavanja as $predavanje) {
                     <td><?php echo "Vreme predavanja:" . $predavanje['vreme_predavanja'] . "<br/>"; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo "Ime i prezimee predavaca: " . $predavanje['ime_predavaca'] . " " . $predavanje['prezime_predavaca'] . "<br/>"; ?></td>
+                    <td><?php echo "Ime i prezime predavača: " . $predavanje['ime_predavaca'] . " " . $predavanje['prezime_predavaca'] . "<br/>"; ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo "Biografija predavaca:<br/>" . $predavanje['cv_srpski'] . "<br/>"; ?></td>
+                    <td><?php echo "Biografija predavača:<br/>" . $predavanje['cv_srpski'] . "<br/>"; ?></td>
                 </tr>
 
             </tbody>

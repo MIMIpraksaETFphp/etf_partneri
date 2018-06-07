@@ -46,21 +46,15 @@ class ModelGost extends CI_Model {
         return $result;
     }
 
-    public function ispisPredavanja() {
+    public function ispisPredavanja($arhiva) {
         $this->db->select('naslov_srpski, opis_srpski, cv_srpski, sala, vreme_predavanja, ime_predavaca, prezime_predavaca, idpredavanje');
         // $this->db->from('predavanje, partner');
         $this->db->where('partner_idPartner=idPartner');
-        $this->db->order_by('vreme_predavanja', 'asc');
-        $query = $this->db->get('predavanje, partner', 20, 0);
-        $result = $query->result_array();
-        return $result;
-    }
-
-    public function ispisPredavanjaArhiva() {
-        $this->db->select('naslov_srpski, opis_srpski, cv_srpski, sala, vreme_predavanja, ime_predavaca, prezime_predavaca');
-        // $this->db->from('predavanje, partner');
-        $this->db->where('partner_idPartner=idPartner');
-        $this->db->order_by('vreme_predavanja', 'desc');
+        if($arhiva==0){
+            $this->db->order_by('vreme_predavanja', 'asc');
+        } elseif($arhiva==1){
+            $this->db->order_by('vreme_predavanja', 'desc');
+        }
         $query = $this->db->get('predavanje, partner', 20, 0);
         $result = $query->result_array();
         return $result;

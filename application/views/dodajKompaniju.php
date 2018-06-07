@@ -273,7 +273,7 @@
                             </div>
                             <?php if ($tip == 'dodaj') { ?>
                                 <div class="form-group">
-                                    Logo: <input type="file" name="logo" value="<?php echo set_value('logo'); ?>"/><br>
+                                    Logo: <input type="file" name="logo"/><br>
                                     <span class="message col-md-6"><?php echo form_error('logo'); ?></span>
                                 </div>
                             <?php } ?> <div class="form-group">

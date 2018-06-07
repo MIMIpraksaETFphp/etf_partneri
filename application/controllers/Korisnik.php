@@ -211,14 +211,16 @@ class Korisnik extends CI_Controller {
     }
 
     public function predavanja() {
-        $predavanja = $this->ModelGost->ispisPredavanja();
+        $arhiva=0;
+        $predavanja = $this->ModelGost->ispisPredavanja($arhiva);
         $data['kontroler'] = $this->kontroler;
         $data['predavanja'] = $predavanja;
         $this->loadView("predavanja.php", $data);
     }
 
     public function arhiva() {
-        $predavanja = $this->ModelGost->ispisPredavanjaArhiva();
+        $arhiva=1;
+        $predavanja = $this->ModelGost->ispisPredavanja($arhiva);
         $data['predavanja'] = $predavanja;
         $this->loadView("arhivaPredavanja.php", $data);
     }

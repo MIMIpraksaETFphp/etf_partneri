@@ -2,10 +2,6 @@
 
 class ModelKorisnik extends CI_Model {
 
-    //public $username;
-    //public $ime;
-    //public $prezime;
-    //public $idKorisnik;
     public $korisnik;
 
     public function __construct() {

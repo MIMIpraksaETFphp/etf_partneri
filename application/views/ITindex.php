@@ -17,9 +17,9 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             <?php
             foreach ($partnerIsticeUgovor as $value) {
 
-                if ($value['datum_isticanja'] > $danasnjiDatum && ($value['datum_isticanja'] < $datum3)) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
+                if ($value['datum_isticanja'] > $danasnjiDatum && ($value['datum_isticanja'] < $datum3)) {
                     echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['idPartner']) . ">Pošalji mejl</a></td></tr>";
-                } else if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {     //OTKOMENTARISATI kad budemo imali kompanije kojima istice ugovor za 6 meseci
+                } else if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {
                     echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['idPartner']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td></td></tr>";
                 }
             }
@@ -75,7 +75,6 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
 
 <script type="text/javascript">
 
-//            var item = 'item5<br><a href="http://visjs.org" target="_blank">click here</a>';
 
     // DOM element where the Timeline will be attached
     var container = document.getElementById('visualization');
@@ -100,7 +99,7 @@ for ($i = 0; $i < count($partnerIsticeUgovor); $i++) {
     // Configuration for the Timeline
     var options = {
     //max: '2018-09-27',
-    //min: Date.now()       da li da krene od danasnjeg datuma??
+    //min: Date.now()       
     };
     // Create a Timeline
     var timeline = new vis.Timeline(container, items, options);

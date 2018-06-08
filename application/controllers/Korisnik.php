@@ -241,8 +241,8 @@ class Korisnik extends CI_Controller {
 
     private function filtrirajPartnere($paket, $partneri) {
         $filter = array($paket['naziv_paketa']);
-        $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
-            return in_array($s['naziv_paketa'], $filter);
+        $filtriraniPartneri = array_filter($partneri, function ($element) use ($filter) {
+            return in_array($element['naziv_paketa'], $filter);
         });
         return $filtriraniPartneri;
     }
@@ -259,7 +259,7 @@ class Korisnik extends CI_Controller {
         $this->form_validation->set_rules("telefon1", "Telefon", "required|min_length[9]");
         $this->form_validation->set_rules("email1", "Email", "required|valid_email");
         $this->form_validation->set_rules("opis", "Opis", "required");
-        $this->form_validation->set_rules("veb_adresa", "Veb adresa", "required");
+        $this->form_validation->set_rules("veb_adresa", "Veb adresa", "required|callback_proveraVebAdrese");
         $this->form_validation->set_rules("ime_kontakt_osobe", "Ime kontakt osobe", "required");
         $this->form_validation->set_rules("prezime_kontakt_osobe", "Prezime kontakt osobe", "required");
         $this->form_validation->set_rules("telefon_kontakt_osobe", "Telefon kontakt osobe", "required");
@@ -337,6 +337,17 @@ class Korisnik extends CI_Controller {
         }
     }
 
+    public function proveraVebAdrese($adresa) {
+     if (preg_match("/^((https|http):\/\/)(www.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/", $adresa)) {
+                return true;
+            } else {
+                $this->form_validation->set_message("proveraVebAdrese", '{field} mora biti u obliku http:// ili https://');
+                return false;
+            }
+        }
+    
+
+
     public function dodavanjePredavanja() {
         $this->form_validation->set_rules("naslov_srpski", "Naslov srpski", "required");
         $this->form_validation->set_rules("opis_srpski", "Opis srpski", "required");
@@ -362,15 +373,8 @@ class Korisnik extends CI_Controller {
                 'partner_idPartner' => $this->input->post('id_partnera')
             );
 
-            // $config['upload_path'] = './assets/fajlovi/';
-            // $config['allowed_types'] = 'pdf|jpg|jpeg|png|tiff';
-            // $config['file_name'] = $predavanje['naslov_srpski'] . "_" . $predavanje['ime_predavaca'] . $predavanje['prezime_predavaca'];
-            // $this->load->library('upload', $config);
-            // $this->upload->do_upload('fajl');
-
             $this->ModelKorisnik->dodatoPredavanje($predavanje);
             $this->posaljiMejlObavestenjePredavanje($predavanje);
-            // redirect("$this->kontroler/predavanja");
         }
     }
 

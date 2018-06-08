@@ -279,7 +279,6 @@ class ModelKorisnik extends CI_Model {
 
     public function iscitajPartnera() {
         $this->db->select('datum_isticanja, partner_idPartner, naziv, idPartner, naziv_paketa');
-        //$this->db->from('ugovor, partner');
         $this->db->where('idPartner=partner_idPartner');
         $this->db->where('idPaketi=paketi_idPaketi');
         $this->db->order_by('datum_isticanja', 'desc');
@@ -305,7 +304,7 @@ class ModelKorisnik extends CI_Model {
     }
 
     public function statusIdUgovor() {
-        $this->db->select('idstatus_ugovora, opis');     //donatorski_ugovori.opis   status_ugovora.opis
+        $this->db->select('idstatus_ugovora, opis');
         $this->db->from('status_ugovora');
         $query = $this->db->get();
         $result = $query->result_array();
@@ -704,14 +703,14 @@ class ModelKorisnik extends CI_Model {
         $this->db->select('trajanje_paketa_godine');
         $this->db->where('idPaketi', $id_paketa);
         $query = $this->db->get('paketi');
-        $result = $query->result_array();
+        $result = $query->row_array();
         return $result;
     }
 
     public function brojPaketa() {
-        $this->db->select('count(idPaketi)');
+       // $this->db->select('count(idPaketi)');
         $query = $this->db->get('paketi');
-        $result = $query->result_array();
+        $result = $query->num_rows();
         return $result;
     }
 

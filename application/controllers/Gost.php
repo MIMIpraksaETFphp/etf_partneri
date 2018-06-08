@@ -83,8 +83,8 @@ class Gost extends CI_Controller {
 
     private function filtrirajPartnere($paket,$partneri){
         $filter = array($paket['naziv_paketa']);
-        $filtriraniPartneri = array_filter($partneri, function ($s) use ($filter) {
-            return in_array($s['naziv_paketa'], $filter);
+        $filtriraniPartneri = array_filter($partneri, function ($element) use ($filter) {
+            return in_array($element['naziv_paketa'], $filter);
         });
         return $filtriraniPartneri;
     }

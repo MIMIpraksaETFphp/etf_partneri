@@ -94,8 +94,8 @@ class Admin extends ITmenadzer {
 
     public function registruj_se() {
         $this->form_validation->set_rules("username", "Korisničko ime", "required|callback_proveraIdenticanUsername");
-        $this->form_validation->set_rules("password", "Lozinka", "required|min_length[8]|max_length[12]"/*, array("min_lenght" => "Polje {field} mora imati najmanje 8 karaktera", "max_lenght" => "Polje {field} može imati najviše 12 karaktera")*/);
-        $this->form_validation->set_rules("confirm_password", "Potvrdi Lozinku", "required|trim|matches[password]");                                               // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Milanov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
+        $this->form_validation->set_rules("password", "Lozinka", "required|min_length[8]|max_length[12]");
+        $this->form_validation->set_rules("confirm_password", "Potvrdi Lozinku", "required|trim|matches[password]");                                               // | regex_match[/^(?=[a-zA-z])(?=\S*[a-z]{4,})(?=\S*[A-Z])(?=\S*[\d]{2,})(?!.*(.)\1{1})[0-9A-Za-z]{8,12}$/] Mentorov regex sa svim stvarima...npr da je prvo veliko idt...ne mora tako
         $this->form_validation->set_rules("ime", "Ime", "required");
         $this->form_validation->set_rules("prezime", "Prezime", "required");
         $this->form_validation->set_rules("datum_rodjenja", "Datum rodjenja", "required");
@@ -141,12 +141,11 @@ class Admin extends ITmenadzer {
             if($KorisnikNemaPartnere == false){
                 $poruka = 'Ne mozete banovati korisnika koji ima partnere';
                 $this->index($poruka);
-            }
-            else{
+            } else {
                 $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
                 redirect("$this->kontroler/index");
             }
-        } else{
+        } else {
             $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
             redirect("$this->kontroler/index");
         }

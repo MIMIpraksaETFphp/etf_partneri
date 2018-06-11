@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `etf_partneri`.`partner` (
   `telefon_kontakt_osobe` VARCHAR(45) NOT NULL,
   `email_kontakt_osobe` VARCHAR(45) NOT NULL,
   `opis` VARCHAR(1000) NOT NULL,
-  `veb_adresa` VARCHAR(45) NOT NULL,
+  `veb_adresa` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idPartner`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 7

@@ -524,5 +524,5 @@ $config['proxy_ips'] = '';
 
 
 if(!empty(getenv("CLEARDB_DATABASE_URL"))){
-    $config['base_url'] = '';
+    $config['base_url'] = $_SERVER['HTTP_HOST'];
 }

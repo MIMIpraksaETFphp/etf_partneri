@@ -1,6 +1,6 @@
 <?php
 
-require_once APPPATH . 'controllers\ITmenadzer.php';
+require_once APPPATH . 'controllers/ITmenadzer.php';
 
 class Admin extends ITmenadzer {
 

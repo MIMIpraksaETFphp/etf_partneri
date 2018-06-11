@@ -1,6 +1,6 @@
 <?php
 
-require_once APPPATH . 'controllers\Korisnik.php';
+require_once APPPATH . 'controllers/Korisnik.php';
 
 class ITmenadzer extends Korisnik {
 

@@ -1,4 +1,4 @@
-<?php echo "<br/><br/><h3>Arhiva novcanih ugovora :</h3><br/><br/><br/>";?>
+<?php echo "<br/><br/><h3>Arhiva donatorskih ugovora :</h3><br/><br/><br/>";?>
 
  <?php foreach ($DonUgovor as $value){
      if($value['idstatus_ugovora']=='6'){?>

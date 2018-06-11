@@ -224,7 +224,6 @@
                                     echo set_value('veb_adresa');
                                 }
                                 ?>">
-
                                 <span class="message col-md-6"><?php echo form_error('veb_adresa'); ?></span>
                             </div>
                             <div class="form-group">
@@ -235,7 +234,6 @@
                                     echo set_value('ime_kontakt_osobe');
                                 }
                                 ?>">
-
                                 <span class="message col-md-6"><?php echo form_error('ime_kontakt_osobe'); ?></span>
                             </div>
                             <div class="form-group">

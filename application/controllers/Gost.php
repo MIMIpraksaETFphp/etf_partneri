@@ -50,8 +50,8 @@ class Gost extends CI_Controller {
     }
 
     public function ulogujse() {
-        $this->form_validation->set_rules("username", "Username", "required");
-        $this->form_validation->set_rules("password", "Password", "required");
+        $this->form_validation->set_rules("username", "Korisničko ime", "required");
+        $this->form_validation->set_rules("password", "Lozinka", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run()) {
             if (!$this->ModelKorisnik->proveraUsername($this->input->post('username')))
@@ -100,8 +100,8 @@ class Gost extends CI_Controller {
         $this->form_validation->set_rules("telefon", "Telefon", "required|min_length[9]");
         $this->form_validation->set_rules("email", "Email", "required|valid_email");   
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
-        $this->form_validation->set_message("matches", "Morate uneti isti password");
-        $this->form_validation->set_message("proveraIdenticanUsername", "Taj username vec postoji");
+        $this->form_validation->set_message("matches", "Morate uneti istu Lozinku");
+        $this->form_validation->set_message("proveraIdenticanUsername", "To Korisničko ime vec postoji");
         $this->form_validation->set_message("min_length", "Polje {field} mora imati najmanje 8 karaktera");
         $this->form_validation->set_message("max_length", "Polje {field} može imati najviše 12 karaktera");
         if ($this->form_validation->run() == FALSE) {

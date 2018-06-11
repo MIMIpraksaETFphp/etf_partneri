@@ -139,7 +139,7 @@ class Admin extends ITmenadzer {
         if($KorisnikStatus['status_korisnika_idtable1'] == 1 || $KorisnikStatus['status_korisnika_idtable1'] == 5){
             $KorisnikNemaPartnere = $this->ModelKorisnik->proveraKorisnikPartner($KorisnikStatus['idKorisnik']);
             if($KorisnikNemaPartnere == false){
-                $poruka = 'Ne mozete banovati korisnika koji ima partnere';
+                $poruka = 'Ne možete banovati korisnika koji ima partnere';
                 $this->index($poruka);
             } else {
                 $this->ModelKorisnik->promenaStatusa($KorisnikStatus);
@@ -155,9 +155,9 @@ class Admin extends ITmenadzer {
         $var = $this->ModelKorisnik->paketNemaUgovor($idPaket);
         if (empty($var)) {
             $this->ModelKorisnik->brisanjePaketa($idPaket);
-            $message = "Uspesno ste izbrisali paket";
+            $message = "Uspešno ste izbrisali paket";
         } else {
-            $message = "Ne mozete brisati paket koji ima vezan ugovor!";
+            $message = "Ne možete brisati paket koji ima vezan ugovor!";
         }
         $this->adminPaketi($message);
     }

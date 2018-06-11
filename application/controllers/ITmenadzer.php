@@ -95,11 +95,11 @@ class ITmenadzer extends Korisnik {
                 if ($brojPartneraPoPaketu[0]['broj'] < $brojPartneraPoPaketu[0]['maks_broj_partnera']) {
                     $insertovanidNovcaniUgovor = $this->ModelKorisnik->dodatUgovor($novcaniUgovor);
                     $this->ModelKorisnik->dodatNovcaniUgovor($novcaniUgovor, $insertovanidNovcaniUgovor);
-                    $message = "Uspesno ste dodali novi Ugovor.";
+                    $message = "Uspešno ste dodali novi Ugovor.";
                     $boja = "blue";
                     $this->dodajUgovor($message, $boja);
                 } else {
-                    $message = "Iskoriscen je maksimalni broj Partnera u Paketu!";
+                    $message = "Iskorišćen je maksimalni broj Partnera u Paketu!";
                     $boja = "red";
                     $this->dodajUgovor($message, $boja);
                 }
@@ -264,11 +264,11 @@ class ITmenadzer extends Korisnik {
                 if ($brojPartneraPoPaketu[0]['broj'] < $brojPartneraPoPaketu[0]['maks_broj_partnera']) {
                     $insertovanidDonatorskiUgovor = $this->ModelKorisnik->dodatUgovorDonacije($donatorskiUgovor);
                     $this->ModelKorisnik->dodatDonatorskiUgovor($donatorskiUgovor, $insertovanidDonatorskiUgovor);
-                    $message = "Uspesno ste dodali novi Ugovor.";
+                    $message = "Uspešno ste dodali novi Ugovor.";
                     $boja = "blue";
                     $this->dodajUgovorDonacije($message, $boja);
                 } else {
-                    $message = "Iskoriscen je maksimalni broj Partnera u Paketu!";
+                    $message = "Iskorišćen je maksimalni broj Partnera u Paketu!";
                     $boja = "red";
                     $this->dodajUgovorDonacije($message, $boja);
                 }
@@ -332,6 +332,7 @@ class ITmenadzer extends Korisnik {
         $this->form_validation->set_rules("to", "TO", "required|callback_testAdrese");
         $this->form_validation->set_rules("cc", "CC", "callback_testAdrese");
         $this->form_validation->set_rules("bcc", "BCC", "callback_testAdrese");
+        $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->mejl();
         } else {
@@ -375,7 +376,7 @@ class ITmenadzer extends Korisnik {
                     ->message($body)
                     ->send();
             if ($result) {
-                $data['poruka'] = "Mejl je uspesno poslat.";
+                $data['poruka'] = "Mejl je uspešno poslat.";
                 $adrese = $to;
                 if (!empty($cc)) {
                     $adrese = $adrese . "," . $cc;
@@ -434,7 +435,7 @@ class ITmenadzer extends Korisnik {
 
     public function dodavanjePartneraClanu() {
         $this->form_validation->set_rules("id_partnera", "id_partnera", "callback_proveraKorisnikPartner");
-        $this->form_validation->set_message("proveraKorisnikPartner", "Taj clan je vec zaduzen za tu kompaniju");
+        $this->form_validation->set_message("proveraKorisnikPartner", "Taj član je vec zadužen za tu kompaniju");
         if ($this->form_validation->run() == false) {
             $this->clanovi();   // kad se prikazuje form_error, mora ovako, ne sme redirect!
         } else {
@@ -470,7 +471,7 @@ class ITmenadzer extends Korisnik {
 
     public function posaljiMejlPartneruKomeIsticeUgovor($idPartner) {
         $partner = $this->ModelKorisnik->dohvatiPartnera($idPartner);
-        $data['subject'] = "Produzenje saradnje sa ETF-om";
+        $data['subject'] = "Produženje saradnje sa ETF-om";
         $data['to'] = $partner['email_kontakt_osobe'];
         $this->mejl($data);
     }

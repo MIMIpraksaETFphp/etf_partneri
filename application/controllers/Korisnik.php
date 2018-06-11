@@ -84,9 +84,9 @@ class Korisnik extends CI_Controller {
                 ->message($message)
                 ->send();
         if ($result) {
-            $data['poruka'] = "Mejl obavestenje je uspesno poslato.";
+            $data['poruka'] = "Mejl obaveštenje je uspešno poslato.";
         } else {
-            $data['poruka'] = "Mejl obavestenje nije uspesno poslato.";
+            $data['poruka'] = "Mejl obaveštenje nije uspešno poslato.";
         }
 
         $this->loadView("status.php", $data);
@@ -250,9 +250,9 @@ class Korisnik extends CI_Controller {
     public function dodajPartnera() {
         $this->form_validation->set_rules("naziv", "Naziv", "required");
         $this->form_validation->set_rules("adresa", "Adresa", "required");
-        $this->form_validation->set_rules("postanski_broj", "Postanski broj", "required");
+        $this->form_validation->set_rules("postanski_broj", "Poštanski broj", "required");
         $this->form_validation->set_rules("grad", "Grad", "required");
-        $this->form_validation->set_rules("drzava", "Drzava", "required");
+        $this->form_validation->set_rules("drzava", "Država", "required");
         $this->form_validation->set_rules("ziro_racun", "Žiro racun", "required");
         $this->form_validation->set_rules("valuta_racuna", "Valuta racuna", "required");
         $this->form_validation->set_rules("PIB", "PIB", "required");
@@ -353,8 +353,8 @@ class Korisnik extends CI_Controller {
         $this->form_validation->set_rules("opis_srpski", "Opis srpski", "required");
         $this->form_validation->set_rules("vreme_predavanja", "Vreme predavanja", "required");
         $this->form_validation->set_rules("sala", "Sala", "required");
-        $this->form_validation->set_rules("ime_predavaca", "Ime predavaca", "required");
-        $this->form_validation->set_rules("prezime_predavaca", "Prezime predavaca", "required");
+        $this->form_validation->set_rules("ime_predavaca", "Ime predavača", "required");
+        $this->form_validation->set_rules("prezime_predavaca", "Prezime predavača", "required");
         $this->form_validation->set_message("required", "Polje {field} je ostalo prazno");
         if ($this->form_validation->run() == FALSE) {
             $this->dodajPredavanje();
@@ -398,9 +398,9 @@ class Korisnik extends CI_Controller {
                 ->message($message)
                 ->send();
         if ($result) {
-            $data['poruka'] = "Mejl obavestenje je uspesno poslato.";
+            $data['poruka'] = "Mejl obaveštenje je uspešno poslato.";
         } else {
-            $data['poruka'] = "Mejl obavestenje nije uspesno poslato.";
+            $data['poruka'] = "Mejl obaveštenje nije uspešno poslato.";
         }
 
         $this->loadView("status.php", $data);
@@ -518,13 +518,13 @@ class Korisnik extends CI_Controller {
             $this->ModelKorisnik->promeniPassword($idKorisnik, $novi_password);
             $this->logout();
         } elseif ($username != $this->input->post('username')) {
-            $poruka = "Pogresan username!";
+            $poruka = "Pogrešno Korisničko ime!";
             $this->promeniPassword($poruka);
         } elseif ($stari_password != md5($this->input->post('stari_password'))) {
-            $poruka = "Pogresan stari password!";
+            $poruka = "Pogrešna stara Lozinka!";
             $this->promeniPassword($poruka);
         } elseif ($stari_password == md5($this->input->post('novi_password'))) {
-            $poruka = "Novi password ne sme da bude isti kao stari password!";
+            $poruka = "Nova Lozinka ne sme da bude ista kao stara!";
             $this->promeniPassword($poruka);
         }
     }

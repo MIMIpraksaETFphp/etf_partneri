@@ -57,7 +57,7 @@
                                 <span class="message col-md-6"><?php echo form_error('grad'); ?></span>
                             </div>
                             <div class="form-group">
-                                <input class="form-control col-md-6" placeholder="Postanski broj" name="postanski_broj" type="text" value="<?php
+                                <input class="form-control col-md-6" placeholder="Poštanski broj" name="postanski_broj" type="text" value="<?php
                                 if ($tip == 'promeni') {
                                     echo $partner[0]['postanski_broj'];
                                 } else {

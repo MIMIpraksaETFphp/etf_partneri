@@ -27,5 +27,5 @@ $podaci = array(
     }
     echo "</td></tr>";
 ?>
-<tr><td colspan='2'><a href='<?php echo site_url("$kontroler/promeniPassword");?>'><b>Promeni password</b></a></td></tr>
+<tr><td colspan='2'><a href='<?php echo site_url("$kontroler/promeniPassword");?>'><b>Promeni Lozinku</b></a></td></tr>
 </table>

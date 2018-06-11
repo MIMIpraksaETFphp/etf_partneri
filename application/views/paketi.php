@@ -28,9 +28,9 @@
         echo "<h4>" . $paket['naziv_paketa'] . "</h4><a/><br/>";
         echo "<p>Paket ";
         if ($paket['trajanje_paketa_godine'] == 1) {
-            echo "na jednogodisnjem nivou";
+            echo "na jednogodišnjem nivou";
         } elseif ($paket['trajanje_paketa_godine'] == 2) {
-            echo "na dvogodisnjem nivou";
+            echo "na dvogodišnjem nivou";
         }
         echo " obuhvata:</p>";
         $filter = array($paket['naziv_paketa']);

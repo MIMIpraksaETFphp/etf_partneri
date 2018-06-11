@@ -17,7 +17,7 @@ foreach ($clanovi as $clan) {
 
                     <th><?php echo $usernameClana . "<br/>" ?></th>
                     <?php echo form_open("$kontroler/dodavanjePartneraClanu", "method=post"); ?>
-                    <tr><td>  <?php echo "Dodaj Partnera Clanu: " ?></td>
+                    <tr><td>  <?php echo "Dodaj Partnera Članu: " ?></td>
                     <input type="hidden" name="idKorisnika" value="<?php echo $clan['idKorisnik']; ?>">
                     </tr>
                     <tr>

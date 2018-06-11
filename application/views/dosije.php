@@ -32,15 +32,15 @@
                         <td><?php echo $kompanija['grad']; ?></td>
                     </tr>
                     <tr>
-                        <th>Postanski broj</th>    
+                        <th>Poštanski broj</th>    
                         <td><?php echo $kompanija['postanski_broj']; ?></td>
                     </tr>
                     <tr>
-                        <th>Drzava</th>
+                        <th>Država</th>
                         <td><?php echo $kompanija['drzava']; ?></td>
                     </tr>
                     <tr>
-                        <th>Ziro racun</th>
+                        <th>Žiro racun</th>
                         <td><?php echo $kompanija['ziro_racun']; ?></td>
                     </tr>
                     <tr>

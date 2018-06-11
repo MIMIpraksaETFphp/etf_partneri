@@ -33,7 +33,7 @@ echo "<br />";
 
 <table class="table table-bordered">
     
-            <th colspan="4"><?php echo "Kompanije sa ugovorima koji uskoro isticu: <br/><br/>"; ?></th>
+            <th colspan="4"><?php echo "Kompanije sa ugovorima koji uskoro ističu: <br/><br/>"; ?></th>
             <tr><td>Naziv Kompanije</td><td>Datum isticanja</td><td>Datum potpisivanja</td><td>Tip ugovora</td></tr>
             <?php
             foreach ($petIsticanja as $ugovor) {

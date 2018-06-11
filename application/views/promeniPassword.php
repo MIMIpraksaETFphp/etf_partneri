@@ -16,16 +16,16 @@
                             echo form_error('username');
                             ?>                                                            
                             <div class="form-group">
-                                <input class="form-control col-md-6" name="username" type="text" value="" placeholder="Unesi username">
+                                <input class="form-control col-md-6" name="username" type="text" value="" placeholder="Unesi Korisničko ime">
                             </div>
                             <div class="form-group">
-                                <input class="form-control col-md-6" name="stari_password" type="password" value="" placeholder="Unesi staru lozinku">
+                                <input class="form-control col-md-6" name="stari_password" type="password" value="" placeholder="Unesi staru Lozinku">
                             </div>  
                             <div class="form-group">
-                                <input class="form-control col-md-6" name="novi_password" type="password" value="" placeholder="Unesi novu lozinku">
+                                <input class="form-control col-md-6" name="novi_password" type="password" value="" placeholder="Unesi novu Lozinku">
                             </div> 
                             <div class="form-group">
-                                <input class="btn btn-lg btn-success btn-block col-md-3" type="submit" value="Promeni password" name="promeniPassword" >    
+                                <input class="btn btn-lg btn-success btn-block col-md-3" type="submit" value="Promeni Lozinku" name="promeniPassword" >    
                             </div>
                         </fieldset>
                     </form>

@@ -52,7 +52,7 @@ $config['index_page'] = 'index.php';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= '';   // REQUEST_URI
+$config['uri_protocol']	= 'REQUEST_URI';   // REQUEST_URI
 
 /*
 |--------------------------------------------------------------------------
@@ -524,5 +524,5 @@ $config['proxy_ips'] = '';
 
 
 if(!empty(getenv("CLEARDB_DATABASE_URL"))){
-    $config['base_url'] = $_SERVER['HTTP_HOST'];
+    $config['base_url'] = 'https://etf-partneri.herokuapp.com/';
 }

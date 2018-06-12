@@ -2,9 +2,9 @@
 <h3>Arhiva mejlova</h3>
 
 <?php
-var_dump($mejlovi);
+// var_dump($mejlovi);
 // var_dump($this->session->korisnik);
-var_dump($primaociMejla);
+// var_dump($primaociMejla);
 foreach ($mejlovi as $mejl) {
     if($this->session->korisnik->email == $mejl['email']){
         ?>

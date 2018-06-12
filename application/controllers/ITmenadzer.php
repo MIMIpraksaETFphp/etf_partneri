@@ -489,11 +489,15 @@ class ITmenadzer extends Korisnik {
     }
 
     public function arhivaMejl() {
-        $data['mejlovi'] = $this->ModelKorisnik->ispisMejlova();
+        $mejlovi = $this->ModelKorisnik->ispisMejlova();
+        $data['mejlovi'] = $mejlovi;
         $brojMejlova = $this->ModelKorisnik->brojMejlova();
-        for ($i=1;$i<$brojMejlova+1;$i++){
-            $primaociMejla[$i] = $this->ModelKorisnik->ispisPrimalacaMejlova($i);
+        foreach($mejlovi as $mejl){
+            $primaociMejla[$mejl['idmejl']] = $this->ModelKorisnik->ispisPrimalacaMejlova($mejl['idmejl']);
         }
+        // for ($i=1;$i<$brojMejlova+1;$i++){
+        //     $primaociMejla[$i] = $this->ModelKorisnik->ispisPrimalacaMejlova($i);
+        // }
         if(!empty($primaociMejla)){
             $data['primaociMejla'] = $primaociMejla;
         }

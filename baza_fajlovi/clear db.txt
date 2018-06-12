@@ -1,0 +1,9 @@
+mysql://
+user    b9d5551028f712
+:
+pass    4efa719e
+@
+hostname    us-cdbr-iron-east-04.cleardb.net
+/
+schema    heroku_23c4f583c9023fb
+?reconnect=true

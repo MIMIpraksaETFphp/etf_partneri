@@ -18,7 +18,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             foreach ($partnerIsticeUgovor as $value) {
 
                 if ($value['datum_isticanja'] > $danasnjiDatum && ($value['datum_isticanja'] < $datum3)) {
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['idPartner']) . ">Pošalji mejl</a></td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['idPartner']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['idPartner']) . ">Pošalji mejl</a></td></tr>";
                 } else if (($value['datum_isticanja'] < $datum) && $value['datum_isticanja'] > $danasnjiDatum) {
                     echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['idPartner']) . ">Dosije Kompanije</a>" . "</td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td></td></tr>";
                 }
@@ -33,7 +33,7 @@ $danasnjiDatum = mdate('%Y-%m-%d %H:%i:%s', now());
             foreach ($partnerIsticeUgovor as $value) {
                 if (($value['datum_isticanja'] > $datum2) && $value['datum_isticanja'] < $danasnjiDatum) {
 
-                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['naziv']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['idPartner']) . ">Pošalji mejl</a></td></tr>";
+                    echo "<tr><td><a href=" . site_url("$kontroler/dosije/" . $value['idPartner']) . ">Dosije Kompanije</a></td><td>" . $value['naziv'] . "</td><td>" . $value['datum_isticanja'] . "</td><td><a href=" . site_url($kontroler . '/posaljiMejlPartneruKomeIsticeUgovor/' . $value['idPartner']) . ">Pošalji mejl</a></td></tr>";
                 }
             }
             ?>

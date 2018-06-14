@@ -1,6 +1,10 @@
 <footer class="page-footer font-small blue pt-4 mt-4">
     <div class="footer-copyright py-3 text-center">
-        Kontakt e-mail: admin@etf.rs<br/>
+        Kontakt:<br/>
+        Milan Ajtić milanajtic@gmail.com<br/>
+        Ivan Marković ivan.markovic1402@gmail.com<br/>
+        Marko Marković markovicm.1403@gmail.com<br/>
+        Ivan Ivanović ivanovicivan1980@gmail.com<br/>
         © 2018 Copyright: MIMI
     </div>
     

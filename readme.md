@@ -8,4 +8,4 @@ Uputstvo za upotrebu aplikacije mozete pronaći u fajlu [uputstvo.pdf](uputstvo.
 
 <h3>Gde probati aplikaciju?</h3>
 
-Aplikaciju možete videti i probati na adresi : [https://etf-partneri.herokuapp.com](https://etf-partneri.herokuapp.com)
+Aplikaciju možete videti i probati na adresi: [https://etf-partneri.herokuapp.com](https://etf-partneri.herokuapp.com)
